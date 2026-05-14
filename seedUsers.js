@@ -1,7 +1,7 @@
 const { MongoClient } = require('mongodb');
 const bcrypt = require('bcryptjs');
 
-const uri = "mongodb://localhost:27017";
+const uri = "mongodb+srv://truongandzaisomot_db_user:an101205@anluxury.nnqcyjd.mongodb.net/?appName=anluxury";
 const client = new MongoClient(uri);
 
 async function seedUsers() {

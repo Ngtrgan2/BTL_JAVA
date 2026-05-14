@@ -44,6 +44,12 @@ function router(req, res) {
         return googleLogin(req, res);
     }
 
+    // Temporary Seed Route (DELETE AFTER USE)
+    if (url === '/api/auth/seed' && method === 'GET') {
+        const { seedAdmin } = require('./controllers/userController');
+        return seedAdmin(req, res);
+    }
+
     // API Routes - Auth & Users
     if (url === '/api/auth/register' && method === 'POST') {
         return register(req, res);

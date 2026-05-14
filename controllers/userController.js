@@ -251,4 +251,37 @@ const googleLogin = async (req, res) => {
     }
 };
 
-module.exports = { register, login, updateProfile, getUsers, updateUserRole, googleLogin };
+
+const seedAdmin = async (req, res) => {
+    try {
+        const db = getDB();
+        const users = db.collection('users');
+        
+        // Check if admin already exists
+        const existingAdmin = await users.findOne({ email: 'admin@anluxury.com' });
+        if (existingAdmin) {
+            res.writeHead(200, { 'Content-Type': 'application/json' });
+            return res.end(JSON.stringify({ message: 'Admin already exists' }));
+        }
+
+        const salt = await bcrypt.genSalt(10);
+        const adminPassword = await bcrypt.hash('admin123', salt);
+        
+        await users.insertOne({
+            fullName: 'Admin User',
+            email: 'admin@anluxury.com',
+            phone: '0999999999',
+            password: adminPassword,
+            role: 'admin',
+            createdAt: new Date()
+        });
+
+        res.writeHead(201, { 'Content-Type': 'application/json' });
+        res.end(JSON.stringify({ message: '✅ Admin account created successfully!' }));
+    } catch (error) {
+        res.writeHead(500, { 'Content-Type': 'application/json' });
+        res.end(JSON.stringify({ message: 'Error seeding admin', error: error.message }));
+    }
+};
+
+module.exports = { register, login, updateProfile, getUsers, updateUserRole, googleLogin, seedAdmin };
