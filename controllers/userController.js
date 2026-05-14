@@ -7,7 +7,7 @@ const { getPostData, verifyToken } = require('../utils');
 const secret = process.env.JWT_SECRET || 'anluxury_secret_key_2026';
 
 const { OAuth2Client } = require('google-auth-library');
-const CLIENT_ID = '911670166045-36d202c5milab1e56vqcm9t3s8j86g9r.apps.googleusercontent.com';
+const CLIENT_ID = process.env.GOOGLE_CLIENT_ID || '911670166045-36d202c5milab1e56vqcm9t3s8j86g9r.apps.googleusercontent.com';
 const client = new OAuth2Client(CLIENT_ID);
 
 const register = async (req, res) => {

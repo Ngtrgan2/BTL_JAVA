@@ -18,12 +18,17 @@ function router(req, res) {
     console.log(`[Router] ${method} ${url}`);
 
     // CORS Headers
-    const allowedOrigins = ['http://localhost:5000', 'http://127.0.0.1:5000'];
     const origin = req.headers.origin;
-    if (allowedOrigins.includes(origin)) {
+    const allowedOrigins = ['http://localhost:5000', 'http://127.0.0.1:5000'];
+    
+    if (process.env.ALLOWED_ORIGINS) {
+        allowedOrigins.push(...process.env.ALLOWED_ORIGINS.split(','));
+    }
+
+    if (origin && (allowedOrigins.includes(origin) || origin.endsWith('.onrender.com'))) {
         res.setHeader('Access-Control-Allow-Origin', origin);
     } else {
-        res.setHeader('Access-Control-Allow-Origin', 'http://localhost:5000'); // Default safe origin
+        res.setHeader('Access-Control-Allow-Origin', allowedOrigins[0]); 
     }
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
     res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
