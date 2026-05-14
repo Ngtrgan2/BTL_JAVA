@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản lý khách hàng | An LUXURY</title>
+    <link rel="stylesheet" href="../../css/admin.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="admin-grain-bg">
+        <div class="admin-ball admin-ball-1"></div>
+        <div class="admin-ball admin-ball-2"></div>
+        <div class="noise-overlay"></div>
+    </div>
+
+    <div class="admin-layout">
+        <!-- Sidebar -->
+        <aside class="admin-sidebar">
+            <div class="sidebar-header">
+                <div class="sidebar-logo">An LUXURY</div>
+                <div id="sidebar-role-text" style="font-size: 0.8rem; color: var(--admin-text-light); margin-top: 5px;">Quản Trị Hệ Thống</div>
+            </div>
+            
+            <div class="sidebar-menu">
+                <a href="dashboard.html" class="menu-item" id="nav-dashboard">
+                    <i class="fa-solid fa-chart-pie menu-icon"></i> Bàn làm việc
+                </a>
+                <a href="revenue.html" class="menu-item" id="nav-revenue">
+                    <i class="fa-solid fa-money-bill-trend-up menu-icon"></i> Doanh thu
+                </a>
+                <a href="products.html" class="menu-item" id="nav-products">
+                    <i class="fa-solid fa-gem menu-icon"></i> Sản phẩm
+                </a>
+                <a href="orders.html" class="menu-item" id="nav-orders">
+                    <i class="fa-solid fa-cart-flatbed menu-icon"></i> Đơn hàng
+                </a>
+                <a href="bookings.html" class="menu-item" id="nav-bookings">
+                    <i class="fa-regular fa-calendar-check menu-icon"></i> Lịch hẹn VIP
+                </a>
+                <a href="customers.html" class="menu-item active" id="nav-customers">
+                    <i class="fa-solid fa-users menu-icon"></i> Khách hàng
+                </a>
+            </div>
+            
+            <div class="sidebar-footer">
+                <div id="sidebar-user-info"></div>
+                <a href="../index.html" class="menu-item" style="padding: 0; margin-bottom: 1rem; font-size: 0.9rem;">
+                    <i class="fa-solid fa-globe menu-icon"></i> Xem website
+                </a>
+                <a href="#" class="menu-item logout-btn" style="padding: 0; color: #e74c3c; font-size: 0.9rem;">
+                    <i class="fa-solid fa-arrow-right-from-bracket menu-icon" style="color: #e74c3c;"></i> Đăng xuất
+                </a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="admin-main">
+            <div class="page-header">
+                <h1 class="page-title">Quản Lý Khách Hàng</h1>
+            </div>
+
+            <div class="admin-card">
+                <div class="card-header">
+                    <div style="display: flex; gap: 1rem; width: 100%;">
+                        <input type="text" id="searchUser" class="form-control-admin" placeholder="Tìm kiếm khách hàng (tên, email, sđt)..." style="flex: 1;">
+                        <button class="btn-admin btn-primary" onclick="loadUsers()"><i class="fa-solid fa-filter"></i> Tìm kiếm</button>
+                    </div>
+                </div>
+                
+                <table class="admin-table">
+                    <thead>
+                        <tr>
+                            <th>KHÁCH HÀNG</th>
+                            <th>LIÊN HỆ</th>
+                            <th>NGÀY THAM GIA</th>
+                            <th>VAI TRÒ</th>
+                            <th style="text-align: right;">THAO TÁC</th>
+                        </tr>
+                    </thead>
+                    <tbody id="userTableBody">
+                        <!-- JS render -->
+                    </tbody>
+                </table>
+            </div>
+        </main>
+    </div>
+
+    <script src="../../js/api.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const userInfo = JSON.parse(localStorage.getItem('userInfo'));
+            if (!userInfo || userInfo.role !== 'admin') {
+                window.location.href = '../login.html';
+                return;
+            }
+
+            const avatarUrl = (userInfo.avatar && String(userInfo.avatar).trim())
+                ? userInfo.avatar
+                : `https://ui-avatars.com/api/?name=${encodeURIComponent(userInfo.fullName)}&background=1a1a1a&color=d4af37`;
+
+            // Sidebar User Info
+            document.getElementById('sidebar-user-info').innerHTML = `
+                <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem; padding: 0 0.5rem;">
+                    <img src="${avatarUrl}" style="width: 35px; height: 35px; border-radius: 50%; object-fit: cover;">
+                    <div style="overflow: hidden;">
+                        <div style="font-size: 0.85rem; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: #fff;">${userInfo.fullName}</div>
+                        <div style="font-size: 0.7rem; color: var(--admin-text-light); text-transform: capitalize;">Quản trị viên</div>
+                    </div>
+                </div>
+            `;
+
+            loadUsers();
+
+            // Logout
+            document.querySelectorAll('.logout-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    localStorage.removeItem('userInfo');
+                    localStorage.removeItem('token');
+                    window.location.href = '../login.html';
+                });
+            });
+        });
+
+        async function loadUsers() {
+            const tbody = document.getElementById('userTableBody');
+            const searchTerm = document.getElementById('searchUser').value.toLowerCase();
+            
+            try {
+                const users = await API.getUsers();
+                const filtered = users.filter(u => 
+                    u.fullName.toLowerCase().includes(searchTerm) || 
+                    u.email.toLowerCase().includes(searchTerm) ||
+                    (u.phone && u.phone.includes(searchTerm))
+                );
+
+                if (filtered.length === 0) {
+                    tbody.innerHTML = '<tr><td colspan="5" style="text-align: center; padding: 3rem;">Không tìm thấy khách hàng nào</td></tr>';
+                    return;
+                }
+
+                tbody.innerHTML = filtered.map(u => `
+                    <tr>
+                        <td>
+                            <div style="font-weight: 600;">${u.fullName}</div>
+                            <small style="color: var(--admin-text-light);">${u._id}</small>
+                        </td>
+                        <td>
+                            <div>${u.email}</div>
+                            <small style="color: var(--admin-text-light);">${u.phone || 'Chưa cập nhật SĐT'}</small>
+                        </td>
+                        <td style="color: var(--admin-text-light);">${new Date(u.createdAt).toLocaleDateString('vi-VN')}</td>
+                        <td>
+                            <select class="status-dropdown ${u.role}" onchange="updateRole('${u._id}', this.value)" ${u.role === 'admin' ? 'disabled' : ''}>
+                                <option value="customer" ${u.role === 'customer' ? 'selected' : ''}>Khách hàng mới</option>
+                                <option value="loyal" ${u.role === 'loyal' ? 'selected' : ''}>Khách hàng thân thiết</option>
+                                <option value="staff" ${u.role === 'staff' ? 'selected' : ''}>Nhân viên</option>
+                                <option value="admin" ${u.role === 'admin' ? 'selected' : ''}>Quản trị viên</option>
+                            </select>
+                        </td>
+                        <td style="text-align: right;">
+                            <button class="btn-icon" title="Lịch sử mua hàng" onclick="window.location.href='orders.html?userId=${u._id}'"><i class="fa-solid fa-clock-rotate-left"></i></button>
+                        </td>
+                    </tr>
+                `).join('');
+            } catch (error) {
+                tbody.innerHTML = '<tr><td colspan="5" style="text-align: center; color: var(--status-danger);">Lỗi: ' + error.message + '</td></tr>';
+            }
+        }
+
+        async function updateRole(id, role) {
+            if (!confirm('Xác nhận thay đổi quyền hạn cho người dùng này?')) {
+                loadUsers();
+                return;
+            }
+            try {
+                await API.updateUserRole(id, role);
+                alert('Đã cập nhật quyền hạn!');
+                loadUsers();
+            } catch (error) {
+                alert('Lỗi: ' + error.message);
+                loadUsers();
+            }
+        }
+    </script>
+</body>
+</html>

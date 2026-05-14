@@ -1,0 +1,1058 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>An LUXURY | Trang Sức Kim Cương Cao Cấp</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Model Viewer for 3D objects -->
+    <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.4.0/model-viewer.min.js"></script>
+<script>
+        (function() {
+            const theme = localStorage.getItem('an-luxury-theme') || 'dark';
+            if (theme === 'dark') {
+                document.documentElement.classList.add('dark-mode');
+            }
+        })();
+    </script>
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header class="header" id="header">
+        <div class="nav">
+            <div class="logo">
+                <a href="index.html">An LUXURY</a>
+            </div>
+            <nav class="nav-links">
+                <a href="index.html">Trang chủ</a>
+                <a href="collection.html">Bộ sưu tập</a>
+                <a href="about.html">Về chúng tôi</a>
+                <a href="#promises">Cam kết</a>
+            </nav>
+            <div class="nav-icons">
+                <div class="search-container" id="search-container">
+                    <i class="fa-solid fa-search search-icon-btn" id="search-icon"></i>
+                    <input type="text" class="search-input" id="search-input" placeholder="Tìm kiếm trang sức...">
+                </div>
+                <div class="nav-icon" title="Tài khoản"><a href="login.html"><i class="fa-regular fa-user"></i></a>
+                </div>
+                <div class="nav-icon">
+                    <a href="cart.html"><i class="fa-solid fa-cart-shopping"></i></a>
+                    <span class="cart-count">2</span>
+                </div>
+                <!-- Theme Toggle Button -->
+                <button id="theme-toggle" class="theme-toggle-btn" title="Chuyển đổi Light/Dark mode">
+                    <i class="fa-solid fa-sun theme-icon-light"></i>
+                    <i class="fa-solid fa-moon theme-icon-dark"></i>
+                    <svg class="theme-star star-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 784.11 815.53"><path d="M392.05 0c-20.9,210.08-184.06,378.41-392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93-210.06 184.09-378.37 392.05-407.74-207.98-29.38-371.16-197.69-392.06-407.78z"/></svg>
+                    <svg class="theme-star star-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 784.11 815.53"><path d="M392.05 0c-20.9,210.08-184.06,378.41-392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93-210.06 184.09-378.37 392.05-407.74-207.98-29.38-371.16-197.69-392.06-407.78z"/></svg>
+                    <svg class="theme-star star-3" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 784.11 815.53"><path d="M392.05 0c-20.9,210.08-184.06,378.41-392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93-210.06 184.09-378.37 392.05-407.74-207.98-29.38-371.16-197.69-392.06-407.78z"/></svg>
+                    <svg class="theme-star star-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 784.11 815.53"><path d="M392.05 0c-20.9,210.08-184.06,378.41-392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93-210.06 184.09-378.37 392.05-407.74-207.98-29.38-371.16-197.69-392.06-407.78z"/></svg>
+                    <svg class="theme-star star-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 784.11 815.53"><path d="M392.05 0c-20.9,210.08-184.06,378.41-392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93-210.06 184.09-378.37 392.05-407.74-207.98-29.38-371.16-197.69-392.06-407.78z"/></svg>
+                    <svg class="theme-star star-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 784.11 815.53"><path d="M392.05 0c-20.9,210.08-184.06,378.41-392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93-210.06 184.09-378.37 392.05-407.74-207.98-29.38-371.16-197.69-392.06-407.78z"/></svg>
+                </button>
+            </div>
+        </div>
+        <!-- Collapsed Menu Icon -->
+        <div class="collapsed-menu-icon">
+            <i class="fa-solid fa-bars"></i>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="hero-section">
+        <svg class="hidden-filter" style="display: none;">
+            <defs>
+                <filter id="blurMe">
+                    <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
+                    <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -8" result="goo" />
+                    <feBlend in="SourceGraphic" in2="goo" />
+                </filter>
+            </defs>
+        </svg>
+        <div class="gradients-container" style="filter: url(#blurMe) blur(40px);">
+            <div class="gradient-blob blob-1"></div>
+            <div class="gradient-blob blob-2"></div>
+            <div class="gradient-blob blob-3"></div>
+            <div class="gradient-blob blob-4"></div>
+            <div class="gradient-blob blob-5"></div>
+            <div class="interactive-blob" id="interactive-blob"></div>
+        </div>
+        <div class="hero-overlay"></div>
+        <div class="hero-content container">
+            <p class="hero-subtitle">Tuyệt tác nghệ thuật kim cương</p>
+            <h1 class="hero-title">Sự Sang Trọng <br><span id="dynamic-text" style="color: var(--gold-primary); text-shadow: 0 0 20px rgba(212,175,55,0.4);">Vĩnh Cửu</span><span class="typing-cursor">|</span></h1>
+            <p class="hero-text">Khám phá bộ sưu tập trang sức tinh tuyển, nơi mỗi viên kim cương là một câu chuyện về
+                đẳng cấp, quyền quý và tình yêu duy nhất.</p>
+            <div class="hero-buttons">
+                <a href="collection.html" class="btn btn-liquid">Khám phá ngay</a>
+                <a href="booking.html" class="btn btn-liquid">Đặt lịch tư vấn VIP</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Collection/New Arrivals Section -->
+    <section class="section container" id="collection">
+        <div class="section-title reveal">
+            <p>Kiệt tác mới nhất</p>
+            <h2>Bộ Sưu Tập Mới</h2>
+        </div>
+
+        <div class="product-grid" id="product-grid">
+            <!-- Sản phẩm sẽ được load từ API -->
+        </div>
+
+        <div style="text-align: center; margin-top: 3rem;">
+            <a href="collection.html" class="btn btn-liquid" style="padding: 0 3rem;">Xem tất cả sản phẩm</a>
+        </div>
+    </section>
+
+    <!-- Interactive 3D Showcase Section -->
+    <section class="section showcase-3d-section" id="showcase-3d">
+        <div class="container">
+            <div class="showcase-3d-grid">
+                <div class="showcase-3d-content reveal-left">
+                    <div class="section-title-light" style="text-align: left; margin-bottom: 2rem;">
+                        <p style="text-transform: uppercase; letter-spacing: 2px; color: var(--gold-primary); margin-bottom: 0.5rem; font-size: 0.9rem; font-family: var(--font-body);">Trải nghiệm 360°</p>
+                        <h2 style="font-size: 2.8rem; line-height: 1.2; margin-bottom: 1.5rem; font-family: var(--font-heading);">Cảm nhận sự hoàn mỹ <br>từng góc độ</h2>
+                    </div>
+                    <p style="color: var(--text-secondary); line-height: 1.8; margin-bottom: 2rem; font-size: 1.05rem;">
+                        Khám phá chi tiết tinh xảo của kiệt tác trang sức An LUXURY qua công nghệ 3D tương tác. Xoay, thu phóng và chiêm ngưỡng vẻ đẹp lấp lánh của những viên kim cương được chế tác thủ công với độ chính xác tuyệt đối.
+                    </p>
+                    <ul class="showcase-features" style="list-style: none; margin-bottom: 2.5rem; padding: 0;">
+                        <li style="margin-bottom: 1rem; display: flex; align-items: center; gap: 1rem; color: var(--text-primary); font-size: 1.05rem;">
+                            <div style="width: 36px; height: 36px; border-radius: 50%; background: rgba(212,175,55,0.1); display: flex; align-items: center; justify-content: center; color: var(--gold-primary); font-size: 1rem; border: 1px solid rgba(212,175,55,0.2);"><i class="fa-solid fa-arrows-rotate"></i></div>
+                            Vuốt để xoay 360 độ
+                        </li>
+                        <li style="margin-bottom: 1rem; display: flex; align-items: center; gap: 1rem; color: var(--text-primary); font-size: 1.05rem;">
+                            <div style="width: 36px; height: 36px; border-radius: 50%; background: rgba(212,175,55,0.1); display: flex; align-items: center; justify-content: center; color: var(--gold-primary); font-size: 1rem; border: 1px solid rgba(212,175,55,0.2);"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+                            Phóng to để xem chi tiết
+                        </li>
+                        <li style="display: flex; align-items: center; gap: 1rem; color: var(--text-primary); font-size: 1.05rem;">
+                            <div style="width: 36px; height: 36px; border-radius: 50%; background: rgba(212,175,55,0.1); display: flex; align-items: center; justify-content: center; color: var(--gold-primary); font-size: 1rem; border: 1px solid rgba(212,175,55,0.2);"><i class="fa-regular fa-lightbulb"></i></div>
+                            Ánh sáng rực rỡ chân thực
+                        </li>
+                    </ul>
+                    <a href="collection.html" class="btn btn-liquid">Khám phá Bộ sưu tập</a>
+                </div>
+                <div class="showcase-3d-model-wrapper reveal-right">
+                    <div class="model-glow"></div>
+                    
+                    <!-- Manual Navigation Buttons -->
+                    <button class="model-nav-btn prev" onclick="rotateModels('prev')"><i class="fa-solid fa-chevron-left"></i></button>
+                    <button class="model-nav-btn next" onclick="rotateModels('next')"><i class="fa-solid fa-chevron-right"></i></button>
+
+                    <div class="models-container">
+                        <div class="model-item active" onclick="swapModel(this)">
+                            <model-viewer 
+                                src="../images/3d/object_0.glb" 
+                                alt="3D Jewelry Model" 
+                                auto-rotate 
+                                camera-controls 
+                                shadow-intensity="1.5"
+                                exposure="1.2"
+                                environment-image="legacy"
+                                interaction-prompt="hover"
+                                class="jewelry-model-viewer">
+                            </model-viewer>
+                        </div>
+                        <div class="model-item inactive-next" onclick="swapModel(this)">
+                            <model-viewer 
+                                src="../images/3d/earring.glb" 
+                                alt="3D Earring Model" 
+                                auto-rotate 
+                                shadow-intensity="1.5"
+                                exposure="1.2"
+                                environment-image="legacy"
+                                interaction-prompt="none"
+                                class="jewelry-model-viewer">
+                            </model-viewer>
+                        </div>
+                        <div class="model-item inactive-prev" onclick="swapModel(this)">
+                            <model-viewer 
+                                src="../images/3d/ring.glb" 
+                                alt="3D Ring Model" 
+                                auto-rotate 
+                                shadow-intensity="1.5"
+                                exposure="1.2"
+                                environment-image="legacy"
+                                interaction-prompt="none"
+                                class="jewelry-model-viewer">
+                            </model-viewer>
+                        </div>
+                        <div class="model-item" onclick="swapModel(this)">
+                            <model-viewer 
+                                src="../images/3d/rubyring.glb" 
+                                alt="3D Ruby Ring Model" 
+                                auto-rotate 
+                                shadow-intensity="1.5"
+                                exposure="1.2"
+                                environment-image="legacy"
+                                interaction-prompt="none"
+                                class="jewelry-model-viewer">
+                            </model-viewer>
+                        </div>
+                        <div class="model-item" onclick="swapModel(this)">
+                            <model-viewer 
+                                src="../images/3d/emering.glb" 
+                                alt="3D Emerald Ring Model" 
+                                auto-rotate 
+                                shadow-intensity="1.5"
+                                exposure="1.2"
+                                environment-image="legacy"
+                                interaction-prompt="none"
+                                class="jewelry-model-viewer">
+                            </model-viewer>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Promises/Value Section -->
+    <section class="section section-dark" id="promises">
+        <div class="container">
+            <div class="section-title section-title-light reveal">
+                <p>An LUXURY CAM KẾT</p>
+                <h2>Đẳng cấp dịch vụ và chất lượng kim cương</h2>
+            </div>
+            <div class="promises-grid">
+                <div class="promise-card reveal delay-1">
+                    <div class="promise-icon"><i class="fa-solid fa-gem"></i></div>
+                    <h3>Kiểm định Quốc tế</h3>
+                    <p>100% kim cương được kiểm định bởi GIA với tiêu chuẩn 4C khắt khe nhất thế giới.</p>
+                </div>
+                <div class="promise-card reveal delay-2">
+                    <div class="promise-icon"><i class="fa-solid fa-hand-holding-heart"></i></div>
+                    <h3>Chế tác Thủ công</h3>
+                    <p>Mỗi tác phẩm là sự kết hợp hoàn mỹ giữa công nghệ 3D hiện đại và bàn tay nghệ nhân bậc thầy.</p>
+                </div>
+                <div class="promise-card reveal delay-3">
+                    <div class="promise-icon"><i class="fa-solid fa-shield-halved"></i></div>
+                    <h3>Bảo hành Trọn đời</h3>
+                    <p>Đặc quyền làm mới, đánh bóng và bảo hành kỹ thuật trọn đời cho mọi sản phẩm An LUXURY.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="section container" id="about">
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center;">
+            <div class="about-img reveal-left">
+                <img src="../images/about-store.png" alt="An LUXURY Showroom">
+            </div>
+            <div class="reveal-right">
+                <p
+                    style="color: var(--gold-primary); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 1rem; font-weight: 500;">
+                    Câu chuyện thương hiệu</p>
+                <h2 style="font-size: 2.5rem; margin-bottom: 1.5rem; line-height: 1.2;">Định nghĩa lại sự Sang trọng
+                </h2>
+                <p style="color: var(--text-secondary); margin-bottom: 1.5rem; line-height: 1.8;">An LUXURY không chỉ
+                    bán
+                    trang sức, chúng tôi bán những biểu tượng của sự thành đạt và tình yêu vĩnh cửu. Được thành lập với
+                    sứ mệnh mang những viên kim cương tinh tuyển nhất thế giới đến tay khách hàng Việt, mỗi sản phẩm tại
+                    An LUXURY đều mang một tâm hồn riêng.</p>
+                <p style="color: var(--text-secondary); line-height: 1.8; margin-bottom: 2rem;">Chúng tôi tin rằng, sự
+                    sang trọng thực sự đến từ chi tiết nhỏ nhất và sự minh bạch tuyệt đối trong chất lượng.</p>
+                <a href="about.html" class="btn btn-liquid">Tìm hiểu thêm</a>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- News Section -->
+    <section class="news-section reveal" id="news">
+        <div class="container">
+            <div class="section-title">
+                <p>Cập nhật mới nhất</p>
+                <h2>Tin Tức & Sự Kiện</h2>
+            </div>
+        </div>
+
+        <div class="news-slider-container">
+            <button class="slider-btn prev" id="news-prev"><i class="fa-solid fa-chevron-left"></i></button>
+            <button class="slider-btn next" id="news-next"><i class="fa-solid fa-chevron-right"></i></button>
+            
+            <div class="news-slider-track-wrap">
+                <div class="news-slider-track" id="news-track">
+                    <!-- News Card 1 -->
+                    <div class="news-card" onclick="window.location.href='news-detail.html?id=1'">
+                        <div class="news-img-wrap">
+                            <span class="news-badge">Làm đẹp</span>
+                            <img src="../images/news-1.png" alt="News 1" class="news-img">
+                            <div class="news-overlay-content">
+                                <h4 class="news-overlay-title">Vì Sao</h4>
+                            </div>
+                        </div>
+                        <div class="news-info">
+                            <h3 class="news-title">Ngại Mua Trang Sức Online? Giải Mã 4 Nỗi Lo Khi Chốt Đơn</h3>
+                            <p class="news-excerpt">Đeo nhẫn tay trái có ý nghĩa gì? Cùng An LUXURY giải mã ý nghĩa đeo nhẫn tay trái qua 5 ngón tay để thấu hiểu tính cách và tình duyên của bạn.</p>
+                        </div>
+                    </div>
+
+                    <!-- News Card 2 -->
+                    <div class="news-card" onclick="window.location.href='news-detail.html?id=2'">
+                        <div class="news-img-wrap">
+                            <span class="news-badge">Trang sức</span>
+                            <img src="../images/news-2.png" alt="News 2" class="news-img">
+                            <div class="news-overlay-content">
+                                <h4 class="news-overlay-title">Diện giáp hồng</h4>
+                            </div>
+                        </div>
+                        <div class="news-info">
+                            <h3 class="news-title">LiLi’s Pink Muse Club: Diện Giáp Hồng – Hóa Nàng Thơ</h3>
+                            <p class="news-excerpt">Bạn có tin sắc hồng có thể tạo nên một sức mạnh vô hình? Tại LiLi’s Pink Muse Club, chúng mình định nghĩa màu hồng không chỉ là sự nữ tính, mà là "giáp" lộng lẫy giúp nàng tự tin, yêu bản thân và...</p>
+                        </div>
+                    </div>
+
+                    <!-- News Card 3 -->
+                    <div class="news-card" onclick="window.location.href='news-detail.html?id=3'">
+                        <div class="news-img-wrap">
+                            <span class="news-badge">Trang sức</span>
+                            <img src="../images/news-3.png" alt="News 3" class="news-img">
+                            <div class="news-overlay-content">
+                                <h4 class="news-overlay-title">Nghệ thuật</h4>
+                            </div>
+                        </div>
+                        <div class="news-info">
+                            <h3 class="news-title">Chọn Lắc Tay Hợp Mệnh 2026 Để Thu Hút Tài Lộc, May Mắn</h3>
+                            <p class="news-excerpt">Năm 2026 là thời điểm nhiều người quan tâm hơn đến lắc tay phong thủy, lắc tay hợp mệnh và những mẫu lắc tay thu hút tài lộc để đồng hành trong công việc cũng như cuộc sống. Không chỉ là món trang sức...</p>
+                        </div>
+                    </div>
+
+                    <!-- News Card 4 -->
+                    <div class="news-card" onclick="window.location.href='news-detail.html?id=4'">
+                        <div class="news-img-wrap">
+                            <span class="news-badge">Cẩm nang</span>
+                            <img src="../images/news-4.png" alt="News 4" class="news-img">
+                            <div class="news-overlay-content">
+                                <h4 class="news-overlay-title">Bảo quản</h4>
+                            </div>
+                        </div>
+                        <div class="news-info">
+                            <h3 class="news-title">Cách Vệ Sinh Trang Sức Kim Cương Luôn Sáng Bóng Tại Nhà</h3>
+                            <p class="news-excerpt">Làm thế nào để giữ cho những món trang sức kim cương của bạn luôn lấp lánh như mới? Hãy cùng khám phá những bí quyết vệ sinh đơn giản mà hiệu quả ngay tại nhà từ các chuyên gia An LUXURY.</p>
+                        </div>
+                    </div>
+
+                    <!-- News Card 5 -->
+                    <div class="news-card" onclick="window.location.href='news-detail.html?id=5'">
+                        <div class="news-img-wrap">
+                            <span class="news-badge">Sự kiện</span>
+                            <img src="../images/news-5.png" alt="News 5" class="news-img">
+                            <div class="news-overlay-content">
+                                <h4 class="news-overlay-title">Trải nghiệm</h4>
+                            </div>
+                        </div>
+                        <div class="news-info">
+                            <h3 class="news-title">Đặc Quyền VIP: Trải Nghiệm Không Gian Mua Sắm Riêng Tư</h3>
+                            <p class="news-excerpt">An LUXURY chính thức ra mắt phòng chờ VIP dành riêng cho các khách hàng thượng lưu, nơi mỗi buổi tư vấn trang sức là một buổi thưởng thức nghệ thuật đỉnh cao trong không gian sang trọng và kín đáo.</p>
+                        </div>
+                    </div>
+
+                    <!-- News Card 6 -->
+                    <div class="news-card" onclick="window.location.href='news-detail.html?id=6'">
+                        <div class="news-img-wrap">
+                            <span class="news-badge">Xu hướng</span>
+                            <img src="../images/news-6.png" alt="News 6" class="news-img">
+                            <div class="news-overlay-content">
+                                <h4 class="news-overlay-title">Mùa cưới</h4>
+                            </div>
+                        </div>
+                        <div class="news-info">
+                            <h3 class="news-title">Top 10 Mẫu Nhẫn Cưới Được Ưa Chuộng Nhất Mùa Cưới 2026</h3>
+                            <p class="news-excerpt">Chuẩn bị cho ngày trọng đại, việc lựa chọn đôi nhẫn cưới hoàn hảo là vô cùng quan trọng. Khám phá ngay những thiết kế độc bản, tinh tế đang dẫn đầu xu hướng trang sức cưới năm nay tại An LUXURY.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <!-- New Artistic Footer Section -->
+            <div class="artistic-footer" style="margin-bottom: 4rem; position: relative;">
+                <div class="footer-brand-outline">AN LUXURY</div>
+            </div>
+
+            <!-- Logo -->
+            <div style="margin-bottom: 2.5rem;">
+                <div class="logo" style="font-size: 1.8rem;">An LUXURY</div>
+            </div>
+
+            <!-- Main Footer Grid -->
+            <div style="display: grid; grid-template-columns: 2fr 1.2fr 1.5fr 1.5fr; gap: 3rem;">
+
+                <!-- Cột 1: Thông tin công ty -->
+                <div>
+                    <p style="color: var(--text-muted); line-height: 1.9; font-size: 0.9rem;">
+                        &copy; 2005 Công Ty TNHH An LUXURY<br>
+                        21/33 Bạch Đằng, Hồng Hà, Hà Nội<br><br>
+                        ĐT: <a href="#" style="color: var(--gold-primary);">039 2326 230</a> - Fax: 028 3995 1702<br>
+                        Giấy chứng nhận đăng ký kinh doanh: 036636363636 do Sở Tài chính Thành phố Hà Nội cấp ngày
+                        10/12/2005.
+                    </p>
+                    <div style="margin-top: 1.5rem; color: var(--text-muted); font-size: 0.88rem; line-height: 2;">
+                        Tổng đài hỗ trợ (08:00-21:00, miễn phí gọi)<br>
+                        Gọi mua: <a href="#" style="color: var(--gold-primary);">1800545457</a> (phím 1)<br>
+                        Khiếu nại: <a href="#" style="color: var(--gold-primary);">1800545457</a> (phím 2)<br>
+                        Email góp ý: <a href="#" style="color: var(--gold-primary);">cskh@anluxury.com.vn</a>
+                    </div>
+                </div>
+
+                <!-- Cột 2: Về An LUXURY -->
+                <div>
+                    <h4
+                        style="margin-bottom: 1.5rem; font-family: var(--font-body); font-weight: 700; text-transform: uppercase; letter-spacing: 1px; font-size: 0.95rem;">
+                        Về An LUXURY</h4>
+                    <ul style="list-style: none; color: var(--text-muted); line-height: 2.2; font-size: 0.9rem;">
+                        <li><a href="ir.html" style="color: inherit; transition: color 0.3s;"
+                                onmouseover="this.style.color='#d4af37'" onmouseout="this.style.color='inherit'">Quan hệ
+                                cổ đông (IR)</a></li>
+                        <li><a href="careers.html" style="color: inherit; transition: color 0.3s;"
+                                onmouseover="this.style.color='#d4af37'" onmouseout="this.style.color='inherit'">Tuyển
+                                dụng</a></li>
+                        <li><a href="export.html" style="color: inherit; transition: color 0.3s;"
+                                onmouseover="this.style.color='#d4af37'" onmouseout="this.style.color='inherit'">Xuất
+                                khẩu</a></li>
+                        <li><a href="wholesale.html" style="color: inherit; transition: color 0.3s;"
+                                onmouseover="this.style.color='#d4af37'" onmouseout="this.style.color='inherit'">Kinh
+                                doanh sỉ</a></li>
+                        <li><a href="https://www.gia.edu" target="_blank" style="color: inherit; transition: color 0.3s;"
+                                onmouseover="this.style.color='#d4af37'" onmouseout="this.style.color='inherit'">Kiểm
+                                định kim cương</a></li>
+                        <li><a href="corporate-gifts.html" style="color: inherit; transition: color 0.3s;"
+                                onmouseover="this.style.color='#d4af37'" onmouseout="this.style.color='inherit'">Quà
+                                tặng doanh nghiệp</a></li>
+                    </ul>
+                </div>
+
+                <!-- Cột 3: Dịch vụ khách hàng + Chính sách -->
+                <div>
+                    <h4
+                        style="margin-bottom: 1.5rem; font-family: var(--font-body); font-weight: 700; text-transform: uppercase; letter-spacing: 1px; font-size: 0.95rem;">
+                        Dịch vụ khách hàng</h4>
+                    <ul
+                        style="list-style: none; color: var(--text-muted); line-height: 2.2; font-size: 0.9rem; margin-bottom: 2rem;">
+                        <li><a href="size-guide.html" style="color: inherit; transition: color 0.3s;"
+                                onmouseover="this.style.color='#d4af37'" onmouseout="this.style.color='inherit'">Hướng
+                                dẫn đo size trang sức</a></li>
+                        <li><a href="installment.html" style="color: inherit; transition: color 0.3s;"
+                                onmouseover="this.style.color='#d4af37'" onmouseout="this.style.color='inherit'">Mua
+                                hàng trả góp</a></li>
+                        <li><a href="shopping-guide.html" style="color: inherit; transition: color 0.3s;"
+                                onmouseover="this.style.color='#d4af37'" onmouseout="this.style.color='inherit'">Hướng
+                                dẫn mua hàng và thanh toán</a></li>
+                        <li><a href="price-lookup.html" style="color: inherit; transition: color 0.3s;"
+                                onmouseover="this.style.color='#d4af37'" onmouseout="this.style.color='inherit'">Hướng
+                                dẫn tra cứu giá</a></li>
+                        <li><a href="jewelry-manual.html" style="color: inherit; transition: color 0.3s;"
+                                onmouseover="this.style.color='#d4af37'" onmouseout="this.style.color='inherit'">Cẩm
+                                nang sử dụng trang sức</a></li>
+                        <li><a href="faq.html" style="color: inherit; transition: color 0.3s;"
+                                onmouseover="this.style.color='#d4af37'" onmouseout="this.style.color='inherit'">Câu hỏi
+                                thường gặp</a></li>
+                    </ul>
+
+                    <h4
+                        style="margin-bottom: 1rem; font-family: var(--font-body); font-weight: 700; text-transform: uppercase; letter-spacing: 1px; font-size: 0.95rem;">
+                        Tổng hợp các chính sách</h4>
+                    <ul style="list-style: none; color: var(--text-muted); line-height: 2.2; font-size: 0.9rem;">
+                        <li><a href="hoantien.html" style="color: inherit; transition: color 0.3s;"
+                                onmouseover="this.style.color='#d4af37'" onmouseout="this.style.color='inherit'">Chính
+                                sách hoàn tiền</a></li>
+                        <li><a href="delivery-policy.html" style="color: inherit; transition: color 0.3s;"
+                                onmouseover="this.style.color='#d4af37'" onmouseout="this.style.color='inherit'">Chính
+                                sách giao hàng</a></li>
+                        <li><a href="warranty-policy.html" style="color: inherit; transition: color 0.3s;"
+                                onmouseover="this.style.color='#d4af37'" onmouseout="this.style.color='inherit'">Chính
+                                sách bảo hành thu đổi</a></li>
+                        <li><a href="loyalty-policy.html" style="color: inherit; transition: color 0.3s;"
+                                onmouseover="this.style.color='#d4af37'" onmouseout="this.style.color='inherit'">Chính
+                                sách khách hàng thân thiết</a></li>
+                        <li><a href="privacy-policy.html" style="color: inherit; transition: color 0.3s;"
+                                onmouseover="this.style.color='#d4af37'" onmouseout="this.style.color='inherit'">Chính
+                                sách bảo mật thông tin khách hàng</a></li>
+                        <li><a href="data-processing-policy.html" style="color: inherit; transition: color 0.3s;"
+                                onmouseover="this.style.color='#d4af37'" onmouseout="this.style.color='inherit'">Chính
+                                sách xử lý dữ liệu cá nhân</a></li>
+                    </ul>
+                </div>
+
+                <!-- Cột 4: Kết nối + Zalo OA -->
+                <div>
+                    <h4
+                        style="margin-bottom: 1.5rem; font-family: var(--font-body); font-weight: 700; text-transform: uppercase; letter-spacing: 1px; font-size: 0.95rem;">
+                        Kết nối với chúng tôi</h4>
+                    <div style="display: flex; gap: 0.8rem; margin-bottom: 2rem;">
+                        <a href="https://www.facebook.com/ngtrgan1012/" target="_blank"
+                            style="width: 42px; height: 42px; border-radius: 50%; background: #1877F2; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 1.2rem; transition: transform 0.3s, box-shadow 0.3s;"
+                            onmouseover="this.style.transform='scale(1.15)'; this.style.boxShadow='0 4px 15px rgba(24,119,242,0.4)'"
+                            onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='none'"><i
+                                class="fa-brands fa-facebook-f"></i></a>
+                        <a href="https://www.instagram.com/ng_trg.an/?hl=en"
+                            style="width: 42px; height: 42px; border-radius: 50%; background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); display: flex; align-items: center; justify-content: center; color: #fff; font-size: 1.2rem; transition: transform 0.3s, box-shadow 0.3s;"
+                            onmouseover="this.style.transform='scale(1.15)'; this.style.boxShadow='0 4px 15px rgba(225,48,108,0.4)'"
+                            onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='none'"><i
+                                class="fa-brands fa-instagram"></i></a>
+                        <a href="https://www.youtube.com/@MixiGaming3con"
+                            style="width: 42px; height: 42px; border-radius: 50%; background: #FF0000; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 1.2rem; transition: transform 0.3s, box-shadow 0.3s;"
+                            onmouseover="this.style.transform='scale(1.15)'; this.style.boxShadow='0 4px 15px rgba(255,0,0,0.4)'"
+                            onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='none'"><i
+                                class="fa-brands fa-youtube"></i></a>
+                        <a href="https://www.tiktok.com/@voikonnn"
+                            style="width: 42px; height: 42px; border-radius: 50%; background: #d4af37; display: flex; align-items: center; justify-content: center; color: #0a0a0a; font-size: 1.2rem; transition: transform 0.3s, box-shadow 0.3s;"
+                            onmouseover="this.style.transform='scale(1.15)'; this.style.boxShadow='0 4px 15px rgba(212,175,55,0.4)'"
+                            onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='none'"><i
+                                class="fa-regular fa-envelope"></i></a>
+                    </div>
+
+                    <h4
+                        style="margin-bottom: 1rem; font-family: var(--font-body); font-weight: 700; text-transform: uppercase; letter-spacing: 1px; font-size: 0.95rem;">
+                        Quan tâm Zalo OA</h4>
+                    <p style="color: var(--text-muted); font-size: 0.88rem; margin-bottom: 1rem;">Nhận các thông tin
+                        khuyến mãi hấp dẫn</p>
+                    <a href="https://zalo.me/0392326230" target="_blank"
+                        style="display: inline-flex; align-items: center; gap: 0.5rem; background: #0068FF; color: #fff; padding: 0.6rem 1.2rem; border-radius: 20px; font-size: 0.85rem; font-weight: 600; text-decoration: none; transition: background 0.3s;"
+                        onmouseover="this.style.background='#0055d4'" onmouseout="this.style.background='#0068FF'">
+                        <i class="fa-solid fa-comment-dots"></i> Quan tâm
+                    </a>
+
+                    <!-- Location Map Component -->
+                    <div class="location-map-wrapper" id="map-wrapper">
+                        <div class="location-map-card" id="map-card">
+                            <div class="map-gradient-overlay"></div>
+                            <div class="map-svg-container">
+                                <svg class="map-svg" preserveAspectRatio="none" viewBox="0 0 100 100">
+                                    <!-- Simple Map Illustration -->
+                                    <line x1="0" y1="35" x2="100" y2="35" class="map-road" />
+                                    <line x1="0" y1="65" x2="100" y2="65" class="map-road" />
+                                    <line x1="30" y1="0" x2="30" y2="100" class="map-road" />
+                                    <line x1="70" y1="0" x2="70" y2="100" class="map-road" />
+                                    <circle cx="50" cy="50" r="4" class="map-pin" />
+                                </svg>
+                            </div>
+                            <iframe class="google-map-iframe" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3724.0256092802133!2d105.85621421160955!3d21.031661287596485!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135abc2238dbc7d%3A0x1b7872616e10e945!2zMzMgxJAuIELhuqFjaCDEkOG6sW5nLCBI4buTbmcgSMOgLCBIw6AgTuG7mWkgMTAwMDAwLCBWaeG7h3QgTmFt!5e0!3m2!1svi!2s!4v1778156747606!5m2!1svi!2s" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                            <div class="map-header">
+                                <i class="fa-solid fa-map-location-dot map-icon" style="font-size: 1.2rem;"></i>
+                                <div class="status-indicator">
+                                    <div class="status-dot"></div>
+                                    <span class="status-text">Live</span>
+                                </div>
+                            </div>
+                            <div class="map-footer">
+                                <h3 class="location-name">33 Bạch Đằng, Hà Nội</h3>
+                                <p class="location-coords">21.0315° N, 105.8617° E</p>
+                                <div class="animated-underline"></div>
+                            </div>
+                        </div>
+                        <p class="click-hint">Click to expand</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Payment & Certification -->
+            <div
+                style="margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--border-light); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 2rem;">
+                <div>
+                    <h4
+                        style="font-family: var(--font-body); font-weight: 700; text-transform: uppercase; letter-spacing: 1px; font-size: 0.85rem; margin-bottom: 1rem;">
+                        Phương thức thanh toán</h4>
+                    <div style="display: flex; gap: 0.6rem; align-items: center; flex-wrap: wrap;">
+                        <span
+                            style="background: #fff; color: #1a1f71; padding: 0.4rem 0.7rem; border-radius: 4px; font-size: 0.75rem; font-weight: 800; letter-spacing: 1px;">VISA</span>
+                        <span
+                            style="background: #fff; padding: 0.4rem 0.7rem; border-radius: 4px; font-size: 0.75rem; font-weight: 800;">
+                            <span style="color: #EB001B;">●</span><span style="color: #F79E1B;">●</span>
+                        </span>
+                        <span
+                            style="background: #fff; color: #cc0000; padding: 0.4rem 0.7rem; border-radius: 4px; font-size: 0.7rem; font-weight: 800;">JCB</span>
+                        <span
+                            style="background: #0068FF; color: #fff; padding: 0.4rem 0.7rem; border-radius: 4px; font-size: 0.7rem; font-weight: 700;">ZaloPay</span>
+                        <span
+                            style="background: #1ec28b; color: #fff; padding: 0.4rem 0.7rem; border-radius: 4px; font-size: 0.7rem; font-weight: 700;">MoMo</span>
+                        <span
+                            style="background: #fff; color: #333; padding: 0.4rem 0.7rem; border-radius: 4px; font-size: 0.65rem; font-weight: 700;">TRẢ
+                            GÓP 0%</span>
+                    </div>
+                </div>
+                <div>
+                    <h4
+                        style="font-family: var(--font-body); font-weight: 700; text-transform: uppercase; letter-spacing: 1px; font-size: 0.85rem; margin-bottom: 1rem;">
+                        Chứng nhận</h4>
+                    <div style="display: flex; gap: 0.8rem; align-items: center;">
+                        <div
+                            style="background: #1a3a6b; color: #fff; padding: 0.5rem 1rem; border-radius: 4px; font-size: 0.65rem; text-align: center; line-height: 1.4; font-weight: 600; border: 1px solid #2a5a9b;">
+                            <i class="fa-solid fa-shield-halved"
+                                style="font-size: 1rem; display: block; margin-bottom: 2px; color: #4da6ff;"></i>
+                            ĐÃ THÔNG BÁO<br>BỘ CÔNG THƯƠNG
+                        </div>
+                        <div
+                            style="background: rgba(212,175,55,0.1); color: var(--gold-primary); padding: 0.5rem 1rem; border-radius: 4px; font-size: 0.65rem; text-align: center; line-height: 1.4; font-weight: 600; border: 1px solid var(--gold-dark);">
+                            <i class="fa-solid fa-gem" style="font-size: 1rem; display: block; margin-bottom: 2px;"></i>
+                            GIA CERTIFIED<br>DIAMONDS
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Copyright -->
+            <div
+                style="margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid var(--border-light); text-align: center; color: var(--text-muted); font-size: 0.85rem;">
+                <p>&copy; 2026 An LUXURY. Bảo lưu mọi quyền.</p>
+            </div>
+
+        </div>
+    </footer>
+
+    <style>
+        .footer-brand-outline {
+            font-size: 9.5vw;
+            font-family: var(--font-heading);
+            color: transparent;
+            -webkit-text-stroke: 1px rgba(212, 175, 55, 0.2);
+            text-transform: uppercase;
+            line-height: 1;
+            margin-top: 1rem;
+            user-select: none;
+            letter-spacing: 2px;
+            text-align: center;
+            white-space: nowrap;
+            transition: all 0.5s ease;
+        }
+        .footer-brand-outline:hover {
+            -webkit-text-stroke: 1px rgba(212, 175, 55, 0.5);
+            text-shadow: 0 0 30px rgba(212, 175, 55, 0.1);
+        }
+        
+        /* Typing Effect Cursor */
+        .typing-cursor {
+            font-weight: 300;
+            color: var(--gold-primary);
+            animation: blink 1s step-end infinite;
+        }
+        @keyframes blink {
+            50% { opacity: 0; }
+        }
+
+        /* Continuous float for hero content */
+        .hero-content {
+            animation: floatContent 6s ease-in-out infinite alternate !important;
+        }
+        @keyframes floatContent {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-15px); }
+        }
+        
+        /* Add continuous glow to primary button */
+        .hero-buttons .btn-primary {
+            animation: buttonGlow 3s infinite alternate;
+        }
+        @keyframes buttonGlow {
+            0% { box-shadow: 0 0 5px rgba(212,175,55,0.2); }
+            100% { box-shadow: 0 0 25px rgba(212,175,55,0.8); }
+        }
+    </style>
+
+    <script src="../js/api.js"></script>
+    <script src="../js/cart.js"></script>
+    <script src="../js/auth.js"></script>
+    <script src="../js/chatbot.js"></script>
+    <script src="../js/theme.js"></script>
+    <script src="../js/liquidButton.js"></script>
+    <script>
+        // Map category value to label
+        const categoryMap = {
+            'nhan': 'Nhẫn',
+            'vong-tay': 'Vòng tay',
+            'bong-tai': 'Bông tai',
+            'day-chuyen': 'Dây chuyền'
+        };
+
+        let allProducts = [];
+
+        async function loadProducts() {
+            try {
+                allProducts = await API.getProducts();
+                const grid = document.getElementById('product-grid');
+
+                // Chỉ hiển thị 4 sản phẩm đầu tiên trên trang chủ
+                const displayProducts = allProducts.slice(0, 4);
+
+                grid.innerHTML = displayProducts.map((product, i) => `
+                    <div class="product-card" onclick="window.location.href='product-detail.html?id=${product._id}'" style="cursor: pointer;">
+                        <div class="product-img-wrap">
+                            <img src="${(product.image && (product.image.startsWith('http') || product.image.startsWith('data:'))) ? product.image : '..' + product.image}" alt="${product.name}" class="product-img">
+                            <div class="product-actions">
+                                <button class="action-btn" title="Thêm vào giỏ" onclick="event.stopPropagation(); addToCartQuick(${i})"><i class="fa-solid fa-cart-plus"></i></button>
+                                <a href="product-detail.html?id=${product._id}" class="action-btn" title="Xem chi tiết" onclick="event.stopPropagation()"><i class="fa-regular fa-eye"></i></a>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <div class="product-category">${categoryMap[product.category] || product.category}</div>
+                            <h3 class="product-title">${product.name}</h3>
+                            <div class="product-price">${formatPrice(product.price)}</div>
+                        </div>
+                    </div>
+                `).join('');
+            } catch (error) {
+                console.error('Lỗi load sản phẩm:', error);
+            }
+        }
+
+        function addToCartQuick(index) {
+            const product = allProducts[index];
+            if (Cart.addItem(product)) {
+                Cart.showToast(`Đã thêm "${product.name}" vào giỏ hàng!`);
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            loadProducts();
+
+            // Scroll Reveal Logic
+            const reveal = () => {
+                const reveals = document.querySelectorAll(".reveal, .reveal-left, .reveal-right");
+                for (let i = 0; i < reveals.length; i++) {
+                    const windowHeight = window.innerHeight;
+                    const elementTop = reveals[i].getBoundingClientRect().top;
+                    const elementVisible = 150;
+                    if (elementTop < windowHeight - elementVisible) {
+                        reveals[i].classList.add("active");
+                    }
+                }
+            };
+            window.addEventListener("scroll", reveal);
+            setTimeout(reveal, 100); // Check after load
+
+            // Search Box Toggle Logic
+            const searchIcon = document.getElementById('search-icon');
+            const searchContainer = document.getElementById('search-container');
+            const searchInput = document.getElementById('search-input');
+
+            searchIcon.addEventListener('click', () => {
+                searchContainer.classList.toggle('active');
+                if (searchContainer.classList.contains('active')) {
+                    searchInput.focus();
+                }
+            });
+
+            // Close search on click outside
+            document.addEventListener('click', (e) => {
+                if (!searchContainer.contains(e.target)) {
+                    searchContainer.classList.remove('active');
+                }
+            });
+
+            // Handle Search Submit
+            searchInput.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter' && searchInput.value.trim() !== '') {
+                    window.location.href = `collection.html?search=${encodeURIComponent(searchInput.value.trim())}`;
+                }
+            });
+
+            // Location Map Logic
+            const mapWrapper = document.getElementById('map-wrapper');
+            const mapCard = document.getElementById('map-card');
+            
+            mapWrapper.addEventListener('mousemove', (e) => {
+                const rect = mapCard.getBoundingClientRect();
+                const x = e.clientX - rect.left - rect.width / 2;
+                const y = e.clientY - rect.top - rect.height / 2;
+                
+                const rotateX = -y / 10;
+                const rotateY = x / 10;
+                
+                mapCard.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+            });
+            
+            mapWrapper.addEventListener('mouseleave', () => {
+                mapCard.style.transform = `rotateX(0deg) rotateY(0deg)`;
+            });
+            
+            mapWrapper.addEventListener('click', (e) => {
+                if (mapCard.classList.contains('expanded')) {
+                    // Second click: Redirect to Google Maps
+                    window.open('https://www.google.com/maps/search/?api=1&query=33+Bạch+Đằng,+Hồng+Hà,+Hà+Nội', '_blank');
+                } else {
+                    // First click: Expand
+                    mapCard.classList.add('expanded');
+                    const hint = mapWrapper.querySelector('.click-hint');
+                    hint.textContent = 'Click again to open in Google Maps';
+                    hint.style.color = 'var(--gold-primary)';
+                }
+            });
+
+            // Close map when clicking outside
+            document.addEventListener('click', (e) => {
+                if (!mapWrapper.contains(e.target) && mapCard.classList.contains('expanded')) {
+                    mapCard.classList.remove('expanded');
+                    const hint = mapWrapper.querySelector('.click-hint');
+                    hint.textContent = 'Click to expand';
+                    hint.style.color = 'var(--text-muted)';
+                }
+            });
+
+            // Floating Navigation Logic
+            const header = document.getElementById('header');
+            let lastScrollY = window.scrollY;
+            let scrollPositionOnCollapse = 0;
+            const EXPAND_SCROLL_THRESHOLD = 80;
+
+            window.addEventListener('scroll', () => {
+                const currentScrollY = window.scrollY;
+                
+                // Collapse when scrolling down past 150px
+                if (!header.classList.contains('collapsed') && currentScrollY > lastScrollY && currentScrollY > 150) {
+                    header.classList.add('collapsed');
+                    scrollPositionOnCollapse = currentScrollY;
+                } 
+                // Expand when scrolling up by more than the threshold
+                else if (header.classList.contains('collapsed') && currentScrollY < lastScrollY && (scrollPositionOnCollapse - currentScrollY > EXPAND_SCROLL_THRESHOLD)) {
+                    header.classList.remove('collapsed');
+                }
+                
+                // Always expand at the very top
+                if (currentScrollY < 10) {
+                    header.classList.remove('collapsed');
+                }
+
+                lastScrollY = currentScrollY;
+            });
+
+            // Expand on click if collapsed
+            header.addEventListener('click', (e) => {
+                if (header.classList.contains('collapsed')) {
+                    header.classList.remove('collapsed');
+                    e.stopPropagation();
+                }
+            });
+
+
+            // Hero Background Interactive Logic
+            const interactiveBlob = document.getElementById('interactive-blob');
+            const heroSection = document.getElementById('hero-section');
+            let curX = 0;
+            let curY = 0;
+            let tgX = 0;
+            let tgY = 0;
+
+            function move() {
+                curX += (tgX - curX) / 20;
+                curY += (tgY - curY) / 20;
+                if (interactiveBlob) {
+                    interactiveBlob.style.transform = `translate(${Math.round(curX)}px, ${Math.round(curY)}px)`;
+                }
+                requestAnimationFrame(move);
+            }
+
+            if (heroSection) {
+                heroSection.addEventListener('mousemove', (event) => {
+                    tgX = event.clientX;
+                    tgY = event.clientY;
+                });
+                move();
+            }
+
+            // News Slider Logic
+            const newsTrack = document.getElementById('news-track');
+            const newsPrev = document.getElementById('news-prev');
+            const newsNext = document.getElementById('news-next');
+            let newsPosition = 0;
+            const cardWidth = document.querySelector('.news-card').offsetWidth + 32; // card width + margin
+            const totalCards = document.querySelectorAll('.news-card').length;
+            const visibleCards = window.innerWidth > 992 ? 3 : (window.innerWidth > 600 ? 2 : 1);
+            const maxPosition = -(cardWidth * (totalCards - visibleCards));
+
+            function moveSlider(direction) {
+                if (direction === 'next') {
+                    newsPosition -= cardWidth;
+                    if (newsPosition < maxPosition) newsPosition = 0;
+                } else {
+                    newsPosition += cardWidth;
+                    if (newsPosition > 0) newsPosition = maxPosition;
+                }
+                newsTrack.style.transform = `translateX(${newsPosition}px)`;
+            }
+
+            newsNext.addEventListener('click', () => moveSlider('next'));
+            newsPrev.addEventListener('click', () => moveSlider('prev'));
+
+            // Auto slide
+            let newsAutoSlide = setInterval(() => moveSlider('next'), 5000);
+            
+            const newsSection = document.getElementById('news');
+            newsSection.addEventListener('mouseenter', () => clearInterval(newsAutoSlide));
+            newsSection.addEventListener('mouseleave', () => {
+                clearInterval(newsAutoSlide);
+                newsAutoSlide = setInterval(() => moveSlider('next'), 5000);
+            });
+
+            // Update parameters on resize
+            window.addEventListener('resize', () => {
+                const newCardWidth = document.querySelector('.news-card').offsetWidth + 32;
+                const newVisibleCards = window.innerWidth > 992 ? 3 : (window.innerWidth > 600 ? 2 : 1);
+                newsPosition = 0;
+                newsTrack.style.transform = `translateX(0)`;
+            });
+
+            // Auto-swap 3D models every 8 seconds
+            let rotationInterval = setInterval(() => { rotateModels('next'); }, 8000); const showcaseArea = document.querySelector('.showcase-3d-model-wrapper'); if (showcaseArea) { showcaseArea.addEventListener('mouseenter', () => clearInterval(rotationInterval)); showcaseArea.addEventListener('mouseleave', () => { clearInterval(rotationInterval); rotationInterval = setInterval(() => rotateModels('next'), 8000); }); }
+        });
+
+        // Swap 3D models function
+        function rotateModels(direction = 'next', clickedItem = null) {
+            const items = Array.from(document.querySelectorAll('.model-item'));
+            if (items.length === 0) return;
+            
+            let activeIndex = items.findIndex(item => item.classList.contains('active'));
+            if (activeIndex === -1) activeIndex = 0;
+            
+            let nextIndex;
+            if (clickedItem) {
+                if (clickedItem.classList.contains('active')) return;
+                nextIndex = items.indexOf(clickedItem);
+            } else {
+                if (direction === 'next') {
+                    nextIndex = (activeIndex + 1) % items.length;
+                } else {
+                    nextIndex = (activeIndex - 1 + items.length) % items.length;
+                }
+            }
+            
+            const prevIndex = (nextIndex - 1 + items.length) % items.length;
+            const followIndex = (nextIndex + 1) % items.length;
+            
+            items.forEach((item, index) => {
+                item.className = 'model-item'; // Reset classes
+                const viewer = item.querySelector('model-viewer');
+                if(viewer) {
+                    viewer.removeAttribute('camera-controls');
+                    viewer.setAttribute('interaction-prompt', 'none');
+                }
+                
+                if (index === nextIndex) {
+                    item.classList.add('active');
+                    if(viewer) {
+                        viewer.setAttribute('camera-controls', '');
+                        viewer.setAttribute('interaction-prompt', 'hover');
+                    }
+                } else if (index === prevIndex) {
+                    item.classList.add('inactive-prev');
+                } else if (index === followIndex) {
+                    item.classList.add('inactive-next');
+                }
+            });
+        }
+        
+        function swapModel(clickedItem) {
+            rotateModels('next', clickedItem);
+        }
+    </script>
+
+    <!-- Zalo Chat Widget -->
+    <div id="zalo-chat-widget"
+        style="position: fixed; bottom: 24px; right: 24px; z-index: 999; display: flex; flex-direction: column; align-items: flex-end; gap: 12px;">
+        <div id="zalo-tooltip"
+            style="background: rgba(0,0,0,0.8); color: #fff; padding: 0.6rem 1rem; border-radius: 8px; font-size: 0.85rem; white-space: nowrap; backdrop-filter: blur(10px); border: 1px solid var(--gold-dark); opacity: 0; transform: translateY(5px); transition: all 0.3s ease; pointer-events: none;">
+            <i class="fa-solid fa-headset" style="color: var(--gold-primary); margin-right: 5px;"></i> Chat tư vấn 24/7
+        </div>
+        <a href="https://zalo.me/0392326230" target="_blank" id="zalo-btn"
+            style="width: 60px; height: 60px; background: linear-gradient(135deg, #0068FF, #0055d4); border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 20px rgba(0,104,255,0.5); transition: all 0.3s ease; text-decoration: none; position: relative;"
+            onmouseenter="document.getElementById('zalo-tooltip').style.opacity='1'; document.getElementById('zalo-tooltip').style.transform='translateY(0)';"
+            onmouseleave="document.getElementById('zalo-tooltip').style.opacity='0'; document.getElementById('zalo-tooltip').style.transform='translateY(5px)';">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/9/91/Icon_of_Zalo.svg" alt="Zalo"
+                style="width: 32px; height: 32px; filter: brightness(10);">
+            <span
+                style="position: absolute; top: -2px; right: -2px; width: 14px; height: 14px; background: #2ecc71; border-radius: 50%; border: 2px solid #0068FF; animation: pulse-dot 2s infinite;"></span>
+        </a>
+    </div>
+    <style>
+        @keyframes pulse-dot {
+
+            0%,
+            100% {
+                box-shadow: 0 0 0 0 rgba(46, 204, 113, 0.6);
+            }
+
+            50% {
+                box-shadow: 0 0 0 8px rgba(46, 204, 113, 0);
+            }
+        }
+
+        #zalo-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 28px rgba(0, 104, 255, 0.6);
+        }
+    </style>
+    <script>
+        // Hero Dynamic Typing Effect
+        document.addEventListener('DOMContentLoaded', () => {
+            const words = ["Vĩnh Cửu", "Độc Bản", "Hoàn Mỹ", "Tinh Tế"];
+            let isDeleting = false;
+            let currentText = "Vĩnh Cửu";
+            let wordIndex = 0;
+            const target = document.getElementById("dynamic-text");
+            
+            function typeWriter() {
+                const fullText = words[wordIndex];
+
+                if (isDeleting) {
+                    currentText = fullText.substring(0, currentText.length - 1);
+                } else {
+                    currentText = fullText.substring(0, currentText.length + 1);
+                }
+
+                target.textContent = currentText;
+
+                let typeSpeed = 100;
+                if (isDeleting) typeSpeed /= 2;
+
+                if (!isDeleting && currentText === fullText) {
+                    typeSpeed = 2500; // wait before delete
+                    isDeleting = true;
+                } else if (isDeleting && currentText === "") {
+                    isDeleting = false;
+                    wordIndex = (wordIndex + 1) % words.length;
+                    typeSpeed = 500; // wait before type next
+                }
+
+                setTimeout(typeWriter, typeSpeed);
+            }
+            
+            // Start the effect after initial entrance animations complete
+            setTimeout(typeWriter, 2000);
+        });
+
+        // Hero Mouse Parallax
+        document.addEventListener('mousemove', (e) => {
+            const x = e.clientX / window.innerWidth;
+            const y = e.clientY / window.innerHeight;
+            
+            const balls = document.querySelectorAll('.gradient-ball');
+            balls.forEach((ball, index) => {
+                const speed = (index + 1) * 20;
+                const xOffset = (x - 0.5) * speed;
+                const yOffset = (y - 0.5) * speed;
+                
+                // If ball-3 is centered with translate(-50%, -50%)
+                if (ball.classList.contains('ball-3')) {
+                    ball.style.transform = `translate(calc(-50% + ${xOffset}px), calc(-50% + ${yOffset}px))`;
+                } else {
+                    ball.style.transform = `translate(${xOffset}px, ${yOffset}px)`;
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

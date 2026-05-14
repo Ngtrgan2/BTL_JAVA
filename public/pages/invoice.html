@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Giấy Chứng Nhận & Hóa Đơn | An LUXURY</title>
+    <link href="https://fonts.googleapis.com/css2?family=Times+New+Roman&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --print-width: 210mm;
+            --print-height: 297mm;
+        }
+
+        * {
+            box-sizing: border-box;
+            -webkit-print-color-adjust: exact;
+        }
+
+        body {
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 20px;
+            font-family: 'Times New Roman', Times, serif;
+            color: #000;
+        }
+
+        .page {
+            width: var(--print-width);
+            min-height: var(--print-height);
+            padding: 20mm 15mm 20mm 30mm;
+            margin: 0 auto;
+            background: white;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Header Layout */
+        .header-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 30px;
+        }
+
+        .header-table td {
+            vertical-align: top;
+            text-align: center;
+            width: 50%;
+        }
+
+        .agency-name {
+            font-size: 13pt;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .agency-sub {
+            font-size: 13pt;
+            font-weight: normal;
+        }
+
+        .agency-line {
+            width: 100px;
+            height: 1px;
+            background: #000;
+            margin: 5px auto;
+        }
+
+        .national-motto {
+            font-size: 12pt;
+            font-weight: bold;
+        }
+
+        .national-sub {
+            font-size: 13pt;
+            font-weight: bold;
+            text-decoration: underline;
+        }
+
+        .doc-meta {
+            margin-top: 10px;
+            font-size: 13pt;
+        }
+
+        .doc-date {
+            text-align: right;
+            font-style: italic;
+            margin-bottom: 40px;
+            font-size: 13pt;
+        }
+
+        /* Title */
+        .doc-title {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .doc-title h1 {
+            font-size: 15pt;
+            font-weight: bold;
+            margin: 0;
+            text-transform: uppercase;
+        }
+
+        .doc-title p {
+            font-size: 13pt;
+            margin: 5px 0;
+        }
+
+        /* Content */
+        .content-section {
+            font-size: 13pt;
+            line-height: 1.5;
+            text-align: justify;
+        }
+
+        .customer-info {
+            margin-bottom: 20px;
+        }
+
+        .info-row {
+            display: flex;
+            margin-bottom: 8px;
+        }
+
+        .info-label {
+            min-width: 150px;
+        }
+
+        /* Table */
+        .product-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        .product-table th, .product-table td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+        }
+
+        .product-table th {
+            background-color: #f2f2f2;
+            text-align: center;
+        }
+
+        .text-right { text-align: right !important; }
+        .text-center { text-align: center !important; }
+
+        /* Signature */
+        .signature-section {
+            margin-top: 50px;
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        .signature-box {
+            width: 300px;
+            text-align: center;
+            position: relative;
+        }
+
+        .signature-role {
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-bottom: 80px;
+        }
+
+        .signature-name {
+            font-weight: bold;
+            font-size: 14pt;
+        }
+
+        /* Red Stamp Simulation */
+        .red-stamp {
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-80%) rotate(-15deg);
+            width: 140px;
+            height: 140px;
+            border: 3px solid rgba(220, 0, 0, 0.7);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: rgba(220, 0, 0, 0.7);
+            text-align: center;
+            font-weight: bold;
+            padding: 10px;
+            pointer-events: none;
+            z-index: 10;
+        }
+
+        .stamp-inner {
+            font-size: 10pt;
+            line-height: 1.2;
+        }
+
+        .stamp-center {
+            font-size: 14pt;
+            border-top: 1px solid rgba(220, 0, 0, 0.7);
+            border-bottom: 1px solid rgba(220, 0, 0, 0.7);
+            margin: 5px 0;
+            padding: 2px 0;
+        }
+
+        /* Buttons and UI */
+        .actions {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            text-decoration: none;
+            text-align: center;
+        }
+
+        .btn-print { background-color: #d4af37; color: white; }
+        .btn-back { background-color: #333; color: white; }
+
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+            .page {
+                box-shadow: none;
+                margin: 0;
+                width: 100%;
+            }
+            .actions {
+                display: none;
+            }
+        }
+    </style>
+<script>
+        (function() {
+            const theme = localStorage.getItem('an-luxury-theme') || 'dark';
+            if (theme === 'dark') {
+                document.documentElement.classList.add('dark-mode');
+            }
+        })();
+    </script>
+</head>
+<body>
+
+    <div class="actions">
+        <button class="btn btn-print" onclick="window.print()">In / Lưu PDF</button>
+        <a href="profile.html" class="btn btn-back">Quay lại Hồ sơ</a>
+    </div>
+
+    <div class="page" id="invoice-page">
+        <table class="header-table">
+            <tr>
+                <td>
+                    <div class="agency-name">CÔNG TY TNHH AN LUXURY</div>
+                    <div class="agency-sub">Ban Quản lý Chất lượng</div>
+                    <div class="agency-line"></div>
+                    <div class="doc-meta">Số: <span id="doc-number">...</span>/CN-AL</div>
+                </td>
+                <td>
+                    <div class="national-motto">CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM</div>
+                    <div class="national-sub">Độc lập - Tự do - Hạnh phúc</div>
+                    <div class="doc-meta" style="margin-top: 15px;">Hà Nội, ngày <span id="current-day">...</span> tháng <span id="current-month">...</span> năm <span id="current-year">...</span></div>
+                </td>
+            </tr>
+        </table>
+
+        <div class="doc-title">
+            <h1>GIẤY CHỨNG NHẬN SẢN PHẨM & HÓA ĐƠN BÁN HÀNG</h1>
+            <p>(Kèm theo đơn hàng số: #<span id="order-id-title">...</span>)</p>
+        </div>
+
+        <div class="content-section">
+            <div class="customer-info">
+                <div class="info-row">
+                    <div class="info-label">Khách hàng:</div>
+                    <div class="info-value"><b id="customer-name">...</b></div>
+                </div>
+                <div class="info-row">
+                    <div class="info-label">Email:</div>
+                    <div class="info-value" id="customer-email">...</div>
+                </div>
+                <div class="info-row">
+                    <div class="info-label">Số điện thoại:</div>
+                    <div class="info-value" id="customer-phone">...</div>
+                </div>
+                <div class="info-row">
+                    <div class="info-label">Địa chỉ:</div>
+                    <div class="info-value" id="customer-address">...</div>
+                </div>
+                <div class="info-row">
+                    <div class="info-label">Hình thức:</div>
+                    <div class="info-value" id="payment-method">...</div>
+                </div>
+            </div>
+
+            <p>An LUXURY trân trọng xác nhận quý khách đã sở hữu các kiệt tác trang sức tinh tuyển sau đây. Chúng tôi cam kết về nguồn gốc, chất lượng kim cương và độ tinh khiết của kim loại quý theo tiêu chuẩn quốc tế.</p>
+
+            <table class="product-table">
+                <thead>
+                    <tr>
+                        <th width="5%">STT</th>
+                        <th>Tên sản phẩm & Thông số kỹ thuật</th>
+                        <th width="15%">Số lượng</th>
+                        <th width="20%">Đơn giá</th>
+                        <th width="20%">Thành tiền</th>
+                    </tr>
+                </thead>
+                <tbody id="product-list">
+                    <!-- Dynamic Rows -->
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="4" class="text-right"><b>Tổng cộng:</b></td>
+                        <td class="text-right"><b id="total-amount">...</b></td>
+                    </tr>
+                </tfoot>
+            </table>
+
+            <p><i>Bằng chữ: <span id="total-amount-text">...</span></i></p>
+            
+            <p><b>Cam kết chất lượng:</b> Tất cả sản phẩm trang sức tại An LUXURY đều được bảo hành trọn đời về độ bóng và miễn phí làm sạch. Kim cương từ 0.3 carat trở lên đều đi kèm chứng thư kiểm định GIA chính hãng.</p>
+        </div>
+
+        <div class="signature-section">
+            <div class="signature-box">
+                <div class="signature-role">
+                    TM. HỘI ĐỒNG QUẢN TRỊ<br>
+                    GIÁM ĐỐC ĐIỀU HÀNH
+                </div>
+                
+                <div class="red-stamp">
+                    <div class="stamp-inner">
+                        CÔNG TY TNHH<br>
+                        <div class="stamp-center">AN LUXURY</div>
+                        M.S.D.N: 0366363636<br>
+                        TP. HÀ NỘI
+                    </div>
+                </div>
+
+                <div style="margin-top: 10px;">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/d/d0/Signature_of_Zuzana_Caputova.svg" alt="Signature" style="height: 60px; filter: contrast(0.5) sepia(1) hue-rotate(-50deg) saturate(5);">
+                </div>
+
+                <div class="signature-name">Nguyễn Trường An</div>
+            </div>
+        </div>
+    </div>
+
+    <script src="../js/api.js"></script>
+    <script>
+        function formatPrice(price) {
+            return Number(price).toLocaleString('vi-VN') + ' VNĐ';
+        }
+
+        function numberToWords(number) {
+            const n = Math.floor(Number(number) || 0);
+            if (n === 0) return 'Không đồng chẵn.';
+
+            const digits = ['không', 'một', 'hai', 'ba', 'bốn', 'năm', 'sáu', 'bảy', 'tám', 'chín'];
+            const groupUnits = ['', 'nghìn', 'triệu', 'tỷ', 'nghìn tỷ', 'triệu tỷ'];
+
+            function readThreeDigits(num, isFull) {
+                const hundred = Math.floor(num / 100);
+                const ten = Math.floor((num % 100) / 10);
+                const one = num % 10;
+                const parts = [];
+
+                if (hundred > 0 || isFull) {
+                    parts.push((hundred > 0 ? digits[hundred] : 'không') + ' trăm');
+                }
+
+                if (ten > 1) {
+                    parts.push(digits[ten] + ' mươi');
+                    if (one === 1) parts.push('mốt');
+                    else if (one === 5) parts.push('lăm');
+                    else if (one > 0) parts.push(digits[one]);
+                } else if (ten === 1) {
+                    parts.push('mười');
+                    if (one === 5) parts.push('lăm');
+                    else if (one > 0) parts.push(digits[one]);
+                } else if (ten === 0) {
+                    if (one > 0) {
+                        if (hundred > 0 || isFull) parts.push('lẻ');
+                        if (one === 5 && (hundred > 0 || isFull)) parts.push('lăm');
+                        else parts.push(digits[one]);
+                    }
+                }
+
+                return parts.join(' ').replace(/\s+/g, ' ').trim();
+            }
+
+            const groups = [];
+            let temp = n;
+            while (temp > 0) {
+                groups.push(temp % 1000);
+                temp = Math.floor(temp / 1000);
+            }
+
+            const segments = [];
+            for (let i = groups.length - 1; i >= 0; i--) {
+                const groupVal = groups[i];
+                if (groupVal === 0) continue;
+
+                const hasHigherGroup = i < groups.length - 1;
+                const needsFull = hasHigherGroup && groupVal < 100;
+                const groupText = readThreeDigits(groupVal, needsFull);
+                const unitText = groupUnits[i] ? ' ' + groupUnits[i] : '';
+                segments.push((groupText + unitText).trim());
+            }
+
+            const result = segments.join(' ').replace(/\s+/g, ' ').trim();
+            return result.charAt(0).toUpperCase() + result.slice(1) + ' đồng chẵn.';
+        }
+
+        function extractCustomerInfo(order) {
+            const safeString = (value) => (typeof value === 'string' ? value.trim() : '');
+            const addressText = safeString(order.address);
+            const addressParts = addressText ? addressText.split(',').map(part => part.trim()).filter(Boolean) : [];
+
+            // Priority: explicit fields from order -> fallback parsing from composed address
+            const customerName =
+                safeString(order.customerName) ||
+                safeString(order.fullName) ||
+                safeString(order.name) ||
+                (addressParts[0] || '');
+
+            const customerPhone =
+                safeString(order.phone) ||
+                (addressParts[1] || '');
+
+            // Remove duplicated "name, phone" prefix from composed address when possible
+            let displayAddress = addressText;
+            if (addressParts.length >= 3) {
+                displayAddress = addressParts.slice(2).join(', ');
+            }
+
+            return {
+                name: customerName || 'Quý khách',
+                phone: customerPhone || 'N/A',
+                address: displayAddress || 'N/A'
+            };
+        }
+
+        async function initInvoice() {
+            const params = new URLSearchParams(window.location.search);
+            const orderId = params.get('id');
+
+            if (!orderId) {
+                alert('Không tìm thấy mã đơn hàng');
+                window.location.href = 'profile.html';
+                return;
+            }
+
+            try {
+                const order = await API.getOrder(orderId);
+                
+                // Set order info
+                document.getElementById('doc-number').textContent = order._id.toString().slice(-6).toUpperCase();
+                document.getElementById('order-id-title').textContent = order._id.toString().slice(-10).toUpperCase();
+                const customerInfo = extractCustomerInfo(order);
+                document.getElementById('customer-name').textContent = customerInfo.name;
+                document.getElementById('customer-email').textContent = order.email || 'N/A';
+                document.getElementById('customer-phone').textContent = customerInfo.phone;
+                document.getElementById('customer-address').textContent = customerInfo.address;
+                document.getElementById('payment-method').textContent = order.paymentMethod === 'cod' ? 'Thanh toán khi nhận hàng (COD)' : 'Chuyển khoản / Ví điện tử';
+                
+                // Set Date
+                const date = new Date(order.createdAt);
+                document.getElementById('current-day').textContent = String(date.getDate()).padStart(2, '0');
+                document.getElementById('current-month').textContent = String(date.getMonth() + 1).padStart(2, '0');
+                document.getElementById('current-year').textContent = date.getFullYear();
+
+                // Render items with technical specs
+                const productList = document.getElementById('product-list');
+                let itemsHtml = '';
+                
+                for(let i = 0; i < order.items.length; i++) {
+                    const item = order.items[i];
+                    // Fetch product details for technical specs if possible, otherwise use from order
+                    const specs = item.material + (item.size ? ' | Size: ' + item.size : '') + (item.stone ? ' | Đá: ' + item.stone : '');
+                    
+                    itemsHtml += `
+                        <tr>
+                            <td class="text-center">${i + 1}</td>
+                            <td>
+                                <b>${item.name}</b><br>
+                                <span style="font-size: 11pt; color: #444;">Thông số: ${specs || 'Chế tác thủ công theo yêu cầu'}</span>
+                            </td>
+                            <td class="text-center">${item.quantity}</td>
+                            <td class="text-right">${formatPrice(item.price)}</td>
+                            <td class="text-right">${formatPrice(item.price * item.quantity)}</td>
+                        </tr>
+                    `;
+                }
+                productList.innerHTML = itemsHtml;
+                
+                const totalAmount = order.totalAmount || order.total || 0;
+                document.getElementById('total-amount').textContent = formatPrice(totalAmount);
+                document.getElementById('total-amount-text').textContent = numberToWords(totalAmount);
+
+            } catch (error) {
+                console.error('Error loading invoice:', error);
+                alert('Lỗi tải thông tin hóa đơn: ' + error.message);
+            }
+        }
+
+        window.onload = initInvoice;
+    </script>
+<script src="../js/theme.js"></script>
+</body>
+</html>

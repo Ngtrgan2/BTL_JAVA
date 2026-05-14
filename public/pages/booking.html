@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đặt Lịch Hẹn VIP | An LUXURY</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .booking-container {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 4rem;
+            margin-top: 100px;
+            margin-bottom: 5rem;
+        }
+        .booking-info-card {
+            background-color: var(--bg-light);
+            padding: 3rem;
+            border-radius: var(--border-radius);
+            border: 1px solid var(--border-light);
+            height: fit-content;
+        }
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+        }
+        .form-control {
+            width: 100%;
+            background-color: var(--bg-dark);
+            border: 1px solid var(--border-light);
+            color: white;
+            padding: 0.8rem 1rem;
+            border-radius: 4px;
+            font-family: inherit;
+            transition: var(--transition);
+        }
+        .form-control:focus {
+            outline: none;
+            border-color: var(--gold-primary);
+        }
+        .form-row-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+        .time-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0.8rem;
+            margin-top: 1rem;
+        }
+        .time-btn {
+            background-color: transparent;
+            border: 1px solid var(--border-light);
+            color: var(--text-secondary);
+            padding: 0.8rem;
+            text-align: center;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: var(--transition);
+            font-size: 0.9rem;
+        }
+        .time-btn:hover:not(.disabled) {
+            border-color: var(--gold-primary);
+            color: var(--gold-primary);
+        }
+        .time-btn.active {
+            background-color: var(--gold-primary);
+            color: var(--bg-dark);
+            border-color: var(--gold-primary);
+        }
+        .time-btn.disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+            text-decoration: line-through;
+        }
+        .date-selector {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            overflow-x: auto;
+            padding-bottom: 0.5rem;
+        }
+        .date-btn {
+            min-width: 80px;
+            padding: 1rem;
+            border: 1px solid var(--border-light);
+            border-radius: 8px;
+            text-align: center;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        .date-btn.active {
+            border-color: var(--gold-primary);
+            background-color: rgba(212, 175, 55, 0.1);
+        }
+        .date-num {
+            display: block;
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 0.2rem;
+        }
+        .date-day {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            color: var(--text-secondary);
+        }
+
+        @media (max-width: 992px) {
+            .booking-container {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+        }
+    </style>
+<script>
+        (function() {
+            const theme = localStorage.getItem('an-luxury-theme') || 'dark';
+            if (theme === 'dark') {
+                document.documentElement.classList.add('dark-mode');
+            }
+        })();
+    </script>
+</head>
+<body>
+
+    <!-- Header -->
+    <!-- Header -->
+    <header class="header" id="header">
+        <div class="nav">
+            <div class="logo">
+                <a href="index.html">An LUXURY</a>
+            </div>
+            <nav class="nav-links">
+                <a href="index.html">Trang chủ</a>
+                <a href="collection.html">Bộ sưu tập</a>
+                <a href="about.html">Về chúng tôi</a>
+                <a href="index.html#promises">Cam kết</a>
+            </nav>
+            <div class="nav-icons">
+                <div class="search-container" id="search-container">
+                    <i class="fa-solid fa-search search-icon-btn" id="search-icon"></i>
+                    <input type="text" class="search-input" id="search-input" placeholder="Tìm kiếm trang sức...">
+                </div>
+                <div class="nav-icon" title="Tài khoản"><a href="profile.html"><i class="fa-regular fa-user"></i></a>
+                </div>
+                <div class="nav-icon">
+                    <a href="cart.html"><i class="fa-solid fa-cart-shopping"></i></a>
+                    <span class="cart-count">0</span>
+                </div>
+                <!-- Theme Toggle Button -->
+
+                                <button id="theme-toggle" class="theme-toggle-btn" title="Chuyển đổi Light/Dark mode">
+
+                                    <i class="fa-solid fa-sun theme-icon-light"></i>
+
+                                    <i class="fa-solid fa-moon theme-icon-dark"></i>
+
+                                    <svg class="theme-star star-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 784.11 815.53"><path d="M392.05 0c-20.9,210.08-184.06,378.41-392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93-210.06 184.09-378.37 392.05-407.74-207.98-29.38-371.16-197.69-392.06-407.78z"/></svg>
+
+                                    <svg class="theme-star star-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 784.11 815.53"><path d="M392.05 0c-20.9,210.08-184.06,378.41-392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93-210.06 184.09-378.37 392.05-407.74-207.98-29.38-371.16-197.69-392.06-407.78z"/></svg>
+
+                                    <svg class="theme-star star-3" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 784.11 815.53"><path d="M392.05 0c-20.9,210.08-184.06,378.41-392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93-210.06 184.09-378.37 392.05-407.74-207.98-29.38-371.16-197.69-392.06-407.78z"/></svg>
+
+                                    <svg class="theme-star star-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 784.11 815.53"><path d="M392.05 0c-20.9,210.08-184.06,378.41-392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93-210.06 184.09-378.37 392.05-407.74-207.98-29.38-371.16-197.69-392.06-407.78z"/></svg>
+
+                                    <svg class="theme-star star-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 784.11 815.53"><path d="M392.05 0c-20.9,210.08-184.06,378.41-392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93-210.06 184.09-378.37 392.05-407.74-207.98-29.38-371.16-197.69-392.06-407.78z"/></svg>
+
+                                    <svg class="theme-star star-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 784.11 815.53"><path d="M392.05 0c-20.9,210.08-184.06,378.41-392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93-210.06 184.09-378.37 392.05-407.74-207.98-29.38-371.16-197.69-392.06-407.78z"/></svg>
+
+                                </button>
+
+            </div>
+        </div>
+        <!-- Collapsed Menu Icon -->
+        <div class="collapsed-menu-icon">
+            <i class="fa-solid fa-bars"></i>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="booking-container">
+            <!-- Left: Info -->
+            <div>
+                <h1 style="font-size: 2.8rem; margin-bottom: 1.5rem; line-height: 1.2;">Đặt Lịch Trải Nghiệm Thượng Lưu</h1>
+                <p style="color: var(--text-secondary); margin-bottom: 2rem; font-size: 1.1rem; line-height: 1.8;">
+                    Chào mừng bạn đến với đặc quyền VIP của An LUXURY. Vui lòng để lại thông tin, chuyên gia tư vấn kim cương của chúng tôi sẽ chuẩn bị những kiệt tác tinh tuyển nhất để đón tiếp bạn.
+                </p>
+                
+                <div style="margin-bottom: 3rem;">
+                    <div style="display: flex; gap: 1.5rem; margin-bottom: 1.5rem;">
+                        <div style="font-size: 1.5rem; color: var(--gold-primary);"><i class="fa-solid fa-location-dot"></i></div>
+                        <div>
+                            <h4 style="margin-bottom: 0.3rem;">Showroom An LUXURY</h4>
+                            <p style="color: var(--text-secondary); font-size: 0.95rem;">21/33 Bạch Đằng, Hồng Hà, Hà Nội</p>
+                        </div>
+                    </div>
+                    <div style="display: flex; gap: 1.5rem; margin-bottom: 1.5rem;">
+                        <div style="font-size: 1.5rem; color: var(--gold-primary);"><i class="fa-solid fa-phone"></i></div>
+                        <div>
+                            <h4 style="margin-bottom: 0.3rem;">Hotline VIP</h4>
+                            <p style="color: var(--text-secondary); font-size: 0.95rem;">1900 88 99 66 (Phím 1)</p>
+                        </div>
+                    </div>
+                    <div style="display: flex; gap: 1.5rem;">
+                        <div style="font-size: 1.5rem; color: var(--gold-primary);"><i class="fa-solid fa-clock"></i></div>
+                        <div>
+                            <h4 style="margin-bottom: 0.3rem;">Giờ mở cửa</h4>
+                            <p style="color: var(--text-secondary); font-size: 0.95rem;">09:00 - 21:00 (Tất cả các ngày trong tuần)</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="padding: 2rem; border-radius: var(--border-radius); background: linear-gradient(135deg, rgba(212,175,55,0.1) 0%, rgba(5,5,5,0) 100%); border: 1px solid rgba(212,175,55,0.2);">
+                    <h3 style="font-family: var(--font-body); margin-bottom: 1rem; color: var(--gold-light);">Đặc quyền dành cho bạn:</h3>
+                    <ul style="list-style: none; color: var(--text-secondary); font-size: 0.9rem; line-height: 2;">
+                        <li><i class="fa-solid fa-check" style="color: var(--gold-primary); margin-right: 10px;"></i> Chuyên gia tư vấn 1-1 riêng biệt.</li>
+                        <li><i class="fa-solid fa-check" style="color: var(--gold-primary); margin-right: 10px;"></i> Trải nghiệm sản phẩm trong không gian VIP kín đáo.</li>
+                        <li><i class="fa-solid fa-check" style="color: var(--gold-primary); margin-right: 10px;"></i> Miễn phí trà/cà phê thượng hạng.</li>
+                        <li><i class="fa-solid fa-check" style="color: var(--gold-primary); margin-right: 10px;"></i> Ưu đãi 2% khi mua hàng trong ngày hẹn.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Right: Form -->
+            <div class="booking-info-card">
+                <h3 style="font-size: 1.5rem; margin-bottom: 2rem; text-align: center; font-family: var(--font-heading); color: var(--gold-light);">Điền thông tin đặt lịch</h3>
+
+                <form id="bookingForm">
+                    <div class="form-group">
+                        <label class="form-label">Dịch vụ quan tâm *</label>
+                        <select class="form-control" id="category" required>
+                            <option value="">-- Chọn danh mục quan tâm --</option>
+                            <option value="Nhẫn cầu hôn / Nhẫn cưới">Nhẫn cầu hôn / Nhẫn cưới</option>
+                            <option value="Trang sức kim cương">Trang sức kim cương</option>
+                            <option value="Trang sức cưới">Trang sức cưới</option>
+                            <option value="Thiết kế riêng">Khác (Cần tư vấn thiết kế riêng)</option>
+                        </select>
+                    </div>
+
+                    <div class="form-row-2">
+                        <div class="form-group">
+                            <label class="form-label">Họ và tên <span style="color: red;">*</span></label>
+                            <input type="text" id="customerName" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Số điện thoại <span style="color: red;">*</span></label>
+                            <input type="tel" id="phone" class="form-control" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Chọn ngày hẹn (7 ngày tới)</label>
+                        <div class="date-selector" id="date-selector">
+                            <!-- JS render -->
+                        </div>
+                        <input type="hidden" id="selected-date" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Chọn khung giờ</label>
+                        <div class="time-grid" id="time-grid">
+                            <button type="button" class="time-btn" data-time="09:00">09:00</button>
+                            <button type="button" class="time-btn" data-time="10:30">10:30</button>
+                            <button type="button" class="time-btn" data-time="14:00">14:00</button>
+                            <button type="button" class="time-btn" data-time="15:30">15:30</button>
+                            <button type="button" class="time-btn" data-time="17:00">17:00</button>
+                            <button type="button" class="time-btn" data-time="19:30">19:30</button>
+                        </div>
+                        <input type="hidden" id="selected-time" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Ghi chú thêm</label>
+                        <textarea id="note" class="form-control" rows="3" placeholder="Sở thích về giác cắt kim cương, mức ngân sách dự kiến..."></textarea>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary btn-full" style="padding: 1.2rem; font-size: 1.1rem; margin-top: 1rem;">XÁC NHẬN ĐẶT LỊCH HẸN</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="artistic-footer">
+                <div class="footer-brand-outline">AN LUXURY</div>
+            </div>
+
+            <div class="footer-main-grid">
+                <div class="footer-col-info">
+                    <div class="logo">An LUXURY</div>
+                    <p class="company-info">
+                        &copy; 2005 Công Ty TNHH An LUXURY<br>
+                        21/33 Bạch Đằng, Hồng Hà, Hà Nội<br><br>
+                        ĐT: <a href="tel:0392326230">039 2326 230</a><br>
+                        Email: <a href="mailto:cskh@anluxury.com.vn">cskh@anluxury.com.vn</a>
+                    </p>
+                    <div class="hotline-box">
+                        <p>Tổng đài hỗ trợ (08:00-21:00)</p>
+                        <a href="tel:1800545457" class="hotline-number">1800 54 54 57</a>
+                    </div>
+                </div>
+
+                <div class="footer-col-links">
+                    <h4>Về An LUXURY</h4>
+                    <ul>
+                        <li><a href="about.html">Câu chuyện thương hiệu</a></li>
+                        <li><a href="careers.html">Tuyển dụng</a></li>
+                        <li><a href="wholesale.html">Kinh doanh sỉ</a></li>
+                        <li><a href="corporate-gifts.html">Quà tặng doanh nghiệp</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col-links">
+                    <h4>Dịch vụ & Chính sách</h4>
+                    <ul>
+                        <li><a href="loyalty-policy.html">Khách hàng thân thiết</a></li>
+                        <li><a href="delivery-policy.html">Chính sách giao hàng</a></li>
+                        <li><a href="warranty-policy.html">Chính sách bảo hành</a></li>
+                        <li><a href="privacy-policy.html">Chính sách bảo mật</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col-social">
+                    <h4>Kết nối với chúng tôi</h4>
+                    <div class="social-links">
+                        <a href="https://www.facebook.com/ngtrgan1012/" target="_blank" class="social-icon fb"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="https://www.instagram.com/ng_trg.an/" target="_blank" class="social-icon ig"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="https://www.youtube.com/@MixiGaming3con" target="_blank" class="social-icon yt"><i class="fa-brands fa-youtube"></i></a>
+                        <a href="https://zalo.me/0392326230" target="_blank" class="social-icon zalo"><i class="fa-solid fa-comment-dots"></i></a>
+                    </div>
+
+                    <div class="location-map-wrapper" id="map-wrapper">
+                        <div class="location-map-card" id="map-card">
+                            <div class="map-gradient-overlay"></div>
+                            <div class="map-svg-container">
+                                <svg class="map-svg" preserveAspectRatio="none" viewBox="0 0 100 100">
+                                    <line x1="0" y1="35" x2="100" y2="35" class="map-road" />
+                                    <line x1="0" y1="65" x2="100" y2="65" class="map-road" />
+                                    <line x1="30" y1="0" x2="30" y2="100" class="map-road" />
+                                    <line x1="70" y1="0" x2="70" y2="100" class="map-road" />
+                                    <circle cx="50" cy="50" r="4" class="map-pin" />
+                                </svg>
+                            </div>
+                            <iframe class="google-map-iframe" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3724.0256092802133!2d105.85621421160955!3d21.031661287596485!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135abc2238dbc7d%3A0x1b7872616e10e945!2zMzMgxJAuIELhuqFjaCDEkOG6sW5nLCBI4buTbmcgSMOgLCBIw6AgTuG7mWkgMTAwMDAwLCBWaeG7h3QgTmFt!5e0!3m2!1svi!2s!4v1778156747606!5m2!1svi!2s" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                            <div class="map-header">
+                                <i class="fa-solid fa-map-location-dot map-icon"></i>
+                                <div class="status-indicator">
+                                    <div class="status-dot"></div>
+                                    <span class="status-text">Live</span>
+                                </div>
+                            </div>
+                            <div class="map-footer">
+                                <h3 class="location-name">33 Bạch Đằng, Hà Nội</h3>
+                                <div class="animated-underline"></div>
+                            </div>
+                        </div>
+                        <p class="click-hint">Click to expand</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <div class="payment-methods">
+                    <span>VISA</span>
+                    <span>MASTER</span>
+                    <span>JCB</span>
+                    <span>ZaloPay</span>
+                    <span>MoMo</span>
+                </div>
+                <p class="copyright">&copy; 2026 An LUXURY. Bảo lưu mọi quyền.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/api.js"></script>
+    <script src="../js/auth.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Check login
+            const userInfo = JSON.parse(localStorage.getItem('userInfo'));
+            if (!userInfo) {
+                alert('Vui lòng đăng nhập để đặt lịch hẹn!');
+                window.location.href = 'login.html';
+                return;
+            }
+
+            // Prefill info
+            document.getElementById('customerName').value = userInfo.fullName || '';
+            document.getElementById('phone').value = userInfo.phone || '';
+
+            // Generate dates (7 days from tomorrow)
+            const dateSelector = document.getElementById('date-selector');
+            const dates = [];
+            for (let i = 1; i <= 7; i++) {
+                const d = new Date();
+                d.setDate(d.getDate() + i);
+                dates.push(d);
+            }
+
+            dateSelector.innerHTML = dates.map((d, i) => {
+                const dayName = d.toLocaleDateString('vi-VN', { weekday: 'short' });
+                const dateNum = d.getDate();
+                const dateISO = d.toISOString().split('T')[0];
+                return `
+                    <div class="date-btn ${i === 0 ? 'active' : ''}" data-date="${dateISO}">
+                        <span class="date-num">${dateNum}</span>
+                        <span class="date-day">${dayName}</span>
+                    </div>
+                `;
+            }).join('');
+
+            document.getElementById('selected-date').value = dates[0].toISOString().split('T')[0];
+
+            // Date selection
+            document.querySelectorAll('.date-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    document.querySelectorAll('.date-btn').forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+                    document.getElementById('selected-date').value = this.dataset.date;
+                });
+            });
+
+            // Time selection
+            document.querySelectorAll('.time-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    document.querySelectorAll('.time-btn').forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+                    document.getElementById('selected-time').value = this.dataset.time;
+                });
+            });
+
+            // Default time
+            const firstAvailableTime = document.querySelector('.time-btn:not(.disabled)');
+            if (firstAvailableTime) {
+                firstAvailableTime.click();
+            }
+
+            // Form Submit
+            document.getElementById('bookingForm').addEventListener('submit', async (e) => {
+                e.preventDefault();
+                
+                const bookingData = {
+                    userId: userInfo._id,
+                    customerName: document.getElementById('customerName').value,
+                    phone: document.getElementById('phone').value,
+                    category: document.getElementById('category').value,
+                    date: document.getElementById('selected-date').value,
+                    time: document.getElementById('selected-time').value,
+                    note: document.getElementById('note').value
+                };
+
+                if (!bookingData.date || !bookingData.time) {
+                    alert('Vui lòng chọn ngày và giờ hẹn!');
+                    return;
+                }
+
+                try {
+                    const response = await API.createBooking(bookingData);
+                    alert('Đặt lịch thành công! Chuyên gia của chúng tôi sẽ liên hệ sớm nhất.');
+                    window.location.href = 'profile.html#bookings';
+                } catch (error) {
+                    alert('Lỗi đặt lịch: ' + error.message);
+                }
+            });
+        });
+    </script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        // Search Box Toggle Logic
+        const searchIcon = document.getElementById('search-icon');
+        const searchContainer = document.getElementById('search-container');
+        const searchInput = document.getElementById('search-input');
+
+        if(searchIcon && searchContainer) {
+            searchIcon.addEventListener('click', () => {
+                searchContainer.classList.toggle('active');
+                if (searchContainer.classList.contains('active')) {
+                    searchInput.focus();
+                }
+            });
+
+            document.addEventListener('click', (e) => {
+                if (!searchContainer.contains(e.target)) {
+                    searchContainer.classList.remove('active');
+                }
+            });
+
+            searchInput.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter' && searchInput.value.trim() !== '') {
+                    window.location.href = `collection.html?search=${encodeURIComponent(searchInput.value.trim())}`;
+                }
+            });
+        }
+
+        // Floating Navigation Logic
+        const header = document.getElementById('header');
+        if(header) {
+            let lastScrollY = window.scrollY;
+            let scrollPositionOnCollapse = 0;
+            const EXPAND_SCROLL_THRESHOLD = 80;
+
+            window.addEventListener('scroll', () => {
+                const currentScrollY = window.scrollY;
+                if (!header.classList.contains('collapsed') && currentScrollY > lastScrollY && currentScrollY > 150) {
+                    header.classList.add('collapsed');
+                    scrollPositionOnCollapse = currentScrollY;
+                } else if (header.classList.contains('collapsed') && currentScrollY < lastScrollY && (scrollPositionOnCollapse - currentScrollY > EXPAND_SCROLL_THRESHOLD)) {
+                    header.classList.remove('collapsed');
+                }
+                if (currentScrollY < 10) {
+                    header.classList.remove('collapsed');
+                }
+                lastScrollY = currentScrollY;
+            });
+
+            header.addEventListener('click', (e) => {
+                if (header.classList.contains('collapsed')) {
+                    header.classList.remove('collapsed');
+                    e.stopPropagation();
+                }
+            });
+        }
+    });
+</script>
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        // Location Map Logic
+        const mapWrapper = document.getElementById('map-wrapper');
+        const mapCard = document.getElementById('map-card');
+        
+        if (mapWrapper && mapCard) {
+            mapWrapper.addEventListener('mousemove', (e) => {
+                const rect = mapCard.getBoundingClientRect();
+                const x = e.clientX - rect.left - rect.width / 2;
+                const y = e.clientY - rect.top - rect.height / 2;
+                
+                const rotateX = -y / 10;
+                const rotateY = x / 10;
+                
+                mapCard.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+            });
+            
+            mapWrapper.addEventListener('mouseleave', () => {
+                mapCard.style.transform = `rotateX(0deg) rotateY(0deg)`;
+            });
+            
+            mapWrapper.addEventListener('click', (e) => {
+                if (mapCard.classList.contains('expanded')) {
+                    window.open('https://www.google.com/maps/search/?api=1&query=33+Bạch+Đằng,+Hồng+Hà,+Hà+Nội', '_blank');
+                } else {
+                    mapCard.classList.add('expanded');
+                    const hint = mapWrapper.querySelector('.click-hint');
+                    if(hint) {
+                        hint.textContent = 'Click again to open in Google Maps';
+                        hint.style.color = 'var(--gold-primary)';
+                    }
+                }
+            });
+
+            document.addEventListener('click', (e) => {
+                if (!mapWrapper.contains(e.target) && mapCard.classList.contains('expanded')) {
+                    mapCard.classList.remove('expanded');
+                    const hint = mapWrapper.querySelector('.click-hint');
+                    if(hint) {
+                        hint.textContent = 'Click to expand';
+                        hint.style.color = 'var(--text-muted)';
+                    }
+                }
+            });
+        }
+    });
+</script>
+
+<script src="../js/theme.js"></script>
+</body>
+</html>

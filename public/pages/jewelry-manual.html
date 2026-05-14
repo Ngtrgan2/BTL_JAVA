@@ -1,0 +1,466 @@
+﻿<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cẩm nang sử dụng trang sức | An LUXURY</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .policy-container {
+            padding: 12rem 0 8rem;
+            min-height: 70vh;
+        }
+
+        .policy-content {
+            background-color: var(--bg-light);
+            padding: 4rem;
+            border-radius: var(--border-radius);
+            border: 1px solid var(--border-light);
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+        }
+
+        .policy-content h1 {
+            color: var(--gold-primary);
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            font-family: var(--font-heading);
+        }
+
+        .policy-content p {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 3rem;
+        }
+    </style>
+<script>
+        (function() {
+            const theme = localStorage.getItem('an-luxury-theme') || 'dark';
+            if (theme === 'dark') {
+                document.documentElement.classList.add('dark-mode');
+            }
+        })();
+    </script>
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="header" id="header">
+        <div class="nav">
+            <div class="logo">
+                <a href="index.html">An LUXURY</a>
+            </div>
+            <nav class="nav-links">
+                <a href="index.html">Trang chủ</a>
+                <a href="collection.html">Bộ sưu tập</a>
+                <a href="about.html">Về chúng tôi</a>
+                <a href="index.html#promises">Cam kết</a>
+            </nav>
+            <div class="nav-icons">
+                <div class="search-container" id="search-container">
+                    <i class="fa-solid fa-search search-icon-btn" id="search-icon"></i>
+                    <input type="text" class="search-input" id="search-input" placeholder="Tìm kiếm trang sức...">
+                </div>
+                <div class="nav-icon" title="Tài khoản"><a href="login.html"><i class="fa-regular fa-user"></i></a>
+                </div>
+                <div class="nav-icon">
+                    <a href="cart.html"><i class="fa-solid fa-cart-shopping"></i></a>
+                    <span class="cart-count">2</span>
+                </div>
+                <!-- Theme Toggle Button -->
+
+                                <button id="theme-toggle" class="theme-toggle-btn" title="Chuyển đổi Light/Dark mode">
+
+                                    <i class="fa-solid fa-sun theme-icon-light"></i>
+
+                                    <i class="fa-solid fa-moon theme-icon-dark"></i>
+
+                                    <svg class="theme-star star-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 784.11 815.53"><path d="M392.05 0c-20.9,210.08-184.06,378.41-392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93-210.06 184.09-378.37 392.05-407.74-207.98-29.38-371.16-197.69-392.06-407.78z"/></svg>
+
+                                    <svg class="theme-star star-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 784.11 815.53"><path d="M392.05 0c-20.9,210.08-184.06,378.41-392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93-210.06 184.09-378.37 392.05-407.74-207.98-29.38-371.16-197.69-392.06-407.78z"/></svg>
+
+                                    <svg class="theme-star star-3" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 784.11 815.53"><path d="M392.05 0c-20.9,210.08-184.06,378.41-392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93-210.06 184.09-378.37 392.05-407.74-207.98-29.38-371.16-197.69-392.06-407.78z"/></svg>
+
+                                    <svg class="theme-star star-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 784.11 815.53"><path d="M392.05 0c-20.9,210.08-184.06,378.41-392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93-210.06 184.09-378.37 392.05-407.74-207.98-29.38-371.16-197.69-392.06-407.78z"/></svg>
+
+                                    <svg class="theme-star star-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 784.11 815.53"><path d="M392.05 0c-20.9,210.08-184.06,378.41-392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93-210.06 184.09-378.37 392.05-407.74-207.98-29.38-371.16-197.69-392.06-407.78z"/></svg>
+
+                                    <svg class="theme-star star-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 784.11 815.53"><path d="M392.05 0c-20.9,210.08-184.06,378.41-392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93-210.06 184.09-378.37 392.05-407.74-207.98-29.38-371.16-197.69-392.06-407.78z"/></svg>
+
+                                </button>
+
+            </div>
+        </div>
+        <!-- Collapsed Menu Icon -->
+        <div class="collapsed-menu-icon">
+            <i class="fa-solid fa-bars"></i>
+        </div>
+    </header>
+
+    <main class="policy-container container">
+        <div class="policy-content reveal">
+            <h1>Cẩm nang sử dụng trang sức</h1>
+            <p>Nội dung phần <strong>Cẩm nang sử dụng trang sức</strong> đang trong quá trình hoàn thiện. <br>Xin cảm ơn
+                quý khách đã quan tâm và đồng hành cùng An LUXURY!</p>
+            <a href="index.html" class="btn btn-primary">Quay về Trang Chủ</a>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <!-- New Artistic Footer Section -->
+            <div class="artistic-footer" style="margin-bottom: 4rem; position: relative;">
+                <div class="footer-brand-outline">AN LUXURY</div>
+            </div>
+
+            <!-- Logo -->
+            <div style="margin-bottom: 2.5rem;">
+                <div class="logo" style="font-size: 1.8rem;">An LUXURY</div>
+            </div>
+
+            <!-- Main Footer Grid -->
+            <div style="display: grid; grid-template-columns: 2fr 1.2fr 1.5fr 1.5fr; gap: 3rem;">
+
+                <!-- Cột 1: Thông tin công ty -->
+                <div>
+                    <p style="color: var(--text-muted); line-height: 1.9; font-size: 0.9rem;">
+                        &copy; 2005 Công Ty TNHH An LUXURY<br>
+                        21/33 Bạch Đằng, Hồng Hà, Hà Nội<br><br>
+                        ĐT: <a href="#" style="color: var(--gold-primary);">039 2326 230</a> - Fax: 028 3995 1702<br>
+                        Giấy chứng nhận đăng ký kinh doanh: 036636363636 do Sở Tài chính Thành phố Hà Nội cấp ngày
+                        10/12/2005.
+                    </p>
+                    <div style="margin-top: 1.5rem; color: var(--text-muted); font-size: 0.88rem; line-height: 2;">
+                        Tổng đài hỗ trợ (08:00-21:00, miễn phí gọi)<br>
+                        Gọi mua: <a href="#" style="color: var(--gold-primary);">1800545457</a> (phím 1)<br>
+                        Khiếu nại: <a href="#" style="color: var(--gold-primary);">1800545457</a> (phím 2)<br>
+                        Email góp ý: <a href="#" style="color: var(--gold-primary);">cskh@anluxury.com.vn</a>
+                    </div>
+                </div>
+
+                <!-- Cột 2: Về An LUXURY -->
+                <div>
+                    <h4
+                        style="margin-bottom: 1.5rem; font-family: var(--font-body); font-weight: 700; text-transform: uppercase; letter-spacing: 1px; font-size: 0.95rem;">
+                        Về An LUXURY</h4>
+                    <ul style="list-style: none; color: var(--text-muted); line-height: 2.2; font-size: 0.9rem;">
+                        <li><a href="ir.html" style="color: inherit; transition: color 0.3s;"
+                                onmouseover="this.style.color='#d4af37'" onmouseout="this.style.color='inherit'">Quan hệ
+                                cổ đông (IR)</a></li>
+                        <li><a href="careers.html" style="color: inherit; transition: color 0.3s;"
+                                onmouseover="this.style.color='#d4af37'" onmouseout="this.style.color='inherit'">Tuyển
+                                dụng</a></li>
+                        <li><a href="export.html" style="color: inherit; transition: color 0.3s;"
+                                onmouseover="this.style.color='#d4af37'" onmouseout="this.style.color='inherit'">Xuất
+                                khẩu</a></li>
+                        <li><a href="wholesale.html" style="color: inherit; transition: color 0.3s;"
+                                onmouseover="this.style.color='#d4af37'" onmouseout="this.style.color='inherit'">Kinh
+                                doanh sỉ</a></li>
+                        <li><a href="https://www.gia.edu" target="_blank"
+                                style="color: inherit; transition: color 0.3s;" onmouseover="this.style.color='#d4af37'"
+                                onmouseout="this.style.color='inherit'">Kiểm
+                                định kim cương</a></li>
+                        <li><a href="corporate-gifts.html" style="color: inherit; transition: color 0.3s;"
+                                onmouseover="this.style.color='#d4af37'" onmouseout="this.style.color='inherit'">Quà
+                                tặng doanh nghiệp</a></li>
+                    </ul>
+                </div>
+
+                <!-- Cột 3: Dịch vụ khách hàng + Chính sách -->
+                <div>
+                    <h4
+                        style="margin-bottom: 1.5rem; font-family: var(--font-body); font-weight: 700; text-transform: uppercase; letter-spacing: 1px; font-size: 0.95rem;">
+                        Dịch vụ khách hàng</h4>
+                    <ul
+                        style="list-style: none; color: var(--text-muted); line-height: 2.2; font-size: 0.9rem; margin-bottom: 2rem;">
+                        <li><a href="size-guide.html" style="color: inherit; transition: color 0.3s;"
+                                onmouseover="this.style.color='#d4af37'" onmouseout="this.style.color='inherit'">Hướng
+                                dẫn đo size trang sức</a></li>
+                        <li><a href="installment.html" style="color: inherit; transition: color 0.3s;"
+                                onmouseover="this.style.color='#d4af37'" onmouseout="this.style.color='inherit'">Mua
+                                hàng trả góp</a></li>
+                        <li><a href="shopping-guide.html" style="color: inherit; transition: color 0.3s;"
+                                onmouseover="this.style.color='#d4af37'" onmouseout="this.style.color='inherit'">Hướng
+                                dẫn mua hàng và thanh toán</a></li>
+                        <li><a href="price-lookup.html" style="color: inherit; transition: color 0.3s;"
+                                onmouseover="this.style.color='#d4af37'" onmouseout="this.style.color='inherit'">Hướng
+                                dẫn tra cứu giá</a></li>
+                        <li><a href="jewelry-manual.html" style="color: inherit; transition: color 0.3s;"
+                                onmouseover="this.style.color='#d4af37'" onmouseout="this.style.color='inherit'">Cẩm
+                                nang sử dụng trang sức</a></li>
+                        <li><a href="faq.html" style="color: inherit; transition: color 0.3s;"
+                                onmouseover="this.style.color='#d4af37'" onmouseout="this.style.color='inherit'">Câu hỏi
+                                thường gặp</a></li>
+                    </ul>
+
+                    <h4
+                        style="margin-bottom: 1rem; font-family: var(--font-body); font-weight: 700; text-transform: uppercase; letter-spacing: 1px; font-size: 0.95rem;">
+                        Tổng hợp các chính sách</h4>
+                    <ul style="list-style: none; color: var(--text-muted); line-height: 2.2; font-size: 0.9rem;">
+                        <li><a href="hoantien.html" style="color: inherit; transition: color 0.3s;"
+                                onmouseover="this.style.color='#d4af37'" onmouseout="this.style.color='inherit'">Chính
+                                sách hoàn tiền</a></li>
+                        <li><a href="delivery-policy.html" style="color: inherit; transition: color 0.3s;"
+                                onmouseover="this.style.color='#d4af37'" onmouseout="this.style.color='inherit'">Chính
+                                sách giao hàng</a></li>
+                        <li><a href="warranty-policy.html" style="color: inherit; transition: color 0.3s;"
+                                onmouseover="this.style.color='#d4af37'" onmouseout="this.style.color='inherit'">Chính
+                                sách bảo hành thu đổi</a></li>
+                        <li><a href="loyalty-policy.html" style="color: inherit; transition: color 0.3s;"
+                                onmouseover="this.style.color='#d4af37'" onmouseout="this.style.color='inherit'">Chính
+                                sách khách hàng thân thiết</a></li>
+                        <li><a href="privacy-policy.html" style="color: inherit; transition: color 0.3s;"
+                                onmouseover="this.style.color='#d4af37'" onmouseout="this.style.color='inherit'">Chính
+                                sách bảo mật thông tin khách hàng</a></li>
+                        <li><a href="data-processing-policy.html" style="color: inherit; transition: color 0.3s;"
+                                onmouseover="this.style.color='#d4af37'" onmouseout="this.style.color='inherit'">Chính
+                                sách xử lý dữ liệu cá nhân</a></li>
+                    </ul>
+                </div>
+
+                <!-- Cột 4: Kết nối + Zalo OA -->
+                <div>
+                    <h4
+                        style="margin-bottom: 1.5rem; font-family: var(--font-body); font-weight: 700; text-transform: uppercase; letter-spacing: 1px; font-size: 0.95rem;">
+                        Kết nối với chúng tôi</h4>
+                    <div style="display: flex; gap: 0.8rem; margin-bottom: 2rem;">
+                        <a href="https://www.facebook.com/ngtrgan1012/" target="_blank"
+                            style="width: 42px; height: 42px; border-radius: 50%; background: #1877F2; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 1.2rem; transition: transform 0.3s, box-shadow 0.3s;"
+                            onmouseover="this.style.transform='scale(1.15)'; this.style.boxShadow='0 4px 15px rgba(24,119,242,0.4)'"
+                            onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='none'"><i
+                                class="fa-brands fa-facebook-f"></i></a>
+                        <a href="https://www.instagram.com/ng_trg.an/?hl=en"
+                            style="width: 42px; height: 42px; border-radius: 50%; background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); display: flex; align-items: center; justify-content: center; color: #fff; font-size: 1.2rem; transition: transform 0.3s, box-shadow 0.3s;"
+                            onmouseover="this.style.transform='scale(1.15)'; this.style.boxShadow='0 4px 15px rgba(225,48,108,0.4)'"
+                            onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='none'"><i
+                                class="fa-brands fa-instagram"></i></a>
+                        <a href="https://www.youtube.com/@MixiGaming3con"
+                            style="width: 42px; height: 42px; border-radius: 50%; background: #FF0000; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 1.2rem; transition: transform 0.3s, box-shadow 0.3s;"
+                            onmouseover="this.style.transform='scale(1.15)'; this.style.boxShadow='0 4px 15px rgba(255,0,0,0.4)'"
+                            onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='none'"><i
+                                class="fa-brands fa-youtube"></i></a>
+                        <a href="https://www.tiktok.com/@voikonnn"
+                            style="width: 42px; height: 42px; border-radius: 50%; background: #d4af37; display: flex; align-items: center; justify-content: center; color: #0a0a0a; font-size: 1.2rem; transition: transform 0.3s, box-shadow 0.3s;"
+                            onmouseover="this.style.transform='scale(1.15)'; this.style.boxShadow='0 4px 15px rgba(212,175,55,0.4)'"
+                            onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='none'"><i
+                                class="fa-regular fa-envelope"></i></a>
+                    </div>
+
+                    <h4
+                        style="margin-bottom: 1rem; font-family: var(--font-body); font-weight: 700; text-transform: uppercase; letter-spacing: 1px; font-size: 0.95rem;">
+                        Quan tâm Zalo OA</h4>
+                    <p style="color: var(--text-muted); font-size: 0.88rem; margin-bottom: 1rem;">Nhận các thông tin
+                        khuyến mãi hấp dẫn</p>
+                    <a href="https://zalo.me/0392326230" target="_blank"
+                        style="display: inline-flex; align-items: center; gap: 0.5rem; background: #0068FF; color: #fff; padding: 0.6rem 1.2rem; border-radius: 20px; font-size: 0.85rem; font-weight: 600; text-decoration: none; transition: background 0.3s;"
+                        onmouseover="this.style.background='#0055d4'" onmouseout="this.style.background='#0068FF'">
+                        <i class="fa-solid fa-comment-dots"></i> Quan tâm
+                    </a>
+
+                    <!-- Location Map Component -->
+                    <div class="location-map-wrapper" id="map-wrapper">
+                        <div class="location-map-card" id="map-card">
+                            <div class="map-gradient-overlay"></div>
+                            <div class="map-svg-container">
+                                <svg class="map-svg" preserveAspectRatio="none" viewBox="0 0 100 100">
+                                    <!-- Simple Map Illustration -->
+                                    <line x1="0" y1="35" x2="100" y2="35" class="map-road" />
+                                    <line x1="0" y1="65" x2="100" y2="65" class="map-road" />
+                                    <line x1="30" y1="0" x2="30" y2="100" class="map-road" />
+                                    <line x1="70" y1="0" x2="70" y2="100" class="map-road" />
+                                    <circle cx="50" cy="50" r="4" class="map-pin" />
+                                </svg>
+                            </div>
+                            <iframe class="google-map-iframe"
+                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3724.0256092802133!2d105.85621421160955!3d21.031661287596485!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135abc2238dbc7d%3A0x1b7872616e10e945!2zMzMgxJAuIELhuqFjaCDEkOG6sW5nLCBI4buTbmcgSMOgLCBIw6AgTuG7mWkgMTAwMDAwLCBWaeG7h3QgTmFt!5e0!3m2!1svi!2s!4v1778156747606!5m2!1svi!2s"
+                                loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                            <div class="map-header">
+                                <i class="fa-solid fa-map-location-dot map-icon" style="font-size: 1.2rem;"></i>
+                                <div class="status-indicator">
+                                    <div class="status-dot"></div>
+                                    <span class="status-text">Live</span>
+                                </div>
+                            </div>
+                            <div class="map-footer">
+                                <h3 class="location-name">33 Bạch Đằng, Hà Nội</h3>
+                                <p class="location-coords">21.0315° N, 105.8617° E</p>
+                                <div class="animated-underline"></div>
+                            </div>
+                        </div>
+                        <p class="click-hint">Click to expand</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Payment & Certification -->
+            <div
+                style="margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--border-light); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 2rem;">
+                <div>
+                    <h4
+                        style="font-family: var(--font-body); font-weight: 700; text-transform: uppercase; letter-spacing: 1px; font-size: 0.85rem; margin-bottom: 1rem;">
+                        Phương thức thanh toán</h4>
+                    <div style="display: flex; gap: 0.6rem; align-items: center; flex-wrap: wrap;">
+                        <span
+                            style="background: #fff; color: #1a1f71; padding: 0.4rem 0.7rem; border-radius: 4px; font-size: 0.75rem; font-weight: 800; letter-spacing: 1px;">VISA</span>
+                        <span
+                            style="background: #fff; padding: 0.4rem 0.7rem; border-radius: 4px; font-size: 0.75rem; font-weight: 800;">
+                            <span style="color: #EB001B;">●</span><span style="color: #F79E1B;">●</span>
+                        </span>
+                        <span
+                            style="background: #fff; color: #cc0000; padding: 0.4rem 0.7rem; border-radius: 4px; font-size: 0.7rem; font-weight: 800;">JCB</span>
+                        <span
+                            style="background: #0068FF; color: #fff; padding: 0.4rem 0.7rem; border-radius: 4px; font-size: 0.7rem; font-weight: 700;">ZaloPay</span>
+                        <span
+                            style="background: #1ec28b; color: #fff; padding: 0.4rem 0.7rem; border-radius: 4px; font-size: 0.7rem; font-weight: 700;">MoMo</span>
+                        <span
+                            style="background: #fff; color: #333; padding: 0.4rem 0.7rem; border-radius: 4px; font-size: 0.65rem; font-weight: 700;">TRẢ
+                            GÓP 0%</span>
+                    </div>
+                </div>
+                <div>
+                    <h4
+                        style="font-family: var(--font-body); font-weight: 700; text-transform: uppercase; letter-spacing: 1px; font-size: 0.85rem; margin-bottom: 1rem;">
+                        Chứng nhận</h4>
+                    <div style="display: flex; gap: 0.8rem; align-items: center;">
+                        <div
+                            style="background: #1a3a6b; color: #fff; padding: 0.5rem 1rem; border-radius: 4px; font-size: 0.65rem; text-align: center; line-height: 1.4; font-weight: 600; border: 1px solid #2a5a9b;">
+                            <i class="fa-solid fa-shield-halved"
+                                style="font-size: 1rem; display: block; margin-bottom: 2px; color: #4da6ff;"></i>
+                            ĐÃ THÔNG BÁO<br>BỘ CÔNG THƯƠNG
+                        </div>
+                        <div
+                            style="background: rgba(212,175,55,0.1); color: var(--gold-primary); padding: 0.5rem 1rem; border-radius: 4px; font-size: 0.65rem; text-align: center; line-height: 1.4; font-weight: 600; border: 1px solid var(--gold-dark);">
+                            <i class="fa-solid fa-gem" style="font-size: 1rem; display: block; margin-bottom: 2px;"></i>
+                            GIA CERTIFIED<br>DIAMONDS
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Copyright -->
+            <div
+                style="margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid var(--border-light); text-align: center; color: var(--text-muted); font-size: 0.85rem;">
+                <p>&copy; 2026 An LUXURY. Bảo lưu mọi quyền.</p>
+            </div>
+
+        </div>
+    </footer>
+
+    <script src="../js/api.js"></script>
+    <script src="../js/cart.js"></script>
+    <script src="../js/auth.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Floating Navigation Logic
+            const header = document.getElementById('header');
+            if (header) {
+                let lastScrollY = window.scrollY;
+                let scrollPositionOnCollapse = 0;
+                const EXPAND_SCROLL_THRESHOLD = 80;
+
+                window.addEventListener('scroll', () => {
+                    const currentScrollY = window.scrollY;
+                    if (!header.classList.contains('collapsed') && currentScrollY > lastScrollY && currentScrollY > 150) {
+                        header.classList.add('collapsed');
+                        scrollPositionOnCollapse = currentScrollY;
+                    } else if (header.classList.contains('collapsed') && currentScrollY < lastScrollY && (scrollPositionOnCollapse - currentScrollY > EXPAND_SCROLL_THRESHOLD)) {
+                        header.classList.remove('collapsed');
+                    }
+                    if (currentScrollY < 10) {
+                        header.classList.remove('collapsed');
+                    }
+                    lastScrollY = currentScrollY;
+                });
+
+                header.addEventListener('click', (e) => {
+                    if (header.classList.contains('collapsed')) {
+                        header.classList.remove('collapsed');
+                        e.stopPropagation();
+                    }
+                });
+            }
+
+            // Search Box Logic
+            const searchIcon = document.getElementById('search-icon');
+            const searchContainer = document.getElementById('search-container');
+            const searchInput = document.getElementById('search-input');
+
+            if (searchIcon && searchContainer) {
+                searchIcon.addEventListener('click', () => {
+                    searchContainer.classList.toggle('active');
+                    if (searchContainer.classList.contains('active')) {
+                        searchInput.focus();
+                    }
+                });
+
+                document.addEventListener('click', (e) => {
+                    if (!searchContainer.contains(e.target)) {
+                        searchContainer.classList.remove('active');
+                    }
+                });
+
+                searchInput.addEventListener('keypress', (e) => {
+                    if (e.key === 'Enter' && searchInput.value.trim() !== '') {
+                        window.location.href = collection.html ? search =;
+                    }
+                });
+            }
+
+            // Reveal Animation
+            function reveal() {
+                var reveals = document.querySelectorAll(".reveal");
+                for (var i = 0; i < reveals.length; i++) {
+                    var windowHeight = window.innerHeight;
+                    var elementTop = reveals[i].getBoundingClientRect().top;
+                    if (elementTop < windowHeight - 100) {
+                        reveals[i].classList.add("active");
+                    }
+                }
+            }
+            window.addEventListener("scroll", reveal);
+            reveal(); // Initial check
+        });
+    </script>
+
+    <style>
+        .footer-brand-outline {
+            font-size: 9.5vw;
+            font-family: var(--font-heading);
+            color: transparent;
+            -webkit-text-stroke: 1px rgba(212, 175, 55, 0.2);
+            text-transform: uppercase;
+            line-height: 1;
+            margin-top: 1rem;
+            user-select: none;
+            letter-spacing: 2px;
+            text-align: center;
+            white-space: nowrap;
+            transition: all 0.5s ease;
+        }
+
+        .footer-brand-outline:hover {
+            -webkit-text-stroke: 1px rgba(212, 175, 55, 0.5);
+            text-shadow: 0 0 30px rgba(212, 175, 55, 0.1);
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+<script src="../js/theme.js"></script>
+</body>
+
+</html>

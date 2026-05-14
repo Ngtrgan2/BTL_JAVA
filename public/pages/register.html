@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đăng Ký | An LUXURY</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .auth-container {
+            display: flex;
+            min-height: 100vh;
+            background-color: var(--bg-darker);
+        }
+        
+        .auth-image {
+            flex: 1;
+            background-image: url('../images/collection-banner.png');
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+        
+        .auth-image-overlay {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(to left, rgba(0,0,0,0.2), rgba(5,5,5,1));
+        }
+
+        .auth-form-container {
+            width: 100%;
+            max-width: 550px;
+            padding: 4rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+            z-index: 2;
+            background-color: var(--bg-darker);
+        }
+
+        .auth-logo {
+            font-family: var(--font-heading);
+            font-size: 2rem;
+            color: var(--gold-primary);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-align: center;
+            margin-bottom: 2rem;
+            display: block;
+        }
+
+        .auth-title {
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+            text-align: center;
+            color: var(--text-primary);
+        }
+
+        .auth-subtitle {
+            color: var(--text-secondary);
+            text-align: center;
+            margin-bottom: 2.5rem;
+            font-size: 0.9rem;
+        }
+
+        .auth-input-group {
+            position: relative;
+            margin-bottom: 1.2rem;
+        }
+
+        .auth-input-group i {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            left: 1rem;
+            color: var(--gold-primary);
+        }
+
+        .auth-input {
+            width: 100%;
+            padding: 1rem 1rem 1rem 3rem;
+            background-color: var(--bg-light);
+            border: 1px solid var(--border-light);
+            border-radius: var(--border-radius);
+            color: var(--text-primary);
+            font-family: var(--font-body);
+            transition: var(--transition);
+        }
+
+        .auth-input:focus {
+            outline: none;
+            border-color: var(--gold-primary);
+            box-shadow: 0 0 0 2px rgba(212, 175, 55, 0.2);
+        }
+
+        .auth-btn {
+            padding: 1.2rem;
+            font-size: 1rem;
+            font-weight: 600;
+            margin-top: 1rem;
+        }
+
+        .auth-link {
+            color: var(--gold-primary);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        .auth-link:hover {
+            color: var(--gold-light);
+            text-decoration: underline;
+        }
+        
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .back-to-home {
+            position: absolute;
+            top: 2rem;
+            left: 2rem;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+        .back-to-home:hover {
+            color: var(--gold-primary);
+        }
+
+        @media (max-width: 768px) {
+            .auth-image { display: none; }
+            .auth-form-container { max-width: 100%; padding: 2rem; }
+        }
+    </style>
+<script>
+        (function() {
+            const theme = localStorage.getItem('an-luxury-theme') || 'dark';
+            if (theme === 'dark') {
+                document.documentElement.classList.add('dark-mode');
+            }
+        })();
+    </script>
+    <script src="../js/theme.js"></script>
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+</head>
+<body>
+
+    <div class="auth-container">
+        <!-- Form Đăng ký bên trái lần này -->
+        <div class="auth-form-container">
+            <a href="index.html" class="back-to-home"><i class="fa-solid fa-arrow-left" style="margin-right: 5px;"></i> Trở về</a>
+            
+            <a href="index.html" class="auth-logo">An LUXURY</a>
+            
+            <h1 class="auth-title">Tạo Tài Khoản VIP</h1>
+            <p class="auth-subtitle">Đăng ký để dễ dàng quản lý đơn hàng trang sức và đặt lịch hẹn tư vấn.</p>
+
+            <form id="registerForm">
+                
+                <div class="auth-input-group">
+                    <i class="fa-regular fa-user"></i>
+                    <input type="text" id="fullName" class="auth-input" placeholder="Họ và tên đầy đủ" required>
+                </div>
+                
+                <div class="form-row">
+                    <div class="auth-input-group" style="margin-bottom: 0;">
+                        <i class="fa-solid fa-phone"></i>
+                        <input type="tel" id="phone" class="auth-input" placeholder="Số điện thoại" required>
+                    </div>
+                    <div class="auth-input-group" style="margin-bottom: 0;">
+                        <i class="fa-regular fa-envelope"></i>
+                        <input type="email" id="email" class="auth-input" placeholder="Email" required>
+                    </div>
+                </div>
+                
+                <div class="auth-input-group" style="margin-top: 1.2rem;">
+                    <i class="fa-solid fa-lock"></i>
+                    <input type="password" id="password" class="auth-input" placeholder="Tạo mật khẩu" required>
+                </div>
+                
+                <div class="auth-input-group">
+                    <i class="fa-solid fa-shield-check"></i>
+                    <input type="password" id="confirmPassword" class="auth-input" placeholder="Nhập lại mật khẩu" required>
+                </div>
+
+                <div style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 1rem;">
+                    Bằng việc nhấp vào Đăng Ký, bạn đồng ý với <a href="#" class="auth-link">Điều khoản dịch vụ</a> và <a href="#" class="auth-link">Chính sách bảo mật</a> của An LUXURY.
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-full auth-btn">Đăng Ký Tài Khoản</button>
+            </form>
+
+            <div style="margin-top: 1.5rem; position: relative; text-align: center;">
+                <div style="position: absolute; top: 50%; left: 0; width: 100%; height: 1px; background: var(--border-light); z-index: 1;"></div>
+                <span style="position: relative; z-index: 2; background: var(--bg-darker); padding: 0 1rem; color: var(--text-secondary); font-size: 0.8rem;">HOẶC ĐĂNG KÝ VỚI</span>
+            </div>
+
+            <div style="margin-top: 1.5rem; display: flex; justify-content: center;">
+                <div id="g_id_onload"
+                    data-client_id="911670166045-36d202c5milab1e56vqcm9t3s8j86g9r.apps.googleusercontent.com"
+                    data-callback="handleCredentialResponse"
+                    data-auto_prompt="false">
+                </div>
+                <div class="g_id_signin"
+                    data-type="standard"
+                    data-size="large"
+                    data-theme="outline"
+                    data-text="signup_with"
+                    data-shape="rectangular"
+                    data-logo_alignment="left">
+                </div>
+            </div>
+
+            <div style="text-align: center; margin-top: 2rem; color: var(--text-secondary);">
+                Đã có tài khoản? <a href="login.html" class="auth-link" style="font-weight: 500;">Đăng nhập</a>
+            </div>
+        </div>
+        
+        <!-- Hình ảnh Background bên phải -->
+        <div class="auth-image">
+            <div class="auth-image-overlay"></div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('registerForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const fullName = document.getElementById('fullName').value;
+            const phone = document.getElementById('phone').value;
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+
+            if (password !== confirmPassword) {
+                alert('Mật khẩu nhập lại không khớp!');
+                return;
+            }
+
+            try {
+                const response = await fetch('/api/auth/register', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ fullName, phone, email, password })
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    alert('Đăng ký thành công! Đang chuyển hướng đến trang Đăng nhập...');
+                    window.location.href = 'login.html';
+                } else {
+                    alert(data.message || 'Có lỗi xảy ra khi đăng ký!');
+                }
+            } catch (error) {
+                console.error('Lỗi:', error);
+                alert('Lỗi kết nối đến máy chủ.');
+            }
+        });
+
+        async function handleCredentialResponse(response) {
+            try {
+                const res = await fetch('/api/auth/google', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ token: response.credential })
+                });
+
+                const data = await res.json();
+
+                if (res.ok) {
+                    localStorage.setItem('userInfo', JSON.stringify(data));
+                    localStorage.setItem('token', data.token);
+                    
+                    alert('Đăng ký/Đăng nhập Google thành công!');
+                    
+                    if (data.role === 'admin') {
+                        window.location.href = 'admin/dashboard.html';
+                    } else if (data.role === 'staff') {
+                        window.location.href = 'admin/staff-dashboard.html';
+                    } else {
+                        window.location.href = 'index.html';
+                    }
+                } else {
+                    alert(data.message || 'Đăng ký bằng Google thất bại!');
+                }
+            } catch (error) {
+                console.error('Lỗi Google Auth:', error);
+                alert('Lỗi kết nối khi xác thực Google.');
+            }
+        }
+    </script>
+<!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="artistic-footer">
+                <div class="footer-brand-outline">AN LUXURY</div>
+            </div>
+
+            <div class="footer-main-grid">
+                <div class="footer-col-info">
+                    <div class="logo">An LUXURY</div>
+                    <p class="company-info">
+                        &copy; 2005 Công Ty TNHH An LUXURY<br>
+                        21/33 Bạch Đằng, Hồng Hà, Hà Nội<br><br>
+                        ĐT: <a href="tel:0392326230">039 2326 230</a><br>
+                        Email: <a href="mailto:cskh@anluxury.com.vn">cskh@anluxury.com.vn</a>
+                    </p>
+                    <div class="hotline-box">
+                        <p>Tổng đài hỗ trợ (08:00-21:00)</p>
+                        <a href="tel:1800545457" class="hotline-number">1800 54 54 57</a>
+                    </div>
+                </div>
+
+                <div class="footer-col-links">
+                    <h4>Về An LUXURY</h4>
+                    <ul>
+                        <li><a href="about.html">Câu chuyện thương hiệu</a></li>
+                        <li><a href="careers.html">Tuyển dụng</a></li>
+                        <li><a href="wholesale.html">Kinh doanh sỉ</a></li>
+                        <li><a href="corporate-gifts.html">Quà tặng doanh nghiệp</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col-links">
+                    <h4>Dịch vụ & Chính sách</h4>
+                    <ul>
+                        <li><a href="loyalty-policy.html">Khách hàng thân thiết</a></li>
+                        <li><a href="delivery-policy.html">Chính sách giao hàng</a></li>
+                        <li><a href="warranty-policy.html">Chính sách bảo hành</a></li>
+                        <li><a href="privacy-policy.html">Chính sách bảo mật</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col-social">
+                    <h4>Kết nối với chúng tôi</h4>
+                    <div class="social-links">
+                        <a href="https://www.facebook.com/ngtrgan1012/" target="_blank" class="social-icon fb"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="https://www.instagram.com/ng_trg.an/" target="_blank" class="social-icon ig"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="https://www.youtube.com/@MixiGaming3con" target="_blank" class="social-icon yt"><i class="fa-brands fa-youtube"></i></a>
+                        <a href="https://zalo.me/0392326230" target="_blank" class="social-icon zalo"><i class="fa-solid fa-comment-dots"></i></a>
+                    </div>
+
+                    <div class="location-map-wrapper" id="map-wrapper">
+                        <div class="location-map-card" id="map-card">
+                            <div class="map-gradient-overlay"></div>
+                            <div class="map-svg-container">
+                                <svg class="map-svg" preserveAspectRatio="none" viewBox="0 0 100 100">
+                                    <line x1="0" y1="35" x2="100" y2="35" class="map-road" />
+                                    <line x1="0" y1="65" x2="100" y2="65" class="map-road" />
+                                    <line x1="30" y1="0" x2="30" y2="100" class="map-road" />
+                                    <line x1="70" y1="0" x2="70" y2="100" class="map-road" />
+                                    <circle cx="50" cy="50" r="4" class="map-pin" />
+                                </svg>
+                            </div>
+                            <iframe class="google-map-iframe" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3724.0256092802133!2d105.85621421160955!3d21.031661287596485!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135abc2238dbc7d%3A0x1b7872616e10e945!2zMzMgxJAuIELhuqFjaCDEkOG6sW5nLCBI4buTbmcgSMOgLCBIw6AgTuG7mWkgMTAwMDAwLCBWaeG7h3QgTmFt!5e0!3m2!1svi!2s!4v1778156747606!5m2!1svi!2s" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                            <div class="map-header">
+                                <i class="fa-solid fa-map-location-dot map-icon"></i>
+                                <div class="status-indicator">
+                                    <div class="status-dot"></div>
+                                    <span class="status-text">Live</span>
+                                </div>
+                            </div>
+                            <div class="map-footer">
+                                <h3 class="location-name">33 Bạch Đằng, Hà Nội</h3>
+                                <div class="animated-underline"></div>
+                            </div>
+                        </div>
+                        <p class="click-hint">Click to expand</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <div class="payment-methods">
+                    <span>VISA</span>
+                    <span>MASTER</span>
+                    <span>JCB</span>
+                    <span>ZaloPay</span>
+                    <span>MoMo</span>
+                </div>
+                <p class="copyright">&copy; 2026 An LUXURY. Bảo lưu mọi quyền.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Location Map Logic
+            const mapWrapper = document.getElementById('map-wrapper');
+            const mapCard = document.getElementById('map-card');
+            
+            if (mapWrapper && mapCard) {
+                mapWrapper.addEventListener('mousemove', (e) => {
+                    const rect = mapCard.getBoundingClientRect();
+                    const x = e.clientX - rect.left - rect.width / 2;
+                    const y = e.clientY - rect.top - rect.height / 2;
+                    mapCard.style.transform = `rotateX(${-y / 10}deg) rotateY(${x / 10}deg)`;
+                });
+                
+                mapWrapper.addEventListener('mouseleave', () => {
+                    mapCard.style.transform = `rotateX(0deg) rotateY(0deg)`;
+                });
+                
+                mapWrapper.addEventListener('click', (e) => {
+                    if (mapCard.classList.contains('expanded')) {
+                        window.open('https://www.google.com/maps/search/?api=1&query=33+Bạch+Đằng,+Hồng+Hà,+Hà+Nội', '_blank');
+                    } else {
+                        mapCard.classList.add('expanded');
+                        const hint = mapWrapper.querySelector('.click-hint');
+                        if(hint) hint.textContent = 'Click to open in Google Maps';
+                    }
+                });
+
+                document.addEventListener('click', (e) => {
+                    if (!mapWrapper.contains(e.target) && mapCard.classList.contains('expanded')) {
+                        mapCard.classList.remove('expanded');
+                        const hint = mapWrapper.querySelector('.click-hint');
+                        if(hint) hint.textContent = 'Click to expand';
+                    }
+                });
+            }
+        });
+    </script>
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        // Search Box Toggle Logic
+        const searchIcon = document.getElementById('search-icon');
+        const searchContainer = document.getElementById('search-container');
+        const searchInput = document.getElementById('search-input');
+
+        if(searchIcon && searchContainer) {
+            searchIcon.addEventListener('click', () => {
+                searchContainer.classList.toggle('active');
+                if (searchContainer.classList.contains('active')) {
+                    searchInput.focus();
+                }
+            });
+
+            document.addEventListener('click', (e) => {
+                if (!searchContainer.contains(e.target)) {
+                    searchContainer.classList.remove('active');
+                }
+            });
+
+            searchInput.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter' && searchInput.value.trim() !== '') {
+                    window.location.href = `collection.html?search=${encodeURIComponent(searchInput.value.trim())}`;
+                }
+            });
+        }
+
+        // Floating Navigation Logic
+        const header = document.getElementById('header');
+        if(header) {
+            let lastScrollY = window.scrollY;
+            let scrollPositionOnCollapse = 0;
+            const EXPAND_SCROLL_THRESHOLD = 80;
+
+            window.addEventListener('scroll', () => {
+                const currentScrollY = window.scrollY;
+                if (!header.classList.contains('collapsed') && currentScrollY > lastScrollY && currentScrollY > 150) {
+                    header.classList.add('collapsed');
+                    scrollPositionOnCollapse = currentScrollY;
+                } else if (header.classList.contains('collapsed') && currentScrollY < lastScrollY && (scrollPositionOnCollapse - currentScrollY > EXPAND_SCROLL_THRESHOLD)) {
+                    header.classList.remove('collapsed');
+                }
+                if (currentScrollY < 10) {
+                    header.classList.remove('collapsed');
+                }
+                lastScrollY = currentScrollY;
+            });
+
+            header.addEventListener('click', (e) => {
+                if (header.classList.contains('collapsed')) {
+                    header.classList.remove('collapsed');
+                    e.stopPropagation();
+                }
+            });
+        }
+    });
+</script>
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        // Location Map Logic
+        const mapWrapper = document.getElementById('map-wrapper');
+        const mapCard = document.getElementById('map-card');
+        
+        if (mapWrapper && mapCard) {
+            mapWrapper.addEventListener('mousemove', (e) => {
+                const rect = mapCard.getBoundingClientRect();
+                const x = e.clientX - rect.left - rect.width / 2;
+                const y = e.clientY - rect.top - rect.height / 2;
+                
+                const rotateX = -y / 10;
+                const rotateY = x / 10;
+                
+                mapCard.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+            });
+            
+            mapWrapper.addEventListener('mouseleave', () => {
+                mapCard.style.transform = `rotateX(0deg) rotateY(0deg)`;
+            });
+            
+            mapWrapper.addEventListener('click', (e) => {
+                if (mapCard.classList.contains('expanded')) {
+                    window.open('https://www.google.com/maps/search/?api=1&query=33+Bạch+Đằng,+Hồng+Hà,+Hà+Nội', '_blank');
+                } else {
+                    mapCard.classList.add('expanded');
+                    const hint = mapWrapper.querySelector('.click-hint');
+                    if(hint) {
+                        hint.textContent = 'Click again to open in Google Maps';
+                        hint.style.color = 'var(--gold-primary)';
+                    }
+                }
+            });
+
+            document.addEventListener('click', (e) => {
+                if (!mapWrapper.contains(e.target) && mapCard.classList.contains('expanded')) {
+                    mapCard.classList.remove('expanded');
+                    const hint = mapWrapper.querySelector('.click-hint');
+                    if(hint) {
+                        hint.textContent = 'Click to expand';
+                        hint.style.color = 'var(--text-muted)';
+                    }
+                }
+            });
+        }
+    });
+</script>
+
+<script src="../js/theme.js"></script>
+</body>
+</html>

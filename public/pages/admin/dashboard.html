@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard | An LUXURY Admin</title>
+    <link rel="stylesheet" href="../../css/admin.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="admin-grain-bg">
+        <div class="admin-ball admin-ball-1"></div>
+        <div class="admin-ball admin-ball-2"></div>
+        <div class="noise-overlay"></div>
+    </div>
+
+    <div class="admin-layout">
+        
+        <!-- Sidebar -->
+        <aside class="admin-sidebar">
+            <div class="sidebar-header">
+                <div class="sidebar-logo">An LUXURY</div>
+                <div id="sidebar-role-text" style="font-size: 0.8rem; color: var(--admin-text-light); margin-top: 5px;">Quản Trị Hệ Thống</div>
+            </div>
+            
+            <div class="sidebar-menu">
+                <a href="dashboard.html" class="menu-item" id="nav-dashboard">
+                    <i class="fa-solid fa-chart-pie menu-icon"></i> Bàn làm việc
+                </a>
+                <a href="revenue.html" class="menu-item" id="nav-revenue">
+                    <i class="fa-solid fa-money-bill-trend-up menu-icon"></i> Doanh thu
+                </a>
+                <a href="products.html" class="menu-item" id="nav-products">
+                    <i class="fa-solid fa-gem menu-icon"></i> Sản phẩm
+                </a>
+                <a href="orders.html" class="menu-item" id="nav-orders">
+                    <i class="fa-solid fa-cart-flatbed menu-icon"></i> Đơn hàng
+                </a>
+                <a href="bookings.html" class="menu-item" id="nav-bookings">
+                    <i class="fa-regular fa-calendar-check menu-icon"></i> Lịch hẹn VIP
+                </a>
+                <a href="customers.html" class="menu-item" id="nav-customers" style="display: none;">
+                    <i class="fa-solid fa-users menu-icon"></i> Khách hàng
+                </a>
+            </div>
+            
+            <div class="sidebar-footer">
+                <div id="sidebar-user-info"></div>
+                <a href="../index.html" class="menu-item" style="padding: 0; margin-bottom: 1rem; font-size: 0.9rem;">
+                    <i class="fa-solid fa-globe menu-icon"></i> Xem website
+                </a>
+                <a href="#" class="menu-item logout-btn" style="padding: 0; color: #e74c3c; font-size: 0.9rem;">
+                    <i class="fa-solid fa-arrow-right-from-bracket menu-icon" style="color: #e74c3c;"></i> Đăng xuất
+                </a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="admin-main">
+            
+            <div class="page-header">
+                <h1 class="page-title">Tổng Quan Hệ Thống</h1>
+                <div class="admin-profile">
+                    <div style="text-align: right;">
+                        <div style="font-weight: 500;">Admin User</div>
+                        <div style="font-size: 0.8rem; color: var(--admin-text-light);">admin@anluxury.com</div>
+                    </div>
+                    <img id="admin-avatar" src="https://ui-avatars.com/api/?name=Admin&background=1a1a1a&color=d4af37" alt="Admin" style="width: 40px; height: 40px; border-radius: 50%;">
+                </div>
+            </div>
+
+            <!-- Stats -->
+            <div class="stat-grid">
+                <a href="revenue.html" class="stat-card" style="text-decoration: none; cursor: pointer; transition: transform 0.3s, border-color 0.3s;">
+                    <div class="stat-icon"><i class="fa-solid fa-sack-dollar"></i></div>
+                    <div class="stat-info">
+                        <h3>Doanh thu tháng này</h3>
+                        <div class="stat-value" id="monthlyRevenue">0 ₫</div>
+                        <div style="color: var(--status-success); font-size: 0.8rem; margin-top: 5px;"><i class="fa-solid fa-arrow-trend-up"></i> +12.5% so với tháng trước</div>
+                    </div>
+                </a>
+                
+                <a href="orders.html" class="stat-card" style="text-decoration: none; cursor: pointer; transition: transform 0.3s, border-color 0.3s;">
+                    <div class="stat-icon"><i class="fa-solid fa-cart-shopping"></i></div>
+                    <div class="stat-info">
+                        <h3>Đơn hàng mới</h3>
+                        <div class="stat-value" id="totalOrders">0</div>
+                        <div style="color: var(--status-info); font-size: 0.8rem; margin-top: 5px;" id="pendingOrdersSub">0 đơn đang chờ xử lý</div>
+                    </div>
+                </a>
+                
+                <a href="products.html" class="stat-card" style="text-decoration: none; cursor: pointer; transition: transform 0.3s, border-color 0.3s;">
+                    <div class="stat-icon"><i class="fa-solid fa-gem"></i></div>
+                    <div class="stat-info">
+                        <h3>Tổng sản phẩm</h3>
+                        <div class="stat-value" id="totalProducts">0</div>
+                        <div style="color: var(--status-danger); font-size: 0.8rem; margin-top: 5px;" id="lowStockSub">0 sản phẩm sắp hết hàng</div>
+                    </div>
+                </a>
+                
+                <a href="bookings.html" class="stat-card" style="text-decoration: none; cursor: pointer; transition: transform 0.3s, border-color 0.3s;">
+                    <div class="stat-icon"><i class="fa-regular fa-calendar" style="color: var(--status-pending);"></i></div>
+                    <div class="stat-info">
+                        <h3>Lịch hẹn sắp tới</h3>
+                        <div class="stat-value" id="upcomingBookings">0</div>
+                        <div style="color: var(--status-pending); font-size: 0.8rem; margin-top: 5px;" id="todayBookingsSub">0 lịch trong hôm nay</div>
+                    </div>
+                </a>
+            </div>
+
+            <style>
+                .stat-card:hover {
+                    transform: translateY(-5px);
+                    border-color: var(--admin-accent) !important;
+                    background: rgba(212, 175, 55, 0.05);
+                }
+            </style>
+
+            <!-- Recent Data Grid -->
+            <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 2rem;">
+                
+                <!-- Recent Orders -->
+                <div class="admin-card">
+                    <div class="card-header">
+                        <h2 class="card-title">Đơn hàng gần đây</h2>
+                        <a href="orders.html" style="font-size: 0.9rem; color: var(--admin-accent);">Xem tất cả</a>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="admin-table">
+                            <thead>
+                                <tr>
+                                    <th>Mã ĐH</th>
+                                    <th>Khách hàng</th>
+                                    <th>Tổng tiền</th>
+                                    <th>Ngày đặt</th>
+                                    <th>Trạng thái</th>
+                                </tr>
+                            </thead>
+                            <tbody id="recentOrdersBody">
+                                <tr><td colspan="5" style="text-align: center; padding: 2rem;">Đang tải...</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Today's Bookings -->
+                <div class="admin-card" id="todayBookingsCard">
+                    <div class="card-header">
+                        <h2 class="card-title">Lịch hẹn hôm nay</h2>
+                    </div>
+                    <div style="padding: 1rem;" id="todayBookingsList">
+                        <div style="text-align: center; padding: 2rem; color: var(--admin-text-light);">Đang tải...</div>
+                    </div>
+                </div>
+
+            </div>
+
+        </main>
+    </div>
+    <script src="../../js/api.js"></script>
+    <script>
+        let userInfo = JSON.parse(localStorage.getItem('userInfo'));
+
+        async function loadDashboardData() {
+            // Check Access
+            if (!userInfo || (userInfo.role !== 'admin' && userInfo.role !== 'staff')) {
+                window.location.href = '../login.html';
+                return;
+            }
+            if (userInfo.role === 'staff') {
+                window.location.href = 'staff-dashboard.html';
+                return;
+            }
+
+            // Set Profile Info
+            document.querySelector('.admin-profile div div:first-child').textContent = userInfo.fullName;
+            document.querySelector('.admin-profile div div:last-child').textContent = userInfo.email;
+            const headerAvatar = document.getElementById('admin-avatar');
+            if (headerAvatar) {
+                headerAvatar.src = (userInfo.avatar && String(userInfo.avatar).trim())
+                    ? userInfo.avatar
+                    : `https://ui-avatars.com/api/?name=${encodeURIComponent(userInfo.fullName)}&background=1a1a1a&color=d4af37`;
+            }
+
+            try {
+                // Fetch all necessary data
+                const [products, orders, bookings] = await Promise.all([
+                    API.getProducts(),
+                    API.getOrders(),
+                    API.getBookings()
+                ]);
+
+                const now = new Date();
+                const currentMonth = now.getMonth();
+                const currentYear = now.getFullYear();
+
+                // Monthly Revenue
+                const monthlyRevenue = orders
+                    .filter(order => {
+                        const d = new Date(order.createdAt);
+                        return d.getMonth() === currentMonth && d.getFullYear() === currentYear;
+                    })
+                    .reduce((sum, order) => sum + (order.totalAmount || order.total || 0), 0);
+
+                const pendingOrdersCount = orders.filter(order => order.status === 'pending').length;
+                const totalProducts = products.length;
+                const lowStockCount = products.filter(p => (p.stock || 0) < 5).length;
+                const upcomingBookings = bookings.filter(b => new Date(b.date) >= now).length;
+                const todayStr = now.toISOString().split('T')[0];
+                const todayBookingsCount = bookings.filter(b => b.date === todayStr).length;
+
+                // Update Stats by ID
+                document.getElementById('monthlyRevenue').textContent = Number(monthlyRevenue).toLocaleString('vi-VN') + ' ₫';
+                document.getElementById('totalOrders').textContent = orders.length;
+                document.getElementById('pendingOrdersSub').textContent = `${pendingOrdersCount} đơn đang chờ xử lý`;
+                document.getElementById('totalProducts').textContent = totalProducts;
+                document.getElementById('lowStockSub').textContent = `${lowStockCount} sản phẩm sắp hết hàng`;
+                document.getElementById('upcomingBookings').textContent = upcomingBookings;
+                document.getElementById('todayBookingsSub').textContent = `${todayBookingsCount} lịch trong hôm nay`;
+
+                // Render Recent Orders
+                const ordersBody = document.getElementById('recentOrdersBody');
+                const recentOrders = [...orders].sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)).slice(0, 5);
+                
+                if (recentOrders.length > 0) {
+                    ordersBody.innerHTML = recentOrders.map(order => `
+                        <tr>
+                            <td><a href="orders.html" style="color: var(--admin-accent); font-weight: 500;">#OD-${order._id.slice(-6).toUpperCase()}</a></td>
+                            <td>${order.customerName || (order.address ? order.address.split(',')[0] : 'Khách lẻ')}</td>
+                            <td style="font-weight: 500;">${Number(order.totalAmount || order.total || 0).toLocaleString('vi-VN')} ₫</td>
+                            <td style="color: var(--admin-text-light);">${new Date(order.createdAt).toLocaleDateString('vi-VN')}</td>
+                            <td><span class="badge badge-${order.status === 'pending' ? 'pending' : (order.status === 'done' ? 'success' : 'info')}">${getStatusLabel(order.status)}</span></td>
+                        </tr>
+                    `).join('');
+                } else {
+                    ordersBody.innerHTML = '<tr><td colspan="5" style="text-align: center; padding: 2rem;">Chưa có đơn hàng nào</td></tr>';
+                }
+
+                // Render Today's Bookings
+                const bookingsList = document.getElementById('todayBookingsList');
+                const todayBookings = bookings.filter(b => b.date === todayStr).sort((a,b) => (a.time || '').localeCompare(b.time || ''));
+                
+                if (todayBookings.length > 0) {
+                    bookingsList.innerHTML = todayBookings.slice(0, 5).map(b => `
+                        <div style="display: flex; align-items: center; gap: 1rem; padding: 1rem; border-bottom: 1px solid var(--admin-border);">
+                            <div style="background-color: rgba(212, 175, 55, 0.1); padding: 0.5rem 0.8rem; border-radius: 4px; text-align: center;">
+                                <div style="font-size: 0.8rem; color: var(--admin-accent); font-weight: 600;">${b.time || '--:--'}</div>
+                            </div>
+                            <div style="flex: 1;">
+                                <h4 style="font-size: 0.95rem; margin-bottom: 0.2rem; color: #fff;">${b.customerName || 'Khách hàng'}</h4>
+                                <p style="font-size: 0.8rem; color: var(--admin-text-light);">Tư vấn: ${b.category || 'Trang sức'}</p>
+                            </div>
+                        </div>
+                    `).join('') + `
+                        <div style="text-align: center; padding: 1rem 0 0.5rem 0;">
+                            <a href="bookings.html" style="font-size: 0.9rem; color: var(--admin-accent);">Xem tất cả lịch hẹn</a>
+                        </div>
+                    `;
+                } else {
+                    bookingsList.innerHTML = `
+                        <div style="text-align: center; padding: 3rem 1rem;">
+                            <i class="fa-regular fa-calendar-xmark" style="font-size: 2rem; color: var(--admin-border); margin-bottom: 1rem; display: block;"></i>
+                            <p style="color: var(--admin-text-light);">Không có lịch hẹn nào trong hôm nay</p>
+                            <a href="bookings.html" style="font-size: 0.9rem; color: var(--admin-accent); margin-top: 1rem; display: inline-block;">Xem lịch các ngày khác</a>
+                        </div>
+                    `;
+                }
+
+            } catch (error) {
+                console.error('Lỗi dashboard:', error);
+            }
+        }
+
+        function getStatusLabel(status) {
+            const map = {
+                'pending': 'Chờ xử lý',
+                'processing': 'Đang xử lý',
+                'done': 'Hoàn thành',
+                'shipped': 'Đang giao',
+                'cancelled': 'Đã hủy'
+            };
+            return map[status] || status;
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            if (!userInfo || (userInfo.role !== 'admin' && userInfo.role !== 'staff')) {
+                window.location.href = '../login.html';
+                return;
+            }
+
+            // Sync Sidebar
+            const dashNav = document.getElementById('nav-dashboard');
+            const revNav = document.getElementById('nav-revenue');
+            const custNav = document.getElementById('nav-customers');
+            if (userInfo.role === 'staff') {
+                if (dashNav) dashNav.href = 'staff-dashboard.html';
+                if (revNav) revNav.style.display = 'none';
+                document.getElementById('sidebar-role-text').textContent = 'Hệ Thống Tư Vấn Viên';
+            }
+            if (userInfo.role === 'admin' && revNav) {
+                revNav.style.display = 'flex';
+            }
+            if (userInfo.role === 'admin' && custNav) {
+                custNav.style.display = 'flex';
+            }
+
+            // Set Active Menu
+            const currentPage = window.location.pathname.split('/').pop() || 'dashboard.html';
+            document.querySelectorAll('.menu-item').forEach(item => {
+                const href = item.getAttribute('href');
+                if (href === currentPage || (currentPage === 'staff-dashboard.html' && href === 'dashboard.html')) {
+                    item.classList.add('active');
+                }
+            });
+
+            // Sidebar User Info
+            const avatarUrl = (userInfo.avatar && String(userInfo.avatar).trim())
+                ? userInfo.avatar
+                : `https://ui-avatars.com/api/?name=${encodeURIComponent(userInfo.fullName)}&background=1a1a1a&color=d4af37`;
+
+            document.getElementById('sidebar-user-info').innerHTML = `
+                <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem; padding: 0 0.5rem;">
+                    <img src="${avatarUrl}" style="width: 35px; height: 35px; border-radius: 50%; object-fit: cover;">
+                    <div style="overflow: hidden;">
+                        <div style="font-size: 0.85rem; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: #fff;">${userInfo.fullName}</div>
+                        <div style="font-size: 0.7rem; color: var(--admin-text-light); text-transform: capitalize;">${userInfo.role === 'admin' ? 'Quản trị viên' : 'Tư vấn viên'}</div>
+                    </div>
+                </div>
+            `;
+
+            loadDashboardData();
+
+            // Logout
+            document.querySelectorAll('.logout-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    localStorage.removeItem('userInfo');
+                    localStorage.removeItem('token');
+                    window.location.href = '../login.html';
+                });
+            });
+        });
+    </script>
+</body>
+</html>

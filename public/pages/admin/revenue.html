@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản Lý Doanh Thu | An LUXURY Admin</title>
+    <link rel="stylesheet" href="../../css/admin.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <style>
+        .revenue-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        .chart-container {
+            background: var(--admin-surface);
+            padding: 2rem;
+            border-radius: 12px;
+            border: 1px solid var(--admin-border);
+            height: 400px;
+            position: relative;
+        }
+        .metric-row {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .metric-card {
+            background: var(--admin-surface);
+            padding: 1.5rem;
+            border-radius: 12px;
+            border: 1px solid var(--admin-border);
+            text-align: center;
+        }
+        .metric-label {
+            font-size: 0.85rem;
+            color: var(--admin-text-light);
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .metric-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--gold-primary);
+        }
+    </style>
+</head>
+<body>
+    <div class="admin-grain-bg">
+        <div class="admin-ball admin-ball-1"></div>
+        <div class="admin-ball admin-ball-2"></div>
+        <div class="noise-overlay"></div>
+    </div>
+
+    <div class="admin-layout">
+        <!-- Sidebar -->
+        <aside class="admin-sidebar">
+            <div class="sidebar-header">
+                <div class="sidebar-logo">An LUXURY</div>
+                <div id="sidebar-role-text" style="font-size: 0.8rem; color: var(--admin-text-light); margin-top: 5px;">Quản Trị Hệ Thống</div>
+            </div>
+            
+            <div class="sidebar-menu">
+                <a href="dashboard.html" class="menu-item" id="nav-dashboard">
+                    <i class="fa-solid fa-chart-pie menu-icon"></i> Bàn làm việc
+                </a>
+                <a href="revenue.html" class="menu-item active" id="nav-revenue">
+                    <i class="fa-solid fa-money-bill-trend-up menu-icon"></i> Doanh thu
+                </a>
+                <a href="products.html" class="menu-item" id="nav-products">
+                    <i class="fa-solid fa-gem menu-icon"></i> Sản phẩm
+                </a>
+                <a href="orders.html" class="menu-item" id="nav-orders">
+                    <i class="fa-solid fa-cart-flatbed menu-icon"></i> Đơn hàng
+                </a>
+                <a href="bookings.html" class="menu-item" id="nav-bookings">
+                    <i class="fa-regular fa-calendar-check menu-icon"></i> Lịch hẹn VIP
+                </a>
+                <a href="customers.html" class="menu-item" id="nav-customers" style="display: none;">
+                    <i class="fa-solid fa-users menu-icon"></i> Khách hàng
+                </a>
+            </div>
+            
+            <div class="sidebar-footer">
+                <div id="sidebar-user-info"></div>
+                <a href="../index.html" class="menu-item" style="padding: 0; margin-bottom: 1rem; font-size: 0.9rem;">
+                    <i class="fa-solid fa-globe menu-icon"></i> Xem website
+                </a>
+                <a href="#" class="menu-item logout-btn" style="padding: 0; color: #e74c3c; font-size: 0.9rem;">
+                    <i class="fa-solid fa-arrow-right-from-bracket menu-icon" style="color: #e74c3c;"></i> Đăng xuất
+                </a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="admin-main">
+            <div class="page-header">
+                <div style="display: flex; align-items: center; gap: 1.5rem;">
+                    <h1 class="page-title">Báo Cáo Tài Chính</h1>
+                    <button class="admin-btn-primary" onclick="exportToPDF()" style="padding: 0.5rem 1rem; font-size: 0.85rem; height: auto;">
+                        <i class="fa-solid fa-file-pdf" style="margin-right: 5px;"></i> Xuất PDF
+                    </button>
+                </div>
+                <div class="admin-profile">
+                    <div style="text-align: right;">
+                        <div id="admin-name" style="font-weight: 500;">Admin User</div>
+                        <div id="admin-email" style="font-size: 0.8rem; color: var(--admin-text-light);">admin@anluxury.com</div>
+                    </div>
+                    <img id="admin-avatar" src="https://ui-avatars.com/api/?name=Admin&background=1a1a1a&color=d4af37" alt="Admin" style="width: 40px; height: 40px; border-radius: 50%;">
+                </div>
+            </div>
+
+            <!-- Key Metrics -->
+            <div class="metric-row">
+                <div class="metric-card">
+                    <div class="metric-label">Tổng doanh thu</div>
+                    <div class="metric-value" id="totalRevenue">0 ₫</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-label">Số đơn hoàn thành</div>
+                    <div class="metric-value" id="completedOrders">0</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-label">Giá trị đơn trung bình</div>
+                    <div class="metric-value" id="avgOrderValue">0 ₫</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-label">Tăng trưởng</div>
+                    <div class="metric-value" style="color: var(--status-success);">+12.5%</div>
+                </div>
+            </div>
+
+            <div class="revenue-grid">
+                <!-- Bar Chart: Revenue by Month -->
+                <div class="chart-container">
+                    <h3 style="margin-bottom: 1.5rem; font-size: 1.1rem;">Biểu đồ doanh thu 6 tháng gần nhất</h3>
+                    <canvas id="revenueChart"></canvas>
+                </div>
+
+                <!-- Pie Chart: Revenue by Category -->
+                <div class="chart-container">
+                    <h3 style="margin-bottom: 1.5rem; font-size: 1.1rem;">Cơ cấu theo danh mục</h3>
+                    <canvas id="categoryChart"></canvas>
+                </div>
+            </div>
+
+            <!-- Transactions Table -->
+            <div class="admin-card" style="margin-top: 2rem;">
+                <div class="card-header">
+                    <h2 class="card-title">Giao dịch lớn gần đây</h2>
+                </div>
+                <div class="table-responsive">
+                    <table class="admin-table">
+                        <thead>
+                            <tr>
+                                <th>Mã Giao Dịch</th>
+                                <th>Khách hàng</th>
+                                <th>Ngày</th>
+                                <th>Số tiền</th>
+                                <th>Phương thức</th>
+                            </tr>
+                        </thead>
+                        <tbody id="revenueTableBody">
+                            <tr><td colspan="5" style="text-align: center; padding: 2rem;">Đang tải dữ liệu...</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="../../js/api.js"></script>
+    <script>
+        let userInfo = JSON.parse(localStorage.getItem('userInfo'));
+        let reportData = {}; // Store data for PDF export
+
+        async function initRevenuePage() {
+            if (!userInfo) {
+                window.location.href = '../login.html';
+                return;
+            }
+            if (userInfo.role !== 'admin') {
+                window.location.href = 'staff-dashboard.html';
+                return;
+            }
+
+            // Sync Profile
+            document.getElementById('admin-name').textContent = userInfo.fullName;
+            document.getElementById('admin-email').textContent = userInfo.email;
+            document.getElementById('admin-avatar').src = (userInfo.avatar && String(userInfo.avatar).trim())
+                ? userInfo.avatar
+                : `https://ui-avatars.com/api/?name=${encodeURIComponent(userInfo.fullName)}&background=1a1a1a&color=d4af37`;
+
+            try {
+                const orders = await API.getOrders();
+                const completedOrders = orders.filter(o => o.status === 'done');
+                
+                // 1. Calculate Metrics
+                const totalRevenue = completedOrders.reduce((sum, o) => sum + (o.totalAmount || 0), 0);
+                const avgValue = completedOrders.length > 0 ? totalRevenue / completedOrders.length : 0;
+
+                document.getElementById('totalRevenue').textContent = totalRevenue.toLocaleString('vi-VN') + ' ₫';
+                document.getElementById('completedOrders').textContent = completedOrders.length;
+                document.getElementById('avgOrderValue').textContent = Math.round(avgValue).toLocaleString('vi-VN') + ' ₫';
+
+                // Save for PDF
+                reportData = {
+                    totalRevenue,
+                    completedOrders: completedOrders.length,
+                    avgValue,
+                    orders: completedOrders.sort((a,b) => new Date(b.createdAt) - new Date(a.createdAt))
+                };
+
+                // 2. Prepare Chart Data (6 months)
+                const monthLabels = [];
+                const revenueData = [];
+                const now = new Date();
+                for (let i = 5; i >= 0; i--) {
+                    const d = new Date(now.getFullYear(), now.getMonth() - i, 1);
+                    const label = d.toLocaleDateString('vi-VN', { month: 'short', year: 'numeric' });
+                    monthLabels.push(label);
+
+                    const monthlySum = completedOrders.filter(o => {
+                        const od = new Date(o.createdAt);
+                        return od.getMonth() === d.getMonth() && od.getFullYear() === d.getFullYear();
+                    }).reduce((sum, o) => sum + (o.totalAmount || 0), 0);
+                    revenueData.push(monthlySum);
+                }
+
+                // 3. Render Bar Chart
+                const ctx = document.getElementById('revenueChart').getContext('2d');
+                new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: monthLabels,
+                        datasets: [{
+                            label: 'Doanh thu (VNĐ)',
+                            data: revenueData,
+                            backgroundColor: 'rgba(212, 175, 55, 0.6)',
+                            borderColor: '#d4af37',
+                            borderWidth: 1,
+                            borderRadius: 4
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: { display: false }
+                        },
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                ticks: { color: '#888' },
+                                grid: { color: 'rgba(255,255,255,0.05)' }
+                            },
+                            x: {
+                                ticks: { color: '#888' },
+                                grid: { display: false }
+                            }
+                        }
+                    }
+                });
+
+                // 4. Category Chart
+                const catData = {};
+                completedOrders.forEach(o => {
+                    o.items.forEach(item => {
+                        const cat = item.category || 'Khác';
+                        catData[cat] = (catData[cat] || 0) + (item.price * item.quantity);
+                    });
+                });
+
+                const catLabels = Object.keys(catData);
+                const catValues = Object.values(catData);
+
+                const ctx2 = document.getElementById('categoryChart').getContext('2d');
+                new Chart(ctx2, {
+                    type: 'doughnut',
+                    data: {
+                        labels: catLabels,
+                        datasets: [{
+                            data: catValues,
+                            backgroundColor: [
+                                '#d4af37', '#c5a028', '#b69119', '#a7820a', '#987300'
+                            ],
+                            borderWidth: 0
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: {
+                                position: 'bottom',
+                                labels: { color: '#888', padding: 20 }
+                            }
+                        }
+                    }
+                });
+
+                // 5. Recent Transactions
+                const tbody = document.getElementById('revenueTableBody');
+                const recentBig = completedOrders.sort((a,b) => b.totalAmount - a.totalAmount).slice(0, 8);
+                
+                if (recentBig.length > 0) {
+                    tbody.innerHTML = recentBig.map(o => `
+                        <tr>
+                            <td><strong style="color: var(--admin-accent);">#TX-${o._id.slice(-6).toUpperCase()}</strong></td>
+                            <td>${o.customerName || (o.address ? o.address.split(',')[0] : 'Khách lẻ')}</td>
+                            <td style="color: var(--admin-text-light);">${new Date(o.createdAt).toLocaleDateString('vi-VN')}</td>
+                            <td style="font-weight: 600;">${o.totalAmount.toLocaleString('vi-VN')} ₫</td>
+                            <td><span class="badge badge-info">${o.paymentMethod.toUpperCase()}</span></td>
+                        </tr>
+                    `).join('');
+                } else {
+                    tbody.innerHTML = '<tr><td colspan="5" style="text-align: center; padding: 2rem;">Chưa có dữ liệu hoàn thành</td></tr>';
+                }
+
+            } catch (error) {
+                console.error('Lỗi load revenue:', error);
+            }
+        }
+
+        async function exportToPDF() {
+            if (!reportData.orders) {
+                alert('Vui lòng đợi dữ liệu tải xong!');
+                return;
+            }
+
+            const now = new Date();
+            const month = now.getMonth() + 1;
+            const year = now.getFullYear();
+            const dateStr = `${now.getDate()} tháng ${month} năm ${year}`;
+
+            const container = document.createElement('div');
+            container.style.padding = '30px 40px';
+            container.style.color = '#000';
+            container.style.backgroundColor = '#fff';
+            container.style.fontFamily = '"Times New Roman", Times, serif';
+            container.style.fontSize = '14px';
+            container.style.lineHeight = '1.5';
+
+            container.innerHTML = `
+                <div style="display: flex; justify-content: space-between; margin-bottom: 30px;">
+                    <div style="text-align: center; width: 45%;">
+                        <div style="font-weight: bold; text-transform: uppercase; font-size: 13pt;">CÔNG TY TNHH AN LUXURY</div>
+                        <div style="font-weight: bold; text-transform: uppercase; font-size: 13pt;">BAN TÀI CHÍNH</div>
+                        <div style="border-top: 1px solid #000; width: 100px; margin: 5px auto;"></div>
+                        <div style="margin-top: 10px; font-size: 13pt;">Số: ${month}/${year}/BC-ALUX</div>
+                    </div>
+                    <div style="text-align: center; width: 50%;">
+                        <div style="font-weight: bold; text-transform: uppercase; font-size: 12pt;">CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM</div>
+                        <div style="font-weight: bold; font-size: 13pt;">Độc lập - Tự do - Hạnh phúc</div>
+                        <div style="border-top: 1px solid #000; width: 160px; margin: 5px auto; text-decoration: underline;"></div>
+                        <div style="font-style: italic; margin-top: 15px; font-size: 13pt;">Hà Nội, ngày ${dateStr}</div>
+                    </div>
+                </div>
+
+                <div style="text-align: center; margin-bottom: 40px; margin-top: 30px;">
+                    <div style="font-weight: bold; font-size: 16pt; text-transform: uppercase;">BÁO CÁO TÀI CHÍNH</div>
+                    <div style="font-style: italic; font-size: 13pt;">(Tháng ${month} năm ${year})</div>
+                </div>
+
+                <div style="margin-bottom: 25px; font-size: 13pt;">
+                    <p><strong>Kính gửi:</strong> Hội đồng Quản trị Công ty AN LUXURY</p>
+                    <p style="text-indent: 30px;">Căn cứ vào tình hình kinh doanh thực tế, Ban Tài chính xin báo cáo kết quả hoạt động tài chính tháng ${month}/${year} như sau:</p>
+                </div>
+
+                <div style="margin-bottom: 30px; font-size: 13pt;">
+                    <p><strong>1. Các chỉ số chính:</strong></p>
+                    <table style="width: 100%; border-collapse: collapse; margin-top: 10px;">
+                        <tr>
+                            <td style="border: 1px solid #000; padding: 10px; width: 60%;">Tổng doanh thu:</td>
+                            <td style="border: 1px solid #000; padding: 10px; font-weight: bold; text-align: right;">${reportData.totalRevenue.toLocaleString('vi-VN')} ₫</td>
+                        </tr>
+                        <tr>
+                            <td style="border: 1px solid #000; padding: 10px;">Số lượng đơn hàng hoàn thành:</td>
+                            <td style="border: 1px solid #000; padding: 10px; font-weight: bold; text-align: right;">${reportData.completedOrders} đơn</td>
+                        </tr>
+                        <tr>
+                            <td style="border: 1px solid #000; padding: 10px;">Giá trị đơn hàng trung bình:</td>
+                            <td style="border: 1px solid #000; padding: 10px; font-weight: bold; text-align: right;">${Math.round(reportData.avgValue).toLocaleString('vi-VN')} ₫</td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div style="margin-bottom: 30px; font-size: 13pt;">
+                    <p><strong>2. Danh sách các giao dịch tiêu biểu:</strong></p>
+                    <table style="width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 11pt;">
+                        <thead>
+                            <tr style="background-color: #f2f2f2;">
+                                <th style="border: 1px solid #000; padding: 8px;">Mã ĐH</th>
+                                <th style="border: 1px solid #000; padding: 8px;">Khách hàng</th>
+                                <th style="border: 1px solid #000; padding: 8px;">Ngày</th>
+                                <th style="border: 1px solid #000; padding: 8px;">Thanh toán</th>
+                                <th style="border: 1px solid #000; padding: 8px;">Tổng tiền</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            ${reportData.orders.slice(0, 12).map(o => `
+                                <tr>
+                                    <td style="border: 1px solid #000; padding: 8px; text-align: center;">#${o._id.slice(-6).toUpperCase()}</td>
+                                    <td style="border: 1px solid #000; padding: 8px;">${o.customerName || 'Khách lẻ'}</td>
+                                    <td style="border: 1px solid #000; padding: 8px; text-align: center;">${new Date(o.createdAt).toLocaleDateString('vi-VN')}</td>
+                                    <td style="border: 1px solid #000; padding: 8px; text-align: center;">${o.paymentMethod.toUpperCase()}</td>
+                                    <td style="border: 1px solid #000; padding: 8px; text-align: right; font-weight: bold;">${o.totalAmount.toLocaleString('vi-VN')} ₫</td>
+                                </tr>
+                            `).join('')}
+                        </tbody>
+                    </table>
+                </div>
+
+                <div style="margin-top: 60px; display: grid; grid-template-columns: 1fr 1fr 1.5fr; text-align: center; font-size: 13pt;">
+                    <div>
+                        <div style="font-weight: bold; text-transform: uppercase;">NGƯỜI LẬP BIỂU</div>
+                        <div style="font-style: italic; font-size: 11pt; margin-bottom: 80px;">(Ký, ghi rõ họ tên)</div>
+                        <div style="font-weight: bold;">${userInfo.fullName}</div>
+                    </div>
+                    <div>
+                        <div style="font-weight: bold; text-transform: uppercase;">TRƯỞNG BAN TÀI CHÍNH</div>
+                        <div style="font-style: italic; font-size: 11pt; margin-bottom: 80px;">(Ký, ghi rõ họ tên)</div>
+                        <div style="font-weight: bold;">..................................</div>
+                    </div>
+                    <div style="position: relative;">
+                        <div style="font-weight: bold; text-transform: uppercase;">TM. HỘI ĐỒNG QUẢN TRỊ<br>GIÁM ĐỐC ĐIỀU HÀNH</div>
+                        <div style="font-style: italic; font-size: 11pt; margin-bottom: 10px;">(Ký, đóng dấu)</div>
+                        
+                        <!-- Red Stamp Simulation -->
+                        <div style="position: absolute; top: 40px; left: 50%; transform: translateX(-70%) rotate(-15deg); width: 130px; height: 130px; border: 3px solid rgba(220, 0, 0, 0.7); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: rgba(220, 0, 0, 0.7); text-align: center; font-weight: bold; padding: 5px; pointer-events: none; z-index: 1;">
+                            <div style="font-size: 9pt; line-height: 1.2;">
+                                CÔNG TY TNHH<br>
+                                <div style="font-size: 13pt; border-top: 1px solid rgba(220, 0, 0, 0.7); border-bottom: 1px solid rgba(220, 0, 0, 0.7); margin: 3px 0; padding: 2px 0;">AN LUXURY</div>
+                                M.S.D.N: 0366363636<br>
+                                TP. HÀ NỘI
+                            </div>
+                        </div>
+
+                        <!-- Signature Image -->
+                        <div style="margin-bottom: 10px; position: relative; z-index: 2;">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/d/d0/Signature_of_Zuzana_Caputova.svg" alt="Signature" style="height: 60px; filter: contrast(0.5) sepia(1) hue-rotate(-50deg) saturate(5);">
+                        </div>
+                        
+                        <div style="font-weight: bold; font-size: 14pt;">Nguyễn Trường An</div>
+                    </div>
+                </div>
+            `;
+
+            const opt = {
+                margin: [20, 30, 20, 15], // top, left, bottom, right (decree 30 style)
+                filename: `Bao-Cao-Tai-Chinh-Thang-${month}-${year}.pdf`,
+                image: { type: 'jpeg', quality: 0.98 },
+                html2canvas: { scale: 2, useCORS: true },
+                jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+            };
+
+            // Convert and save
+            html2pdf().set(opt).from(container).save();
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            if (!userInfo) {
+                window.location.href = '../login.html';
+                return;
+            }
+            if (userInfo.role !== 'admin') {
+                window.location.href = 'staff-dashboard.html';
+                return;
+            }
+
+            // Sidebar Role Sync
+            document.getElementById('sidebar-role-text').textContent = 'Quản Trị Hệ Thống';
+            document.getElementById('nav-customers').style.display = 'flex';
+
+            // Sidebar User Footer
+            const avatarUrl = (userInfo.avatar && String(userInfo.avatar).trim())
+                ? userInfo.avatar
+                : `https://ui-avatars.com/api/?name=${encodeURIComponent(userInfo.fullName)}&background=1a1a1a&color=d4af37`;
+
+            document.getElementById('sidebar-user-info').innerHTML = `
+                <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem; padding: 0 0.5rem;">
+                    <img src="${avatarUrl}" style="width: 35px; height: 35px; border-radius: 50%; object-fit: cover;">
+                    <div style="overflow: hidden;">
+                        <div style="font-size: 0.85rem; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: #fff;">${userInfo.fullName}</div>
+                        <div style="font-size: 0.7rem; color: var(--admin-text-light); text-transform: capitalize;">${userInfo.role === 'admin' ? 'Quản trị viên' : 'Tư vấn viên'}</div>
+                    </div>
+                </div>
+            `;
+
+            initRevenuePage();
+
+            // Logout
+            document.querySelectorAll('.logout-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    localStorage.removeItem('userInfo');
+                    localStorage.removeItem('token');
+                    window.location.href = '../login.html';
+                });
+            });
+        });
+    </script>
+</body>
+</html>

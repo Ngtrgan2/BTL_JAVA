@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bàn Làm Việc | An LUXURY Staff</title>
+    <link rel="stylesheet" href="../../css/admin.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Task Cards Style Sync */
+        .task-card {
+            background: var(--admin-surface);
+            padding: 1.5rem;
+            border-radius: 12px;
+            border: 1px solid var(--admin-border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.2rem;
+            transition: all 0.3s;
+        }
+        .task-card:hover {
+            transform: translateX(8px);
+            border-color: var(--admin-accent);
+            background: rgba(212, 175, 55, 0.05);
+        }
+        .task-danger { border-left: 4px solid var(--status-danger); }
+        .task-warning { border-left: 4px solid var(--status-pending); }
+        .task-success { border-left: 4px solid var(--status-success); }
+        
+        .task-time {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: var(--gold-primary);
+            min-width: 80px;
+        }
+        .task-info h4 {
+            font-size: 1.05rem;
+            margin-bottom: 0.3rem;
+            color: #fff;
+        }
+        .task-info p {
+            font-size: 0.85rem;
+            color: var(--admin-text-light);
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="admin-grain-bg">
+        <div class="admin-ball admin-ball-1"></div>
+        <div class="admin-ball admin-ball-2"></div>
+        <div class="noise-overlay"></div>
+    </div>
+
+    <div class="admin-layout">
+        <!-- Sidebar -->
+        <aside class="admin-sidebar">
+            <div class="sidebar-header">
+                <div class="sidebar-logo">An LUXURY</div>
+                <div id="sidebar-role-text" style="font-size: 0.8rem; color: var(--admin-text-light); margin-top: 5px;">Hệ Thống Tư Vấn Viên</div>
+            </div>
+            
+            <div class="sidebar-menu">
+                <a href="staff-dashboard.html" class="menu-item active" id="nav-dashboard">
+                    <i class="fa-solid fa-chart-pie menu-icon"></i> Bàn làm việc
+                </a>
+                <a href="revenue.html" class="menu-item" id="nav-revenue" style="display: none;">
+                    <i class="fa-solid fa-money-bill-trend-up menu-icon"></i> Doanh thu
+                </a>
+                <a href="products.html" class="menu-item" id="nav-products">
+                    <i class="fa-solid fa-gem menu-icon"></i> Sản phẩm
+                </a>
+                <a href="orders.html" class="menu-item" id="nav-orders">
+                    <i class="fa-solid fa-cart-flatbed menu-icon"></i> Đơn hàng
+                </a>
+                <a href="bookings.html" class="menu-item" id="nav-bookings">
+                    <i class="fa-regular fa-calendar-check menu-icon"></i> Lịch hẹn VIP
+                </a>
+                <a href="customers.html" class="menu-item" id="nav-customers" style="display: none;">
+                    <i class="fa-solid fa-users menu-icon"></i> Khách hàng
+                </a>
+            </div>
+            
+            <div class="sidebar-footer">
+                <div id="sidebar-user-info"></div>
+                <a href="../index.html" class="menu-item" style="padding: 0; margin-bottom: 1rem; font-size: 0.9rem;">
+                    <i class="fa-solid fa-globe menu-icon"></i> Xem website
+                </a>
+                <a href="#" class="menu-item logout-btn" style="padding: 0; color: #e74c3c; font-size: 0.9rem;">
+                    <i class="fa-solid fa-arrow-right-from-bracket menu-icon" style="color: #e74c3c;"></i> Đăng xuất
+                </a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="admin-main">
+            <div class="page-header" style="margin-bottom: 2rem;">
+                <div>
+                    <h1 class="page-title" id="greeting-text">Chào buổi sáng, Tư vấn viên!</h1>
+                    <p id="today-date-text" style="color: var(--admin-text-light); margin-top: 5px;">Hôm nay là ngày...</p>
+                </div>
+                <div class="admin-profile">
+                    <div style="text-align: right;">
+                        <div id="admin-name" style="font-weight: 500;">Staff Name</div>
+                        <div id="admin-email" style="font-size: 0.8rem; color: var(--admin-text-light);">staff@anluxury.com</div>
+                    </div>
+                    <img id="admin-avatar" src="https://ui-avatars.com/api/?name=Staff&background=1a1a1a&color=d4af37" alt="Staff" style="width: 40px; height: 40px; border-radius: 50%;">
+                </div>
+            </div>
+
+            <!-- Stats Grid -->
+            <div class="stat-grid" style="grid-template-columns: repeat(3, 1fr); margin-bottom: 3rem;">
+                <a href="orders.html" class="stat-card">
+                    <div class="stat-icon"><i class="fa-solid fa-hourglass-half" style="color: var(--status-pending);"></i></div>
+                    <div class="stat-info">
+                        <h3>Đơn hàng chờ xác nhận</h3>
+                        <div class="stat-value" id="stat-pending-orders">0</div>
+                    </div>
+                </a>
+                
+                <a href="bookings.html" class="stat-card">
+                    <div class="stat-icon"><i class="fa-solid fa-user-group" style="color: var(--status-success);"></i></div>
+                    <div class="stat-info">
+                        <h3>Lịch hẹn hôm nay</h3>
+                        <div class="stat-value" id="stat-today-bookings">0</div>
+                    </div>
+                </a>
+
+                <a href="orders.html" class="stat-card">
+                    <div class="stat-icon"><i class="fa-solid fa-triangle-exclamation" style="color: var(--status-danger);"></i></div>
+                    <div class="stat-info">
+                        <h3>Cần gọi chốt đơn</h3>
+                        <div class="stat-value" id="stat-calls-needed">0</div>
+                    </div>
+                </a>
+            </div>
+
+            <style>
+                .stat-card:hover {
+                    transform: translateY(-5px);
+                    border-color: var(--admin-accent) !important;
+                    background: rgba(212, 175, 55, 0.05);
+                }
+            </style>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem;">
+                <!-- Timetable -->
+                <div>
+                    <h2 style="font-size: 1.1rem; margin-bottom: 1.5rem; color: #fff; display: flex; justify-content: space-between; align-items: center;">
+                        <span><i class="fa-regular fa-calendar-check" style="margin-right: 10px; color: var(--gold-primary);"></i> Lịch tiếp khách sắp tới</span>
+                        <a href="bookings.html" style="font-size: 0.85rem; color: var(--admin-accent);">Tất cả</a>
+                    </h2>
+                    <div id="booking-list">
+                        <!-- Render bởi JS -->
+                        <div style="text-align: center; padding: 3rem; color: var(--admin-text-light);">Đang tải lịch hẹn...</div>
+                    </div>
+                </div>
+
+                <!-- Call List -->
+                <div>
+                    <h2 style="font-size: 1.1rem; margin-bottom: 1.5rem; color: #fff; display: flex; justify-content: space-between; align-items: center;">
+                        <span><i class="fa-solid fa-phone-volume" style="margin-right: 10px; color: var(--gold-primary);"></i> Danh sách cần gọi xác nhận</span>
+                        <a href="orders.html" style="font-size: 0.85rem; color: var(--admin-accent);">Quản lý đơn</a>
+                    </h2>
+                    <div id="order-call-list">
+                        <!-- Render bởi JS -->
+                        <div style="text-align: center; padding: 3rem; color: var(--admin-text-light);">Đang tải đơn hàng...</div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="../../js/api.js"></script>
+    <script>
+        let userInfo = JSON.parse(localStorage.getItem('userInfo'));
+
+        async function initDashboard() {
+            if (!userInfo || (userInfo.role !== 'staff' && userInfo.role !== 'admin')) {
+                window.location.href = '../login.html';
+                return;
+            }
+
+            // Profile Sync
+            document.getElementById('admin-name').textContent = userInfo.fullName;
+            document.getElementById('admin-email').textContent = userInfo.email;
+            document.getElementById('admin-avatar').src = (userInfo.avatar && String(userInfo.avatar).trim())
+                ? userInfo.avatar
+                : `https://ui-avatars.com/api/?name=${encodeURIComponent(userInfo.fullName)}&background=1a1a1a&color=d4af37`;
+
+            // Greeting & Date
+            const now = new Date();
+            const hour = now.getHours();
+            const greeting = hour < 12 ? 'Chào buổi sáng' : (hour < 18 ? 'Chào buổi chiều' : 'Chào buổi tối');
+            document.getElementById('greeting-text').textContent = `${greeting}, ${userInfo.fullName.split(' ').pop()}!`;
+            
+            const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+            document.getElementById('today-date-text').textContent = now.toLocaleDateString('vi-VN', options);
+
+            try {
+                const [orders, bookings] = await Promise.all([
+                    API.getOrders(),
+                    API.getBookings()
+                ]);
+
+                const todayStr = now.toISOString().split('T')[0];
+                const pendingOrders = orders.filter(o => o.status === 'pending');
+                const todayBookings = bookings.filter(b => b.date === todayStr);
+
+                // Update Stats
+                document.getElementById('stat-pending-orders').textContent = pendingOrders.length;
+                document.getElementById('stat-today-bookings').textContent = todayBookings.length;
+                document.getElementById('stat-calls-needed').textContent = pendingOrders.length;
+
+                // Render Booking List
+                const bookingContainer = document.getElementById('booking-list');
+                if (todayBookings.length > 0) {
+                    bookingContainer.innerHTML = todayBookings.map(b => {
+                        const isSoon = checkIsSoon(b.time);
+                        return `
+                            <div class="task-card ${isSoon ? 'task-danger' : 'task-warning'}">
+                                <div style="display: flex; gap: 1.5rem; align-items: center;">
+                                    <div class="task-time">${b.time || '--:--'}</div>
+                                    <div class="task-info">
+                                        <h4>${b.customerName || 'N/A'}</h4>
+                                        <p><i class="fa-solid fa-location-dot" style="margin-right: 5px;"></i>Showroom • SĐT: ${b.phone || 'N/A'}</p>
+                                        <p style="color: ${isSoon ? '#e74c3c' : 'var(--admin-text-light)'}; font-size: 0.8rem; margin-top: 5px;">
+                                            <i class="fa-solid ${isSoon ? 'fa-bell' : 'fa-info-circle'}"></i> ${b.category || 'Tư vấn trang sức'}
+                                        </p>
+                                    </div>
+                                </div>
+                                <button class="btn-admin" style="background: transparent; border: 1px solid var(--admin-border); color: #fff;" onclick="alert('Đã xác nhận!')">Đã Đến</button>
+                            </div>
+                        `;
+                    }).join('');
+                } else {
+                    bookingContainer.innerHTML = '<div style="padding: 3rem; text-align: center; color: var(--admin-text-light); background: var(--admin-surface); border-radius: 12px; border: 1px solid var(--admin-border);">Hôm nay chưa có lịch hẹn mới.</div>';
+                }
+
+                // Render Order Call List
+                const orderContainer = document.getElementById('order-call-list');
+                if (pendingOrders.length > 0) {
+                    orderContainer.innerHTML = pendingOrders.slice(0, 3).map(o => `
+                        <div class="task-card">
+                            <div style="display: flex; gap: 1rem; align-items: flex-start;">
+                                <div style="background: rgba(212, 175, 55, 0.1); padding: 0.6rem; border-radius: 8px;">
+                                    <i class="fa-solid fa-phone" style="color: var(--gold-primary);"></i>
+                                </div>
+                                <div class="task-info">
+                                    <h4>Đơn #OD-${o._id.slice(-6).toUpperCase()} (${(o.totalAmount || 0).toLocaleString('vi-VN')} ₫)</h4>
+                                    <p>Khách: <strong>${o.customerName || 'N/A'}</strong> - ${o.phone || ''}</p>
+                                    <p style="font-size: 0.8rem; margin-top: 5px; color: var(--gold-light);">${o.paymentMethod === 'cod' ? 'Khách chọn COD (Cọc 10%)' : 'Khách chọn Chuyển khoản'}</p>
+                                </div>
+                            </div>
+                            <button class="btn-admin btn-primary" onclick="window.location.href='orders.html'"><i class="fa-solid fa-phone"></i> Gọi</button>
+                        </div>
+                    `).join('');
+                } else {
+                    orderContainer.innerHTML = '<div style="padding: 3rem; text-align: center; color: var(--admin-text-light); background: var(--admin-surface); border-radius: 12px; border: 1px solid var(--admin-border);">Mọi đơn hàng đã được xử lý.</div>';
+                }
+
+            } catch (error) {
+                console.error('Lỗi load dashboard:', error);
+            }
+        }
+
+        function checkIsSoon(timeStr) {
+            if (!timeStr) return false;
+            const [h, m] = timeStr.split(':').map(Number);
+            const now = new Date();
+            const bTime = new Date();
+            bTime.setHours(h, m, 0, 0);
+            const diff = (bTime - now) / 60000;
+            return diff > 0 && diff < 60;
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const avatarUrl = (userInfo.avatar && String(userInfo.avatar).trim())
+                ? userInfo.avatar
+                : `https://ui-avatars.com/api/?name=${encodeURIComponent(userInfo.fullName)}&background=1a1a1a&color=d4af37`;
+
+            // Sidebar Logic
+            if (userInfo.role === 'admin') {
+                document.getElementById('nav-revenue').style.display = 'flex';
+                document.getElementById('nav-customers').style.display = 'flex';
+                document.getElementById('sidebar-role-text').textContent = 'Hệ Thống Quản Trị';
+            } else {
+                document.getElementById('sidebar-role-text').textContent = 'Hệ Thống Tư Vấn Viên';
+            }
+
+            // User Info Sidebar Footer
+            document.getElementById('sidebar-user-info').innerHTML = `
+                <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem; padding: 0 0.5rem;">
+                    <img src="${avatarUrl}" style="width: 35px; height: 35px; border-radius: 50%; object-fit: cover;">
+                    <div style="overflow: hidden;">
+                        <div style="font-size: 0.85rem; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: #fff;">${userInfo.fullName}</div>
+                        <div style="font-size: 0.7rem; color: var(--admin-text-light); text-transform: capitalize;">${userInfo.role === 'admin' ? 'Quản trị viên' : 'Tư vấn viên'}</div>
+                    </div>
+                </div>
+            `;
+
+            const headerAvatar = document.getElementById('admin-avatar');
+            if (headerAvatar) headerAvatar.src = avatarUrl;
+
+            initDashboard();
+
+            // Logout
+            document.querySelectorAll('.logout-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    localStorage.removeItem('userInfo');
+                    localStorage.removeItem('token');
+                    window.location.href = '../login.html';
+                });
+            });
+        });
+    </script>
+</body>
+</html>
