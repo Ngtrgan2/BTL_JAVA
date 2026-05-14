@@ -34,5 +34,24 @@
         setTheme(isDark ? 'light' : 'dark');
       });
     }
+
+    // Mobile Menu Toggle
+    const menuIcon = document.querySelector('.collapsed-menu-icon');
+    const navLinks = document.querySelector('.nav-links');
+    
+    if (menuIcon && navLinks) {
+      menuIcon.addEventListener('click', function() {
+        navLinks.classList.toggle('mobile-active');
+        // Toggle icon between bars and X
+        const icon = this.querySelector('i');
+        if (icon.classList.contains('fa-bars')) {
+          icon.classList.remove('fa-bars');
+          icon.classList.add('fa-xmark');
+        } else {
+          icon.classList.remove('fa-xmark');
+          icon.classList.add('fa-bars');
+        }
+      });
+    }
   });
 })();
