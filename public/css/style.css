@@ -2226,18 +2226,22 @@ html, body {
 
 @media (max-width: 480px) {
   .hero-title {
-    font-size: 1.7rem;
+    font-size: 1.8rem;
   }
 
   .section-title {
-    font-size: 1.4rem;
+    font-size: 1.5rem;
   }
 
   .product-grid {
     grid-template-columns: repeat(2, 1fr);
   }
 
-  .nav-icons .nav-icon:nth-child(2) {
-    display: none;
+  .nav-icons .nav-icon {
+    display: block !important;
+  }
+  
+  .nav-icons {
+    gap: 0.8rem;
   }
 }
