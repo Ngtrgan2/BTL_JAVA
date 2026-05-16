@@ -94,6 +94,14 @@
         .admin-news-card:hover .action-overlay {
             opacity: 1;
         }
+        /* Fix Modal đè Sidebar */
+        .modal {
+            z-index: 9999 !important;
+        }
+        /* Đồng bộ Sidebar */
+        .admin-sidebar {
+            z-index: 100;
+        }
     </style>
 </head>
 <body class="admin-body">
@@ -101,28 +109,28 @@
         <!-- Sidebar -->
         <aside class="admin-sidebar">
             <div class="sidebar-header">
-                <div class="admin-logo">An LUXURY</div>
-                <div class="admin-role">Hệ Thống Quản Trị</div>
+                <div class="sidebar-logo">An LUXURY</div>
+                <div id="sidebar-role-text" style="font-size: 0.8rem; color: var(--admin-text-light); margin-top: 5px;">Quản Trị Hệ Thống</div>
             </div>
             
             <div class="sidebar-menu">
                 <a href="dashboard.html" class="menu-item" id="nav-dashboard">
-                    <i class="fa-solid fa-chart-line menu-icon"></i> Tổng quan
+                    <i class="fa-solid fa-chart-pie menu-icon"></i> Bàn làm việc
+                </a>
+                <a href="revenue.html" class="menu-item" id="nav-revenue">
+                    <i class="fa-solid fa-money-bill-trend-up menu-icon"></i> Doanh thu
                 </a>
                 <a href="products.html" class="menu-item" id="nav-products">
                     <i class="fa-solid fa-gem menu-icon"></i> Sản phẩm
                 </a>
                 <a href="orders.html" class="menu-item" id="nav-orders">
-                    <i class="fa-solid fa-cart-shopping menu-icon"></i> Đơn hàng
+                    <i class="fa-solid fa-cart-flatbed menu-icon"></i> Đơn hàng
                 </a>
                 <a href="bookings.html" class="menu-item" id="nav-bookings">
-                    <i class="fa-solid fa-calendar-check menu-icon"></i> Lịch hẹn
+                    <i class="fa-regular fa-calendar-check menu-icon"></i> Lịch hẹn VIP
                 </a>
                 <a href="news.html" class="menu-item active" id="nav-news">
                     <i class="fa-solid fa-newspaper menu-icon"></i> Tin tức
-                </a>
-                <a href="revenue.html" class="menu-item" id="nav-revenue" style="display: none;">
-                    <i class="fa-solid fa-sack-dollar menu-icon"></i> Doanh thu
                 </a>
                 <a href="customers.html" class="menu-item" id="nav-customers" style="display: none;">
                     <i class="fa-solid fa-users menu-icon"></i> Khách hàng
