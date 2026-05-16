@@ -861,18 +861,28 @@
                     return;
                 }
 
-                grid.innerHTML = displayProducts.map(p => `
-                    <a href="product-detail.html?id=${p._id}" class="product-card">
+                grid.innerHTML = displayProducts.map(p => {
+                    const discount = Number(p.discountPercentage || 0);
+                    const finalPrice = discount > 0 ? p.price * (1 - discount / 100) : p.price;
+                    
+                    return `
+                    <a href="product-detail.html?id=${p._id}" class="product-card" style="position: relative;">
+                        ${discount > 0 ? `<div style="position: absolute; top: 10px; left: 10px; background: #e74c3c; color: white; padding: 2px 8px; border-radius: 4px; font-size: 0.7rem; font-weight: 700; z-index: 2;">-${discount}%</div>` : ''}
                         <div class="card-img">
                             <img src="${getImgPath(p.image || (p.images && p.images[0]))}" alt="${p.name}">
                         </div>
                         <div class="card-info">
                             <span class="card-category">${p.categoryLabel || categoryMap[p.category] || 'Trang sức'}</span>
                             <span class="card-name">${p.name}</span>
-                            <div class="card-price">${formatPrice(p.price)}</div>
+                            <div class="card-price">
+                                ${discount > 0 ? `
+                                    <span style="color: #e74c3c;">${formatPrice(finalPrice)}</span>
+                                    <span style="font-size: 0.8rem; color: var(--text-muted); text-decoration: line-through; margin-left: 5px; font-weight: 400;">${formatPrice(p.price)}</span>
+                                ` : formatPrice(p.price)}
+                            </div>
                         </div>
                     </a>
-                `).join('');
+                `}).join('');
 
                 // Ẩn nút nếu số lượng sp ít hơn 4
                 if (displayProducts.length <= 4) {
@@ -892,7 +902,32 @@
             
             document.getElementById('pd-title').textContent = product.name;
             document.getElementById('pd-category').textContent = (product.categoryLabel || categoryMap[product.category] || 'TRANG SỨC').toUpperCase();
-            document.getElementById('pd-price-value').textContent = formatPrice(product.price);
+            
+            // Price logic
+            const discount = Number(product.discountPercentage || 0);
+            const finalPrice = discount > 0 ? product.price * (1 - discount / 100) : product.price;
+            const priceContainer = document.getElementById('pd-price-value');
+            
+            if (discount > 0) {
+                priceContainer.innerHTML = `
+                    <span style="color: #e74c3c; font-size: 1.8rem; font-weight: 700;">${formatPrice(finalPrice)}</span>
+                    <span style="font-size: 1.1rem; color: var(--text-muted); text-decoration: line-through; margin-left: 15px; font-weight: 400;">${formatPrice(product.price)}</span>
+                `;
+                // Add discount badge to gallery if not exists
+                let badge = document.getElementById('pd-discount-badge');
+                if (!badge) {
+                    badge = document.createElement('div');
+                    badge.id = 'pd-discount-badge';
+                    badge.style = "position: absolute; top: 20px; left: 20px; background: #e74c3c; color: white; padding: 6px 15px; border-radius: 4px; font-size: 1rem; font-weight: 700; z-index: 10; box-shadow: 0 4px 15px rgba(231, 76, 60, 0.4);";
+                    document.getElementById('galleryMain').appendChild(badge);
+                }
+                badge.textContent = `-${discount}% OFF`;
+            } else {
+                priceContainer.textContent = formatPrice(product.price);
+                const oldBadge = document.getElementById('pd-discount-badge');
+                if (oldBadge) oldBadge.remove();
+            }
+
             document.getElementById('pd-desc').textContent = product.description;
             document.getElementById('pd-full-desc').textContent = product.description;
 
