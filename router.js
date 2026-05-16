@@ -50,6 +50,12 @@ function router(req, res) {
         return seedAdmin(req, res);
     }
 
+    // Seed All Data Route
+    if (url === '/api/seed-all' && method === 'GET') {
+        const { seedAll } = require('./controllers/productController');
+        return seedAll(req, res);
+    }
+
     // API Routes - Auth & Users
     if (url === '/api/auth/register' && method === 'POST') {
         return register(req, res);
