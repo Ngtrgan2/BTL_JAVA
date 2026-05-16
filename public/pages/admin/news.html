@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản Lý Tin Tức | An LUXURY Admin</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../css/admin.css">
+    <style>
+        .news-card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+        .admin-news-card {
+            background: var(--admin-card-bg);
+            border: 1px solid var(--admin-border);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        .admin-news-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--gold-primary);
+        }
+        .news-img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-bottom: 1px solid var(--admin-border);
+        }
+        .news-content {
+            padding: 1.2rem;
+        }
+        .news-title {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            height: 2.4rem;
+        }
+        .news-summary {
+            font-size: 0.85rem;
+            color: var(--admin-text-light);
+            margin-bottom: 1rem;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            height: 3.8rem;
+        }
+        .news-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.75rem;
+            color: var(--admin-text-light);
+            border-top: 1px solid var(--admin-border);
+            padding-top: 1rem;
+        }
+        .latest-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: var(--gold-primary);
+            color: #000;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        }
+        .action-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            opacity: 0;
+            transition: 0.3s;
+            backdrop-filter: blur(2px);
+        }
+        .admin-news-card:hover .action-overlay {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body class="admin-body">
+    <div class="admin-container">
+        <!-- Sidebar -->
+        <aside class="admin-sidebar">
+            <div class="sidebar-header">
+                <div class="admin-logo">An LUXURY</div>
+                <div class="admin-role">Hệ Thống Quản Trị</div>
+            </div>
+            
+            <div class="sidebar-menu">
+                <a href="dashboard.html" class="menu-item" id="nav-dashboard">
+                    <i class="fa-solid fa-chart-line menu-icon"></i> Tổng quan
+                </a>
+                <a href="products.html" class="menu-item" id="nav-products">
+                    <i class="fa-solid fa-gem menu-icon"></i> Sản phẩm
+                </a>
+                <a href="orders.html" class="menu-item" id="nav-orders">
+                    <i class="fa-solid fa-cart-shopping menu-icon"></i> Đơn hàng
+                </a>
+                <a href="bookings.html" class="menu-item" id="nav-bookings">
+                    <i class="fa-solid fa-calendar-check menu-icon"></i> Lịch hẹn
+                </a>
+                <a href="news.html" class="menu-item active" id="nav-news">
+                    <i class="fa-solid fa-newspaper menu-icon"></i> Tin tức
+                </a>
+                <a href="revenue.html" class="menu-item" id="nav-revenue" style="display: none;">
+                    <i class="fa-solid fa-sack-dollar menu-icon"></i> Doanh thu
+                </a>
+                <a href="customers.html" class="menu-item" id="nav-customers" style="display: none;">
+                    <i class="fa-solid fa-users menu-icon"></i> Khách hàng
+                </a>
+            </div>
+            
+            <div class="sidebar-footer">
+                <div id="sidebar-user-info"></div>
+                <a href="../index.html" class="menu-item" style="padding: 0; margin-bottom: 1rem; font-size: 0.9rem;">
+                    <i class="fa-solid fa-globe menu-icon"></i> Xem website
+                </a>
+                <a href="#" class="menu-item logout-btn" style="padding: 0; color: #e74c3c; font-size: 0.9rem;">
+                    <i class="fa-solid fa-arrow-right-from-bracket menu-icon" style="color: #e74c3c;"></i> Đăng xuất
+                </a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="admin-main">
+            <div class="page-header">
+                <h1 class="page-title">Quản Lý Tin Tức</h1>
+                <button class="btn-admin btn-primary" onclick="openAddModal()">
+                    <i class="fa-solid fa-plus"></i> Đăng tin mới
+                </button>
+            </div>
+
+            <div class="admin-card">
+                <div class="card-header">
+                    <h2 style="font-size: 1.1rem;">Danh sách bài viết</h2>
+                    <p style="font-size: 0.85rem; color: var(--admin-text-light);">Những tin đánh dấu <span style="color: var(--gold-primary); font-weight: 600;">LATEST</span> sẽ hiện ưu tiên lên trang chủ.</p>
+                </div>
+
+                <div id="news-container" class="news-card-grid">
+                    <!-- JS will render news cards here -->
+                    <div style="grid-column: 1/-1; text-align: center; padding: 3rem;">
+                        <i class="fa-solid fa-spinner fa-spin fa-2x"></i>
+                        <p style="margin-top: 1rem;">Đang tải danh sách tin tức...</p>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- News Modal -->
+    <div class="modal" id="newsModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modalTitle">Đăng Tin Tức Mới</h2>
+                <button class="btn-icon" onclick="closeModal()"><i class="fa-solid fa-times"></i></button>
+            </div>
+            <div class="modal-body">
+                <form id="newsForm">
+                    <input type="hidden" id="newsId">
+                    <div class="form-group-admin">
+                        <label>Tiêu đề bài viết *</label>
+                        <input type="text" id="title" class="form-control-admin" required placeholder="VD: Khai trương chi nhánh mới tại Hà Nội">
+                    </div>
+                    
+                    <div class="form-group-admin">
+                        <label>Tóm tắt ngắn</label>
+                        <textarea id="summary" class="form-control-admin" rows="3" placeholder="Mô tả ngắn gọn nội dung bài viết..."></textarea>
+                    </div>
+
+                    <div class="form-group-admin">
+                        <label>Đường dẫn bài báo (URL) *</label>
+                        <input type="url" id="newsUrl" class="form-control-admin" required placeholder="https://vnexpress.net/...">
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group-admin">
+                            <label>Hình ảnh bìa</label>
+                            <input type="text" id="image" class="form-control-admin" placeholder="Link ảnh hoặc Base64">
+                        </div>
+                        <div class="form-group-admin">
+                            <label>Nguồn tin</label>
+                            <input type="text" id="source" class="form-control-admin" placeholder="VD: VnExpress, An LUXURY">
+                        </div>
+                    </div>
+
+                    <div class="form-group-admin" style="flex-direction: row; align-items: center; gap: 10px;">
+                        <input type="checkbox" id="isLatest" style="width: 20px; height: 20px; cursor: pointer;">
+                        <label for="isLatest" style="cursor: pointer; margin: 0;">Đánh dấu là tin nổi bật (LATEST)</label>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-admin" onclick="closeModal()">Hủy</button>
+                <button class="btn-admin btn-primary" onclick="saveNews()">Lưu Bài Viết</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="../../js/api.js"></script>
+    <script>
+        let allNews = [];
+
+        async function loadNews() {
+            const container = document.getElementById('news-container');
+            try {
+                allNews = await API.getNews();
+                renderNews(allNews);
+            } catch (error) {
+                container.innerHTML = `<div style="grid-column: 1/-1; text-align: center; color: var(--status-danger);">Lỗi tải dữ liệu: ${error.message}</div>`;
+            }
+        }
+
+        function renderNews(newsList) {
+            const container = document.getElementById('news-container');
+            if (newsList.length === 0) {
+                container.innerHTML = `<div style="grid-column: 1/-1; text-align: center; padding: 3rem; color: var(--admin-text-light);">Chưa có tin tức nào được đăng.</div>`;
+                return;
+            }
+
+            container.innerHTML = newsList.map(news => `
+                <div class="admin-news-card">
+                    ${news.isLatest ? '<div class="latest-badge">LATEST</div>' : ''}
+                    <img src="${news.image || '../../images/blog-thumb.jpg'}" class="news-img" onerror="this.src='../../images/blog-thumb.jpg'">
+                    <div class="news-content">
+                        <div class="news-title">${news.title}</div>
+                        <div class="news-summary">${news.summary}</div>
+                        <div class="news-meta">
+                            <span><i class="fa-regular fa-clock"></i> ${new Date(news.createdAt).toLocaleDateString('vi-VN')}</span>
+                            <span><i class="fa-solid fa-link"></i> ${news.source || 'Nguồn'}</span>
+                        </div>
+                    </div>
+                    <div class="action-overlay">
+                        <button class="btn-admin" style="background: var(--gold-primary); color: #000; border: none;" onclick="openEditModal('${news._id}')"><i class="fa-solid fa-pen"></i> Sửa</button>
+                        <button class="btn-admin" style="background: #e74c3c; color: #fff; border: none;" onclick="deleteNews('${news._id}')"><i class="fa-solid fa-trash"></i> Xóa</button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function openAddModal() {
+            document.getElementById('modalTitle').textContent = 'Đăng Tin Tức Mới';
+            document.getElementById('newsId').value = '';
+            document.getElementById('newsForm').reset();
+            document.getElementById('newsModal').classList.add('active');
+        }
+
+        function openEditModal(id) {
+            const news = allNews.find(n => n._id === id);
+            if (!news) return;
+
+            document.getElementById('modalTitle').textContent = 'Chỉnh Sửa Tin Tức';
+            document.getElementById('newsId').value = news._id;
+            document.getElementById('title').value = news.title;
+            document.getElementById('summary').value = news.summary || '';
+            document.getElementById('newsUrl').value = news.url || '';
+            document.getElementById('image').value = news.image || '';
+            document.getElementById('source').value = news.source || '';
+            document.getElementById('isLatest').checked = news.isLatest || false;
+
+            document.getElementById('newsModal').classList.add('active');
+        }
+
+        function closeModal() {
+            document.getElementById('newsModal').classList.remove('active');
+        }
+
+        async function saveNews() {
+            const id = document.getElementById('newsId').value;
+            const data = {
+                title: document.getElementById('title').value,
+                summary: document.getElementById('summary').value,
+                url: document.getElementById('newsUrl').value,
+                image: document.getElementById('image').value,
+                source: document.getElementById('source').value,
+                isLatest: document.getElementById('isLatest').checked
+            };
+
+            if (!data.title || !data.url) {
+                alert('Vui lòng điền tiêu đề và đường dẫn bài báo!');
+                return;
+            }
+
+            try {
+                if (id) {
+                    await API.updateNews(id, data);
+                    alert('Cập nhật thành công!');
+                } else {
+                    await API.createNews(data);
+                    alert('Đã đăng tin mới!');
+                }
+                closeModal();
+                loadNews();
+            } catch (error) {
+                alert('Lỗi: ' + error.message);
+            }
+        }
+
+        async function deleteNews(id) {
+            if (!confirm('Bạn có chắc chắn muốn xóa bài viết này?')) return;
+            try {
+                await API.deleteNews(id);
+                alert('Đã xóa!');
+                loadNews();
+            } catch (error) {
+                alert('Lỗi: ' + error.message);
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const userInfo = JSON.parse(localStorage.getItem('userInfo'));
+            if (!userInfo || userInfo.role !== 'admin') {
+                window.location.href = '../login.html';
+                return;
+            }
+
+            // Sync Sidebar
+            const revNav = document.getElementById('nav-revenue');
+            const custNav = document.getElementById('nav-customers');
+            if (userInfo.role === 'admin') {
+                if (revNav) revNav.style.display = 'flex';
+                if (custNav) custNav.style.display = 'flex';
+            }
+
+            // User Info
+            const userInfoDiv = document.getElementById('sidebar-user-info');
+            if (userInfoDiv) {
+                const avatarUrl = (userInfo.avatar && String(userInfo.avatar).trim())
+                    ? userInfo.avatar
+                    : `https://ui-avatars.com/api/?name=${encodeURIComponent(userInfo.fullName)}&background=1a1a1a&color=d4af37`;
+                
+                userInfoDiv.innerHTML = `
+                    <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem; padding: 0 0.5rem;">
+                        <img src="${avatarUrl}" style="width: 35px; height: 35px; border-radius: 50%; object-fit: cover;">
+                        <div style="overflow: hidden;">
+                            <div style="font-size: 0.85rem; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: #fff;">${userInfo.fullName}</div>
+                            <div style="font-size: 0.7rem; color: var(--admin-text-light); text-transform: capitalize;">Quản trị viên</div>
+                        </div>
+                    </div>
+                `;
+            }
+
+            loadNews();
+
+            // Logout
+            document.querySelectorAll('.logout-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    localStorage.clear();
+                    window.location.href = '../login.html';
+                });
+            });
+        });
+    </script>
+</body>
+</html>

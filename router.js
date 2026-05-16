@@ -6,6 +6,7 @@ const { createOrder, getOrders, getOrderById, updateOrder, deleteOrder } = requi
 const { createBooking, getBookings, updateBooking, deleteBooking } = require('./controllers/bookingController');
 const { getWarrantyByCode } = require('./controllers/warrantyController');
 const { chatResponse } = require('./controllers/chatController');
+const { getNews, createNews, updateNews, deleteNews } = require('./controllers/newsController');
 
 function router(req, res) {
     const fullUrl = req.url;
@@ -133,6 +134,20 @@ function router(req, res) {
     // API Routes - Warranty
     if (url.startsWith('/api/warranty/') && method === 'GET') {
         return getWarrantyByCode(req, res);
+    }
+    
+    // API Routes - News
+    if (url === '/api/news' && method === 'GET') {
+        return getNews(req, res);
+    }
+    if (url === '/api/news' && method === 'POST') {
+        return createNews(req, res);
+    }
+    if (url.startsWith('/api/news/') && method === 'PUT') {
+        return updateNews(req, res);
+    }
+    if (url.startsWith('/api/news/') && method === 'DELETE') {
+        return deleteNews(req, res);
     }
 
     // If it's an API route but not matched above, return 404 as JSON

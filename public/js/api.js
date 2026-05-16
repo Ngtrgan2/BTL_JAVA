@@ -65,5 +65,9 @@ window.API = {
     updateProfile: (data) => fetchAPI('/users/profile', { method: 'PUT', body: JSON.stringify(data) }),
     getUsers: () => fetchAPI('/users'),
     updateUserRole: (id, role) => fetchAPI(`/users/${id}`, { method: 'PUT', body: JSON.stringify({ role }) }),
+    getNews: () => fetchAPI('/news'),
+    createNews: (data) => fetchAPI('/news', { method: 'POST', body: JSON.stringify(data) }),
+    updateNews: (id, data) => fetchAPI(`/news/${id}`, { method: 'PUT', body: JSON.stringify(data) }),
+    deleteNews: (id) => fetchAPI(`/news/${id}`, { method: 'DELETE' }),
     getWarranty: (code) => fetchAPI(`/warranty/${code}`)
 };
