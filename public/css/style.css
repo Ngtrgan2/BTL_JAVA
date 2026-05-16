@@ -2089,6 +2089,54 @@ html, body {
     display: none !important;
   }
   
+  .nav-links.mobile-active {
+    display: flex !important;
+    flex-direction: column;
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 250px;
+    height: 100vh;
+    background: var(--bg-darker);
+    padding: 8rem 2rem;
+    gap: 2rem;
+    box-shadow: -5px 0 30px rgba(0,0,0,0.5);
+    z-index: 1000;
+    border-left: 1px solid var(--border-color);
+  }
+
+  .footer-content {
+    grid-template-columns: 1fr;
+    text-align: center;
+    gap: 3rem;
+  }
+
+  .footer-section h3::after {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  /* 3D Showcase Mobile */
+  .showcase-3d-content {
+    grid-template-columns: 1fr !important;
+    gap: 2rem;
+  }
+
+  .showcase-features {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Forms Mobile */
+  .booking-form-container, .auth-form {
+    padding: 2rem 1.5rem;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr !important;
+    gap: 0;
+  }
+}
+
   .collapsed-menu-icon {
     display: block !important;
     font-size: 1.5rem;
@@ -2178,18 +2226,18 @@ html, body {
 
 @media (max-width: 480px) {
   .hero-title {
-    font-size: 1.8rem;
+    font-size: 1.7rem;
   }
 
   .section-title {
-    font-size: 1.5rem;
+    font-size: 1.4rem;
   }
 
   .product-grid {
-    grid-template-columns: repeat(2, 1fr); /* Giữ 2 cột cho đẹp, hoặc 1 cột nếu b muốn */
+    grid-template-columns: repeat(2, 1fr);
   }
 
   .nav-icons .nav-icon:nth-child(2) {
-    display: none; /* Ẩn bớt icon không quan trọng trên màn hình siêu nhỏ */
+    display: none;
   }
 }
