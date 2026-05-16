@@ -1,0 +1,309 @@
+[{
+  "_id": {
+    "$oid": "69ee41a9ef85d2ca4d2ca736"
+  },
+  "userId": null,
+  "items": [
+    {
+      "productId": "69ee311bb51ae4429ec01989",
+      "name": "Nhẫn Cầu Hôn Soleil 1.5 Carat",
+      "price": 280000000,
+      "quantity": 1,
+      "material": "Vàng Trắng 18K",
+      "size": "8",
+      "image": "/images/product-ring.png"
+    },
+    {
+      "productId": "69ee311bb51ae4429ec0198b",
+      "name": "Hoa Tai Ngọc Trai South Sea",
+      "price": 65000000,
+      "quantity": 15,
+      "material": "Vàng Trắng 18K",
+      "size": "14",
+      "image": "/images/product-earrings.png"
+    }
+  ],
+  "totalAmount": 1255000000,
+  "address": "an, 036363636, 21/33 Bạch Đằng, Quận Hoàn Kiếm, Hà Nội",
+  "paymentMethod": "transfer",
+  "status": "processing",
+  "createdAt": {
+    "$date": "2026-04-26T16:47:37.270Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "69ef469d3ba23edd194a40b8"
+  },
+  "userId": null,
+  "email": "truongandzaisomot@gmail,com",
+  "note": "",
+  "items": [
+    {
+      "productId": "69ee311bb51ae4429ec0198b",
+      "name": "Hoa Tai Ngọc Trai South Sea",
+      "material": "Vàng 18K",
+      "price": 65000000,
+      "qty": 1
+    }
+  ],
+  "total": 65000000,
+  "status": "shipped",
+  "address": "an, 0392326230, 21/33 Bạch Đằng, Quận Hoàn Kiếm, Hà Nội",
+  "paymentMethod": "transfer",
+  "createdAt": {
+    "$date": "2026-04-27T11:21:01.782Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "69ef49693ba23edd194a40b9"
+  },
+  "userId": null,
+  "email": "truongandzaisomot@gmail,com",
+  "note": "1111",
+  "items": [
+    {
+      "productId": "69ee311bb51ae4429ec0198e",
+      "name": "Dây Chuyền Giọt Nước Lam Ngọc",
+      "material": "Vàng Trắng 18K",
+      "price": 125000000,
+      "qty": 1
+    }
+  ],
+  "total": 125000000,
+  "status": "done",
+  "address": "an, 0392326230, 21/33 Bạch Đằng, Quận 1, TP Hồ Chí Minh",
+  "paymentMethod": "transfer",
+  "createdAt": {
+    "$date": "2026-04-27T11:32:57.069Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "69ef4a314d7e95a5fb4e847c"
+  },
+  "userId": null,
+  "email": "truongannguyen1012@gmail.com",
+  "note": "test\n",
+  "items": [
+    {
+      "productId": "69ee311bb51ae4429ec0198b",
+      "name": "Hoa Tai Ngọc Trai South Sea",
+      "material": "Vàng 18K",
+      "price": 65000000,
+      "qty": 1
+    }
+  ],
+  "total": 65000000,
+  "status": "done",
+  "address": "an, 0392326230, 21/33 Bạch Đằng, Quận 1, TP Hồ Chí Minh",
+  "paymentMethod": "transfer",
+  "createdAt": {
+    "$date": "2026-04-27T11:36:17.861Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "69ef4a8c4d7e95a5fb4e847d"
+  },
+  "userId": null,
+  "email": "truongandzaisomot@gmail,com",
+  "note": "1",
+  "items": [
+    {
+      "productId": "69ee311bb51ae4429ec01989",
+      "name": "Nhẫn Cầu Hôn Soleil 1.5 Carat",
+      "material": "Vàng Trắng 18K",
+      "price": 280000000,
+      "qty": 1
+    }
+  ],
+  "total": 280000000,
+  "status": "cancelled",
+  "address": "an, 0392326230, 21/33 Bạch Đằng, Quận 3, Đà Nẵng",
+  "paymentMethod": "transfer",
+  "createdAt": {
+    "$date": "2026-04-27T11:37:48.702Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "69fe258841a378f6d5d4a896"
+  },
+  "userId": null,
+  "customerName": "",
+  "phone": "",
+  "email": "KH2@anluxury.com",
+  "note": "",
+  "items": [
+    {
+      "productId": "69f85a17f93d1c729f0eed76",
+      "name": "Lắc Tay Infinity Vàng Trắng 18K",
+      "image": "/images/product-bracelet.png",
+      "material": "Vàng Trắng 18K",
+      "size": "20",
+      "stone": "",
+      "certificate": "",
+      "price": 85500000,
+      "quantity": 1
+    }
+  ],
+  "totalAmount": 85500000,
+  "status": "done",
+  "address": "meo meo, 1234456, 21/33 Bạch Đằng, Quận Hoàn Kiếm, TP Hồ Chí Minh",
+  "paymentMethod": "transfer",
+  "createdAt": {
+    "$date": "2026-05-08T18:03:52.594Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "69fe2689999e5f68e6166576"
+  },
+  "userId": "69fc923f314a364a4c43061f",
+  "customerName": "",
+  "phone": "",
+  "email": "KH2@anluxury.com",
+  "note": "",
+  "items": [
+    {
+      "productId": "69fcbe8f5c9ef2b2fd5c18b6",
+      "name": "Bông tai Moissanite Đẳng Cấp Vĩnh Cửu #102",
+      "image": "/images/product-earrings.png",
+      "material": "Vàng Hồng 18K",
+      "size": "",
+      "stone": "",
+      "certificate": "",
+      "price": 56023446,
+      "quantity": 1
+    }
+  ],
+  "totalAmount": 56023446,
+  "status": "done",
+  "address": "meo meo, 1234456, 21/33 Bạch Đằng, hoan kiem, hn",
+  "paymentMethod": "transfer",
+  "createdAt": {
+    "$date": "2026-05-08T18:08:09.513Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "69ff3c02547c5ddf4036202a"
+  },
+  "userId": "69fc923f314a364a4c43061f",
+  "customerName": "",
+  "phone": "",
+  "email": "KH2@anluxury.com",
+  "note": "gói kỹ vào cho anh nhé",
+  "items": [
+    {
+      "productId": "69f85a17f93d1c729f0eed75",
+      "name": "Nhẫn Cầu Hôn Soleil 1.5 Carat",
+      "image": "/images/product-ring.png",
+      "material": "Vàng Hồng 18K",
+      "size": "8",
+      "stone": "",
+      "certificate": "",
+      "price": 280000000,
+      "quantity": 5
+    }
+  ],
+  "totalAmount": 1400000000,
+  "status": "done",
+  "address": "An, 1234456, 21/33 Bạch Đằngg, hoan kiemm, hnoi",
+  "paymentMethod": "transfer",
+  "createdAt": {
+    "$date": "2026-05-09T13:52:02.768Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6a005092a6a8a13bbb2152f1"
+  },
+  "userId": "69f85a18e0167fe6bf69e34c",
+  "customerName": "",
+  "phone": "",
+  "email": "admin@anluxury.com",
+  "note": "",
+  "items": [
+    {
+      "productId": "69fcbe8f5c9ef2b2fd5c18b5",
+      "name": "Nhẫn Ruby Huyết Bồ Câu Đẳng Cấp Tỏa Sáng #101",
+      "image": "/images/products/ruby-ring.png",
+      "material": "Vàng Trắng 18K",
+      "size": "8",
+      "stone": "",
+      "certificate": "",
+      "price": 289253190,
+      "quantity": 1
+    }
+  ],
+  "totalAmount": 289253190,
+  "status": "done",
+  "address": "Admin Meo Meo, 0999999999, 33 bach dang, hoan kiem, hnoi",
+  "paymentMethod": "transfer",
+  "createdAt": {
+    "$date": "2026-05-10T09:32:02.643Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6a005b9ca6a8a13bbb2152f2"
+  },
+  "userId": "69f85a18e0167fe6bf69e34c",
+  "customerName": "",
+  "phone": "",
+  "email": "admin@anluxury.com",
+  "note": "",
+  "items": [
+    {
+      "productId": "69f85a17f93d1c729f0eed76",
+      "name": "Lắc Tay Infinity Vàng Trắng 18K",
+      "image": "/images/product-bracelet.png",
+      "material": "Vàng Trắng 18K",
+      "size": "16",
+      "stone": "",
+      "certificate": "",
+      "price": 85500000,
+      "quantity": 1
+    }
+  ],
+  "totalAmount": 85500000,
+  "status": "done",
+  "address": "Admin Meo Meo, 0999999999, 21/33 Bạch Đằng, hoan kiem, hnoi",
+  "paymentMethod": "transfer",
+  "createdAt": {
+    "$date": "2026-05-10T10:19:08.095Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6a030a9f7c49fa8410911631"
+  },
+  "userId": "69f85a18e0167fe6bf69e34c",
+  "customerName": "",
+  "phone": "",
+  "email": "admin@anluxury.com",
+  "note": "",
+  "items": [
+    {
+      "productId": "69fcbe8f5c9ef2b2fd5c18dd",
+      "name": "Nhẫn Ruby Huyết Bồ Câu Thanh Lịch Huyền Bí #141",
+      "image": "/images/products/ruby-ring.png",
+      "material": "Platinum 950",
+      "size": "8",
+      "stone": "",
+      "certificate": "",
+      "price": 128138123,
+      "quantity": 1
+    }
+  ],
+  "totalAmount": 128138123,
+  "status": "processing",
+  "address": "Admin Meo Meo, 0999999999, 21/33 Bạch Đằng, hoàn kiếm, hnoi",
+  "paymentMethod": "transfer",
+  "createdAt": {
+    "$date": "2026-05-12T11:10:23.744Z"
+  }
+}]

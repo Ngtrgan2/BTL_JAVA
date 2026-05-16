@@ -2100,6 +2100,23 @@ html:not(.dark-mode) .showcase-features li > div {
 
   .nav {
     padding: 1rem 0;
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  /* Hide user name on mobile to save space */
+  .nav-icon span, .user-name-text {
+    display: none !important;
+  }
+
+  .nav-icons {
+    gap: 0.8rem;
+    flex-shrink: 0;
+  }
+
+  .logo {
+    font-size: 1.2rem;
+    flex-shrink: 1;
   }
 
   .hero {
