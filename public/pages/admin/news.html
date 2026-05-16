@@ -98,27 +98,44 @@
         .admin-container {
             display: flex;
             min-height: 100vh;
+            position: relative;
         }
         .admin-sidebar {
             width: 260px;
             position: fixed;
             height: 100vh;
-            z-index: 1000;
+            z-index: 100; /* Sidebar ở lớp vừa phải */
+            pointer-events: auto;
         }
         .admin-main {
-            margin-left: 260px; /* Đẩy nội dung sang phải để không bị sidebar che */
+            margin-left: 260px;
             flex: 1;
             padding: 2rem;
+            position: relative;
+            z-index: 10; /* Nội dung chính phải ở lớp trên để nhận click */
         }
-        /* Fix Modal luôn nổi trên cùng */
+        /* Fix Modal luôn nổi trên cùng và phải hiện khi có class active */
         .modal {
+            display: none; /* Mặc định ẩn */
             z-index: 9999 !important;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.8);
+            align-items: center;
+            justify-content: center;
+        }
+        .modal.active {
+            display: flex !important; /* Hiện khi active */
         }
         /* Bỏ cái quầng sáng lỗi */
         .menu-item.active {
             background: rgba(212, 175, 55, 0.15) !important;
             box-shadow: none !important;
             border-left: 3px solid var(--gold-primary);
+        }
+        /* Hiệu ứng nút bấm */
+        .btn-admin:active {
+            transform: scale(0.95);
         }
     </style>
 </head>
