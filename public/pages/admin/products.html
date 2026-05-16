@@ -123,6 +123,23 @@
                 </button>
             </div>
 
+            <!-- Global Discount Bar -->
+            <div class="admin-card" style="margin-bottom: 1.5rem; background: linear-gradient(90deg, rgba(212, 175, 55, 0.1), transparent);">
+                <div style="display: flex; justify-content: space-between; align-items: center; padding: 1.2rem;">
+                    <div>
+                        <h3 style="font-size: 1rem; color: var(--gold-primary); margin-bottom: 0.3rem;">THIẾT LẬP GIẢM GIÁ TOÀN BỘ SẢN PHẨM</h3>
+                        <p style="font-size: 0.8rem; color: var(--admin-text-light);">Áp dụng mức giảm giá chung cho tất cả sản phẩm trong kho.</p>
+                    </div>
+                    <div style="display: flex; gap: 0.8rem; align-items: center;">
+                        <div style="position: relative;">
+                            <input type="number" id="globalDiscountInput" class="form-control-admin" placeholder="Nhập % giảm" style="width: 140px; padding-right: 2.5rem;">
+                            <span style="position: absolute; right: 1rem; top: 50%; transform: translateY(-50%); color: var(--admin-text-light);">%</span>
+                        </div>
+                        <button class="btn-admin btn-primary" onclick="handleGlobalDiscount()" style="background: #fff; color: #000; border: none;">ÁP DỤNG NGAY</button>
+                    </div>
+                </div>
+            </div>
+
             <div class="admin-card">
                 <div class="card-header" style="border-bottom: none; padding-bottom: 0;">
                     <div style="display: flex; gap: 1rem; width: 100%;">
@@ -145,6 +162,7 @@
                                 <th>Sản phẩm</th>
                                 <th>Danh mục</th>
                                 <th>Giá bán</th>
+                                <th>Giảm (%)</th>
                                 <th>Tồn kho</th>
                                 <th>Trạng thái</th>
                                 <th style="text-align: right;">Thao tác</th>
@@ -193,9 +211,14 @@
                             <input type="number" id="price" class="form-control-admin" required>
                         </div>
                         <div class="form-group-admin">
-                            <label>Số lượng tồn kho *</label>
-                            <input type="number" id="stock" class="form-control-admin" required>
+                            <label>Giảm giá (%)</label>
+                            <input type="number" id="discountPercentage" class="form-control-admin" placeholder="0" min="0" max="100">
                         </div>
+                    </div>
+                    
+                    <div class="form-group-admin">
+                        <label>Số lượng tồn kho *</label>
+                        <input type="number" id="stock" class="form-control-admin" required>
                     </div>
 
                     <div class="form-group-admin">
@@ -305,6 +328,9 @@
                     stockDisplay = `<span style="color: var(--status-success); font-weight: 500;">Còn hàng (${p.stock})</span>`;
                 }
 
+                const discount = Number(p.discountPercentage || 0);
+                const finalPrice = discount > 0 ? p.price * (1 - discount / 100) : p.price;
+
                 return `
                 <tr style="${p.stock <= 0 ? 'opacity: 0.6;' : p.stock <= LOW_STOCK_THRESHOLD ? 'background: rgba(243, 156, 18, 0.05);' : ''}">
                     <td>
@@ -317,7 +343,22 @@
                         </div>
                     </td>
                     <td>${getCategoryName(p.category)}</td>
-                    <td style="font-weight: 500;">${Number(p.price).toLocaleString('vi-VN')} ₫</td>
+                    <td style="font-weight: 500;">
+                        ${discount > 0 ? `
+                            <div style="color: var(--status-danger);">${finalPrice.toLocaleString('vi-VN')} ₫</div>
+                            <div style="font-size: 0.8rem; color: var(--admin-text-light); text-decoration: line-through;">${Number(p.price).toLocaleString('vi-VN')} ₫</div>
+                        ` : `
+                            <div>${Number(p.price).toLocaleString('vi-VN')} ₫</div>
+                        `}
+                    </td>
+                    <td>
+                        <div style="display: flex; align-items: center; gap: 0.5rem;">
+                            <input type="number" value="${discount}" 
+                                   onchange="updateDiscount('${p._id}', this.value)" 
+                                   style="width: 60px; background: rgba(255,255,255,0.05); border: 1px solid var(--admin-border); border-radius: 4px; color: #fff; padding: 0.3rem 0.5rem; text-align: center;">
+                            <span style="color: var(--admin-text-light); font-size: 0.8rem;">%</span>
+                        </div>
+                    </td>
                     <td>${stockDisplay}</td>
                     <td><span class="badge ${p.stock > 0 ? 'badge-success' : 'badge-danger'}">${p.stock > 0 ? 'Đang bán' : 'Ngừng bán'}</span></td>
                     <td style="text-align: right;">
@@ -357,6 +398,7 @@
             document.getElementById('name').value = p.name;
             document.getElementById('category').value = p.category;
             document.getElementById('price').value = p.price;
+            document.getElementById('discountPercentage').value = p.discountPercentage || 0;
             document.getElementById('stock').value = p.stock || 0;
             document.getElementById('image').value = p.image || '';
             document.getElementById('description').value = p.description || '';
@@ -403,6 +445,7 @@
                 name: document.getElementById('name').value,
                 category: document.getElementById('category').value,
                 price: Number(document.getElementById('price').value),
+                discountPercentage: Number(document.getElementById('discountPercentage').value || 0),
                 stock: Number(document.getElementById('stock').value),
                 image: imageValue,
                 images: [imageValue], // Đồng bộ mảng ảnh để hiển thị ở trang chi tiết
@@ -437,6 +480,40 @@
             try {
                 await API.deleteProduct(id);
                 alert('Đã xóa sản phẩm!');
+                loadProducts();
+            } catch (error) {
+                alert('Lỗi: ' + error.message);
+            }
+        }
+
+        async function handleGlobalDiscount() {
+            const percentage = document.getElementById('globalDiscountInput').value;
+            if (!percentage || percentage < 0 || percentage > 100) {
+                alert('Vui lòng nhập phần trăm giảm giá hợp lệ (0-100)');
+                return;
+            }
+
+            if (!confirm(`Bạn có chắc chắn muốn áp dụng giảm giá ${percentage}% cho TẤT CẢ sản phẩm không?`)) return;
+
+            try {
+                const res = await API.applyGlobalDiscount(percentage);
+                alert(res.message);
+                loadProducts();
+            } catch (error) {
+                alert('Lỗi: ' + error.message);
+            }
+        }
+
+        async function updateDiscount(id, value) {
+            const percentage = Number(value);
+            if (isNaN(percentage) || percentage < 0 || percentage > 100) {
+                alert('Vui lòng nhập phần trăm hợp lệ (0-100)');
+                return;
+            }
+
+            try {
+                await API.updateProduct(id, { discountPercentage: percentage });
+                // Don't alert here to keep it smooth, just reload data
                 loadProducts();
             } catch (error) {
                 alert('Lỗi: ' + error.message);

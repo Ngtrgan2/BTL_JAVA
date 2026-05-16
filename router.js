@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const { register, login, updateProfile, getUsers, updateUserRole, googleLogin } = require('./controllers/userController');
-const { getProducts, getProductById, createProduct, updateProduct, deleteProduct } = require('./controllers/productController');
+const { getProducts, getProductById, createProduct, updateProduct, deleteProduct, applyGlobalDiscount } = require('./controllers/productController');
 const { createOrder, getOrders, getOrderById, updateOrder, deleteOrder } = require('./controllers/orderController');
 const { createBooking, getBookings, updateBooking, deleteBooking } = require('./controllers/bookingController');
 const { getWarrantyByCode } = require('./controllers/warrantyController');
@@ -80,6 +80,9 @@ function router(req, res) {
     }
     if (url === '/api/products' && method === 'POST') {
         return createProduct(req, res);
+    }
+    if (url === '/api/admin/products/global-discount' && method === 'POST') {
+        return applyGlobalDiscount(req, res);
     }
     if (url.startsWith('/api/products/') && method === 'GET') {
         return getProductById(req, res);

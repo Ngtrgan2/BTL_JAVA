@@ -701,8 +701,13 @@
             const endIndex = startIndex + productsPerPage;
             const displayProducts = filteredProducts.slice(startIndex, endIndex);
 
-            grid.innerHTML = displayProducts.map((product) => `
-                <div class="product-card reveal" onclick="window.location.href='product-detail.html?id=${product._id}'" style="cursor: pointer;">
+            grid.innerHTML = displayProducts.map((product) => {
+                const discount = Number(product.discountPercentage || 0);
+                const finalPrice = discount > 0 ? product.price * (1 - discount / 100) : product.price;
+                
+                return `
+                <div class="product-card reveal" onclick="window.location.href='product-detail.html?id=${product._id}'" style="cursor: pointer; position: relative;">
+                    ${discount > 0 ? `<div class="discount-tag" style="position: absolute; top: 15px; left: 15px; background: #e74c3c; color: white; padding: 4px 10px; border-radius: 4px; font-size: 0.8rem; font-weight: 700; z-index: 2; box-shadow: 0 4px 10px rgba(231, 76, 60, 0.3);">-${discount}%</div>` : ''}
                     <div class="product-img-wrap">
                         <img src="${(product.image.startsWith('http') || product.image.startsWith('data:')) ? product.image : '..' + product.image}" alt="${product.name}" class="product-img">
                         <div class="product-actions">
@@ -713,10 +718,15 @@
                     <div class="product-info">
                         <div class="product-category">${product.categoryLabel || categoryMap[product.category] || product.category}</div>
                         <h3 class="product-title">${product.name}</h3>
-                        <div class="product-price">${formatPrice(product.price)}</div>
+                        <div class="product-price">
+                            ${discount > 0 ? `
+                                <span style="color: #e74c3c;">${formatPrice(finalPrice)}</span>
+                                <span style="font-size: 0.85rem; color: var(--text-muted); text-decoration: line-through; margin-left: 8px; font-weight: 400;">${formatPrice(product.price)}</span>
+                            ` : formatPrice(product.price)}
+                        </div>
                     </div>
                 </div>
-            `).join('');
+            `}).join('');
 
             renderPagination(totalPages);
 

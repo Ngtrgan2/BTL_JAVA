@@ -66,6 +66,7 @@ const createProduct = async (req, res) => {
             stock: Number(productData.stock || 0),
             certificate: productData.certificate || '',
             description: productData.description || '',
+            discountPercentage: Number(productData.discountPercentage || 0),
             isActive: productData.isActive !== undefined ? productData.isActive : true,
             createdAt: new Date()
         };
@@ -156,6 +157,34 @@ const deleteProduct = async (req, res) => {
             res.writeHead(200, { 'Content-Type': 'application/json' });
             res.end(JSON.stringify({ message: 'Product deleted' }));
         }
+    } catch (error) {
+        res.writeHead(500, { 'Content-Type': 'application/json' });
+        res.end(JSON.stringify({ message: error.message }));
+    }
+};
+
+const applyGlobalDiscount = async (req, res) => {
+    try {
+        const decoded = verifyToken(req);
+        if (!decoded) {
+            res.writeHead(401, { 'Content-Type': 'application/json' });
+            return res.end(JSON.stringify({ message: 'Unauthorized' }));
+        }
+
+        const db = getDB();
+        const user = await db.collection('users').findOne({ _id: new ObjectId(decoded.id) });
+        if (!user || user.role !== 'admin') {
+            res.writeHead(403, { 'Content-Type': 'application/json' });
+            return res.end(JSON.stringify({ message: 'Forbidden' }));
+        }
+
+        const body = await getPostData(req);
+        const { percentage } = JSON.parse(body);
+
+        await db.collection('products').updateMany({}, { $set: { discountPercentage: Number(percentage || 0) } });
+
+        res.writeHead(200, { 'Content-Type': 'application/json' });
+        res.end(JSON.stringify({ message: `Đã áp dụng giảm giá ${percentage}% cho toàn bộ sản phẩm!` }));
     } catch (error) {
         res.writeHead(500, { 'Content-Type': 'application/json' });
         res.end(JSON.stringify({ message: error.message }));
@@ -281,4 +310,4 @@ const seedAll = async (req, res) => {
     }
 };
 
-module.exports = { getProducts, getProductById, createProduct, updateProduct, deleteProduct, seedAll };
+module.exports = { getProducts, getProductById, createProduct, updateProduct, deleteProduct, seedAll, applyGlobalDiscount };

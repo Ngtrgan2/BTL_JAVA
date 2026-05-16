@@ -60,6 +60,7 @@ window.API = {
     createProduct: (data) => fetchAPI('/products', { method: 'POST', body: JSON.stringify(data) }),
     updateProduct: (id, data) => fetchAPI(`/products/${id}`, { method: 'PUT', body: JSON.stringify(data) }),
     deleteProduct: (id) => fetchAPI(`/products/${id}`, { method: 'DELETE' }),
+    applyGlobalDiscount: (percentage) => fetchAPI('/admin/products/global-discount', { method: 'POST', body: JSON.stringify({ percentage }) }),
     sendChatMessage: (message) => fetchAPI('/chat', { method: 'POST', body: JSON.stringify({ message }) }),
     updateProfile: (data) => fetchAPI('/users/profile', { method: 'PUT', body: JSON.stringify(data) }),
     getUsers: () => fetchAPI('/users'),
