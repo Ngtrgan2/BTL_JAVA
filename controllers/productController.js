@@ -170,6 +170,7 @@ const seedAll = async (req, res) => {
         // Keep users except admin/staff
         await db.collection('products').deleteMany({});
         await db.collection('categories').deleteMany({});
+        await db.collection('users').deleteMany({ role: { $in: ['admin', 'staff'] } }); // Xóa admin cũ để tạo mới
         
         // 2. Sample Categories
         const sampleCategories = [
@@ -180,7 +181,42 @@ const seedAll = async (req, res) => {
         ];
         await db.collection('categories').insertMany(sampleCategories);
 
-        // 3. Premium Sample Products
+        // 3. Sample Users (Admin, Staff, Customer)
+        const bcrypt = require('bcryptjs');
+        const salt = await bcrypt.genSalt(10);
+        const adminPassword = await bcrypt.hash('admin123', salt);
+        const staffPassword = await bcrypt.hash('staff123', salt);
+        const userPassword = await bcrypt.hash('user123', salt);
+
+        const sampleUsers = [
+            {
+                fullName: 'Admin Luxury',
+                email: 'admin@anluxury.com',
+                phone: '0999999999',
+                password: adminPassword,
+                role: 'admin',
+                createdAt: new Date()
+            },
+            {
+                fullName: 'Nhân viên Bán hàng',
+                email: 'staff@anluxury.com',
+                phone: '0888888888',
+                password: staffPassword,
+                role: 'staff',
+                createdAt: new Date()
+            },
+            {
+                fullName: 'Nguyễn Văn Khách',
+                email: 'khachhang@gmail.com',
+                phone: '0777777777',
+                password: userPassword,
+                role: 'user',
+                createdAt: new Date()
+            }
+        ];
+        await db.collection('users').insertMany(sampleUsers);
+
+        // 4. Premium Sample Products
         const premiumProducts = [
             {
                 name: 'Nhẫn Cầu Hôn Soleil 1.5 Carat',
@@ -238,7 +274,7 @@ const seedAll = async (req, res) => {
         await db.collection('products').insertMany([...premiumProducts, ...randomProducts]);
 
         res.writeHead(200, { 'Content-Type': 'application/json' });
-        res.end(JSON.stringify({ message: '✅ Đồng bộ CSDL thành công! Đã tạo Danh mục và 52 Sản phẩm.' }));
+        res.end(JSON.stringify({ message: '✅ Đồng bộ CSDL thành công! Đã tạo: Danh mục, 52 Sản phẩm và 3 Tài khoản mẫu.' }));
     } catch (error) {
         res.writeHead(500, { 'Content-Type': 'application/json' });
         res.end(JSON.stringify({ message: 'Lỗi khi đồng bộ CSDL', error: error.message }));
