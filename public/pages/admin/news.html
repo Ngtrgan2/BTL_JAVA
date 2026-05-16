@@ -94,13 +94,31 @@
         .admin-news-card:hover .action-overlay {
             opacity: 1;
         }
-        /* Fix Modal đè Sidebar */
+        /* Fix đè layout và hiệu ứng ghosting */
+        .admin-container {
+            display: flex;
+            min-height: 100vh;
+        }
+        .admin-sidebar {
+            width: 260px;
+            position: fixed;
+            height: 100vh;
+            z-index: 1000;
+        }
+        .admin-main {
+            margin-left: 260px; /* Đẩy nội dung sang phải để không bị sidebar che */
+            flex: 1;
+            padding: 2rem;
+        }
+        /* Fix Modal luôn nổi trên cùng */
         .modal {
             z-index: 9999 !important;
         }
-        /* Đồng bộ Sidebar */
-        .admin-sidebar {
-            z-index: 100;
+        /* Bỏ cái quầng sáng lỗi */
+        .menu-item.active {
+            background: rgba(212, 175, 55, 0.15) !important;
+            box-shadow: none !important;
+            border-left: 3px solid var(--gold-primary);
         }
     </style>
 </head>
