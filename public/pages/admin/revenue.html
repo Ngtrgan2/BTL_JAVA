@@ -48,6 +48,59 @@
             font-weight: 700;
             color: var(--gold-primary);
         }
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.7);
+            backdrop-filter: blur(8px);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+        .modal.active { display: flex; }
+        .modal-content {
+            background: var(--admin-surface);
+            width: 100%; max-width: 950px;
+            border-radius: 12px;
+            border: 1px solid var(--admin-border);
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+        }
+        .modal-header {
+            padding: 1.5rem;
+            border-bottom: 1px solid var(--admin-border);
+            display: flex; justify-content: space-between; align-items: center;
+            position: sticky; top: 0; background: var(--admin-surface); z-index: 10;
+        }
+        .modal-body { padding: 1.5rem; }
+        .form-group-admin {
+            margin-bottom: 1rem;
+        }
+        .form-group-admin label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+            color: var(--admin-text-light);
+        }
+        .form-control-admin {
+            width: 100%;
+            padding: 0.8rem;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid var(--admin-border);
+            border-radius: 4px;
+            color: white;
+            outline: none;
+        }
+        .form-control-admin:focus {
+            border-color: var(--gold-primary);
+        }
+        select.form-control-admin option {
+            background: #1a1a1a;
+            color: white;
+        }
     </style>
 </head>
 <body>
@@ -105,8 +158,8 @@
             <div class="page-header">
                 <div style="display: flex; align-items: center; gap: 1.5rem;">
                     <h1 class="page-title">Báo Cáo Tài Chính</h1>
-                    <button class="admin-btn-primary" onclick="exportToPDF()" style="padding: 0.5rem 1rem; font-size: 0.85rem; height: auto;">
-                        <i class="fa-solid fa-file-pdf" style="margin-right: 5px;"></i> Xuất PDF
+                    <button class="admin-btn-primary" onclick="openReportModal()" style="padding: 0.5rem 1rem; font-size: 0.85rem; height: auto;">
+                        <i class="fa-solid fa-file-pdf" style="margin-right: 5px;"></i> Cấu hình & Xuất PDF
                     </button>
                 </div>
                 <div class="admin-profile">
@@ -175,6 +228,68 @@
                 </div>
             </div>
         </main>
+    </div>
+
+    <!-- Export & Preview Modal -->
+    <div class="modal" id="pdfReportModal">
+        <div class="modal-content" style="max-width: 950px; width: 95%;">
+            <div class="modal-header">
+                <h2 style="font-size: 1.2rem; display: flex; align-items: center; gap: 8px; color: white;"><i class="fa-solid fa-file-pdf" style="color: #e74c3c;"></i> Cấu hình & Xem trước Báo cáo</h2>
+                <button class="btn-icon" style="border: none; background: transparent; color: white; cursor: pointer; font-size: 1.2rem;" onclick="closeReportModal()"><i class="fa-solid fa-times"></i></button>
+            </div>
+            <div class="modal-body" style="display: grid; grid-template-columns: 320px 1fr; gap: 1.5rem; max-height: 75vh; overflow: hidden;">
+                <!-- Controls -->
+                <div style="border-right: 1px solid var(--admin-border); padding-right: 1.5rem; display: flex; flex-direction: column; gap: 1.2rem; overflow-y: auto; text-align: left;">
+                    <h3 style="font-size: 0.95rem; color: var(--gold-primary); margin-bottom: 0.5rem; text-transform: uppercase; letter-spacing: 0.5px;">CẤU HÌNH LỌC DỮ LIỆU</h3>
+                    
+                    <div class="form-group-admin">
+                        <label>Loại báo cáo</label>
+                        <select id="reportType" class="form-control-admin" onchange="onReportTypeChange()">
+                            <option value="day">Theo Ngày (Báo cáo Ngày)</option>
+                            <option value="month" selected>Theo Tháng (Báo cáo Tháng)</option>
+                            <option value="year">Theo Năm (Báo cáo Năm)</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group-admin" id="datePickerGroup" style="display: none;">
+                        <label>Chọn ngày</label>
+                        <input type="date" id="reportDate" class="form-control-admin">
+                    </div>
+
+                    <div class="form-group-admin" id="monthPickerGroup">
+                        <label>Chọn tháng</label>
+                        <input type="month" id="reportMonth" class="form-control-admin">
+                    </div>
+
+                    <div class="form-group-admin" id="yearPickerGroup" style="display: none;">
+                        <label>Chọn năm</label>
+                        <select id="reportYear" class="form-control-admin">
+                            <!-- JS will populate -->
+                        </select>
+                    </div>
+
+                    <div style="margin-top: auto; display: flex; flex-direction: column; gap: 0.8rem; padding-top: 1rem;">
+                        <button class="btn-admin btn-primary" onclick="generateReportPreview()" style="width: 100%; border: none;">
+                            <i class="fa-solid fa-sync" style="margin-right: 5px;"></i> Cập nhật Xem trước
+                        </button>
+                        <button class="btn-admin" onclick="downloadReportPDF()" style="width: 100%; background: #e74c3c; color: white; border: none; font-weight: 600;">
+                            <i class="fa-solid fa-file-pdf" style="margin-right: 5px;"></i> Tải xuống PDF
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Preview Area -->
+                <div style="display: flex; flex-direction: column; overflow: hidden; background: #525659; border-radius: 8px; padding: 1.2rem; border: 1px solid var(--admin-border);">
+                    <div style="color: white; margin-bottom: 0.8rem; font-size: 0.85rem; font-weight: 500; display: flex; align-items: center; justify-content: space-between;">
+                        <span>TRANG XEM TRƯỚC (PREVIEW)</span>
+                        <small style="color: #ccc;">Khổ A4 tiêu chuẩn (Khuyên dùng font chữ Times New Roman)</small>
+                    </div>
+                    <div id="pdfPreviewContainer" style="flex: 1; overflow-y: auto; background: white; padding: 25px; border-radius: 4px; box-shadow: 0 4px 15px rgba(0,0,0,0.4);">
+                        <!-- HTML generated dynamically will show here -->
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
     <script src="../../js/api.js"></script>
@@ -330,140 +445,288 @@
             }
         }
 
-        async function exportToPDF() {
+        function openReportModal() {
             if (!reportData.orders) {
                 alert('Vui lòng đợi dữ liệu tải xong!');
                 return;
             }
+            
+            // Set default values
+            const today = new Date();
+            document.getElementById('reportDate').value = today.toISOString().split('T')[0];
+            document.getElementById('reportMonth').value = today.toISOString().slice(0, 7); // YYYY-MM
+            
+            // Populate years if not done
+            const yearSelect = document.getElementById('reportYear');
+            if (yearSelect.options.length === 0) {
+                const currentYear = today.getFullYear();
+                for (let y = currentYear; y >= currentYear - 5; y--) {
+                    const opt = document.createElement('option');
+                    opt.value = y;
+                    opt.textContent = `Năm ${y}`;
+                    yearSelect.appendChild(opt);
+                }
+            }
+
+            document.getElementById('pdfReportModal').classList.add('active');
+            onReportTypeChange();
+            generateReportPreview();
+        }
+
+        function closeReportModal() {
+            document.getElementById('pdfReportModal').classList.remove('active');
+        }
+
+        function onReportTypeChange() {
+            const type = document.getElementById('reportType').value;
+            document.getElementById('datePickerGroup').style.display = type === 'day' ? 'block' : 'none';
+            document.getElementById('monthPickerGroup').style.display = type === 'month' ? 'block' : 'none';
+            document.getElementById('yearPickerGroup').style.display = type === 'year' ? 'block' : 'none';
+        }
+
+        function generateReportHTML() {
+            const type = document.getElementById('reportType').value;
+            const allOrders = reportData.orders || [];
+            
+            let filteredOrders = [];
+            let titleStr = '';
+            let subtitleStr = '';
+            
+            if (type === 'day') {
+                const val = document.getElementById('reportDate').value;
+                if (!val) return '<h3 style="color:#000; text-align:center; padding: 2rem;">Vui lòng chọn ngày hợp lệ</h3>';
+                const d = new Date(val);
+                filteredOrders = allOrders.filter(o => {
+                    const od = new Date(o.createdAt);
+                    return od.getDate() === d.getDate() && od.getMonth() === d.getMonth() && od.getFullYear() === d.getFullYear();
+                });
+                titleStr = `BÁO CÁO TÀI CHÍNH NGÀY`;
+                subtitleStr = `(Ngày ${d.getDate()} tháng ${d.getMonth() + 1} năm ${d.getFullYear()})`;
+            } else if (type === 'month') {
+                const val = document.getElementById('reportMonth').value;
+                if (!val) return '<h3 style="color:#000; text-align:center; padding: 2rem;">Vui lòng chọn tháng hợp lệ</h3>';
+                const [year, month] = val.split('-').map(Number);
+                filteredOrders = allOrders.filter(o => {
+                    const od = new Date(o.createdAt);
+                    return od.getMonth() === (month - 1) && od.getFullYear() === year;
+                });
+                titleStr = `BÁO CÁO TÀI CHÍNH THÁNG`;
+                subtitleStr = `(Tháng ${month} năm ${year})`;
+            } else if (type === 'year') {
+                const year = Number(document.getElementById('reportYear').value);
+                filteredOrders = allOrders.filter(o => {
+                    const od = new Date(o.createdAt);
+                    return od.getFullYear() === year;
+                });
+                titleStr = `BÁO CÁO TÀI CHÍNH NĂM`;
+                subtitleStr = `(Năm ${year})`;
+            }
+
+            const totalRev = filteredOrders.reduce((sum, o) => sum + (o.totalAmount || 0), 0);
+            const completedCount = filteredOrders.length;
+            const avgVal = completedCount > 0 ? totalRev / completedCount : 0;
+
+            let maxOrder = null;
+            let minOrder = null;
+            if (completedCount > 0) {
+                maxOrder = filteredOrders.reduce((max, o) => o.totalAmount > max.totalAmount ? o : max, filteredOrders[0]);
+                minOrder = filteredOrders.reduce((min, o) => o.totalAmount < min.totalAmount ? o : min, filteredOrders[0]);
+            }
 
             const now = new Date();
-            const month = now.getMonth() + 1;
-            const year = now.getFullYear();
-            const dateStr = `${now.getDate()} tháng ${month} năm ${year}`;
+            const dateStr = `${now.getDate()} tháng ${now.getMonth() + 1} năm ${now.getFullYear()}`;
 
-            const container = document.createElement('div');
-            container.style.padding = '30px 40px';
-            container.style.color = '#000';
-            container.style.backgroundColor = '#fff';
-            container.style.fontFamily = '"Times New Roman", Times, serif';
-            container.style.fontSize = '14px';
-            container.style.lineHeight = '1.5';
-
-            container.innerHTML = `
-                <div style="display: flex; justify-content: space-between; margin-bottom: 30px;">
-                    <div style="text-align: center; width: 45%;">
-                        <div style="font-weight: bold; text-transform: uppercase; font-size: 13pt;">CÔNG TY TNHH AN LUXURY</div>
-                        <div style="font-weight: bold; text-transform: uppercase; font-size: 13pt;">BAN TÀI CHÍNH</div>
-                        <div style="border-top: 1px solid #000; width: 100px; margin: 5px auto;"></div>
-                        <div style="margin-top: 10px; font-size: 13pt;">Số: ${month}/${year}/BC-ALUX</div>
-                    </div>
-                    <div style="text-align: center; width: 50%;">
-                        <div style="font-weight: bold; text-transform: uppercase; font-size: 12pt;">CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM</div>
-                        <div style="font-weight: bold; font-size: 13pt;">Độc lập - Tự do - Hạnh phúc</div>
-                        <div style="border-top: 1px solid #000; width: 160px; margin: 5px auto; text-decoration: underline;"></div>
-                        <div style="font-style: italic; margin-top: 15px; font-size: 13pt;">Hà Nội, ngày ${dateStr}</div>
-                    </div>
-                </div>
-
-                <div style="text-align: center; margin-bottom: 40px; margin-top: 30px;">
-                    <div style="font-weight: bold; font-size: 16pt; text-transform: uppercase;">BÁO CÁO TÀI CHÍNH</div>
-                    <div style="font-style: italic; font-size: 13pt;">(Tháng ${month} năm ${year})</div>
-                </div>
-
-                <div style="margin-bottom: 25px; font-size: 13pt;">
-                    <p><strong>Kính gửi:</strong> Hội đồng Quản trị Công ty AN LUXURY</p>
-                    <p style="text-indent: 30px;">Căn cứ vào tình hình kinh doanh thực tế, Ban Tài chính xin báo cáo kết quả hoạt động tài chính tháng ${month}/${year} như sau:</p>
-                </div>
-
-                <div style="margin-bottom: 30px; font-size: 13pt;">
-                    <p><strong>1. Các chỉ số chính:</strong></p>
-                    <table style="width: 100%; border-collapse: collapse; margin-top: 10px;">
-                        <tr>
-                            <td style="border: 1px solid #000; padding: 10px; width: 60%;">Tổng doanh thu:</td>
-                            <td style="border: 1px solid #000; padding: 10px; font-weight: bold; text-align: right;">${reportData.totalRevenue.toLocaleString('vi-VN')} ₫</td>
-                        </tr>
-                        <tr>
-                            <td style="border: 1px solid #000; padding: 10px;">Số lượng đơn hàng hoàn thành:</td>
-                            <td style="border: 1px solid #000; padding: 10px; font-weight: bold; text-align: right;">${reportData.completedOrders} đơn</td>
-                        </tr>
-                        <tr>
-                            <td style="border: 1px solid #000; padding: 10px;">Giá trị đơn hàng trung bình:</td>
-                            <td style="border: 1px solid #000; padding: 10px; font-weight: bold; text-align: right;">${Math.round(reportData.avgValue).toLocaleString('vi-VN')} ₫</td>
-                        </tr>
-                    </table>
-                </div>
-
-                <div style="margin-bottom: 30px; font-size: 13pt;">
-                    <p><strong>2. Danh sách các giao dịch tiêu biểu:</strong></p>
-                    <table style="width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 11pt;">
-                        <thead>
-                            <tr style="background-color: #f2f2f2;">
-                                <th style="border: 1px solid #000; padding: 8px;">Mã ĐH</th>
-                                <th style="border: 1px solid #000; padding: 8px;">Khách hàng</th>
-                                <th style="border: 1px solid #000; padding: 8px;">Ngày</th>
-                                <th style="border: 1px solid #000; padding: 8px;">Thanh toán</th>
-                                <th style="border: 1px solid #000; padding: 8px;">Tổng tiền</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            ${reportData.orders.slice(0, 12).map(o => `
-                                <tr>
-                                    <td style="border: 1px solid #000; padding: 8px; text-align: center;">#${o._id.slice(-6).toUpperCase()}</td>
-                                    <td style="border: 1px solid #000; padding: 8px;">${o.customerName || 'Khách lẻ'}</td>
-                                    <td style="border: 1px solid #000; padding: 8px; text-align: center;">${new Date(o.createdAt).toLocaleDateString('vi-VN')}</td>
-                                    <td style="border: 1px solid #000; padding: 8px; text-align: center;">${o.paymentMethod.toUpperCase()}</td>
-                                    <td style="border: 1px solid #000; padding: 8px; text-align: right; font-weight: bold;">${o.totalAmount.toLocaleString('vi-VN')} ₫</td>
-                                </tr>
-                            `).join('')}
-                        </tbody>
-                    </table>
-                </div>
-
-                <div style="margin-top: 60px; display: grid; grid-template-columns: 1fr 1fr 1.5fr; text-align: center; font-size: 13pt;">
-                    <div>
-                        <div style="font-weight: bold; text-transform: uppercase;">NGƯỜI LẬP BIỂU</div>
-                        <div style="font-style: italic; font-size: 11pt; margin-bottom: 80px;">(Ký, ghi rõ họ tên)</div>
-                        <div style="font-weight: bold;">${userInfo.fullName}</div>
-                    </div>
-                    <div>
-                        <div style="font-weight: bold; text-transform: uppercase;">TRƯỞNG BAN TÀI CHÍNH</div>
-                        <div style="font-style: italic; font-size: 11pt; margin-bottom: 80px;">(Ký, ghi rõ họ tên)</div>
-                        <div style="font-weight: bold;">..................................</div>
-                    </div>
-                    <div style="position: relative;">
-                        <div style="font-weight: bold; text-transform: uppercase;">TM. HỘI ĐỒNG QUẢN TRỊ<br>GIÁM ĐỐC ĐIỀU HÀNH</div>
-                        <div style="font-style: italic; font-size: 11pt; margin-bottom: 10px;">(Ký, đóng dấu)</div>
-                        
-                        <!-- Red Stamp Simulation -->
-                        <div style="position: absolute; top: 40px; left: 50%; transform: translateX(-70%) rotate(-15deg); width: 130px; height: 130px; border: 3px solid rgba(220, 0, 0, 0.7); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: rgba(220, 0, 0, 0.7); text-align: center; font-weight: bold; padding: 5px; pointer-events: none; z-index: 1;">
-                            <div style="font-size: 9pt; line-height: 1.2;">
-                                CÔNG TY TNHH<br>
-                                <div style="font-size: 13pt; border-top: 1px solid rgba(220, 0, 0, 0.7); border-bottom: 1px solid rgba(220, 0, 0, 0.7); margin: 3px 0; padding: 2px 0;">AN LUXURY</div>
-                                M.S.D.N: 0366363636<br>
-                                TP. HÀ NỘI
+            let maxMinSection = '';
+            if (completedCount > 0) {
+                maxMinSection = `
+                    <div style="margin-bottom: 25px; font-size: 11pt;">
+                        <p style="font-weight: bold; margin-bottom: 8px; border-bottom: 1.5px solid #000; padding-bottom: 3px; text-transform: uppercase;">MỤC II: GIAO DỊCH TIÊU BIỂU CÓ GIÁ TRỊ LỚN NHẤT & NHỎ NHẤT</p>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 8px;">
+                            <div style="border: 1px solid #000; padding: 10px; border-radius: 4px; background-color: #fff9e6;">
+                                <div style="font-weight: bold; color: #b69119; text-transform: uppercase; margin-bottom: 6px; font-size: 10.5pt;">👑 Đơn hàng lớn nhất</div>
+                                <div style="margin-bottom: 3px;"><strong>Mã đơn:</strong> #TX-${maxOrder._id.slice(-6).toUpperCase()}</div>
+                                <div style="margin-bottom: 3px;"><strong>Khách hàng:</strong> ${maxOrder.customerName || 'Khách lẻ'}</div>
+                                <div style="margin-bottom: 3px;"><strong>Ngày đặt:</strong> ${new Date(maxOrder.createdAt).toLocaleDateString('vi-VN')}</div>
+                                <div style="margin-bottom: 3px;"><strong>Thanh toán:</strong> ${maxOrder.paymentMethod.toUpperCase()}</div>
+                                <div style="font-size: 12pt; font-weight: bold; color: #e74c3c; margin-top: 6px;">Trị giá: ${maxOrder.totalAmount.toLocaleString('vi-VN')} ₫</div>
+                            </div>
+                            <div style="border: 1px solid #000; padding: 10px; border-radius: 4px; background-color: #f9f9f9;">
+                                <div style="font-weight: bold; color: #555; text-transform: uppercase; margin-bottom: 6px; font-size: 10.5pt;">💎 Đơn hàng nhỏ nhất</div>
+                                <div style="margin-bottom: 3px;"><strong>Mã đơn:</strong> #TX-${minOrder._id.slice(-6).toUpperCase()}</div>
+                                <div style="margin-bottom: 3px;"><strong>Khách hàng:</strong> ${minOrder.customerName || 'Khách lẻ'}</div>
+                                <div style="margin-bottom: 3px;"><strong>Ngày đặt:</strong> ${new Date(minOrder.createdAt).toLocaleDateString('vi-VN')}</div>
+                                <div style="margin-bottom: 3px;"><strong>Thanh toán:</strong> ${minOrder.paymentMethod.toUpperCase()}</div>
+                                <div style="font-size: 12pt; font-weight: bold; color: #27ae60; margin-top: 6px;">Trị giá: ${minOrder.totalAmount.toLocaleString('vi-VN')} ₫</div>
                             </div>
                         </div>
+                    </div>
+                `;
+            } else {
+                maxMinSection = `
+                    <div style="margin-bottom: 25px; font-size: 11pt;">
+                        <p style="font-weight: bold; margin-bottom: 8px; border-bottom: 1.5px solid #000; padding-bottom: 3px; text-transform: uppercase;">MỤC II: GIAO DỊCH TIÊU BIỂU CÓ GIÁ TRỊ LỚN NHẤT & NHỎ NHẤT</p>
+                        <p style="font-style: italic; color: #666; text-align: center; padding: 10px; border: 1px dashed #ccc;">Không có giao dịch nào phát sinh.</p>
+                    </div>
+                `;
+            }
 
-                        <!-- Signature Image -->
-                        <div style="margin-bottom: 10px; position: relative; z-index: 2;">
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/d/d0/Signature_of_Zuzana_Caputova.svg" alt="Signature" style="height: 60px; filter: contrast(0.5) sepia(1) hue-rotate(-50deg) saturate(5);">
+            let listSection = '';
+            if (completedCount > 0) {
+                listSection = `
+                    <div style="margin-bottom: 25px; font-size: 11pt;">
+                        <p style="font-weight: bold; margin-bottom: 8px; border-bottom: 1.5px solid #000; padding-bottom: 3px; text-transform: uppercase;">MỤC III: DANH SÁCH CHI TIẾT CÁC GIAO DỊCH PHÁT SINH</p>
+                        <table style="width: 100%; border-collapse: collapse; margin-top: 8px; font-size: 10pt;">
+                            <thead>
+                                <tr style="background-color: #f2f2f2;">
+                                    <th style="border: 1px solid #000; padding: 6px; text-align: center;">Mã ĐH</th>
+                                    <th style="border: 1px solid #000; padding: 6px; text-align: left;">Khách hàng</th>
+                                    <th style="border: 1px solid #000; padding: 6px; text-align: center;">Ngày</th>
+                                    <th style="border: 1px solid #000; padding: 6px; text-align: center;">Phương thức</th>
+                                    <th style="border: 1px solid #000; padding: 6px; text-align: right;">Tổng tiền</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                ${filteredOrders.slice(0, 15).map(o => `
+                                    <tr>
+                                        <td style="border: 1px solid #000; padding: 6px; text-align: center;">#${o._id.slice(-6).toUpperCase()}</td>
+                                        <td style="border: 1px solid #000; padding: 6px;">${o.customerName || 'Khách lẻ'}</td>
+                                        <td style="border: 1px solid #000; padding: 6px; text-align: center;">${new Date(o.createdAt).toLocaleDateString('vi-VN')}</td>
+                                        <td style="border: 1px solid #000; padding: 6px; text-align: center;">${o.paymentMethod.toUpperCase()}</td>
+                                        <td style="border: 1px solid #000; padding: 6px; text-align: right; font-weight: bold;">${o.totalAmount.toLocaleString('vi-VN')} ₫</td>
+                                    </tr>
+                                `).join('')}
+                                ${filteredOrders.length > 15 ? `
+                                    <tr>
+                                        <td colspan="5" style="border: 1px solid #000; padding: 6px; text-align: center; font-style: italic; color: #666;">
+                                            Và ${filteredOrders.length - 15} giao dịch khác trong kỳ báo cáo...
+                                        </td>
+                                    </tr>
+                                ` : ''}
+                            </tbody>
+                        </table>
+                    </div>
+                `;
+            } else {
+                listSection = `
+                    <div style="margin-bottom: 25px; font-size: 11pt;">
+                        <p style="font-weight: bold; margin-bottom: 8px; border-bottom: 1.5px solid #000; padding-bottom: 3px; text-transform: uppercase;">MỤC III: DANH SÁCH CHI TIẾT CÁC GIAO DỊCH PHÁT SINH</p>
+                        <p style="font-style: italic; color: #666; text-align: center; padding: 15px; border: 1px dashed #ccc;">Không phát sinh giao dịch nào.</p>
+                    </div>
+                `;
+            }
+
+            return `
+                <div style="font-family: 'Times New Roman', Times, serif; color: #000; background-color: #fff; line-height: 1.4; font-size: 12pt; padding: 10px 15px;">
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 20px;">
+                        <div style="text-align: center; width: 45%;">
+                            <div style="font-weight: bold; text-transform: uppercase; font-size: 10pt;">CÔNG TY TNHH AN LUXURY</div>
+                            <div style="font-weight: bold; text-transform: uppercase; font-size: 10pt;">BAN TÀI CHÍNH</div>
+                            <div style="border-top: 1px solid #000; width: 80px; margin: 3px auto;"></div>
+                            <div style="margin-top: 3px; font-size: 10pt;">Số: BC-ALUX/${now.getFullYear()}</div>
                         </div>
-                        
-                        <div style="font-weight: bold; font-size: 14pt;">Nguyễn Trường An</div>
+                        <div style="text-align: center; width: 50%;">
+                            <div style="font-weight: bold; text-transform: uppercase; font-size: 10pt;">CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM</div>
+                            <div style="font-weight: bold; font-size: 10pt;">Độc lập - Tự do - Hạnh phúc</div>
+                            <div style="border-top: 1px solid #000; width: 130px; margin: 3px auto;"></div>
+                            <div style="font-style: italic; margin-top: 8px; font-size: 10pt;">Hà Nội, ngày ${dateStr}</div>
+                        </div>
+                    </div>
+
+                    <div style="text-align: center; margin-bottom: 25px; margin-top: 15px;">
+                        <div style="font-weight: bold; font-size: 14pt; text-transform: uppercase;">${titleStr}</div>
+                        <div style="font-style: italic; font-size: 11pt;">${subtitleStr}</div>
+                    </div>
+
+                    <div style="margin-bottom: 18px; font-size: 11pt;">
+                        <p><strong>Kính gửi:</strong> Hội đồng Quản trị Công ty AN LUXURY</p>
+                        <p style="text-indent: 20px; margin-top: 5px;">Căn cứ vào tình hình hoạt động của công ty, Ban Tài chính kính gửi đến Hội đồng Quản trị số liệu kinh doanh chi tiết trong kỳ:</p>
+                    </div>
+
+                    <div style="margin-bottom: 25px; font-size: 11pt;">
+                        <p style="font-weight: bold; margin-bottom: 8px; border-bottom: 1.5px solid #000; padding-bottom: 3px; text-transform: uppercase;">MỤC I: CHỈ TIÊU KINH DOANH CHỦ CHỐT</p>
+                        <table style="width: 100%; border-collapse: collapse; margin-top: 8px; font-size: 11pt;">
+                            <tr>
+                                <td style="border: 1px solid #000; padding: 8px; width: 60%;">Tổng doanh thu kỳ này:</td>
+                                <td style="border: 1px solid #000; padding: 8px; font-weight: bold; text-align: right;">${totalRev.toLocaleString('vi-VN')} ₫</td>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid #000; padding: 8px;">Số lượng đơn hàng thành công:</td>
+                                <td style="border: 1px solid #000; padding: 8px; font-weight: bold; text-align: right;">${completedCount} đơn</td>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid #000; padding: 8px;">Đơn hàng trung bình đạt:</td>
+                                <td style="border: 1px solid #000; padding: 8px; font-weight: bold; text-align: right;">${Math.round(avgVal).toLocaleString('vi-VN')} ₫</td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    ${maxMinSection}
+
+                    ${listSection}
+
+                    <div style="margin-top: 35px; display: grid; grid-template-columns: 1fr 1fr 1.5fr; text-align: center; font-size: 11pt;">
+                        <div>
+                            <div style="font-weight: bold; text-transform: uppercase;">NGƯỜI LẬP BIỂU</div>
+                            <div style="font-style: italic; font-size: 9pt; margin-bottom: 50px;">(Ký, ghi rõ họ tên)</div>
+                            <div style="font-weight: bold;">${userInfo.fullName}</div>
+                        </div>
+                        <div>
+                            <div style="font-weight: bold; text-transform: uppercase;">TRƯỞNG BAN TÀI CHÍNH</div>
+                            <div style="font-style: italic; font-size: 9pt; margin-bottom: 50px;">(Ký, ghi rõ họ tên)</div>
+                            <div style="font-weight: bold;">..................................</div>
+                        </div>
+                        <div style="position: relative;">
+                            <div style="font-weight: bold; text-transform: uppercase;">TM. HỘI ĐỒNG QUẢN TRỊ<br>GIÁM ĐỐC ĐIỀU HÀNH</div>
+                            <div style="font-style: italic; font-size: 9pt; margin-bottom: 3px;">(Ký, đóng dấu)</div>
+                            
+                            <!-- Red Stamp Simulation -->
+                            <div style="position: absolute; top: 30px; left: 50%; transform: translateX(-70%) rotate(-15deg); width: 90px; height: 90px; border: 2.5px solid rgba(220, 0, 0, 0.7); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: rgba(220, 0, 0, 0.7); text-align: center; font-weight: bold; padding: 3px; pointer-events: none; z-index: 1;">
+                                <div style="font-size: 6.5pt; line-height: 1.1;">
+                                    CÔNG TY TNHH<br>
+                                    <div style="font-size: 9pt; border-top: 1px solid rgba(220, 0, 0, 0.7); border-bottom: 1px solid rgba(220, 0, 0, 0.7); margin: 2px 0; padding: 1px 0;">AN LUXURY</div>
+                                    M.S.D.N: 0366363636<br>
+                                    TP. HÀ NỘI
+                                </div>
+                            </div>
+
+                            <!-- Signature Image -->
+                            <div style="margin-bottom: 3px; position: relative; z-index: 2;">
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/d/d0/Signature_of_Zuzana_Caputova.svg" alt="Signature" style="height: 40px; filter: contrast(0.5) sepia(1) hue-rotate(-50deg) saturate(5);">
+                            </div>
+                            
+                            <div style="font-weight: bold; font-size: 11pt;">Nguyễn Trường An</div>
+                        </div>
                     </div>
                 </div>
             `;
+        }
 
+        function generateReportPreview() {
+            const html = generateReportHTML();
+            document.getElementById('pdfPreviewContainer').innerHTML = html;
+        }
+
+        async function downloadReportPDF() {
+            const type = document.getElementById('reportType').value;
+            let timeLabel = '';
+            if (type === 'day') {
+                timeLabel = document.getElementById('reportDate').value;
+            } else if (type === 'month') {
+                timeLabel = document.getElementById('reportMonth').value;
+            } else if (type === 'year') {
+                timeLabel = document.getElementById('reportYear').value;
+            }
+
+            const element = document.getElementById('pdfPreviewContainer');
             const opt = {
-                margin: [20, 30, 20, 15], // top, left, bottom, right (decree 30 style)
-                filename: `Bao-Cao-Tai-Chinh-Thang-${month}-${year}.pdf`,
+                margin: [15, 20, 15, 15],
+                filename: `Bao-Cao-Tai-Chinh-${type.toUpperCase()}-${timeLabel}.pdf`,
                 image: { type: 'jpeg', quality: 0.98 },
-                html2canvas: { scale: 2, useCORS: true },
+                html2canvas: { scale: 2.5, useCORS: true },
                 jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
             };
 
-            // Convert and save
-            html2pdf().set(opt).from(container).save();
+            html2pdf().set(opt).from(element).save();
         }
 
         document.addEventListener('DOMContentLoaded', () => {
