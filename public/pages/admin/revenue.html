@@ -540,31 +540,49 @@
             if (completedCount > 0) {
                 maxMinSection = `
                     <div style="margin-bottom: 25px; font-size: 11pt;">
-                        <p style="font-weight: bold; margin-bottom: 8px; border-bottom: 1.5px solid #000; padding-bottom: 3px; text-transform: uppercase;">MỤC II: GIAO DỊCH TIÊU BIỂU CÓ GIÁ TRỊ LỚN NHẤT & NHỎ NHẤT</p>
-                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 8px;">
-                            <div style="border: 1px solid #000; padding: 10px; border-radius: 4px; background-color: #fff9e6;">
-                                <div style="font-weight: bold; color: #b69119; text-transform: uppercase; margin-bottom: 6px; font-size: 10.5pt;">👑 Đơn hàng lớn nhất</div>
-                                <div style="margin-bottom: 3px;"><strong>Mã đơn:</strong> #TX-${maxOrder._id.slice(-6).toUpperCase()}</div>
-                                <div style="margin-bottom: 3px;"><strong>Khách hàng:</strong> ${maxOrder.customerName || 'Khách lẻ'}</div>
-                                <div style="margin-bottom: 3px;"><strong>Ngày đặt:</strong> ${new Date(maxOrder.createdAt).toLocaleDateString('vi-VN')}</div>
-                                <div style="margin-bottom: 3px;"><strong>Thanh toán:</strong> ${maxOrder.paymentMethod.toUpperCase()}</div>
-                                <div style="font-size: 12pt; font-weight: bold; color: #e74c3c; margin-top: 6px;">Trị giá: ${maxOrder.totalAmount.toLocaleString('vi-VN')} ₫</div>
-                            </div>
-                            <div style="border: 1px solid #000; padding: 10px; border-radius: 4px; background-color: #f9f9f9;">
-                                <div style="font-weight: bold; color: #555; text-transform: uppercase; margin-bottom: 6px; font-size: 10.5pt;">💎 Đơn hàng nhỏ nhất</div>
-                                <div style="margin-bottom: 3px;"><strong>Mã đơn:</strong> #TX-${minOrder._id.slice(-6).toUpperCase()}</div>
-                                <div style="margin-bottom: 3px;"><strong>Khách hàng:</strong> ${minOrder.customerName || 'Khách lẻ'}</div>
-                                <div style="margin-bottom: 3px;"><strong>Ngày đặt:</strong> ${new Date(minOrder.createdAt).toLocaleDateString('vi-VN')}</div>
-                                <div style="margin-bottom: 3px;"><strong>Thanh toán:</strong> ${minOrder.paymentMethod.toUpperCase()}</div>
-                                <div style="font-size: 12pt; font-weight: bold; color: #27ae60; margin-top: 6px;">Trị giá: ${minOrder.totalAmount.toLocaleString('vi-VN')} ₫</div>
-                            </div>
-                        </div>
+                        <p style="font-weight: bold; margin-bottom: 8px; border-bottom: 1px solid #000; padding-bottom: 3px; text-transform: uppercase;">MỤC II: ĐƠN HÀNG TIÊU BIỂU CÓ GIÁ TRỊ LỚN NHẤT VÀ NHỎ NHẤT</p>
+                        <table style="width: 100%; border-collapse: collapse; margin-top: 8px; font-size: 10.5pt;">
+                            <thead>
+                                <tr style="background-color: #f2f2f2;">
+                                    <th style="border: 1px solid #000; padding: 8px; text-align: center; width: 25%;">Tiêu chí</th>
+                                    <th style="border: 1px solid #000; padding: 8px; text-align: left; width: 37.5%;">Đơn hàng có giá trị lớn nhất</th>
+                                    <th style="border: 1px solid #000; padding: 8px; text-align: left; width: 37.5%;">Đơn hàng có giá trị nhỏ nhất</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td style="border: 1px solid #000; padding: 8px; font-weight: bold; text-align: center;">Mã đơn hàng</td>
+                                    <td style="border: 1px solid #000; padding: 8px; font-weight: bold; text-align: left;">#TX-${maxOrder._id.slice(-6).toUpperCase()}</td>
+                                    <td style="border: 1px solid #000; padding: 8px; font-weight: bold; text-align: left;">#TX-${minOrder._id.slice(-6).toUpperCase()}</td>
+                                </tr>
+                                <tr>
+                                    <td style="border: 1px solid #000; padding: 8px; text-align: center;">Khách hàng</td>
+                                    <td style="border: 1px solid #000; padding: 8px; text-align: left;">${maxOrder.customerName || 'Khách lẻ'}</td>
+                                    <td style="border: 1px solid #000; padding: 8px; text-align: left;">${minOrder.customerName || 'Khách lẻ'}</td>
+                                </tr>
+                                <tr>
+                                    <td style="border: 1px solid #000; padding: 8px; text-align: center;">Ngày phát sinh</td>
+                                    <td style="border: 1px solid #000; padding: 8px; text-align: left;">${new Date(maxOrder.createdAt).toLocaleDateString('vi-VN')}</td>
+                                    <td style="border: 1px solid #000; padding: 8px; text-align: left;">${new Date(minOrder.createdAt).toLocaleDateString('vi-VN')}</td>
+                                </tr>
+                                <tr>
+                                    <td style="border: 1px solid #000; padding: 8px; text-align: center;">Phương thức</td>
+                                    <td style="border: 1px solid #000; padding: 8px; text-align: left;">${maxOrder.paymentMethod.toUpperCase()}</td>
+                                    <td style="border: 1px solid #000; padding: 8px; text-align: left;">${minOrder.paymentMethod.toUpperCase()}</td>
+                                </tr>
+                                <tr>
+                                    <td style="border: 1px solid #000; padding: 8px; font-weight: bold; text-align: center;">Tổng trị giá</td>
+                                    <td style="border: 1px solid #000; padding: 8px; font-weight: bold; text-align: left; font-size: 11pt;">${maxOrder.totalAmount.toLocaleString('vi-VN')} ₫</td>
+                                    <td style="border: 1px solid #000; padding: 8px; font-weight: bold; text-align: left; font-size: 11pt;">${minOrder.totalAmount.toLocaleString('vi-VN')} ₫</td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                 `;
             } else {
                 maxMinSection = `
                     <div style="margin-bottom: 25px; font-size: 11pt;">
-                        <p style="font-weight: bold; margin-bottom: 8px; border-bottom: 1.5px solid #000; padding-bottom: 3px; text-transform: uppercase;">MỤC II: GIAO DỊCH TIÊU BIỂU CÓ GIÁ TRỊ LỚN NHẤT & NHỎ NHẤT</p>
+                        <p style="font-weight: bold; margin-bottom: 8px; border-bottom: 1.5px solid #000; padding-bottom: 3px; text-transform: uppercase;">MỤC II: ĐƠN HÀNG TIÊU BIỂU CÓ GIÁ TRỊ LỚN NHẤT VÀ NHỎ NHẤT</p>
                         <p style="font-style: italic; color: #666; text-align: center; padding: 10px; border: 1px dashed #ccc;">Không có giao dịch nào phát sinh.</p>
                     </div>
                 `;
