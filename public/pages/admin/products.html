@@ -188,12 +188,19 @@
                 <div class="card-header" style="border-bottom: none; padding-bottom: 0;">
                     <div style="display: flex; gap: 1rem; width: 100%;">
                         <input type="text" id="searchProduct" class="form-control-admin" placeholder="Tìm kiếm theo tên sản phẩm..." style="flex: 2;">
-                        <select id="filterCategory" class="form-control-admin" style="flex: 1;">
+                        <select id="filterCategory" class="form-control-admin" style="flex: 1;" onchange="loadProducts()">
                             <option value="">Tất cả danh mục</option>
                             <option value="nhan">Nhẫn</option>
                             <option value="day-chuyen">Dây chuyền</option>
                             <option value="bong-tai">Bông tai</option>
                             <option value="vong-tay">Vòng tay</option>
+                        </select>
+                        <select id="filterStock" class="form-control-admin" style="flex: 1;" onchange="loadProducts()">
+                            <option value="">Tất cả tồn kho</option>
+                            <option value="critical">Hết / Sắp hết (≤ 2)</option>
+                            <option value="out">Hết hàng (0)</option>
+                            <option value="low">Sắp hết hàng (1-2)</option>
+                            <option value="normal">Còn hàng dồi dào (> 2)</option>
                         </select>
                         <button class="btn-admin btn-primary" onclick="loadProducts()"><i class="fa-solid fa-magnifying-glass"></i></button>
                     </div>
@@ -373,11 +380,40 @@
             const tbody = document.getElementById('productTableBody');
             const searchTerm = document.getElementById('searchProduct').value.toLowerCase();
             const categoryFilter = document.getElementById('filterCategory').value;
+            const stockFilter = document.getElementById('filterStock') ? document.getElementById('filterStock').value : '';
 
-            const filtered = products.filter(p => {
+            // 1. Sort: Out of stock (0) and low stock (<= 2) first
+            const sortedProducts = [...products].sort((a, b) => {
+                const aLow = (a.stock <= 2) ? 1 : 0;
+                const bLow = (b.stock <= 2) ? 1 : 0;
+                if (aLow !== bLow) {
+                    return bLow - aLow; // 1 comes before 0
+                }
+                // Within the same stock category (both low or both normal), sort by stock level ascending
+                if (aLow === 1) {
+                    return a.stock - b.stock; // 0 first, then 1, then 2
+                }
+                // Otherwise, sort by creation date descending
+                return new Date(b.createdAt) - new Date(a.createdAt);
+            });
+
+            // 2. Filter based on UI selections
+            const filtered = sortedProducts.filter(p => {
                 const matchesSearch = p.name.toLowerCase().includes(searchTerm);
                 const matchesCategory = !categoryFilter || p.category === categoryFilter;
-                return matchesSearch && matchesCategory;
+                
+                let matchesStock = true;
+                if (stockFilter === 'critical') {
+                    matchesStock = p.stock <= 2;
+                } else if (stockFilter === 'out') {
+                    matchesStock = p.stock <= 0;
+                } else if (stockFilter === 'low') {
+                    matchesStock = p.stock > 0 && p.stock <= 2;
+                } else if (stockFilter === 'normal') {
+                    matchesStock = p.stock > 2;
+                }
+                
+                return matchesSearch && matchesCategory && matchesStock;
             });
 
             // Low stock warning banner
@@ -409,7 +445,7 @@
             }
 
             if (filtered.length === 0) {
-                tbody.innerHTML = '<tr><td colspan="6" style="text-align: center; padding: 3rem;">Không tìm thấy sản phẩm nào</td></tr>';
+                tbody.innerHTML = '<tr><td colspan="7" style="text-align: center; padding: 3rem;">Không tìm thấy sản phẩm nào</td></tr>';
                 return;
             }
 
