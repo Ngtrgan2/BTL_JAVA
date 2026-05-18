@@ -557,8 +557,8 @@
                                 </tr>
                                 <tr>
                                     <td style="border: 1px solid #000; padding: 8px; text-align: center;">Khách hàng</td>
-                                    <td style="border: 1px solid #000; padding: 8px; text-align: left;">${maxOrder.customerName || 'Khách lẻ'}</td>
-                                    <td style="border: 1px solid #000; padding: 8px; text-align: left;">${minOrder.customerName || 'Khách lẻ'}</td>
+                                    <td style="border: 1px solid #000; padding: 8px; text-align: left;">${maxOrder.customerName || (maxOrder.address ? maxOrder.address.split(',')[0] : 'Khách lẻ')}</td>
+                                    <td style="border: 1px solid #000; padding: 8px; text-align: left;">${minOrder.customerName || (minOrder.address ? minOrder.address.split(',')[0] : 'Khách lẻ')}</td>
                                 </tr>
                                 <tr>
                                     <td style="border: 1px solid #000; padding: 8px; text-align: center;">Ngày phát sinh</td>
@@ -582,12 +582,12 @@
             } else {
                 maxMinSection = `
                     <div style="margin-bottom: 25px; font-size: 11pt;">
-                        <p style="font-weight: bold; margin-bottom: 8px; border-bottom: 1.5px solid #000; padding-bottom: 3px; text-transform: uppercase;">MỤC II: ĐƠN HÀNG TIÊU BIỂU CÓ GIÁ TRỊ LỚN NHẤT VÀ NHỎ NHẤT</p>
+                        <p style="font-weight: bold; margin-bottom: 8px; border-bottom: 1px solid #000; padding-bottom: 3px; text-transform: uppercase;">MỤC II: ĐƠN HÀNG TIÊU BIỂU CÓ GIÁ TRỊ LỚN NHẤT VÀ NHỎ NHẤT</p>
                         <p style="font-style: italic; color: #666; text-align: center; padding: 10px; border: 1px dashed #ccc;">Không có giao dịch nào phát sinh.</p>
                     </div>
                 `;
             }
-
+ 
             let listSection = '';
             if (completedCount > 0) {
                 listSection = `
@@ -606,8 +606,8 @@
                             <tbody>
                                 ${filteredOrders.slice(0, 15).map(o => `
                                     <tr>
-                                        <td style="border: 1px solid #000; padding: 6px; text-align: center;">#${o._id.slice(-6).toUpperCase()}</td>
-                                        <td style="border: 1px solid #000; padding: 6px;">${o.customerName || 'Khách lẻ'}</td>
+                                        <td style="border: 1px solid #000; padding: 6px; text-align: center;">#TX-${o._id.slice(-6).toUpperCase()}</td>
+                                        <td style="border: 1px solid #000; padding: 6px;">${o.customerName || (o.address ? o.address.split(',')[0] : 'Khách lẻ')}</td>
                                         <td style="border: 1px solid #000; padding: 6px; text-align: center;">${new Date(o.createdAt).toLocaleDateString('vi-VN')}</td>
                                         <td style="border: 1px solid #000; padding: 6px; text-align: center;">${o.paymentMethod.toUpperCase()}</td>
                                         <td style="border: 1px solid #000; padding: 6px; text-align: right; font-weight: bold;">${o.totalAmount.toLocaleString('vi-VN')} ₫</td>
