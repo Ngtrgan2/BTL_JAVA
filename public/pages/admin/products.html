@@ -126,6 +126,47 @@
                 </button>
             </div>
 
+            <!-- Thống kê sản phẩm -->
+            <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; margin-bottom: 1.5rem;">
+                <div class="admin-card" style="padding: 1.5rem; border-left: 4px solid var(--admin-accent, #8e44ad); display: flex; flex-direction: column; justify-content: center;">
+                    <div style="font-size: 0.85rem; color: var(--admin-text-light); margin-bottom: 0.5rem; text-transform: uppercase; font-weight: 600;">Tổng giá trị kho</div>
+                    <div style="font-size: 1.5rem; font-weight: 700; color: #fff;" id="statTotalValue">0 ₫</div>
+                </div>
+                <div class="admin-card" style="padding: 1.5rem; border-left: 4px solid var(--status-success, #2ecc71); display: flex; flex-direction: column; justify-content: center;">
+                    <div style="font-size: 0.85rem; color: var(--admin-text-light); margin-bottom: 0.5rem; text-transform: uppercase; font-weight: 600;">Giá trung bình</div>
+                    <div style="font-size: 1.5rem; font-weight: 700; color: #fff;" id="statAvgPrice">0 ₫</div>
+                </div>
+                <div class="admin-card" style="padding: 1.5rem; border-left: 4px solid var(--gold-primary, #d4af37); display: flex; flex-direction: column; justify-content: center;">
+                    <div style="font-size: 0.85rem; color: var(--admin-text-light); margin-bottom: 0.5rem; text-transform: uppercase; font-weight: 600;">Giá trị lớn nhất</div>
+                    <div style="font-size: 1.5rem; font-weight: 700; color: #fff;" id="statMaxPrice">0 ₫</div>
+                </div>
+                <div class="admin-card" style="padding: 1.5rem; border-left: 4px solid var(--status-danger, #e74c3c); display: flex; flex-direction: column; justify-content: center;">
+                    <div style="font-size: 0.85rem; color: var(--admin-text-light); margin-bottom: 0.5rem; text-transform: uppercase; font-weight: 600;">Giá trị nhỏ nhất</div>
+                    <div style="font-size: 1.5rem; font-weight: 700; color: #fff;" id="statMinPrice">0 ₫</div>
+                </div>
+            </div>
+
+            <div class="admin-card" style="margin-bottom: 1.5rem;">
+                <div class="card-header" style="border-bottom: 1px solid var(--admin-border); margin-bottom: 1rem; padding-bottom: 1rem;">
+                    <h2 style="font-size: 1.1rem;"><i class="fa-solid fa-chart-line" style="margin-right: 8px; color: var(--gold-primary);"></i> Thống kê sản phẩm mới thêm</h2>
+                </div>
+                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem;">
+                    <div style="text-align: center; padding: 1.5rem; background: rgba(255,255,255,0.02); border-radius: 8px; border: 1px solid var(--admin-border);">
+                        <div style="font-size: 2.5rem; font-weight: 700; color: var(--gold-primary); margin-bottom: 0.5rem;" id="statDay">0</div>
+                        <div style="font-size: 0.9rem; color: var(--admin-text-light); text-transform: uppercase; letter-spacing: 1px;">Trong ngày</div>
+                    </div>
+                    <div style="text-align: center; padding: 1.5rem; background: rgba(255,255,255,0.02); border-radius: 8px; border: 1px solid var(--admin-border);">
+                        <div style="font-size: 2.5rem; font-weight: 700; color: var(--gold-primary); margin-bottom: 0.5rem;" id="statMonth">0</div>
+                        <div style="font-size: 0.9rem; color: var(--admin-text-light); text-transform: uppercase; letter-spacing: 1px;">Trong tháng</div>
+                    </div>
+                    <div style="text-align: center; padding: 1.5rem; background: rgba(255,255,255,0.02); border-radius: 8px; border: 1px solid var(--admin-border);">
+                        <div style="font-size: 2.5rem; font-weight: 700; color: var(--gold-primary); margin-bottom: 0.5rem;" id="statYear">0</div>
+                        <div style="font-size: 0.9rem; color: var(--admin-text-light); text-transform: uppercase; letter-spacing: 1px;">Trong năm</div>
+                    </div>
+                </div>
+            </div>
+
+
             <!-- Global Discount Bar -->
             <div class="admin-card" style="margin-bottom: 1.5rem; background: linear-gradient(90deg, rgba(212, 175, 55, 0.1), transparent);">
                 <div style="display: flex; justify-content: space-between; align-items: center; padding: 1.2rem;">
@@ -271,10 +312,61 @@
             try {
                 const products = await API.getProducts();
                 allProducts = products;
+                calculateStats(products);
                 renderProducts(products);
             } catch (error) {
                 tbody.innerHTML = '<tr><td colspan="6" style="text-align: center; color: var(--status-danger);">Lỗi tải dữ liệu</td></tr>';
             }
+        }
+
+        function calculateStats(products) {
+            let totalValue = 0;
+            let maxPrice = 0;
+            let minPrice = 0;
+            let totalPrice = 0;
+            let addedDay = 0;
+            let addedMonth = 0;
+            let addedYear = 0;
+
+            if (products && products.length > 0) {
+                maxPrice = -Infinity;
+                minPrice = Infinity;
+                const now = new Date();
+                const todayStr = now.toISOString().split('T')[0];
+                const thisMonth = now.getMonth();
+                const thisYear = now.getFullYear();
+
+                products.forEach(p => {
+                    const price = Number(p.price) || 0;
+                    const stock = Number(p.stock) || 0;
+                    
+                    totalValue += (price * stock);
+                    totalPrice += price;
+                    if (price > maxPrice) maxPrice = price;
+                    if (price < minPrice) minPrice = price;
+                    
+                    if (p.createdAt) {
+                        const date = new Date(p.createdAt);
+                        if (date.toISOString().split('T')[0] === todayStr) addedDay++;
+                        if (date.getMonth() === thisMonth && date.getFullYear() === thisYear) addedMonth++;
+                        if (date.getFullYear() === thisYear) addedYear++;
+                    }
+                });
+
+                if (maxPrice === -Infinity) maxPrice = 0;
+                if (minPrice === Infinity) minPrice = 0;
+            }
+
+            const avgPrice = (products && products.length > 0) ? (totalPrice / products.length) : 0;
+
+            document.getElementById('statTotalValue').textContent = totalValue.toLocaleString('vi-VN') + ' ₫';
+            document.getElementById('statAvgPrice').textContent = Math.round(avgPrice).toLocaleString('vi-VN') + ' ₫';
+            document.getElementById('statMaxPrice').textContent = maxPrice.toLocaleString('vi-VN') + ' ₫';
+            document.getElementById('statMinPrice').textContent = minPrice.toLocaleString('vi-VN') + ' ₫';
+            
+            document.getElementById('statDay').textContent = addedDay;
+            document.getElementById('statMonth').textContent = addedMonth;
+            document.getElementById('statYear').textContent = addedYear;
         }
 
         function renderProducts(products) {
