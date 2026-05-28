@@ -665,6 +665,8 @@ img {
   height: 28px;
   border-radius: 50%;
   object-fit: cover;
+  flex-shrink: 0;
+  aspect-ratio: 1 / 1;
   border: 1.5px solid var(--gold-primary);
   box-shadow: 0 0 10px rgba(212, 175, 55, 0.2);
 }
