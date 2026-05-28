@@ -235,7 +235,11 @@
             const confirmPassword = document.getElementById('confirmPassword').value;
 
             if (password !== confirmPassword) {
-                alert('Mật khẩu nhập lại không khớp!');
+                if (window.AnLuxuryNotification) {
+                    AnLuxuryNotification.toast('Mật khẩu nhập lại không khớp!', 'error');
+                } else {
+                    alert('Mật khẩu nhập lại không khớp!');
+                }
                 return;
             }
 
@@ -251,14 +255,26 @@
                 const data = await response.json();
 
                 if (response.ok) {
-                    alert('Đăng ký thành công! Đang chuyển hướng đến trang Đăng nhập...');
+                    if (window.AnLuxuryNotification) {
+                        await AnLuxuryNotification.alert('Đăng ký tài khoản thành công!', 'Đăng Ký', 'success');
+                    } else {
+                        alert('Đăng ký thành công! Đang chuyển hướng đến trang Đăng nhập...');
+                    }
                     window.location.href = 'login.html';
                 } else {
-                    alert(data.message || 'Có lỗi xảy ra khi đăng ký!');
+                    if (window.AnLuxuryNotification) {
+                        AnLuxuryNotification.toast(data.message || 'Có lỗi xảy ra khi đăng ký!', 'error');
+                    } else {
+                        alert(data.message || 'Có lỗi xảy ra khi đăng ký!');
+                    }
                 }
             } catch (error) {
                 console.error('Lỗi:', error);
-                alert('Lỗi kết nối đến máy chủ.');
+                if (window.AnLuxuryNotification) {
+                    AnLuxuryNotification.toast('Lỗi kết nối đến máy chủ.', 'error');
+                } else {
+                    alert('Lỗi kết nối đến máy chủ.');
+                }
             }
         });
 
@@ -278,7 +294,11 @@
                     localStorage.setItem('userInfo', JSON.stringify(data));
                     localStorage.setItem('token', data.token);
                     
-                    alert('Đăng ký/Đăng nhập Google thành công!');
+                    if (window.AnLuxuryNotification) {
+                        await AnLuxuryNotification.alert('Đăng ký/Đăng nhập Google thành công!', 'Đăng Ký Google', 'success');
+                    } else {
+                        alert('Đăng ký/Đăng nhập Google thành công!');
+                    }
                     
                     if (data.role === 'admin') {
                         window.location.href = 'admin/dashboard.html';
@@ -288,11 +308,19 @@
                         window.location.href = 'index.html';
                     }
                 } else {
-                    alert(data.message || 'Đăng ký bằng Google thất bại!');
+                    if (window.AnLuxuryNotification) {
+                        AnLuxuryNotification.toast(data.message || 'Đăng ký bằng Google thất bại!', 'error');
+                    } else {
+                        alert(data.message || 'Đăng ký bằng Google thất bại!');
+                    }
                 }
             } catch (error) {
                 console.error('Lỗi Google Auth:', error);
-                alert('Lỗi kết nối khi xác thực Google.');
+                if (window.AnLuxuryNotification) {
+                    AnLuxuryNotification.toast('Lỗi kết nối khi xác thực Google.', 'error');
+                } else {
+                    alert('Lỗi kết nối khi xác thực Google.');
+                }
             }
         }
     </script>

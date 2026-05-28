@@ -1,3 +1,12 @@
+// Load premium notification system
+(function() {
+  if (!window.AnLuxuryNotification) {
+    const script = document.createElement('script');
+    script.src = '/js/toast.js';
+    document.head.appendChild(script);
+  }
+})();
+
 // api.js - Helper Functions to fetch data from Node.js server
 const BASE_URL = '/api';
 

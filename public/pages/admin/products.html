@@ -606,7 +606,11 @@
         }
 
         async function deleteProduct(id) {
-            if (!confirm('Bạn có chắc chắn muốn xóa sản phẩm này không?')) return;
+            const isConfirmed = window.AnLuxuryNotification 
+                ? await AnLuxuryNotification.confirm('Bạn có chắc chắn muốn xóa sản phẩm này không?', 'Xác Nhận Xóa', 'warning') 
+                : confirm('Bạn có chắc chắn muốn xóa sản phẩm này không?');
+                
+            if (!isConfirmed) return;
 
             try {
                 await API.deleteProduct(id);
@@ -624,7 +628,11 @@
                 return;
             }
 
-            if (!confirm(`Bạn có chắc chắn muốn áp dụng giảm giá ${percentage}% cho TẤT CẢ sản phẩm không?`)) return;
+            const isConfirmed = window.AnLuxuryNotification 
+                ? await AnLuxuryNotification.confirm(`Bạn có chắc chắn muốn áp dụng giảm giá ${percentage}% cho TẤT CẢ sản phẩm không?`, 'Áp Dụng Giảm Giá', 'warning') 
+                : confirm(`Bạn có chắc chắn muốn áp dụng giảm giá ${percentage}% cho TẤT CẢ sản phẩm không?`);
+
+            if (!isConfirmed) return;
 
             try {
                 const res = await API.applyGlobalDiscount(percentage);
