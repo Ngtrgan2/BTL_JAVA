@@ -21,6 +21,7 @@
   --glass-bg: rgba(21, 21, 21, 0.8);
   --glass-border: rgba(255, 255, 255, 0.05);
   --gold-gradient: linear-gradient(135deg, #d4af37 0%, #f1d592 50%, #d4af37 100%);
+  --gold-primary: var(--admin-accent);
 }
 
 * {

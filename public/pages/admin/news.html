@@ -462,7 +462,12 @@
         }
 
         async function deleteNews(id) {
-            if (!confirm('Bạn có chắc chắn muốn xóa bài viết này?')) return;
+            const isConfirmed = window.AnLuxuryNotification 
+                ? await AnLuxuryNotification.confirm('Bạn có chắc chắn muốn xóa bài viết này?', 'Xác Nhận Xóa', 'warning') 
+                : confirm('Bạn có chắc chắn muốn xóa bài viết này?');
+                
+            if (!isConfirmed) return;
+            
             try {
                 await API.deleteNews(id);
                 alert('Đã xóa!');
