@@ -284,4 +284,112 @@ const seedAdmin = async (req, res) => {
     }
 };
 
-module.exports = { register, login, updateProfile, getUsers, updateUserRole, googleLogin, seedAdmin };
+const forgotPassword = async (req, res) => {
+    try {
+        const body = await getPostData(req);
+        const { email } = JSON.parse(body);
+
+        if (!email) {
+            res.writeHead(400, { 'Content-Type': 'application/json' });
+            return res.end(JSON.stringify({ message: 'Vui lòng cung cấp email' }));
+        }
+
+        const db = getDB();
+        const users = db.collection('users');
+
+        const user = await users.findOne({ email });
+        if (!user) {
+            res.writeHead(404, { 'Content-Type': 'application/json' });
+            return res.end(JSON.stringify({ message: 'Email không tồn tại trong hệ thống' }));
+        }
+
+        // Generate 6-digit OTP
+        const otp = Math.floor(100000 + Math.random() * 900000).toString();
+        const otpExpire = new Date(Date.now() + 10 * 60 * 1000); // 10 minutes from now
+
+        await users.updateOne(
+            { _id: user._id },
+            { $set: { resetOTP: otp, resetOTPExpire: otpExpire } }
+        );
+
+        console.log(`\n=============================================`);
+        console.log(`[OTP Reset Password]`);
+        console.log(`Email: ${email}`);
+        console.log(`OTP: ${otp}`);
+        console.log(`Expires at: ${otpExpire.toLocaleString()}`);
+        console.log(`=============================================\n`);
+
+        res.writeHead(200, { 'Content-Type': 'application/json' });
+        res.end(JSON.stringify({ 
+            message: 'Mã xác thực OTP đã được gửi!',
+            email,
+            otpForTesting: otp 
+        }));
+    } catch (error) {
+        res.writeHead(500, { 'Content-Type': 'application/json' });
+        res.end(JSON.stringify({ message: 'Lỗi server: ' + error.message }));
+    }
+};
+
+const resetPassword = async (req, res) => {
+    try {
+        const body = await getPostData(req);
+        const { email, otp, password } = JSON.parse(body);
+
+        if (!email || !otp || !password) {
+            res.writeHead(400, { 'Content-Type': 'application/json' });
+            return res.end(JSON.stringify({ message: 'Thiếu thông tin yêu cầu' }));
+        }
+
+        const db = getDB();
+        const users = db.collection('users');
+
+        const user = await users.findOne({ email });
+        if (!user) {
+            res.writeHead(404, { 'Content-Type': 'application/json' });
+            return res.end(JSON.stringify({ message: 'Email không tồn tại trong hệ thống' }));
+        }
+
+        if (!user.resetOTP || user.resetOTP !== otp) {
+            res.writeHead(400, { 'Content-Type': 'application/json' });
+            return res.end(JSON.stringify({ message: 'Mã OTP không chính xác' }));
+        }
+
+        if (new Date() > new Date(user.resetOTPExpire)) {
+            res.writeHead(400, { 'Content-Type': 'application/json' });
+            return res.end(JSON.stringify({ message: 'Mã OTP đã hết hạn' }));
+        }
+
+        // OTP is valid! Encrypt the new password
+        const salt = await bcrypt.genSalt(10);
+        const hashedPassword = await bcrypt.hash(password, salt);
+
+        // Update password and clear OTP fields
+        await users.updateOne(
+            { _id: user._id },
+            { 
+                $set: { password: hashedPassword },
+                $unset: { resetOTP: "", resetOTPExpire: "" }
+            }
+        );
+
+        res.writeHead(200, { 'Content-Type': 'application/json' });
+        res.end(JSON.stringify({ message: 'Đặt lại mật khẩu thành công!' }));
+    } catch (error) {
+        res.writeHead(500, { 'Content-Type': 'application/json' });
+        res.end(JSON.stringify({ message: 'Lỗi server: ' + error.message }));
+    }
+};
+
+module.exports = { 
+    register, 
+    login, 
+    updateProfile, 
+    getUsers, 
+    updateUserRole, 
+    googleLogin, 
+    seedAdmin,
+    forgotPassword,
+    resetPassword
+};
+

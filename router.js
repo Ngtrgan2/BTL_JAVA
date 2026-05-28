@@ -1,6 +1,6 @@
 const fs = require('fs');
 const path = require('path');
-const { register, login, updateProfile, getUsers, updateUserRole, googleLogin } = require('./controllers/userController');
+const { register, login, updateProfile, getUsers, updateUserRole, googleLogin, forgotPassword, resetPassword } = require('./controllers/userController');
 const { getProducts, getProductById, createProduct, updateProduct, deleteProduct, applyGlobalDiscount } = require('./controllers/productController');
 const { createOrder, getOrders, getOrderById, updateOrder, deleteOrder } = require('./controllers/orderController');
 const { createBooking, getBookings, updateBooking, deleteBooking } = require('./controllers/bookingController');
@@ -63,6 +63,12 @@ function router(req, res) {
     }
     if (url === '/api/auth/login' && method === 'POST') {
         return login(req, res);
+    }
+    if (url === '/api/auth/forgot-password' && method === 'POST') {
+        return forgotPassword(req, res);
+    }
+    if (url === '/api/auth/reset-password' && method === 'POST') {
+        return resetPassword(req, res);
     }
 
     if (url === '/api/users/profile' && method === 'PUT') {
