@@ -206,6 +206,26 @@
             padding: 2px 0;
         }
 
+        /* Overlapping giap lai stamp for multi-page documents */
+        .giap-lai-stamp {
+            position: absolute;
+            top: calc(297mm - 60px);
+            right: -60px; /* Centered on the right border of the A4 page */
+            width: 120px;
+            height: 120px;
+            border: 3.5px solid rgba(220, 0, 0, 0.65);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: rgba(220, 0, 0, 0.65);
+            text-align: center;
+            font-weight: bold;
+            pointer-events: none;
+            transform: rotate(-15deg);
+            z-index: 10000;
+        }
+
         /* Buttons and UI */
         .actions {
             position: fixed;
@@ -522,6 +542,21 @@
                 const totalAmount = order.totalAmount || order.total || 0;
                 document.getElementById('total-amount').textContent = formatPrice(totalAmount);
                 document.getElementById('total-amount-text').textContent = numberToWords(totalAmount);
+
+                // Check if page height exceeds single A4 height (297mm ≈ 1120px) to dynamically add overlapping giap lai stamp
+                const pageEl = document.getElementById('invoice-page');
+                if (pageEl && pageEl.scrollHeight > 1130) {
+                    const giapLai = document.createElement('div');
+                    giapLai.className = 'giap-lai-stamp';
+                    giapLai.innerHTML = `
+                        <div class="stamp-inner" style="font-size: 7.5pt; line-height: 1.2; font-weight: bold;">
+                            CÔNG TY TNHH<br>
+                            <div style="font-size: 9.5pt; border-top: 1.5px solid rgba(220, 0, 0, 0.65); border-bottom: 1.5px solid rgba(220, 0, 0, 0.65); margin: 3px 0; padding: 1px 0;">AN LUXURY</div>
+                            GIÁP LAI
+                        </div>
+                    `;
+                    pageEl.appendChild(giapLai);
+                }
 
             } catch (error) {
                 console.error('Error loading invoice:', error);
