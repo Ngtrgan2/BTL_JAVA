@@ -230,14 +230,22 @@
         .btn-back { background-color: #333; color: white; }
 
         @media print {
+            @page {
+                size: A4;
+                margin: 0;
+            }
             body {
                 background: white;
                 padding: 0;
+                margin: 0;
             }
             .page {
                 box-shadow: none;
                 margin: 0;
-                width: 100%;
+                width: var(--print-width);
+                min-height: var(--print-height);
+                padding: 20mm 15mm 20mm 30mm;
+                page-break-after: avoid;
             }
             .actions {
                 display: none;
@@ -492,12 +500,16 @@
                     // Fetch product details for technical specs if possible, otherwise use from order
                     const specs = item.material + (item.size ? ' | Size: ' + item.size : '') + (item.stone ? ' | Đá: ' + item.stone : '');
                     
+                    // Generate professional warranty code matching standard format
+                    const warrantyCode = 'AL-' + order._id.toString().slice(-6).toUpperCase() + '-' + String(i + 1).padStart(2, '0');
+                    
                     itemsHtml += `
                         <tr>
                             <td class="text-center">${i + 1}</td>
                             <td>
                                 <b>${item.name}</b><br>
-                                <span style="font-size: 11pt; color: #444;">Thông số: ${specs || 'Chế tác thủ công theo yêu cầu'}</span>
+                                <span style="font-size: 11pt; color: #444;">Thông số: ${specs || 'Chế tác thủ công theo yêu cầu'}</span><br>
+                                <span style="font-size: 10.5pt; color: #000; font-weight: bold; display: inline-block; margin-top: 4px;">Mã bảo hành: ${warrantyCode}</span>
                             </td>
                             <td class="text-center">${item.quantity}</td>
                             <td class="text-right">${formatPrice(item.price)}</td>
