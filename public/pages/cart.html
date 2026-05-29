@@ -367,8 +367,9 @@
             renderCart();
         }
 
-        function clearCart() {
-            if (confirm('Bạn có chắc muốn xóa toàn bộ giỏ hàng?')) {
+        async function clearCart() {
+            const confirmed = await AnLuxuryNotification.confirm('Bạn có chắc muốn xóa toàn bộ giỏ hàng?');
+            if (confirmed) {
                 Cart.clear();
                 Cart.showToast('Đã xóa giỏ hàng');
                 renderCart();
@@ -645,6 +646,7 @@
             text-shadow: 0 0 30px rgba(212, 175, 55, 0.1);
         }
     </style>
+<script src="../js/toast.js"></script>
 <script src="../js/theme.js"></script>
 </body>
 </html>

@@ -363,8 +363,7 @@
     window.AnLuxuryNotification = AnLuxuryNotification;
 
     // 5. Intelligent Automatic Override of window.alert
-    // We override window.alert to automatically route through our premium toast notification.
-    // If the message contains keywords indicating failure or warning, we use the respective state!
+    // We override window.alert to automatically route through our premium modal notification.
     const originalAlert = window.alert;
     window.alert = function(message) {
         const msg = String(message).toLowerCase();
@@ -378,6 +377,7 @@
             type = 'info';
         }
 
-        AnLuxuryNotification.toast(message, type);
+        // Use alert modal instead of toast for more prominent pop-ups
+        AnLuxuryNotification.alert(message, 'Thông Báo', type);
     };
 })();

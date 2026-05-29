@@ -1,0 +1,10 @@
+User-agent: *
+Disallow: /admin/
+Disallow: /api/
+Allow: /
+Allow: /images/
+Allow: /css/
+Allow: /js/
+Allow: /pages/
+
+Sitemap: https://anluxury.com.vn/sitemap.xml
