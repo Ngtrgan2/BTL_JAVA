@@ -81,10 +81,12 @@ function initChat() {
     }
 
     // Kết nối vào phòng
-    socket.emit('join_chat', {
-        userId: currentSessionId,
-        role: userInfo ? userInfo.role : 'user',
-        name: userInfo ? userInfo.fullName : 'Khách vãng lai'
+    socket.on('connect', () => {
+        socket.emit('join_chat', {
+            userId: currentSessionId,
+            role: userInfo ? userInfo.role : 'user',
+            name: userInfo ? userInfo.fullName : 'Khách vãng lai'
+        });
     });
 
     // Lắng nghe lịch sử chat
