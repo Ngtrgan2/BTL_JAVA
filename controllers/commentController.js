@@ -58,8 +58,13 @@ const createComment = async (req, res) => {
             }
         }
 
+        // Fetch product name to store alongside the comment
+        const product = await db.collection('products').findOne({ _id: new ObjectId(data.productId) });
+        const productName = product ? product.name : 'Sản phẩm';
+
         const newComment = {
             productId: new ObjectId(data.productId),
+            productName: productName,
             userId: user._id,
             userName: user.fullName,
             userAvatar: user.avatar || null,

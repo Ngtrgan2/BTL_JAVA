@@ -89,6 +89,7 @@ window.initComments = function() {
                             ${roleBadge}
                             <span class="comment-date">${date}</span>
                         </div>
+                        ${c.productName ? `<div style="font-size:0.8rem;color:var(--text-muted);margin-bottom:0.5rem;"><i class="fa-solid fa-gem" style="color:var(--gold-dark);margin-right:4px;"></i>đã bình luận ở sản phẩm <strong style="color:var(--gold-primary);">${c.productName}</strong></div>` : ''}
                         <div class="comment-content">${c.text}</div>
                         ${mediaHtml}
                         
