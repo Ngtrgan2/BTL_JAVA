@@ -201,7 +201,7 @@
         const socket = io();
         let currentSessionId = null;
 
-        socket.on('connect', () => {
+        const joinAdminRoom = () => {
             if (userInfo) {
                 socket.emit('join_chat', {
                     userId: userInfo._id || userInfo.id,
@@ -209,7 +209,9 @@
                     name: userInfo.fullName
                 });
             }
-        });
+        };
+        if (socket.connected) joinAdminRoom();
+        else socket.on('connect', joinAdminRoom);
 
         socket.on('sessions_list', (sessions) => {
             renderSessions(sessions);
