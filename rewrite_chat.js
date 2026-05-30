@@ -1,87 +1,16 @@
-<!DOCTYPE html>
-<html lang="vi">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard | An LUXURY Admin</title>
-    <link rel="stylesheet" href="../../css/admin.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-</head>
-<body>
-    <div class="admin-grain-bg">
-        <div class="admin-ball admin-ball-1"></div>
-        <div class="admin-ball admin-ball-2"></div>
-        <div class="noise-overlay"></div>
-    </div>
+const fs = require('fs');
+const path = require('path');
 
-    <div class="admin-layout">
-        
-        <!-- Sidebar -->
-        <aside class="admin-sidebar">
-            <div class="sidebar-header">
-                <div class="sidebar-logo">An LUXURY</div>
-                <div id="sidebar-role-text" style="font-size: 0.8rem; color: var(--admin-text-light); margin-top: 5px;">Quản Trị Hệ Thống</div>
-            </div>
-            
-            <div class="sidebar-menu">
-                <a href="dashboard.html" class="menu-item" id="nav-dashboard">
-                    <i class="fa-solid fa-chart-pie menu-icon"></i> Bàn làm việc
-                </a>
-                <a href="revenue.html" class="menu-item" id="nav-revenue">
-                    <i class="fa-solid fa-money-bill-trend-up menu-icon"></i> Doanh thu
-                </a>
-                <a href="products.html" class="menu-item" id="nav-products">
-                    <i class="fa-solid fa-gem menu-icon"></i> Sản phẩm
-                </a>
-                <a href="orders.html" class="menu-item" id="nav-orders">
-                    <i class="fa-solid fa-cart-flatbed menu-icon"></i> Đơn hàng
-                </a>
-                <a href="bookings.html" class="menu-item" id="nav-bookings">
-                    <i class="fa-regular fa-calendar-check menu-icon"></i> Lịch hẹn VIP
-                </a>
-                <a href="news.html" class="menu-item" id="nav-news">
-                    <i class="fa-solid fa-newspaper menu-icon"></i> Tin tức
-                </a>
-                <a href="chat.html" class="menu-item" id="nav-chat">
-                    <i class="fa-solid fa-comments menu-icon"></i> Chat Hỗ Trợ
-                </a>
-                <a href="customers.html" class="menu-item" id="nav-customers" style="display: none;">
-                    <i class="fa-solid fa-users menu-icon"></i> Khách hàng
-                </a>
-            </div>
-            
-            <div class="sidebar-footer">
-                <div id="sidebar-user-info"></div>
-                <a href="../index.html" class="menu-item" style="padding: 0; margin-bottom: 1rem; font-size: 0.9rem;">
-                    <i class="fa-solid fa-globe menu-icon"></i> Xem website
-                </a>
-                <a href="#" class="menu-item logout-btn" style="padding: 0; color: #e74c3c; font-size: 0.9rem;">
-                    <i class="fa-solid fa-arrow-right-from-bracket menu-icon" style="color: #e74c3c;"></i> Đăng xuất
-                </a>
-            </div>
-        </aside>
+const dashboardPath = path.join(__dirname, 'public', 'pages', 'admin', 'dashboard.html');
+const chatPath = path.join(__dirname, 'public', 'pages', 'admin', 'chat.html');
 
-        
-    <style>
-        .session-item { padding: 15px 20px; border-bottom: 1px solid var(--admin-border); cursor: pointer; transition: 0.2s; position: relative; }
-        .session-item:hover, .session-item.active { background: var(--admin-card-bg); }
-        .session-item.active { border-left: 3px solid var(--admin-accent); }
-        .session-name { font-weight: bold; margin-bottom: 5px; color: var(--admin-text); }
-        .session-preview { font-size: 0.85rem; color: var(--admin-text-light); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-        .session-time { position: absolute; right: 20px; top: 15px; font-size: 0.75rem; color: var(--admin-text-light); }
-        
-        .msg { max-width: 70%; padding: 12px 18px; border-radius: 20px; font-size: 0.95rem; line-height: 1.4; position: relative; color: #fff; }
-        .msg-time { font-size: 0.7rem; opacity: 0.7; margin-top: 5px; display: block; }
-        .msg.received { background: var(--admin-card-bg); align-self: flex-start; border-bottom-left-radius: 5px; border: 1px solid var(--admin-border); }
-        .msg.sent { background: var(--admin-accent); color: #000; align-self: flex-end; border-bottom-right-radius: 5px; font-weight: 500; }
-        
-        .chat-input:focus { border-color: var(--admin-accent) !important; }
-        .send-btn:hover { transform: scale(1.05); }
+let dashboardHtml = fs.readFileSync(dashboardPath, 'utf8');
 
-        .sessions-list::-webkit-scrollbar, .chat-messages::-webkit-scrollbar { width: 6px; }
-        .sessions-list::-webkit-scrollbar-thumb, .chat-messages::-webkit-scrollbar-thumb { background: var(--admin-border); border-radius: 10px; }
-    </style>
+// Trích xuất từ <body> đến hết <aside> và header của <main>
+const sidebarEndIndex = dashboardHtml.indexOf('<!-- Main Content -->');
+const sidebarPart = dashboardHtml.substring(0, sidebarEndIndex);
 
+const mainStart = `
         <!-- Main Content -->
         <main class="admin-main" style="display: flex; flex-direction: column; height: 100vh; overflow: hidden;">
             
@@ -141,7 +70,31 @@
 
         </main>
     </div>
+`;
 
+const styleBlock = `
+    <style>
+        .session-item { padding: 15px 20px; border-bottom: 1px solid var(--admin-border); cursor: pointer; transition: 0.2s; position: relative; }
+        .session-item:hover, .session-item.active { background: var(--admin-card-bg); }
+        .session-item.active { border-left: 3px solid var(--admin-accent); }
+        .session-name { font-weight: bold; margin-bottom: 5px; color: var(--admin-text); }
+        .session-preview { font-size: 0.85rem; color: var(--admin-text-light); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .session-time { position: absolute; right: 20px; top: 15px; font-size: 0.75rem; color: var(--admin-text-light); }
+        
+        .msg { max-width: 70%; padding: 12px 18px; border-radius: 20px; font-size: 0.95rem; line-height: 1.4; position: relative; color: #fff; }
+        .msg-time { font-size: 0.7rem; opacity: 0.7; margin-top: 5px; display: block; }
+        .msg.received { background: var(--admin-card-bg); align-self: flex-start; border-bottom-left-radius: 5px; border: 1px solid var(--admin-border); }
+        .msg.sent { background: var(--admin-accent); color: #000; align-self: flex-end; border-bottom-right-radius: 5px; font-weight: 500; }
+        
+        .chat-input:focus { border-color: var(--admin-accent) !important; }
+        .send-btn:hover { transform: scale(1.05); }
+
+        .sessions-list::-webkit-scrollbar, .chat-messages::-webkit-scrollbar { width: 6px; }
+        .sessions-list::-webkit-scrollbar-thumb, .chat-messages::-webkit-scrollbar-thumb { background: var(--admin-border); border-radius: 10px; }
+    </style>
+`;
+
+const scripts = `
     <script src="/socket.io/socket.io.js"></script>
     <script>
         let userInfo = JSON.parse(localStorage.getItem('userInfo'));
@@ -159,18 +112,18 @@
             
             const avatarUrl = (userInfo.avatar && String(userInfo.avatar).trim())
                 ? userInfo.avatar
-                : `https://ui-avatars.com/api/?name=${encodeURIComponent(userInfo.fullName)}&background=1a1a1a&color=d4af37`;
+                : \`https://ui-avatars.com/api/?name=\${encodeURIComponent(userInfo.fullName)}&background=1a1a1a&color=d4af37\`;
             
             document.getElementById('admin-avatar').src = avatarUrl;
-            document.getElementById('sidebar-user-info').innerHTML = `
+            document.getElementById('sidebar-user-info').innerHTML = \`
                 <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem; padding: 0 0.5rem;">
-                    <img src="${avatarUrl}" style="width: 35px; height: 35px; border-radius: 50%; object-fit: cover;">
+                    <img src="\${avatarUrl}" style="width: 35px; height: 35px; border-radius: 50%; object-fit: cover;">
                     <div style="overflow: hidden;">
-                        <div style="font-size: 0.85rem; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: #fff;">${userInfo.fullName}</div>
-                        <div style="font-size: 0.7rem; color: var(--admin-text-light); text-transform: capitalize;">${userInfo.role === 'admin' ? 'Quản trị viên' : 'Tư vấn viên'}</div>
+                        <div style="font-size: 0.85rem; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: #fff;">\${userInfo.fullName}</div>
+                        <div style="font-size: 0.7rem; color: var(--admin-text-light); text-transform: capitalize;">\${userInfo.role === 'admin' ? 'Quản trị viên' : 'Tư vấn viên'}</div>
                     </div>
                 </div>
-            `;
+            \`;
 
             // Active menu
             document.querySelectorAll('.menu-item').forEach(item => {
@@ -252,11 +205,11 @@
                 div.className = 'session-item';
                 if (session.sessionId === currentSessionId) div.classList.add('active');
                 
-                div.innerHTML = `
-                    <div class="session-name">${name}</div>
-                    <div class="session-preview">${session.lastMessage || 'Bắt đầu chat...'}</div>
-                    <div class="session-time">${time}</div>
-                `;
+                div.innerHTML = \`
+                    <div class="session-name">\${name}</div>
+                    <div class="session-preview">\${session.lastMessage || 'Bắt đầu chat...'}</div>
+                    <div class="session-time">\${time}</div>
+                \`;
 
                 div.onclick = () => {
                     document.querySelectorAll('.session-item').forEach(el => el.classList.remove('active'));
@@ -286,11 +239,11 @@
             const time = new Date(msg.timestamp).toLocaleTimeString('vi-VN', {hour: '2-digit', minute:'2-digit'});
             
             const div = document.createElement('div');
-            div.className = `msg ${isAdmin ? 'sent' : 'received'}`;
-            div.innerHTML = `
-                ${msg.text}
-                <span class="msg-time">${time}</span>
-            `;
+            div.className = \`msg \${isAdmin ? 'sent' : 'received'}\`;
+            div.innerHTML = \`
+                \${msg.text}
+                <span class="msg-time">\${time}</span>
+            \`;
             msgContainer.appendChild(div);
         }
 
@@ -320,3 +273,8 @@
     </script>
 </body>
 </html>
+`;
+
+const finalHtml = sidebarPart + styleBlock + mainStart + scripts;
+fs.writeFileSync(chatPath, finalHtml);
+console.log('chat.html rewritten to match admin theme.');
