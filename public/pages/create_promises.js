@@ -68,7 +68,7 @@ pages.forEach(page => {
     const endIndex = newHtml.indexOf(endTag);
     
     if (startIndex > startTag.length - 1 && endIndex > -1) {
-        newHtml = newHtml.substring(0, startIndex) + '\\n' + page.content + '\\n            ' + newHtml.substring(endIndex);
+        newHtml = newHtml.substring(0, startIndex) + '\n' + page.content + '\n            ' + newHtml.substring(endIndex);
     }
     
     fs.writeFileSync(path.join(__dirname, page.filename), newHtml);
