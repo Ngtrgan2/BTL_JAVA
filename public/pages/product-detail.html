@@ -796,6 +796,7 @@
     <div class="container" style="margin-bottom: 5rem;">
         <div id="an-comments-section"></div>
     </div>
+    <script src="../js/comments.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             fetch('comment.html')
@@ -804,7 +805,13 @@
                     const container = document.getElementById('an-comments-section');
                     if (container) {
                         container.innerHTML = html;
-                        if (window.initComments) {
+                        // Execute any inline styles
+                        const styles = container.querySelectorAll('style');
+                        styles.forEach(style => {
+                            document.head.appendChild(style.cloneNode(true));
+                        });
+                        // Now init the comments logic
+                        if (typeof window.initComments === 'function') {
                             window.initComments();
                         }
                     }
