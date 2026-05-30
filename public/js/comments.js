@@ -16,7 +16,7 @@ window.initComments = function() {
     // 1. Load Comments
     const loadComments = async () => {
         try {
-            const res = await fetch(`http://localhost:5000/api/comments?productId=${productId}`);
+            const res = await fetch(`/api/comments?productId=${productId}`);
             const comments = await res.json();
             
             if (res.ok) {
@@ -155,7 +155,7 @@ window.initComments = function() {
             btnSubmit.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> Đang gửi...`;
 
             try {
-                const res = await fetch('http://localhost:5000/api/comments', {
+                const res = await fetch('/api/comments', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -199,7 +199,7 @@ window.initComments = function() {
         }
 
         try {
-            const res = await fetch(`http://localhost:5000/api/comments/${commentId}/like`, {
+            const res = await fetch(`/api/comments/${commentId}/like`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
