@@ -13,6 +13,18 @@ window.initComments = function() {
     const mediaPreviewContainer = document.getElementById('comment-media-preview');
     const commentsList = document.getElementById('comments-list');
 
+    let currentPage = 1;
+    let currentSort = 'newest';
+
+    const sortSelect = document.getElementById('comments-sort-select');
+    if (sortSelect) {
+        sortSelect.addEventListener('change', (e) => {
+            currentSort = e.target.value;
+            currentPage = 1;
+            loadComments();
+        });
+    }
+
     // 0. Show logged-in user's avatar in comment form
     const formAvatar = document.getElementById('comment-form-avatar');
     if (formAvatar) {
@@ -25,11 +37,12 @@ window.initComments = function() {
     // 1. Load Comments
     const loadComments = async () => {
         try {
-            const res = await fetch(`/api/comments?productId=${productId}`);
-            const comments = await res.json();
+            const res = await fetch(`/api/comments?productId=${productId}&page=${currentPage}&limit=3&sortType=${currentSort}`);
+            const data = await res.json();
             
             if (res.ok) {
-                renderComments(comments);
+                renderComments(data.comments);
+                renderPagination(data.totalPages, data.currentPage);
             } else {
                 commentsList.innerHTML = `<p style="color: var(--text-muted); text-align: center;">Chưa thể tải bình luận lúc này.</p>`;
             }
@@ -78,6 +91,10 @@ window.initComments = function() {
                 ? `<img src="${c.userAvatar}" alt="${c.userName}" style="width:45px;height:45px;border-radius:50%;object-fit:cover;border:2px solid var(--gold-dark);">` 
                 : `<i class="fa-solid fa-user-circle"></i>`;
 
+            const deleteBtnHtml = userInfo.role === 'admin' 
+                ? `<button class="btn-like" style="color: #e74c3c; margin-left: auto;" onclick="deleteComment('${c._id}')"><i class="fa-solid fa-trash"></i> Xóa</button>`
+                : '';
+
             html += `
                 <div class="comment-item">
                     <div class="comment-user-avatar" style="font-size: 2.5rem;">
@@ -99,6 +116,7 @@ window.initComments = function() {
                                 <span>${likeCount} Hữu ích</span>
                             </button>
                             ${authorLikedBadge}
+                            ${deleteBtnHtml}
                         </div>
                     </div>
                 </div>
@@ -226,6 +244,56 @@ window.initComments = function() {
             } else {
                 const data = await res.json();
                 window.alert(data.message || 'Lỗi thả tim.');
+            }
+        } catch (error) {
+            console.error(error);
+        }
+    };
+
+    // Render Pagination
+    const renderPagination = (totalPages, currentPage) => {
+        const paginationContainer = document.getElementById('comments-pagination');
+        if (!paginationContainer) return;
+        
+        if (totalPages <= 1) {
+            paginationContainer.innerHTML = '';
+            return;
+        }
+
+        let html = '';
+        for (let i = 1; i <= totalPages; i++) {
+            html += `<button class="btn ${i === currentPage ? 'btn-primary' : 'btn-outline'}" style="padding: 0.3rem 0.8rem; border-radius: 4px; border: 1px solid var(--gold-dark); background: ${i === currentPage ? 'var(--gold-primary)' : 'transparent'}; color: ${i === currentPage ? '#000' : 'var(--gold-primary)'};" onclick="changeCommentPage(${i})">${i}</button>`;
+        }
+        paginationContainer.innerHTML = html;
+    };
+
+    window.changeCommentPage = (page) => {
+        currentPage = page;
+        loadComments();
+    };
+
+    window.deleteComment = async (commentId) => {
+        if (!confirm('Bạn có chắc chắn muốn xóa bình luận này không?')) return;
+        
+        const token = localStorage.getItem('token');
+        if (!token) return;
+
+        try {
+            const res = await fetch(`/api/comments/${commentId}`, {
+                method: 'DELETE',
+                headers: { 'Authorization': `Bearer ${token}` }
+            });
+            const data = await res.json();
+            if (res.ok) {
+                window.alert('Đã xóa bình luận.');
+                // Nếu trang hiện tại có 1 comment và bị xóa, lùi về trang trước
+                const currentComments = document.querySelectorAll('.comment-item').length;
+                if (currentComments === 1 && currentPage > 1) {
+                    currentPage--;
+                }
+                loadComments();
+            } else {
+                window.alert(data.message || 'Lỗi khi xóa.');
             }
         } catch (error) {
             console.error(error);

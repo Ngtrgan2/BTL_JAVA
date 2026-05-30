@@ -6,6 +6,9 @@ const getComments = async (req, res) => {
     try {
         const urlParams = new URLSearchParams(req.url.split('?')[1]);
         const productId = urlParams.get('productId');
+        const page = parseInt(urlParams.get('page')) || 1;
+        const limit = parseInt(urlParams.get('limit')) || 3;
+        const sortType = urlParams.get('sortType') || 'newest';
 
         if (!productId || !isValidObjectId(productId)) {
             res.writeHead(400, { 'Content-Type': 'application/json' });
@@ -13,10 +16,44 @@ const getComments = async (req, res) => {
         }
 
         const db = getDB();
-        const comments = await db.collection('comments').find({ productId: new ObjectId(productId) }).sort({ createdAt: -1 }).toArray();
+        const skip = (page - 1) * limit;
+
+        // Xây dựng Pipeline Aggregation
+        let sortStage = { createdAt: -1 };
+        
+        if (sortType === 'helpful') {
+            sortStage = { likesCount: -1, createdAt: -1 };
+        } else if (sortType === 'media') {
+            sortStage = { hasMedia: -1, createdAt: -1 };
+        }
+
+        const pipeline = [
+            { $match: { productId: new ObjectId(productId) } },
+            { 
+                $addFields: {
+                    likesCount: { $size: { $ifNull: ["$likes", []] } },
+                    hasMedia: { $cond: [{ $ne: ["$media", null] }, 1, 0] }
+                }
+            },
+            { $sort: sortStage },
+            { $skip: skip },
+            { $limit: limit }
+        ];
+
+        const [comments, countResult] = await Promise.all([
+            db.collection('comments').aggregate(pipeline).toArray(),
+            db.collection('comments').countDocuments({ productId: new ObjectId(productId) })
+        ]);
+
+        const totalPages = Math.ceil(countResult / limit);
         
         res.writeHead(200, { 'Content-Type': 'application/json' });
-        res.end(JSON.stringify(comments));
+        res.end(JSON.stringify({
+            comments,
+            totalPages,
+            currentPage: page,
+            totalComments: countResult
+        }));
     } catch (error) {
         res.writeHead(500, { 'Content-Type': 'application/json' });
         res.end(JSON.stringify({ message: error.message }));
@@ -142,4 +179,39 @@ const likeComment = async (req, res) => {
     }
 };
 
-module.exports = { getComments, createComment, likeComment };
+const deleteComment = async (req, res) => {
+    try {
+        const decoded = verifyToken(req);
+        if (!decoded) {
+            res.writeHead(401, { 'Content-Type': 'application/json' });
+            return res.end(JSON.stringify({ message: 'Chưa đăng nhập' }));
+        }
+
+        const db = getDB();
+        const user = await db.collection('users').findOne({ _id: new ObjectId(decoded.id) });
+        if (!user || user.role !== 'admin') {
+            res.writeHead(403, { 'Content-Type': 'application/json' });
+            return res.end(JSON.stringify({ message: 'Chỉ Admin mới có quyền xóa bình luận' }));
+        }
+
+        const commentId = req.url.split('/')[3];
+        if (!isValidObjectId(commentId)) {
+            res.writeHead(400, { 'Content-Type': 'application/json' });
+            return res.end(JSON.stringify({ message: 'ID bình luận không hợp lệ' }));
+        }
+
+        const result = await db.collection('comments').deleteOne({ _id: new ObjectId(commentId) });
+        if (result.deletedCount === 0) {
+            res.writeHead(404, { 'Content-Type': 'application/json' });
+            return res.end(JSON.stringify({ message: 'Không tìm thấy bình luận' }));
+        }
+
+        res.writeHead(200, { 'Content-Type': 'application/json' });
+        res.end(JSON.stringify({ message: 'Đã xóa bình luận thành công' }));
+    } catch (error) {
+        res.writeHead(500, { 'Content-Type': 'application/json' });
+        res.end(JSON.stringify({ message: error.message }));
+    }
+};
+
+module.exports = { getComments, createComment, likeComment, deleteComment };

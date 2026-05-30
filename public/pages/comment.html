@@ -30,12 +30,29 @@
         </div>
     </div>
 
-    <!-- Danh sách bình luận -->
+    <!-- Sorting & Danh sách bình luận -->
+    <div class="comments-toolbar" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; border-bottom: 1px solid var(--border-light); padding-bottom: 1rem;">
+        <h4 style="color: var(--text-primary); font-size: 1.2rem; margin: 0;">Khách hàng nhận xét</h4>
+        <div class="comments-sort">
+            <span style="color: var(--text-muted); font-size: 0.9rem; margin-right: 0.5rem;">Sắp xếp theo:</span>
+            <select id="comments-sort-select" style="background: var(--bg-dark); color: var(--text-primary); border: 1px solid var(--border-light); padding: 0.5rem; border-radius: 4px; outline: none;">
+                <option value="newest">Mới nhất</option>
+                <option value="helpful">Hữu ích nhất</option>
+                <option value="media">Có đính kèm hình ảnh/video</option>
+            </select>
+        </div>
+    </div>
+
     <div id="comments-list" class="comments-list">
         <div class="loading-comments">
             <i class="fa-solid fa-spinner fa-spin"></i> Đang tải bình luận...
         </div>
         <!-- Các comment sẽ được load ở đây -->
+    </div>
+
+    <!-- Phân trang -->
+    <div id="comments-pagination" style="display: flex; justify-content: center; gap: 0.5rem; margin-top: 2rem;">
+        <!-- JS render -->
     </div>
 </div>
 

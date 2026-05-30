@@ -7,7 +7,7 @@ const { createBooking, getBookings, updateBooking, deleteBooking } = require('./
 const { getWarrantyByCode } = require('./controllers/warrantyController');
 const { chatResponse } = require('./controllers/chatController');
 const { getNews, createNews, updateNews, deleteNews } = require('./controllers/newsController');
-const { getComments, createComment, likeComment } = require('./controllers/commentController');
+const { getComments, createComment, likeComment, deleteComment } = require('./controllers/commentController');
 
 function router(req, res) {
     const fullUrl = req.url;
@@ -97,6 +97,9 @@ function router(req, res) {
     }
     if (url.match(/^\/api\/comments\/[^\/]+\/like$/) && method === 'PUT') {
         return likeComment(req, res);
+    }
+    if (url.match(/^\/api\/comments\/[^\/]+$/) && method === 'DELETE') {
+        return deleteComment(req, res);
     }
 
     if (url === '/api/products' && method === 'POST') {
