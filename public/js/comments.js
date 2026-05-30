@@ -13,6 +13,15 @@ window.initComments = function() {
     const mediaPreviewContainer = document.getElementById('comment-media-preview');
     const commentsList = document.getElementById('comments-list');
 
+    // 0. Show logged-in user's avatar in comment form
+    const formAvatar = document.getElementById('comment-form-avatar');
+    if (formAvatar) {
+        const currentUser = JSON.parse(localStorage.getItem('userInfo') || '{}');
+        if (currentUser.avatar) {
+            formAvatar.innerHTML = `<img src="${currentUser.avatar}" alt="Avatar" style="width:45px;height:45px;border-radius:50%;object-fit:cover;border:2px solid var(--gold-dark);">`;
+        }
+    }
+
     // 1. Load Comments
     const loadComments = async () => {
         try {
@@ -65,10 +74,14 @@ window.initComments = function() {
                 ? `<div class="author-liked-badge"><i class="fa-solid fa-heart"></i> Đã được tim của tác giả</div>` 
                 : '';
 
+            const avatarHtml = c.userAvatar 
+                ? `<img src="${c.userAvatar}" alt="${c.userName}" style="width:45px;height:45px;border-radius:50%;object-fit:cover;border:2px solid var(--gold-dark);">` 
+                : `<i class="fa-solid fa-user-circle"></i>`;
+
             html += `
                 <div class="comment-item">
                     <div class="comment-user-avatar" style="font-size: 2.5rem;">
-                        <i class="fa-solid fa-user-circle"></i>
+                        ${avatarHtml}
                     </div>
                     <div class="comment-body">
                         <div class="comment-meta">

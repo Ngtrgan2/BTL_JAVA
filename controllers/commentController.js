@@ -62,6 +62,7 @@ const createComment = async (req, res) => {
             productId: new ObjectId(data.productId),
             userId: user._id,
             userName: user.fullName,
+            userAvatar: user.avatar || null,
             userRole: user.role,
             text: data.text || '',
             media: data.media || null, // Base64 string
