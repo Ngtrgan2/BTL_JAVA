@@ -1267,28 +1267,7 @@
         document.addEventListener('DOMContentLoaded', loadProductDetail);
     </script>
 
-    <!-- Zalo Chat Widget -->
-    <div id="zalo-chat-widget" style="position: fixed; bottom: 24px; right: 24px; z-index: 999; display: flex; flex-direction: column; align-items: flex-end; gap: 12px;">
-        <!-- Tooltip -->
-        <div id="zalo-tooltip" style="background: rgba(0,0,0,0.8); color: #fff; padding: 0.6rem 1rem; border-radius: 8px; font-size: 0.85rem; white-space: nowrap; backdrop-filter: blur(10px); border: 1px solid var(--gold-dark); opacity: 0; transform: translateY(5px); transition: all 0.3s ease; pointer-events: none;">
-            <i class="fa-solid fa-headset" style="color: var(--gold-primary); margin-right: 5px;"></i> Chat tư vấn 24/7
-        </div>
-        <!-- Bubble Button -->
-        <a href="https://zalo.me/0392326230" target="_blank" id="zalo-btn" style="width: 60px; height: 60px; background: linear-gradient(135deg, #0068FF, #0055d4); border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 20px rgba(0,104,255,0.5); transition: all 0.3s ease; text-decoration: none; position: relative;" onmouseenter="document.getElementById('zalo-tooltip').style.opacity='1'; document.getElementById('zalo-tooltip').style.transform='translateY(0)';" onmouseleave="document.getElementById('zalo-tooltip').style.opacity='0'; document.getElementById('zalo-tooltip').style.transform='translateY(5px)';">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/9/91/Icon_of_Zalo.svg" alt="Zalo" style="width: 32px; height: 32px; filter: brightness(10);">
-            <span style="position: absolute; top: -2px; right: -2px; width: 14px; height: 14px; background: #2ecc71; border-radius: 50%; border: 2px solid #0068FF; animation: pulse-dot 2s infinite;"></span>
-        </a>
-    </div>
-    <style>
-        @keyframes pulse-dot {
-            0%, 100% { box-shadow: 0 0 0 0 rgba(46,204,113,0.6); }
-            50% { box-shadow: 0 0 0 8px rgba(46,204,113,0); }
-        }
-        #zalo-btn:hover {
-            transform: scale(1.1);
-            box-shadow: 0 6px 28px rgba(0,104,255,0.6);
-        }
-    </style>
+    
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
