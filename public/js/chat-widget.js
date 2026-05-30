@@ -14,31 +14,31 @@ document.addEventListener('DOMContentLoaded', () => {
     // 2. Inject HTML Widget
     const widgetHTML = `
         <div class="chat-widget-container">
-            <div class="chat-widget-toggle" id="chat-toggle">
+            <div class="chat-widget-toggle" id="live-chat-toggle">
                 <i class="fa-solid fa-comments"></i>
-                <div class="chat-unread-badge" id="chat-badge">0</div>
+                <div class="chat-unread-badge" id="live-chat-badge">0</div>
             </div>
 
-            <div class="chat-widget-window" id="chat-window">
+            <div class="chat-widget-window" id="live-chat-window">
                 <div class="chat-header">
                     <div class="chat-header-info">
                         <h4>An LUXURY Hỗ Trợ</h4>
                         <p>Chúng tôi luôn trực tuyến 24/7</p>
                     </div>
-                    <div class="chat-close-btn" id="chat-close">
+                    <div class="chat-close-btn" id="live-chat-close">
                         <i class="fa-solid fa-times"></i>
                     </div>
                 </div>
                 
-                <div class="chat-body" id="chat-messages">
+                <div class="chat-body" id="live-chat-messages">
                     <div class="chat-message system">
                         Chào mừng đến với An LUXURY! Hãy nhắn tin cho chúng tôi nếu bạn cần tư vấn.
                     </div>
                 </div>
 
                 <div class="chat-footer">
-                    <input type="text" class="chat-input" id="chat-input" placeholder="Nhập tin nhắn...">
-                    <button class="chat-send-btn" id="chat-send">
+                    <input type="text" class="chat-input" id="live-chat-input" placeholder="Nhập tin nhắn...">
+                    <button class="chat-send-btn" id="live-chat-send">
                         <i class="fa-solid fa-paper-plane"></i>
                     </button>
                 </div>
@@ -63,13 +63,13 @@ function initChat() {
         if (stored) userInfo = JSON.parse(stored);
     } catch(e) {}
 
-    const toggleBtn = document.getElementById('chat-toggle');
-    const closeBtn = document.getElementById('chat-close');
-    const chatWindow = document.getElementById('chat-window');
-    const sendBtn = document.getElementById('chat-send');
-    const inputEl = document.getElementById('chat-input');
-    const messagesEl = document.getElementById('chat-messages');
-    const badgeEl = document.getElementById('chat-badge');
+    const toggleBtn = document.getElementById('live-chat-toggle');
+    const closeBtn = document.getElementById('live-chat-close');
+    const chatWindow = document.getElementById('live-chat-window');
+    const sendBtn = document.getElementById('live-chat-send');
+    const inputEl = document.getElementById('live-chat-input');
+    const messagesEl = document.getElementById('live-chat-messages');
+    const badgeEl = document.getElementById('live-chat-badge');
 
     let isOpen = false;
 
