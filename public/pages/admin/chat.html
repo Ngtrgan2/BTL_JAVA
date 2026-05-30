@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản lý Hỗ trợ Trực tuyến | Admin</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        body { display: flex; height: 100vh; background: #f4f6f9; color: #333; }
+        
+        .sidebar { width: 250px; background: #2c3e50; color: white; display: flex; flex-direction: column; }
+        .sidebar-header { padding: 20px; font-size: 1.2rem; font-weight: bold; border-bottom: 1px solid rgba(255,255,255,0.1); }
+        .sidebar-menu { list-style: none; flex: 1; }
+        .sidebar-menu li a { display: block; padding: 15px 20px; color: #ecf0f1; text-decoration: none; transition: 0.3s; }
+        .sidebar-menu li a:hover, .sidebar-menu li.active a { background: #34495e; border-left: 4px solid #f1c40f; }
+        .sidebar-menu li a i { margin-right: 10px; width: 20px; text-align: center; }
+
+        .chat-container { flex: 1; display: flex; background: white; margin: 20px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); overflow: hidden; }
+        
+        /* Sessions List */
+        .sessions-panel { width: 300px; border-right: 1px solid #eee; display: flex; flex-direction: column; }
+        .sessions-header { padding: 20px; border-bottom: 1px solid #eee; font-weight: 600; }
+        .sessions-list { flex: 1; overflow-y: auto; }
+        .session-item { padding: 15px 20px; border-bottom: 1px solid #eee; cursor: pointer; transition: 0.2s; position: relative; }
+        .session-item:hover, .session-item.active { background: #f8f9fa; }
+        .session-item.active { border-left: 3px solid #f1c40f; }
+        .session-name { font-weight: bold; margin-bottom: 5px; }
+        .session-preview { font-size: 0.85rem; color: #7f8c8d; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .session-time { position: absolute; right: 20px; top: 15px; font-size: 0.75rem; color: #bdc3c7; }
+        
+        /* Chat Area */
+        .chat-area { flex: 1; display: flex; flex-direction: column; background: #fcfcfc; }
+        .chat-header { padding: 20px; border-bottom: 1px solid #eee; font-weight: 600; display: flex; justify-content: space-between; align-items: center; background: white; }
+        
+        .chat-messages { flex: 1; padding: 20px; overflow-y: auto; display: flex; flex-direction: column; gap: 15px; }
+        .msg { max-width: 70%; padding: 12px 18px; border-radius: 20px; font-size: 0.95rem; line-height: 1.4; position: relative; }
+        .msg-time { font-size: 0.7rem; opacity: 0.7; margin-top: 5px; display: block; }
+        .msg.received { background: #e9ecef; align-self: flex-start; border-bottom-left-radius: 5px; }
+        .msg.sent { background: #f1c40f; color: #333; align-self: flex-end; border-bottom-right-radius: 5px; }
+        
+        .chat-input-area { padding: 20px; border-top: 1px solid #eee; display: flex; gap: 10px; background: white; }
+        .chat-input { flex: 1; padding: 12px 20px; border: 1px solid #ddd; border-radius: 30px; outline: none; font-size: 0.95rem; }
+        .chat-input:focus { border-color: #f1c40f; }
+        .send-btn { background: #2c3e50; color: white; border: none; width: 45px; height: 45px; border-radius: 50%; cursor: pointer; transition: 0.2s; }
+        .send-btn:hover { background: #1a252f; transform: scale(1.05); }
+
+        .empty-chat { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; color: #95a5a6; }
+        .empty-chat i { font-size: 4rem; margin-bottom: 15px; opacity: 0.5; }
+    </style>
+</head>
+<body>
+
+    <div class="sidebar">
+        <div class="sidebar-header">
+            An LUXURY Admin
+        </div>
+        <ul class="sidebar-menu">
+            <li><a href="dashboard.html"><i class="fas fa-home"></i> Tổng quan</a></li>
+            <li><a href="orders.html"><i class="fas fa-shopping-cart"></i> Đơn hàng</a></li>
+            <li><a href="products.html"><i class="fas fa-box"></i> Sản phẩm</a></li>
+            <li class="active"><a href="chat.html"><i class="fas fa-comments"></i> Chat Hỗ Trợ</a></li>
+            <li><a href="../index.html"><i class="fas fa-sign-out-alt"></i> Về trang chủ</a></li>
+        </ul>
+    </div>
+
+    <div class="chat-container">
+        <!-- Sessions List -->
+        <div class="sessions-panel">
+            <div class="sessions-header">
+                Danh sách chat
+            </div>
+            <div class="sessions-list" id="sessions-list">
+                <div style="padding: 20px; text-align: center; color: #999;">Đang tải...</div>
+            </div>
+        </div>
+
+        <!-- Chat Area -->
+        <div class="chat-area" id="chat-area" style="display: none;">
+            <div class="chat-header">
+                <span id="current-chat-name">Tên khách hàng</span>
+                <span style="font-size: 0.8rem; color: #2ecc71;"><i class="fas fa-circle"></i> Đang hoạt động</span>
+            </div>
+            <div class="chat-messages" id="chat-messages">
+                <!-- Messages go here -->
+            </div>
+            <div class="chat-input-area">
+                <input type="text" id="chat-input" class="chat-input" placeholder="Nhập tin nhắn phản hồi...">
+                <button id="send-btn" class="send-btn"><i class="fas fa-paper-plane"></i></button>
+            </div>
+        </div>
+
+        <!-- Empty State -->
+        <div class="empty-chat" id="empty-chat">
+            <i class="far fa-comments"></i>
+            <h3>Chọn một phiên chat để bắt đầu</h3>
+        </div>
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        const socket = io();
+        let currentSessionId = null;
+        let adminInfo = JSON.parse(localStorage.getItem('userInfo') || '{}');
+
+        // Authentication Check
+        if (adminInfo.role !== 'admin' && adminInfo.role !== 'staff') {
+            alert('Bạn không có quyền truy cập trang này!');
+            window.location.href = '../index.html';
+        }
+
+        socket.on('connect', () => {
+            socket.emit('join_chat', {
+                userId: adminInfo._id || adminInfo.id,
+                role: adminInfo.role,
+                name: adminInfo.fullName
+            });
+        });
+
+        // Nhận danh sách sessions ban đầu
+        socket.on('sessions_list', (sessions) => {
+            renderSessions(sessions);
+        });
+
+        // Nhận cập nhật session khi có tin nhắn mới hoặc user mới
+        socket.on('session_updated', (data) => {
+            socket.emit('join_chat', { role: adminInfo.role }); // trigger reload sessions
+        });
+
+        // Nhận tin nhắn mới
+        socket.on('receive_message', (msg) => {
+            if (msg.sessionId === currentSessionId) {
+                appendMessage(msg);
+                scrollToBottom();
+            }
+        });
+
+        // Nhận lịch sử khi click vào 1 người dùng
+        socket.on('chat_history_admin', (data) => {
+            if (data.sessionId === currentSessionId) {
+                const msgContainer = document.getElementById('chat-messages');
+                msgContainer.innerHTML = '';
+                data.messages.forEach(msg => appendMessage(msg));
+                scrollToBottom();
+            }
+        });
+
+        function renderSessions(sessions) {
+            const list = document.getElementById('sessions-list');
+            list.innerHTML = '';
+            if (sessions.length === 0) {
+                list.innerHTML = '<div style="padding: 20px; text-align: center; color: #999;">Chưa có phiên chat nào</div>';
+                return;
+            }
+
+            sessions.forEach(session => {
+                const isGuest = session.sessionId.startsWith('guest_');
+                const name = session.customerName || (isGuest ? 'Khách vãng lai' : 'Khách hàng');
+                const time = new Date(session.lastUpdated).toLocaleTimeString('vi-VN', {hour: '2-digit', minute:'2-digit'});
+                
+                const div = document.createElement('div');
+                div.className = 'session-item';
+                if (session.sessionId === currentSessionId) div.classList.add('active');
+                
+                div.innerHTML = `
+                    <div class="session-name">${name}</div>
+                    <div class="session-preview">${session.lastMessage || 'Bắt đầu chat...'}</div>
+                    <div class="session-time">${time}</div>
+                `;
+
+                div.onclick = () => {
+                    document.querySelectorAll('.session-item').forEach(el => el.classList.remove('active'));
+                    div.classList.add('active');
+                    openChat(session.sessionId, name);
+                };
+                list.appendChild(div);
+            });
+        }
+
+        function openChat(sessionId, name) {
+            currentSessionId = sessionId;
+            document.getElementById('empty-chat').style.display = 'none';
+            document.getElementById('chat-area').style.display = 'flex';
+            document.getElementById('current-chat-name').textContent = name;
+            document.getElementById('chat-messages').innerHTML = '<div style="text-align: center; color: #999; margin-top: 20px;">Đang tải...</div>';
+            
+            // Request history
+            socket.emit('get_chat_history', { sessionId });
+        }
+
+        function appendMessage(msg) {
+            const msgContainer = document.getElementById('chat-messages');
+            // Xoá chữ "Đang tải" nếu có
+            if(msgContainer.innerHTML.includes('Đang tải')) msgContainer.innerHTML = '';
+
+            const isAdmin = msg.senderRole === 'admin' || msg.senderRole === 'staff';
+            const time = new Date(msg.timestamp).toLocaleTimeString('vi-VN', {hour: '2-digit', minute:'2-digit'});
+            
+            const div = document.createElement('div');
+            div.className = `msg ${isAdmin ? 'sent' : 'received'}`;
+            div.innerHTML = `
+                ${msg.text}
+                <span class="msg-time">${time}</span>
+            `;
+            msgContainer.appendChild(div);
+        }
+
+        function scrollToBottom() {
+            const msgContainer = document.getElementById('chat-messages');
+            msgContainer.scrollTop = msgContainer.scrollHeight;
+        }
+
+        function sendMessage() {
+            const input = document.getElementById('chat-input');
+            const text = input.value.trim();
+            if (!text || !currentSessionId) return;
+
+            socket.emit('send_message', {
+                sessionId: currentSessionId,
+                senderRole: adminInfo.role,
+                senderName: adminInfo.fullName || 'Admin',
+                text: text
+            });
+            input.value = '';
+        }
+
+        document.getElementById('send-btn').addEventListener('click', sendMessage);
+        document.getElementById('chat-input').addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') sendMessage();
+        });
+    </script>
+</body>
+</html>

@@ -1,5 +1,6 @@
 const { getDB } = require('../db');
 const { getPostData } = require('../utils');
+const { ObjectId } = require('mongodb');
 
 const chatResponse = async (req, res) => {
     try {
@@ -52,4 +53,104 @@ const chatResponse = async (req, res) => {
     }
 };
 
-module.exports = { chatResponse };
+const setupChat = (io) => {
+    io.on('connection', (socket) => {
+        console.log('Chat: A user connected', socket.id);
+
+        socket.on('join_chat', async (data) => {
+            const { userId, role, name } = data || {};
+
+            if (role === 'admin' || role === 'staff') {
+                socket.join('admins');
+                console.log('Admin/Staff joined chat:', socket.id);
+                try {
+                    const db = getDB();
+                    const sessions = await db.collection('chat_sessions').find().sort({ lastUpdated: -1 }).toArray();
+                    socket.emit('sessions_list', sessions);
+                } catch (e) {
+                    console.error(e);
+                }
+            } else {
+                const sessionId = userId || `guest_${socket.id.substring(0,8)}`;
+                socket.join(sessionId);
+                console.log('Customer joined chat session:', sessionId);
+
+                try {
+                    const db = getDB();
+                    const messages = await db.collection('chat_messages').find({ sessionId }).sort({ timestamp: 1 }).toArray();
+                    await db.collection('chat_sessions').updateOne(
+                        { sessionId },
+                        { 
+                            $set: { customerName: name || 'Khách vãng lai', lastUpdated: new Date() },
+                            $setOnInsert: { createdAt: new Date(), unreadCount: 0 }
+                        },
+                        { upsert: true }
+                    );
+
+                    socket.emit('chat_history', { sessionId, messages });
+                    io.to('admins').emit('session_updated', { 
+                        sessionId, 
+                        customerName: name || 'Khách vãng lai',
+                        lastUpdated: new Date()
+                    });
+                } catch (e) {
+                    console.error(e);
+                }
+            }
+        });
+
+        socket.on('get_chat_history', async (data) => {
+            const { sessionId } = data;
+            try {
+                const db = getDB();
+                const messages = await db.collection('chat_messages').find({ sessionId }).sort({ timestamp: 1 }).toArray();
+                socket.emit('chat_history_admin', { sessionId, messages });
+            } catch (e) {
+                console.error(e);
+            }
+        });
+
+        socket.on('send_message', async (data) => {
+            const { sessionId, senderRole, senderName, text } = data;
+            try {
+                const db = getDB();
+                const message = {
+                    sessionId,
+                    senderRole: senderRole || 'user',
+                    senderName: senderName || 'Khách',
+                    text,
+                    timestamp: new Date()
+                };
+
+                await db.collection('chat_messages').insertOne(message);
+
+                const sessionUpdate = {
+                    lastMessage: text,
+                    lastUpdated: new Date()
+                };
+                if (senderRole === 'user' && senderName) {
+                    sessionUpdate.customerName = senderName;
+                }
+
+                await db.collection('chat_sessions').updateOne(
+                    { sessionId },
+                    { $set: sessionUpdate, $setOnInsert: { createdAt: new Date() } },
+                    { upsert: true }
+                );
+
+                io.to(sessionId).emit('receive_message', message);
+                io.to('admins').emit('receive_message', message);
+                io.to('admins').emit('session_updated', { sessionId, message, customerName: sessionUpdate.customerName });
+
+            } catch (error) {
+                console.error('Error saving message:', error);
+            }
+        });
+
+        socket.on('disconnect', () => {
+            console.log('Chat: User disconnected', socket.id);
+        });
+    });
+};
+
+module.exports = { chatResponse, setupChat };
