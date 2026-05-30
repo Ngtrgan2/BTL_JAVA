@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
-const { register, login, updateProfile, getUsers, updateUserRole, googleLogin, forgotPassword, resetPassword } = require('./controllers/userController');
-const { getProducts, getProductById, createProduct, updateProduct, deleteProduct, applyGlobalDiscount } = require('./controllers/productController');
+const { register, login, updateProfile, getUsers, updateUserRole, googleLogin, forgotPassword, resetPassword, seedAdmin } = require('./controllers/userController');
+const { getProducts, getProductById, createProduct, updateProduct, deleteProduct, applyGlobalDiscount, likeProduct, shareProduct, shareSEO, seedAll } = require('./controllers/productController');
 const { createOrder, getOrders, getOrderById, updateOrder, deleteOrder } = require('./controllers/orderController');
 const { createBooking, getBookings, updateBooking, deleteBooking } = require('./controllers/bookingController');
 const { getWarrantyByCode } = require('./controllers/warrantyController');
@@ -83,6 +83,10 @@ function router(req, res) {
     }
 
     // API Routes - Products
+    if (url.startsWith('/api/products') && url.includes('?')) {
+        // match /api/products?sort=popular
+        return getProducts(req, res);
+    }
     if (url === '/api/products' && method === 'GET') {
         return getProducts(req, res);
     }
@@ -111,11 +115,22 @@ function router(req, res) {
     if (url.startsWith('/api/products/') && method === 'GET') {
         return getProductById(req, res);
     }
-    if (url.startsWith('/api/products/') && method === 'PUT') {
+    if (url.startsWith('/api/products/') && method === 'PUT' && !url.includes('/like') && !url.includes('/share')) {
         return updateProduct(req, res);
+    }
+    if (url.match(/^\/api\/products\/[^\/]+\/like$/) && method === 'PUT') {
+        return likeProduct(req, res);
+    }
+    if (url.match(/^\/api\/products\/[^\/]+\/share$/) && method === 'PUT') {
+        return shareProduct(req, res);
     }
     if (url.startsWith('/api/products/') && method === 'DELETE') {
         return deleteProduct(req, res);
+    }
+    
+    // SEO Share Route
+    if (url.startsWith('/share/product/') && method === 'GET') {
+        return shareSEO(req, res);
     }
 
     // API Routes - Orders

@@ -372,6 +372,7 @@
                             style="width: 200px; padding: 0.5rem; background-color: transparent;"
                             onchange="applyFilters()">
                             <option value="newest">Mới nhất</option>
+                            <option value="popular">Nổi bật nhất (Nhiều tim & chia sẻ)</option>
                             <option value="price-asc">Giá: Thấp đến Cao</option>
                             <option value="price-desc">Giá: Cao đến Thấp</option>
                         </select>
@@ -648,7 +649,8 @@
 
         async function loadCollectionProducts() {
             try {
-                const response = await API.getProducts();
+                // Lấy sản phẩm với popular flag để có trường popularityScore
+                const response = await API.getProducts('?sort=popular');
                 allProducts = response;
                 applyFilters(); // Initial render
             } catch (error) {
@@ -703,6 +705,8 @@
                 filteredProducts.sort((a, b) => a.price - b.price);
             } else if (sortBy === 'price-desc') {
                 filteredProducts.sort((a, b) => b.price - a.price);
+            } else if (sortBy === 'popular') {
+                filteredProducts.sort((a, b) => (b.popularityScore || 0) - (a.popularityScore || 0));
             } else {
                 filteredProducts.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
             }

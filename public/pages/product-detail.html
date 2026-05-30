@@ -252,6 +252,46 @@
             background: rgba(212, 175, 55, 0.1);
         }
 
+        /* Social Actions */
+        .pd-social-actions {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        .btn-social {
+            flex: 1;
+            background: transparent;
+            border: 1px solid var(--border-light);
+            color: var(--text-secondary);
+            padding: 0.8rem;
+            border-radius: 4px;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+        .btn-social:hover {
+            border-color: var(--gold-primary);
+            color: var(--text-primary);
+        }
+        .btn-social.liked {
+            color: #e74c3c;
+            border-color: #e74c3c;
+        }
+        .btn-social.liked i {
+            animation: heartBeat 1.2s;
+        }
+        @keyframes heartBeat {
+            0% { transform: scale(1); }
+            14% { transform: scale(1.3); }
+            28% { transform: scale(1); }
+            42% { transform: scale(1.3); }
+            70% { transform: scale(1); }
+        }
+
         .pd-features {
             display: grid;
             grid-template-columns: 1fr;
@@ -677,6 +717,16 @@
                     <i class="fa-regular fa-calendar-check" style="margin-right: 8px;"></i> Đặt lịch tư vấn trực tiếp tại Showroom
                 </button>
 
+                <!-- Social Actions -->
+                <div class="pd-social-actions">
+                    <button class="btn-social" id="btn-like" onclick="handleLike()">
+                        <i class="fa-regular fa-heart"></i> Thả tim
+                    </button>
+                    <button class="btn-social" id="btn-share" onclick="handleShare()">
+                        <i class="fa-solid fa-share-nodes"></i> Chia sẻ
+                    </button>
+                </div>
+
                 <div class="pd-features">
                     <div class="feature-item"><i class="fa-solid fa-truck-fast"></i> Miễn phí vận chuyển toàn quốc</div>
                     <div class="feature-item"><i class="fa-solid fa-shield-halved"></i> Bảo hành trọn đời</div>
@@ -989,6 +1039,20 @@
 
             document.getElementById('pd-desc').textContent = product.description;
             document.getElementById('pd-full-desc').textContent = product.description;
+
+            // Check like status
+            try {
+                const ui = JSON.parse(localStorage.getItem('userInfo') || '{}');
+                const btnLike = document.getElementById('btn-like');
+                const btnLikeIcon = btnLike.querySelector('i');
+                if (ui && ui.id && product.likes && product.likes.includes(ui.id)) {
+                    btnLike.classList.add('liked');
+                    btnLikeIcon.className = 'fa-solid fa-heart';
+                } else {
+                    btnLike.classList.remove('liked');
+                    btnLikeIcon.className = 'fa-regular fa-heart';
+                }
+            } catch(e) {}
 
             // Stock status
             const stockEl = document.getElementById('pd-stock');

@@ -5,8 +5,31 @@ const { getPostData, verifyToken, isValidObjectId } = require('../utils');
 const getProducts = async (req, res) => {
     try {
         const db = getDB();
-        // Sắp xếp theo số lượng (stock) giảm dần: cái nào nhiều hơn sẽ lên trước
-        const products = await db.collection('products').find({}).sort({ stock: -1 }).toArray();
+        const urlParams = new URLSearchParams(req.url.split('?')[1] || '');
+        const sortType = urlParams.get('sort');
+
+        let products;
+        if (sortType === 'popular') {
+            products = await db.collection('products').aggregate([
+                {
+                    $addFields: {
+                        likesCount: { $size: { $ifNull: ["$likes", []] } },
+                        sharesCount: { $ifNull: ["$shares", 0] },
+                        popularityScore: { 
+                            $add: [
+                                { $size: { $ifNull: ["$likes", []] } }, 
+                                { $ifNull: ["$shares", 0] }
+                            ]
+                        }
+                    }
+                },
+                { $sort: { popularityScore: -1, stock: -1 } }
+            ]).toArray();
+        } else {
+            // Sắp xếp theo số lượng (stock) giảm dần: cái nào nhiều hơn sẽ lên trước
+            products = await db.collection('products').find({}).sort({ stock: -1 }).toArray();
+        }
+
         res.writeHead(200, { 'Content-Type': 'application/json' });
         res.end(JSON.stringify(products));
     } catch (error) {
@@ -310,4 +333,120 @@ const seedAll = async (req, res) => {
     }
 };
 
-module.exports = { getProducts, getProductById, createProduct, updateProduct, deleteProduct, seedAll, applyGlobalDiscount };
+const likeProduct = async (req, res) => {
+    try {
+        const decoded = verifyToken(req);
+        if (!decoded) {
+            res.writeHead(401, { 'Content-Type': 'application/json' });
+            return res.end(JSON.stringify({ message: 'Vui lòng đăng nhập để thả tim' }));
+        }
+
+        const id = req.url.split('/')[3];
+        if (!isValidObjectId(id)) {
+            res.writeHead(400, { 'Content-Type': 'application/json' });
+            return res.end(JSON.stringify({ message: 'ID không hợp lệ' }));
+        }
+
+        const db = getDB();
+        const product = await db.collection('products').findOne({ _id: new ObjectId(id) });
+        
+        if (!product) {
+            res.writeHead(404, { 'Content-Type': 'application/json' });
+            return res.end(JSON.stringify({ message: 'Không tìm thấy sản phẩm' }));
+        }
+
+        const userId = decoded.id;
+        const likes = product.likes || [];
+        const hasLiked = likes.includes(userId);
+
+        let updateOp;
+        if (hasLiked) {
+            updateOp = { $pull: { likes: userId } };
+        } else {
+            updateOp = { $addToSet: { likes: userId } };
+        }
+
+        await db.collection('products').updateOne({ _id: new ObjectId(id) }, updateOp);
+        
+        res.writeHead(200, { 'Content-Type': 'application/json' });
+        res.end(JSON.stringify({ message: hasLiked ? 'Đã bỏ thả tim' : 'Đã thả tim sản phẩm', liked: !hasLiked }));
+    } catch (error) {
+        res.writeHead(500, { 'Content-Type': 'application/json' });
+        res.end(JSON.stringify({ message: error.message }));
+    }
+};
+
+const shareProduct = async (req, res) => {
+    try {
+        const id = req.url.split('/')[3];
+        if (!isValidObjectId(id)) {
+            res.writeHead(400, { 'Content-Type': 'application/json' });
+            return res.end(JSON.stringify({ message: 'ID không hợp lệ' }));
+        }
+
+        const db = getDB();
+        await db.collection('products').updateOne(
+            { _id: new ObjectId(id) },
+            { $inc: { shares: 1 } }
+        );
+
+        res.writeHead(200, { 'Content-Type': 'application/json' });
+        res.end(JSON.stringify({ message: 'Đã cập nhật lượt chia sẻ' }));
+    } catch (error) {
+        res.writeHead(500, { 'Content-Type': 'application/json' });
+        res.end(JSON.stringify({ message: error.message }));
+    }
+};
+
+const shareSEO = async (req, res) => {
+    try {
+        const id = req.url.split('/')[3];
+        if (!isValidObjectId(id)) {
+            res.writeHead(404, { 'Content-Type': 'text/html; charset=utf-8' });
+            return res.end('<h1>Không tìm thấy sản phẩm</h1>');
+        }
+
+        const db = getDB();
+        const product = await db.collection('products').findOne({ _id: new ObjectId(id) });
+        
+        if (!product) {
+            res.writeHead(404, { 'Content-Type': 'text/html; charset=utf-8' });
+            return res.end('<h1>Không tìm thấy sản phẩm</h1>');
+        }
+
+        const price = product.price.toLocaleString('vi-VN') + ' đ';
+        const title = product.name + ' - An LUXURY';
+        const image = 'https://anluxury.com.vn/images/' + (product.images ? product.images[0] : product.image);
+        
+        const html = `
+            <!DOCTYPE html>
+            <html lang="vi">
+            <head>
+                <meta charset="UTF-8">
+                <title>${title}</title>
+                <meta property="og:title" content="${title}">
+                <meta property="og:description" content="Khám phá ngay sản phẩm đẳng cấp tại An LUXURY với giá chỉ ${price}.">
+                <meta property="og:image" content="${image}">
+                <meta property="og:url" content="https://anluxury.com.vn/share/product/${id}">
+                <meta property="og:type" content="product">
+                <script>
+                    // Redirect to actual product detail page after load
+                    window.location.href = '/pages/product-detail.html?id=${id}';
+                </script>
+            </head>
+            <body>
+                <p>Đang chuyển hướng đến chi tiết sản phẩm...</p>
+                <a href="/pages/product-detail.html?id=${id}">Bấm vào đây nếu không được chuyển hướng</a>
+            </body>
+            </html>
+        `;
+
+        res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });
+        res.end(html);
+    } catch (error) {
+        res.writeHead(500, { 'Content-Type': 'text/html; charset=utf-8' });
+        res.end('<h1>Lỗi hệ thống</h1>');
+    }
+};
+
+module.exports = { getProducts, getProductById, createProduct, updateProduct, deleteProduct, seedAll, applyGlobalDiscount, likeProduct, shareProduct, shareSEO };

@@ -78,5 +78,7 @@ window.API = {
     createNews: (data) => fetchAPI('/news', { method: 'POST', body: JSON.stringify(data) }),
     updateNews: (id, data) => fetchAPI(`/news/${id}`, { method: 'PUT', body: JSON.stringify(data) }),
     deleteNews: (id) => fetchAPI(`/news/${id}`, { method: 'DELETE' }),
-    getWarranty: (code) => fetchAPI(`/warranty/${code}`)
+    getWarranty: (code) => fetchAPI(`/warranty/${code}`),
+    likeProduct: (id) => fetchAPI(`/products/${id}/like`, { method: 'PUT' }),
+    shareProduct: (id) => fetchAPI(`/products/${id}/share`, { method: 'PUT' })
 };
