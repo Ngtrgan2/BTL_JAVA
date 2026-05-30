@@ -1,0 +1,265 @@
+<div class="comments-wrapper">
+    <div class="comments-header">
+        <h3 class="comments-title">Đánh giá & Bình luận</h3>
+        <p class="comments-subtitle">Chia sẻ trải nghiệm của bạn về sản phẩm này</p>
+    </div>
+
+    <!-- Khung đăng bình luận -->
+    <div class="comment-form-container">
+        <div class="comment-user-avatar">
+            <i class="fa-solid fa-user-circle"></i>
+        </div>
+        <div class="comment-input-area">
+            <textarea id="comment-text" placeholder="Bạn cảm thấy thế nào về sản phẩm này?" rows="3"></textarea>
+            
+            <div id="comment-media-preview" class="media-preview-container" style="display: none;">
+                <!-- Preview sẽ được JS thêm vào đây -->
+            </div>
+
+            <div class="comment-actions">
+                <label for="comment-media-upload" class="btn-upload-media">
+                    <i class="fa-solid fa-camera"></i> Đính kèm ảnh/video
+                </label>
+                <input type="file" id="comment-media-upload" accept="image/png, image/jpeg, video/mp4" style="display: none;">
+                
+                <button class="btn btn-primary btn-submit-comment" id="btn-submit-comment">
+                    <i class="fa-solid fa-paper-plane"></i> Gửi bình luận
+                </button>
+            </div>
+            <p class="upload-note">* Kích thước file tối đa 5MB. Hỗ trợ định dạng .jpg, .png, .mp4</p>
+        </div>
+    </div>
+
+    <!-- Danh sách bình luận -->
+    <div id="comments-list" class="comments-list">
+        <div class="loading-comments">
+            <i class="fa-solid fa-spinner fa-spin"></i> Đang tải bình luận...
+        </div>
+        <!-- Các comment sẽ được load ở đây -->
+    </div>
+</div>
+
+<style>
+    .comments-wrapper {
+        margin-top: 3rem;
+        padding: 2.5rem;
+        background-color: var(--bg-light);
+        border: 1px solid var(--border-light);
+        border-radius: var(--border-radius);
+    }
+    .comments-header {
+        margin-bottom: 2rem;
+        border-bottom: 1px solid var(--border-light);
+        padding-bottom: 1rem;
+    }
+    .comments-title {
+        font-family: var(--font-heading);
+        font-size: 1.8rem;
+        color: var(--gold-primary);
+        margin-bottom: 0.5rem;
+    }
+    .comments-subtitle {
+        color: var(--text-muted);
+        font-size: 0.95rem;
+    }
+    .comment-form-container {
+        display: flex;
+        gap: 1.5rem;
+        margin-bottom: 3rem;
+    }
+    .comment-user-avatar {
+        font-size: 3rem;
+        color: var(--border-light);
+    }
+    .comment-input-area {
+        flex: 1;
+        background: var(--bg-dark);
+        border: 1px solid var(--border-light);
+        border-radius: var(--border-radius);
+        padding: 1.2rem;
+        transition: border-color 0.3s;
+    }
+    .comment-input-area:focus-within {
+        border-color: var(--gold-primary);
+    }
+    .comment-input-area textarea {
+        width: 100%;
+        background: transparent;
+        border: none;
+        color: var(--text-primary);
+        font-family: inherit;
+        font-size: 1rem;
+        resize: vertical;
+        min-height: 80px;
+        outline: none;
+    }
+    .comment-actions {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 1rem;
+        border-top: 1px solid var(--border-light);
+        padding-top: 1rem;
+    }
+    .btn-upload-media {
+        color: var(--text-secondary);
+        cursor: pointer;
+        font-size: 0.95rem;
+        transition: color 0.3s;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+    .btn-upload-media:hover {
+        color: var(--gold-primary);
+    }
+    .btn-submit-comment {
+        padding: 0.6rem 1.5rem;
+        font-size: 0.9rem;
+        border-radius: 20px;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+    .upload-note {
+        font-size: 0.75rem;
+        color: var(--text-muted);
+        margin-top: 0.5rem;
+    }
+    
+    /* Media Preview */
+    .media-preview-container {
+        margin-top: 1rem;
+        position: relative;
+        display: inline-block;
+    }
+    .media-preview-item {
+        max-width: 150px;
+        max-height: 150px;
+        border-radius: 8px;
+        border: 1px solid var(--border-light);
+        object-fit: cover;
+    }
+    .btn-remove-media {
+        position: absolute;
+        top: -10px;
+        right: -10px;
+        background: #e74c3c;
+        color: white;
+        border: none;
+        border-radius: 50%;
+        width: 24px;
+        height: 24px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.8rem;
+    }
+
+    /* Comment List */
+    .comment-item {
+        display: flex;
+        gap: 1.5rem;
+        margin-bottom: 2rem;
+        border-bottom: 1px solid var(--border-light);
+        padding-bottom: 2rem;
+    }
+    .comment-item:last-child {
+        border-bottom: none;
+        margin-bottom: 0;
+        padding-bottom: 0;
+    }
+    .comment-body {
+        flex: 1;
+    }
+    .comment-meta {
+        display: flex;
+        align-items: baseline;
+        gap: 1rem;
+        margin-bottom: 0.5rem;
+    }
+    .comment-author {
+        font-weight: 600;
+        color: var(--gold-primary);
+        font-size: 1.1rem;
+    }
+    .comment-date {
+        font-size: 0.8rem;
+        color: var(--text-muted);
+    }
+    .comment-role-badge {
+        background: var(--gold-dark);
+        color: #fff;
+        font-size: 0.7rem;
+        padding: 0.2rem 0.5rem;
+        border-radius: 4px;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+    .comment-content {
+        color: var(--text-primary);
+        line-height: 1.6;
+        margin-bottom: 1rem;
+        white-space: pre-wrap;
+    }
+    .comment-attached-media {
+        margin-bottom: 1rem;
+    }
+    .comment-attached-media img,
+    .comment-attached-media video {
+        max-width: 100%;
+        max-height: 300px;
+        border-radius: 8px;
+        border: 1px solid var(--border-light);
+    }
+    
+    /* Like Button & Author Liked */
+    .comment-interactions {
+        display: flex;
+        align-items: center;
+        gap: 1.5rem;
+    }
+    .btn-like {
+        background: transparent;
+        border: none;
+        color: var(--text-muted);
+        cursor: pointer;
+        font-size: 0.95rem;
+        display: flex;
+        align-items: center;
+        gap: 0.4rem;
+        transition: color 0.3s, transform 0.2s;
+    }
+    .btn-like:hover {
+        color: #e74c3c;
+    }
+    .btn-like.liked {
+        color: #e74c3c;
+    }
+    .btn-like.liked i {
+        font-weight: 900;
+    }
+    .btn-like:active {
+        transform: scale(0.9);
+    }
+    .author-liked-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        background: rgba(231, 76, 60, 0.1);
+        color: #e74c3c;
+        border: 1px solid rgba(231, 76, 60, 0.3);
+        padding: 0.3rem 0.8rem;
+        border-radius: 20px;
+        font-size: 0.8rem;
+        font-weight: 500;
+    }
+    .loading-comments {
+        text-align: center;
+        color: var(--text-muted);
+        padding: 2rem 0;
+    }
+</style>
+
+<script src="../js/comments.js"></script>
