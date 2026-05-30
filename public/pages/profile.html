@@ -293,6 +293,9 @@
                     <li class="profile-menu-item" onclick="switchProfileTab('bookings', this)">
                         <i class="fa-regular fa-calendar-check"></i> Lịch hẹn tư vấn
                     </li>
+                    <li class="profile-menu-item" onclick="switchProfileTab('likes', this)">
+                        <i class="fa-solid fa-heart"></i> Sản phẩm yêu thích
+                    </li>
                     <li class="profile-menu-item" onclick="switchProfileTab('warranty', this)">
                         <i class="fa-solid fa-shield-halved"></i> Tra cứu bảo hành
                     </li>
@@ -370,6 +373,17 @@
                     </div>
                 </div>
 
+                <!-- Content: Liked Products -->
+                <div id="tab-likes" class="profile-content-area">
+                    <h2 class="profile-section-title">Sản Phẩm Yêu Thích</h2>
+                    <div id="likes-container" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1.5rem;">
+                        <div class="empty-state" style="grid-column: 1/-1;">
+                            <i class="fa-solid fa-spinner fa-spin"></i>
+                            <p>Đang tải...</p>
+                        </div>
+                    </div>
+                </div>
+
                 <!-- Content: Warranty -->
                 <div id="tab-warranty" class="profile-content-area">
                     <h2 class="profile-section-title">Tra Cứu Bảo Hành</h2>
@@ -420,6 +434,48 @@
             return map[status] || '<span class="status-badge status-pending">' + status + '</span>';
         }
 
+        
+        // Load Liked Products
+        async function loadLikedProducts() {
+            const container = document.getElementById('likes-container');
+            try {
+                const products = await API.getLikedProducts();
+                if (!products || products.length === 0) {
+                    container.innerHTML = `
+                        <div class="empty-state" style="grid-column: 1/-1;">
+                            <i class="fa-regular fa-heart"></i>
+                            <p>Bạn chưa yêu thích sản phẩm nào.</p>
+                            <a href="collection.html" class="btn btn-primary" style="padding: 0.8rem 1.5rem;">Khám phá ngay</a>
+                        </div>
+                    `;
+                    return;
+                }
+
+                container.innerHTML = products.map(product => {
+                    const discount = Number(product.discountPercentage || 0);
+                    const finalPrice = discount > 0 ? product.price * (1 - discount / 100) : product.price;
+                    return `
+                    <div class="product-card" onclick="window.location.href='product-detail.html?id=${product._id}'" style="cursor: pointer; background: var(--bg-light); border: 1px solid var(--border-light); border-radius: 8px; overflow: hidden; position: relative;">
+                        <div style="aspect-ratio: 1; background: #1a1a1a;">
+                            <img src="${(product.image.startsWith('http') || product.image.startsWith('data:')) ? product.image : '..' + product.image}" alt="${product.name}" style="width: 100%; height: 100%; object-fit: cover;">
+                        </div>
+                        <div style="padding: 1.5rem; text-align: center;">
+                            <h4 style="font-size: 1rem; margin-bottom: 0.5rem; font-weight: 600;">${product.name}</h4>
+                            <div style="color: var(--gold-primary); font-weight: bold;">${formatPrice(finalPrice)}</div>
+                        </div>
+                    </div>
+                    `;
+                }).join('');
+            } catch (error) {
+                container.innerHTML = `
+                    <div class="empty-state" style="grid-column: 1/-1;">
+                        <i class="fa-solid fa-triangle-exclamation"></i>
+                        <p>Lỗi tải sản phẩm yêu thích.</p>
+                    </div>
+                `;
+            }
+        }
+
         // Switch tabs
         function switchProfileTab(tabId, element) {
             document.querySelectorAll('.profile-content-area').forEach(tab => tab.classList.remove('active'));
@@ -430,6 +486,7 @@
             // Load data khi chuyển tab
             if (tabId === 'orders') loadOrders();
             if (tabId === 'bookings') loadBookings();
+            if (tabId === 'likes') loadLikedProducts();
         }
 
         // Load đơn hàng từ API

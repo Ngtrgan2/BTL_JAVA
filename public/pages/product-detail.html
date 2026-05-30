@@ -720,10 +720,10 @@
                 <!-- Social Actions -->
                 <div class="pd-social-actions">
                     <button class="btn-social" id="btn-like" onclick="handleLike()">
-                        <i class="fa-regular fa-heart"></i> Thả tim
+                        <i class="fa-regular fa-heart"></i> Thả tim (<span id="like-count">0</span>)
                     </button>
                     <button class="btn-social" id="btn-share" onclick="handleShare()">
-                        <i class="fa-solid fa-share-nodes"></i> Chia sẻ
+                        <i class="fa-solid fa-share-nodes"></i> Chia sẻ (<span id="share-count">0</span>)
                     </button>
                 </div>
 
@@ -1040,6 +1040,12 @@
             document.getElementById('pd-desc').textContent = product.description;
             document.getElementById('pd-full-desc').textContent = product.description;
 
+            // Set counts
+            const likeEl = document.getElementById('like-count');
+            const shareEl = document.getElementById('share-count');
+            if(likeEl) likeEl.textContent = product.likes ? product.likes.length : 0;
+            if(shareEl) shareEl.textContent = product.shares || 0;
+
             // Check like status
             try {
                 const ui = JSON.parse(localStorage.getItem('userInfo') || '{}');
@@ -1198,6 +1204,7 @@
                     btnLike.classList.remove('liked');
                     icon.className = 'fa-regular fa-heart';
                 }
+                if(res.likesCount !== undefined) document.getElementById('like-count').textContent = res.likesCount;
                 if(window.Cart) Cart.showToast(res.message);
             } catch (error) {
                 if (error.message.includes('đăng nhập')) {
@@ -1212,9 +1219,11 @@
         async function handleShare() {
             if (!currentProduct) return;
             try {
-                await window.API.shareProduct(currentProduct._id);
+                
                 const shareUrl = window.location.origin + '/share/product/' + currentProduct._id;
                 
+                const res = await window.API.shareProduct(currentProduct._id);
+                if(res.sharesCount !== undefined) document.getElementById('share-count').textContent = res.sharesCount;
                 await navigator.clipboard.writeText(shareUrl);
                 if(window.Cart) Cart.showToast('Đã copy link chia sẻ sản phẩm!');
             } catch (error) {

@@ -80,5 +80,6 @@ window.API = {
     deleteNews: (id) => fetchAPI(`/news/${id}`, { method: 'DELETE' }),
     getWarranty: (code) => fetchAPI(`/warranty/${code}`),
     likeProduct: (id) => fetchAPI(`/products/${id}/like`, { method: 'PUT' }),
-    shareProduct: (id) => fetchAPI(`/products/${id}/share`, { method: 'PUT' })
+    shareProduct: (id) => fetchAPI(`/products/${id}/share`, { method: 'PUT' }),
+    getLikedProducts: () => fetchAPI('/users/liked-products')
 };

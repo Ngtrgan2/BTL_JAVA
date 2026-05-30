@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const { register, login, updateProfile, getUsers, updateUserRole, googleLogin, forgotPassword, resetPassword, seedAdmin } = require('./controllers/userController');
-const { getProducts, getProductById, createProduct, updateProduct, deleteProduct, applyGlobalDiscount, likeProduct, shareProduct, shareSEO, seedAll } = require('./controllers/productController');
+const { getProducts, getProductById, createProduct, updateProduct, deleteProduct, applyGlobalDiscount, likeProduct, shareProduct, shareSEO, seedAll, getLikedProducts } = require('./controllers/productController');
 const { createOrder, getOrders, getOrderById, updateOrder, deleteOrder } = require('./controllers/orderController');
 const { createBooking, getBookings, updateBooking, deleteBooking } = require('./controllers/bookingController');
 const { getWarrantyByCode } = require('./controllers/warrantyController');
@@ -77,6 +77,9 @@ function router(req, res) {
     }
     if (url === '/api/users' && method === 'GET') {
         return getUsers(req, res);
+    }
+    if (url === '/api/users/liked-products' && method === 'GET') {
+        return getLikedProducts(req, res);
     }
     if (url.startsWith('/api/users/') && method === 'PUT') {
         return updateUserRole(req, res);

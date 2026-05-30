@@ -369,7 +369,11 @@ const likeProduct = async (req, res) => {
         await db.collection('products').updateOne({ _id: new ObjectId(id) }, updateOp);
         
         res.writeHead(200, { 'Content-Type': 'application/json' });
-        res.end(JSON.stringify({ message: hasLiked ? 'Đã bỏ thả tim' : 'Đã thả tim sản phẩm', liked: !hasLiked }));
+        res.end(JSON.stringify({ 
+            message: hasLiked ? 'Đã bỏ thả tim' : 'Đã thả tim sản phẩm', 
+            liked: !hasLiked,
+            likesCount: hasLiked ? likes.length - 1 : likes.length + 1 
+        }));
     } catch (error) {
         res.writeHead(500, { 'Content-Type': 'application/json' });
         res.end(JSON.stringify({ message: error.message }));
@@ -385,13 +389,16 @@ const shareProduct = async (req, res) => {
         }
 
         const db = getDB();
+        const product = await db.collection('products').findOne({ _id: new ObjectId(id) });
+        const newShares = (product && product.shares ? product.shares : 0) + 1;
+
         await db.collection('products').updateOne(
             { _id: new ObjectId(id) },
             { $inc: { shares: 1 } }
         );
 
         res.writeHead(200, { 'Content-Type': 'application/json' });
-        res.end(JSON.stringify({ message: 'Đã cập nhật lượt chia sẻ' }));
+        res.end(JSON.stringify({ message: 'Đã cập nhật lượt chia sẻ', sharesCount: newShares }));
     } catch (error) {
         res.writeHead(500, { 'Content-Type': 'application/json' });
         res.end(JSON.stringify({ message: error.message }));
@@ -447,6 +454,28 @@ const shareSEO = async (req, res) => {
         res.writeHead(500, { 'Content-Type': 'text/html; charset=utf-8' });
         res.end('<h1>Lỗi hệ thống</h1>');
     }
+    }
 };
 
-module.exports = { getProducts, getProductById, createProduct, updateProduct, deleteProduct, seedAll, applyGlobalDiscount, likeProduct, shareProduct, shareSEO };
+const getLikedProducts = async (req, res) => {
+    try {
+        const decoded = verifyToken(req);
+        if (!decoded) {
+            res.writeHead(401, { 'Content-Type': 'application/json' });
+            return res.end(JSON.stringify({ message: 'Unauthorized' }));
+        }
+
+        const db = getDB();
+        const userId = decoded.id;
+        // Lấy tất cả sản phẩm mà ID user nằm trong mảng likes
+        const products = await db.collection('products').find({ likes: userId }).toArray();
+
+        res.writeHead(200, { 'Content-Type': 'application/json' });
+        res.end(JSON.stringify(products));
+    } catch (error) {
+        res.writeHead(500, { 'Content-Type': 'application/json' });
+        res.end(JSON.stringify({ message: error.message }));
+    }
+};
+
+module.exports = { getProducts, getProductById, createProduct, updateProduct, deleteProduct, seedAll, applyGlobalDiscount, likeProduct, shareProduct, shareSEO, getLikedProducts };
