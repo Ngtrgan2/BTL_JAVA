@@ -915,6 +915,201 @@
             document.querySelectorAll('.thumb').forEach(t => t.classList.remove('active'));
             el.classList.add('active');
         }
+                        <i class="fa-regular fa-heart"></i> Thả tim (<span id="like-count">0</span>)
+                    </button>
+                    <button class="btn-social" id="btn-share" onclick="handleShare()">
+                        <i class="fa-solid fa-share-nodes"></i> Chia sẻ (<span id="share-count">0</span>)
+                    </button>
+                </div>
+
+                <div class="pd-features">
+                    <div class="feature-item"><i class="fa-solid fa-truck-fast"></i> Miễn phí vận chuyển toàn quốc</div>
+                    <div class="feature-item"><i class="fa-solid fa-shield-halved"></i> Bảo hành trọn đời</div>
+                    <div class="feature-item"><i class="fa-solid fa-gem"></i> Giấy kiểm định GIA</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 3D Experience & Mockups -->
+        <div style="margin-top: 6rem;">
+            <div style="text-align: center; margin-bottom: 3rem;">
+                <h2 style="font-family: var(--font-heading); font-size: 2.5rem; margin-bottom: 1rem;">Góc Nhìn 3D & Mockup</h2>
+                <p style="color: var(--text-secondary); max-width: 600px; margin: 0 auto;">Khám phá từng đường nét tinh xảo của sản phẩm qua các góc nhìn mô phỏng 3D độ phân giải cực cao.</p>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1.5fr 1fr; gap: 2rem; align-items: center;">
+                <div style="position: relative; border-radius: 20px; overflow: hidden; height: 500px; box-shadow: 0 30px 60px rgba(0,0,0,0.5); border: 1px solid var(--border-light);">
+                    <img src="../images/mockups/mockup1.png" alt="3D View" id="3d-viewer-main" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.8s cubic-bezier(0.2, 0, 0.2, 1);">
+                    <div style="position: absolute; bottom: 20px; left: 20px; background: rgba(0,0,0,0.6); padding: 0.5rem 1rem; border-radius: 30px; font-size: 0.8rem; backdrop-filter: blur(10px); color: var(--gold-primary); border: 1px solid var(--gold-dark);">
+                        <i class="fa-solid fa-cube fa-spin" style="margin-right: 8px;"></i> 3D MOCKUP RENDER
+                    </div>
+                </div>
+                <div style="display: grid; grid-template-rows: 1fr 1fr; gap: 2rem;">
+                    <div style="border-radius: 15px; overflow: hidden; height: 235px; border: 1px solid var(--border-light); cursor: pointer;" onclick="document.getElementById('3d-viewer-main').src='../images/mockups/mockup2.png'">
+                        <img src="../images/mockups/mockup2.png" alt="Mockup 2" style="width: 100%; height: 100%; object-fit: cover; transition: 0.3s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+                    </div>
+                    <div style="border-radius: 15px; overflow: hidden; height: 235px; border: 1px solid var(--border-light); cursor: pointer;" onclick="document.getElementById('3d-viewer-main').src='../images/mockups/mockup3.png'">
+                        <img src="../images/mockups/mockup3.png" alt="Mockup 3" style="width: 100%; height: 100%; object-fit: cover; transition: 0.3s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal Hướng Dẫn Đo Size -->
+        <div id="size-guide-modal" class="modal">
+            <div class="modal-content">
+                <button class="modal-close" onclick="document.getElementById('size-guide-modal').style.display='none'"><i class="fa-solid fa-xmark"></i></button>
+                <h2 class="modal-title"><i class="fa-solid fa-ruler-combined"></i> Hướng Dẫn Đo Size</h2>
+                <p style="color: var(--text-secondary); text-align: center; margin-bottom: 1.5rem; line-height: 1.6;">
+                    Sử dụng một sợi chỉ hoặc mảnh giấy dài quấn quanh ngón tay của bạn. Đánh dấu điểm giao nhau và đo chiều dài bằng thước kẻ (mm).
+                </p>
+                <div style="background: rgba(255,255,255,0.05); padding: 1.5rem; border-radius: 8px; margin-bottom: 1.5rem; text-align: center; border: 1px dashed var(--border-light);">
+                    <i class="fa-solid fa-hand-sparkles" style="font-size: 3rem; color: var(--gold-primary); margin-bottom: 1rem;"></i>
+                    <p style="color: var(--text-primary); font-size: 0.9rem;">Chu vi ngón tay = Kích thước (mm) hiển thị trong bảng dưới đây.</p>
+                </div>
+                <div style="overflow-x: auto;">
+                    <table class="size-guide-table">
+                        <thead>
+                            <tr>
+                                <th>Size Nhẫn</th>
+                                <th>Chu vi ngón tay (mm)</th>
+                                <th>Đường kính (mm)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>8</td><td>48 mm</td><td>15.3 mm</td></tr>
+                            <tr><td>9</td><td>49 mm</td><td>15.6 mm</td></tr>
+                            <tr><td>10</td><td>50 mm</td><td>16.0 mm</td></tr>
+                            <tr><td>11</td><td>51 mm</td><td>16.2 mm</td></tr>
+                            <tr><td>12</td><td>52 mm</td><td>16.5 mm</td></tr>
+                            <tr><td>13</td><td>53 mm</td><td>16.8 mm</td></tr>
+                            <tr><td>14</td><td>54 mm</td><td>17.2 mm</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Details Tabs -->
+        <div class="pd-tabs">
+            <div class="tab-headers">
+                <button class="tab-btn active" onclick="switchTab('desc')">Mô tả sản phẩm</button>
+                <button class="tab-btn" onclick="switchTab('specs')">Thông số kỹ thuật</button>
+                <button class="tab-btn" onclick="switchTab('shipping')">Giao hàng & Bảo hành</button>
+            </div>
+            
+            <div id="tab-desc" class="tab-content active">
+                <p id="pd-full-desc">Sản phẩm tuyệt tác từ An LUXURY...</p>
+            </div>
+
+            <div id="tab-specs" class="tab-content">
+                <table class="specs-table" id="tab-specs-table">
+                    <!-- Render bởi JS -->
+                </table>
+            </div>
+
+            <div id="tab-shipping" class="tab-content">
+                <p><strong>Giao hàng:</strong> Miễn phí giao hàng toàn quốc cho đơn hàng trên 10.000.000 ₫. Thời gian giao hàng từ 2-5 ngày làm việc.</p>
+                <br>
+                <p><strong>Bảo hành:</strong> Tất cả sản phẩm An LUXURY được bảo hành trọn đời. Bao gồm dịch vụ đánh bóng, làm mới và sửa chữa kỹ thuật miễn phí.</p>
+                <br>
+                <p><strong>Đổi trả:</strong> Đổi trả trong vòng 7 ngày nếu sản phẩm không vừa ý, với điều kiện còn nguyên trạng và đầy đủ giấy tờ.</p>
+            </div>
+        </div>
+
+        <!-- Recommended Products -->
+        <section class="recommended-section">
+            <div class="section-title-wrap">
+                <h2>CÓ THỂ BẠN CŨNG THÍCH</h2>
+                <div class="divider"></div>
+            </div>
+            
+            <div class="recommended-slider-wrapper">
+                <button class="slider-nav-btn prev" onclick="slideRecommended('prev')"><i class="fa-solid fa-chevron-left"></i></button>
+                <button class="slider-nav-btn next" onclick="slideRecommended('next')"><i class="fa-solid fa-chevron-right"></i></button>
+                
+                <div class="recommended-slider-container">
+                    <div class="recommended-grid" id="recommended-grid">
+                        <!-- Sẽ được render bởi JS -->
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Comments Section -->
+    <div class="container" style="margin-bottom: 5rem;">
+        <div id="an-comments-section"></div>
+    </div>
+    <script src="../js/comments.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            fetch('comment.html')
+                .then(res => res.text())
+                .then(html => {
+                    const container = document.getElementById('an-comments-section');
+                    if (container) {
+                        container.innerHTML = html;
+                        // Execute any inline styles
+                        const styles = container.querySelectorAll('style');
+                        styles.forEach(style => {
+                            document.head.appendChild(style.cloneNode(true));
+                        });
+                        // Now init the comments logic
+                        if (typeof window.initComments === 'function') {
+                            window.initComments();
+                        }
+                    }
+                })
+                .catch(err => console.error('Error loading comments UI:', err));
+        });
+    </script>
+
+    <script src="../js/api.js"></script>
+    <script src="../js/cart.js"></script>
+    <script src="../js/auth.js"></script>
+    <script src="../js/chatbot.js"></script>
+    <script>
+        let currentProduct = null;
+        const categoryMap = {
+            'nhan': 'Nhẫn',
+            'vong-tay': 'Vòng tay',
+            'bong-tai': 'Bông tai',
+            'day-chuyen': 'Dây chuyền'
+        };
+
+        const getImgPath = (img) => {
+            if (!img) return '';
+            if (img.startsWith('http') || img.startsWith('data:')) return img;
+            return '..' + img;
+        };
+
+        function formatPrice(price) {
+            return Number(price).toLocaleString('vi-VN') + ' ₫';
+        }
+
+        function switchTab(tabId) {
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+            const activeBtn = Array.from(document.querySelectorAll('.tab-btn')).find(btn => btn.getAttribute('onclick').includes(tabId));
+            if(activeBtn) activeBtn.classList.add('active');
+            document.getElementById('tab-' + tabId).classList.add('active');
+        }
+
+        function selectOption(btn) {
+            const parent = btn.parentElement;
+            parent.querySelectorAll('.size-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+        }
+
+        function changeImage(index, el) {
+            if (!currentProduct) return;
+            const images = (currentProduct.images && currentProduct.images.length > 0) ? currentProduct.images : [currentProduct.image];
+            const src = images[index];
+            document.getElementById('mainImage').src = getImgPath(src);
+            document.querySelectorAll('.thumb').forEach(t => t.classList.remove('active'));
+            el.classList.add('active');
+        }
 
         async function loadProductDetail() {
             const params = new URLSearchParams(window.location.search);
@@ -935,21 +1130,72 @@
             }
         }
 
-        let recommendedScrollPos = 0;
-        function slideRecommended(direction) {
-            const grid = document.getElementById('recommended-grid');
-            const container = document.querySelector('.recommended-slider-container');
-            const cardWidth = grid.querySelector('.product-card').offsetWidth + 32; // width + gap
-            const maxScroll = grid.scrollWidth - container.offsetWidth;
+        let currentSlideIndex = 0;
+        let totalSlides = 0;
+        let slideInterval = null;
 
+        function initCarousel(total) {
+            totalSlides = total;
+            currentSlideIndex = Math.floor(total / 2);
+            updateCarousel();
+            startAutoSlide();
+        }
+
+        function updateCarousel() {
+            const items = document.querySelectorAll('.carousel-item');
+            const dots = document.querySelectorAll('.carousel-dots .dot');
+            
+            if(items.length === 0) return;
+
+            items.forEach((item, index) => {
+                item.className = 'product-card carousel-item'; // Reset classes
+                
+                if (index === currentSlideIndex) {
+                    item.classList.add('active');
+                } else if (index === (currentSlideIndex - 1 + totalSlides) % totalSlides) {
+                    item.classList.add('prev-1');
+                } else if (index === (currentSlideIndex + 1) % totalSlides) {
+                    item.classList.add('next-1');
+                } else if (index === (currentSlideIndex - 2 + totalSlides) % totalSlides) {
+                    item.classList.add('prev-2');
+                } else if (index === (currentSlideIndex + 2) % totalSlides) {
+                    item.classList.add('next-2');
+                }
+            });
+
+            dots.forEach((dot, index) => {
+                dot.classList.toggle('active', index === currentSlideIndex);
+            });
+        }
+
+        function slideRecommended(direction) {
+            if(totalSlides <= 1) return;
             if (direction === 'next') {
-                recommendedScrollPos += cardWidth * 2; // Slide 2 cards
-                if (recommendedScrollPos > maxScroll) recommendedScrollPos = maxScroll;
+                currentSlideIndex = (currentSlideIndex + 1) % totalSlides;
             } else {
-                recommendedScrollPos -= cardWidth * 2;
-                if (recommendedScrollPos < 0) recommendedScrollPos = 0;
+                currentSlideIndex = (currentSlideIndex - 1 + totalSlides) % totalSlides;
             }
-            grid.style.transform = `translateX(-${recommendedScrollPos}px)`;
+            updateCarousel();
+            resetAutoSlide();
+        }
+
+        function goToSlide(index) {
+            currentSlideIndex = index;
+            updateCarousel();
+            resetAutoSlide();
+        }
+
+        function startAutoSlide() {
+            if(totalSlides > 1) {
+                slideInterval = setInterval(() => {
+                    slideRecommended('next');
+                }, 5000);
+            }
+        }
+
+        function resetAutoSlide() {
+            clearInterval(slideInterval);
+            startAutoSlide();
         }
 
         async function loadRecommendedProducts(category, currentId) {
@@ -970,12 +1216,12 @@
                     return;
                 }
 
-                grid.innerHTML = displayProducts.map(p => {
+                grid.innerHTML = displayProducts.map((p, index) => {
                     const discount = Number(p.discountPercentage || 0);
                     const finalPrice = discount > 0 ? p.price * (1 - discount / 100) : p.price;
                     
                     return `
-                    <a href="product-detail.html?id=${p._id}" class="product-card" style="position: relative;">
+                    <a href="product-detail.html?id=${p._id}" class="product-card carousel-item" data-index="${index}">
                         ${discount > 0 ? `<div style="position: absolute; top: 10px; left: 10px; background: #e74c3c; color: white; padding: 2px 8px; border-radius: 4px; font-size: 0.7rem; font-weight: 700; z-index: 2;">-${discount}%</div>` : ''}
                         <div class="card-img">
                             <img src="${getImgPath(p.image || (p.images && p.images[0]))}" alt="${p.name}">
@@ -993,12 +1239,28 @@
                     </a>
                 `}).join('');
 
-                // Ẩn nút nếu số lượng sp ít hơn 4
-                if (displayProducts.length <= 4) {
+                if (displayProducts.length <= 1) {
                     document.querySelectorAll('.slider-nav-btn').forEach(btn => btn.style.display = 'none');
                 } else {
                     document.querySelectorAll('.slider-nav-btn').forEach(btn => btn.style.display = 'flex');
                 }
+
+                let dotsContainer = document.getElementById('carousel-dots-container');
+                if(!dotsContainer) {
+                    dotsContainer = document.createElement('div');
+                    dotsContainer.id = 'carousel-dots-container';
+                    dotsContainer.className = 'carousel-dots';
+                    dotsContainer.style = 'text-align: center; margin-top: 2rem; position: relative; z-index: 20; display: flex; justify-content: center; gap: 8px;';
+                    document.querySelector('.recommended-slider-wrapper').appendChild(dotsContainer);
+                }
+                
+                let dotsHtml = '';
+                for(let i=0; i<displayProducts.length; i++) {
+                    dotsHtml += `<span class="dot" onclick="goToSlide(${i})" style="width:10px; height:10px; border-radius:50%; background:var(--text-muted); cursor:pointer; transition:all 0.3s ease; opacity: 0.6;"></span>`;
+                }
+                dotsContainer.innerHTML = dotsHtml;
+
+                initCarousel(displayProducts.length);
             } catch (error) {
                 console.error('Lỗi load sản phẩm gợi ý:', error);
             }
@@ -1643,6 +1905,87 @@
         .reveal.active {
             opacity: 1;
             transform: translateY(0);
+        }
+
+        /* 3D Coverflow Carousel */
+        .recommended-slider-wrapper {
+            position: relative;
+            overflow: visible;
+        }
+        .recommended-slider-container {
+            perspective: 1200px;
+            width: 100%;
+            height: 480px; 
+            padding: 2rem 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+        .recommended-grid {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transform-style: preserve-3d;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transform: none !important; 
+            gap: 0 !important; 
+        }
+        .product-card.carousel-item {
+            position: absolute;
+            width: 280px; 
+            transition: transform 0.6s cubic-bezier(0.2, 0, 0.2, 1), opacity 0.6s, z-index 0.6s, filter 0.6s;
+            opacity: 0;
+            pointer-events: none;
+            transform: translateX(0) scale(0.6) translateZ(-400px);
+            z-index: 0;
+            filter: brightness(0.4);
+            margin: 0;
+        }
+        .product-card.carousel-item.active {
+            opacity: 1;
+            pointer-events: auto;
+            transform: translateX(0) scale(1.05) translateZ(0);
+            z-index: 10;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.6);
+            border: 2px solid var(--gold-primary);
+            filter: brightness(1);
+        }
+        .product-card.carousel-item.prev-1 {
+            opacity: 0.9;
+            pointer-events: auto;
+            transform: translateX(-65%) scale(0.85) translateZ(-150px);
+            z-index: 5;
+            filter: brightness(0.6);
+        }
+        .product-card.carousel-item.next-1 {
+            opacity: 0.9;
+            pointer-events: auto;
+            transform: translateX(65%) scale(0.85) translateZ(-150px);
+            z-index: 5;
+            filter: brightness(0.6);
+        }
+        .product-card.carousel-item.prev-2 {
+            opacity: 0.6;
+            pointer-events: auto;
+            transform: translateX(-120%) scale(0.7) translateZ(-300px);
+            z-index: 4;
+            filter: brightness(0.4);
+        }
+        .product-card.carousel-item.next-2 {
+            opacity: 0.6;
+            pointer-events: auto;
+            transform: translateX(120%) scale(0.7) translateZ(-300px);
+            z-index: 4;
+            filter: brightness(0.4);
+        }
+        .carousel-dots .dot.active {
+            background: var(--gold-primary) !important;
+            transform: scale(1.5);
+            opacity: 1 !important;
+            box-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
         }
     </style>
 <script src="../js/toast.js"></script>
