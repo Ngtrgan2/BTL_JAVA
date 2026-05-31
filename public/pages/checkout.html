@@ -397,12 +397,23 @@
 
                     <!-- Items rendered by JS -->
                     <div id="checkout-items"></div>
+                    
+                    <!-- Discount Code -->
+                    <div class="discount-section" style="margin-top: 1.5rem; display: flex; gap: 0.5rem;">
+                        <input type="text" id="discount-code" class="form-control" placeholder="Nhập mã giảm giá" style="flex: 1; margin-bottom: 0;">
+                        <button type="button" class="btn btn-outline" style="padding: 0.8rem 1.5rem; border-color: var(--gold-primary); color: var(--gold-primary);" onclick="applyDiscount()">Áp dụng</button>
+                    </div>
+                    <div id="discount-message" style="margin-top: 0.5rem; font-size: 0.85rem;"></div>
 
                     <!-- Totals -->
                     <div class="summary-lines">
                         <div class="summary-line">
                             <span>Tạm tính</span>
                             <span id="checkout-subtotal">0 ₫</span>
+                        </div>
+                        <div class="summary-line" id="discount-line" style="display: none; color: #e74c3c;">
+                            <span>Giảm giá (<span id="discount-name"></span>)</span>
+                            <span id="checkout-discount">-0 ₫</span>
                         </div>
                         <div class="summary-line">
                             <span>Vận chuyển đảm bảo</span>
@@ -425,6 +436,43 @@
     <script src="../js/api.js"></script>
     <script src="../js/cart.js"></script>
     <script>
+        let currentDiscount = { code: '', value: 0, type: '' }; // type: 'percent' or 'fixed'
+
+        const discountCodes = {
+            'ANLUXURY10': { value: 10, type: 'percent', desc: 'Giảm 10%' },
+            'VIP20': { value: 20, type: 'percent', desc: 'Giảm 20% cho VIP' },
+            'GIAM500K': { value: 500000, type: 'fixed', desc: 'Giảm 500.000đ' }
+        };
+
+        function applyDiscount() {
+            const codeInput = document.getElementById('discount-code').value.trim().toUpperCase();
+            const messageEl = document.getElementById('discount-message');
+            const discountLine = document.getElementById('discount-line');
+
+            if (!codeInput) {
+                messageEl.textContent = 'Vui lòng nhập mã giảm giá!';
+                messageEl.style.color = '#e74c3c';
+                return;
+            }
+
+            if (discountCodes[codeInput]) {
+                currentDiscount.code = codeInput;
+                currentDiscount.value = discountCodes[codeInput].value;
+                currentDiscount.type = discountCodes[codeInput].type;
+                
+                messageEl.textContent = `Áp dụng thành công mã ${codeInput}!`;
+                messageEl.style.color = '#2ecc71';
+                
+                renderCheckout(); // Re-render to update totals
+            } else {
+                currentDiscount = { code: '', value: 0, type: '' };
+                messageEl.textContent = 'Mã giảm giá không hợp lệ hoặc đã hết hạn!';
+                messageEl.style.color = '#e74c3c';
+                discountLine.style.display = 'none';
+                renderCheckout();
+            }
+        }
+
         function updateQR(amount, method = 'transfer') {
             const userInfo = JSON.parse(localStorage.getItem('userInfo') || '{}');
             const phone = userInfo.phone || document.getElementById('checkout-phone')?.value || 'Guest';
@@ -454,11 +502,11 @@
             document.getElementById('pm-' + id).classList.add('active');
 
             // Dynamic QR Update on select
-            const totalPrice = Cart.getTotalPrice();
+            const finalPrice = parseFloat(document.getElementById('checkout-total').textContent.replace(/[^\d]/g, ''));
             if (id === 'transfer') {
-                updateQR(totalPrice, 'transfer');
+                updateQR(finalPrice, 'transfer');
             } else {
-                updateQR(Math.round(totalPrice * 0.1), 'cod');
+                updateQR(Math.round(finalPrice * 0.1), 'cod');
             }
         }
 
@@ -497,11 +545,30 @@
             `).join('');
 
             // Totals
+            let discountAmount = 0;
+            if (currentDiscount.code) {
+                if (currentDiscount.type === 'percent') {
+                    discountAmount = Math.round(totalPrice * (currentDiscount.value / 100));
+                } else if (currentDiscount.type === 'fixed') {
+                    discountAmount = currentDiscount.value;
+                }
+                // Don't discount more than total
+                if (discountAmount > totalPrice) discountAmount = totalPrice;
+                
+                document.getElementById('discount-line').style.display = 'flex';
+                document.getElementById('discount-name').textContent = currentDiscount.code;
+                document.getElementById('checkout-discount').textContent = '-' + formatPrice(discountAmount);
+            } else {
+                document.getElementById('discount-line').style.display = 'none';
+            }
+
+            const finalPrice = totalPrice - discountAmount;
+
             document.getElementById('checkout-subtotal').textContent = formatPrice(totalPrice);
-            document.getElementById('checkout-total').textContent = formatPrice(totalPrice);
+            document.getElementById('checkout-total').textContent = formatPrice(finalPrice);
 
             // Update VietQR initial
-            updateQR(totalPrice, 'transfer');
+            updateQR(finalPrice, 'transfer');
 
             if (userInfo) {
                 if (document.getElementById('login-redirect')) document.getElementById('login-redirect').style.display = 'none';
@@ -527,8 +594,8 @@
             });
 
             // COD details text
-            const deposit = Math.round(totalPrice * 0.1);
-            const remaining = totalPrice - deposit;
+            const deposit = Math.round(finalPrice * 0.1);
+            const remaining = finalPrice - deposit;
             document.getElementById('cod-text').innerHTML = `
                 Do tính chất giá trị cao của sản phẩm, quý khách vui lòng <strong>chuyển khoản cọc trước 10% giá trị đơn hàng</strong> (tương đương ${formatPrice(deposit)}).
                 <br><br>
@@ -571,7 +638,8 @@
                         size: item.size,
                         image: item.image
                     })),
-                    totalAmount: Cart.getTotalPrice(),
+                    totalAmount: parseFloat(document.getElementById('checkout-total').textContent.replace(/[^\d]/g, '')), // Lấy giá cuối cùng đã giảm
+                    discountCode: currentDiscount.code,
                     address: `${name}, ${phone}, ${address}, ${district}, ${city}`,
                     paymentMethod: paymentMethod,
                     note: note,
