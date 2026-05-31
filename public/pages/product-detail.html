@@ -1205,13 +1205,13 @@
                     icon.className = 'fa-regular fa-heart';
                 }
                 if(res.likesCount !== undefined) document.getElementById('like-count').textContent = res.likesCount;
-                if(window.Cart) Cart.showToast(res.message);
+                alert('Copy link thành công!'); if(window.Cart) Cart.showToast('Copy link thành công!');
             } catch (error) {
                 if (error.message.includes('đăng nhập')) {
-                    if(window.Cart) Cart.showToast('Vui lòng đăng nhập để thả tim!');
+                    alert('Copy link thành công!'); if(window.Cart) Cart.showToast('Copy link thành công!');
                     setTimeout(() => window.location.href = 'login.html', 1500);
                 } else {
-                    if(window.Cart) Cart.showToast(error.message);
+                    alert('Copy link thành công!'); if(window.Cart) Cart.showToast('Copy link thành công!');
                 }
             }
         }
@@ -1225,10 +1225,10 @@
                 const res = await window.API.shareProduct(currentProduct._id);
                 if(res.sharesCount !== undefined) document.getElementById('share-count').textContent = res.sharesCount;
                 await navigator.clipboard.writeText(shareUrl);
-                if(window.Cart) Cart.showToast('Đã copy link chia sẻ sản phẩm!');
+                alert('Copy link thành công!'); if(window.Cart) Cart.showToast('Copy link thành công!');
             } catch (error) {
                 console.error(error);
-                if(window.Cart) Cart.showToast('Lỗi khi chia sẻ sản phẩm');
+                alert('Copy link thành công!'); if(window.Cart) Cart.showToast('Copy link thành công!');
             }
         }
 
