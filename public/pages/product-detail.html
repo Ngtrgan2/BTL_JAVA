@@ -1106,9 +1106,30 @@
             if (!currentProduct) return;
             const images = (currentProduct.images && currentProduct.images.length > 0) ? currentProduct.images : [currentProduct.image];
             const src = images[index];
-            document.getElementById('mainImage').src = getImgPath(src);
+            const isVid = src && (src.includes('video') || src.includes('.mp4') || src.startsWith('data:video'));
+            
+            const mainImg = document.getElementById('mainImage');
+            let mainVid = document.getElementById('mainVideo');
+            if (!mainVid) {
+                mainVid = document.createElement('video');
+                mainVid.id = 'mainVideo';
+                mainVid.autoplay = true; mainVid.muted = true; mainVid.loop = true;
+                mainVid.style.width = '100%'; mainVid.style.height = '100%'; mainVid.style.objectFit = 'cover';
+                mainImg.parentNode.insertBefore(mainVid, mainImg.nextSibling);
+            }
+
+            if (isVid) {
+                mainImg.style.display = 'none';
+                mainVid.style.display = 'block';
+                mainVid.src = getImgPath(src);
+            } else {
+                mainVid.style.display = 'none';
+                mainImg.style.display = 'block';
+                mainImg.src = getImgPath(src);
+            }
+
             document.querySelectorAll('.thumb').forEach(t => t.classList.remove('active'));
-            el.classList.add('active');
+            if (el) el.classList.add('active');
         }
 
         async function loadProductDetail() {
@@ -1334,21 +1355,38 @@
 
             // Gallery logic
             const mainImg = document.getElementById('mainImage');
+            let mainVid = document.getElementById('mainVideo');
+            if (!mainVid) {
+                mainVid = document.createElement('video');
+                mainVid.id = 'mainVideo';
+                mainVid.autoplay = true; mainVid.muted = true; mainVid.loop = true;
+                mainVid.style.width = '100%'; mainVid.style.height = '100%'; mainVid.style.objectFit = 'cover'; mainVid.style.display = 'none';
+                mainImg.parentNode.insertBefore(mainVid, mainImg.nextSibling);
+            }
+
             let images = (product.images && product.images.length > 0) ? [...product.images] : [product.image];
             
-            // Đảm bảo ảnh chính luôn khớp với ảnh được sửa ở admin (trường hợp mảng images cũ chưa cập nhật)
+            // Đảm bảo ảnh chính luôn khớp với ảnh được sửa ở admin
             if (product.image && images[0] !== product.image) {
                 images[0] = product.image;
             }
             
-            mainImg.src = getImgPath(images[0]);
+            changeImage(0, null);
             
             const thumbsContainer = document.getElementById('gallery-thumbs');
-            thumbsContainer.innerHTML = images.map((img, i) => `
-                <div class="thumb ${i === 0 ? 'active' : ''}" onclick="changeImage(${i}, this)">
-                    <img src="${getImgPath(img)}" alt="Angle ${i+1}">
+            thumbsContainer.innerHTML = images.map((img, i) => {
+                const isVid = img && (img.includes('video') || img.includes('.mp4') || img.startsWith('data:video'));
+                return `
+                <div class="thumb" onclick="changeImage(${i}, this)">
+                    ${isVid 
+                        ? `<video src="${getImgPath(img)}" style="width:100%; height:100%; object-fit:cover; pointer-events:none;"></video>` 
+                        : `<img src="${getImgPath(img)}" alt="Angle ${i+1}">`}
                 </div>
-            `).join('');
+            `}).join('');
+            
+            if(thumbsContainer.children.length > 0) {
+                thumbsContainer.children[0].classList.add('active');
+            }
 
             // Sync 3D/Mockup section with the same product images
             const viewerMain = document.getElementById('3d-viewer-main');
