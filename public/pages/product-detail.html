@@ -1200,18 +1200,19 @@
                     icon.style.animation = 'none';
                     icon.offsetHeight; 
                     icon.style.animation = null;
+                    if(window.Cart) Cart.showToast('Đã thêm vào danh sách yêu thích!');
                 } else {
                     btnLike.classList.remove('liked');
                     icon.className = 'fa-regular fa-heart';
+                    if(window.Cart) Cart.showToast('Đã bỏ yêu thích!');
                 }
                 if(res.likesCount !== undefined) document.getElementById('like-count').textContent = res.likesCount;
-                alert('Copy link thành công!'); if(window.Cart) Cart.showToast('Copy link thành công!');
             } catch (error) {
                 if (error.message.includes('đăng nhập')) {
-                    alert('Copy link thành công!'); if(window.Cart) Cart.showToast('Copy link thành công!');
+                    if(window.Cart) Cart.showToast('Vui lòng đăng nhập để thả tim!');
                     setTimeout(() => window.location.href = 'login.html', 1500);
                 } else {
-                    alert('Copy link thành công!'); if(window.Cart) Cart.showToast('Copy link thành công!');
+                    if(window.Cart) Cart.showToast('Có lỗi xảy ra, vui lòng thử lại!');
                 }
             }
         }
@@ -1225,10 +1226,10 @@
                 const res = await window.API.shareProduct(currentProduct._id);
                 if(res.sharesCount !== undefined) document.getElementById('share-count').textContent = res.sharesCount;
                 await navigator.clipboard.writeText(shareUrl);
-                alert('Copy link thành công!'); if(window.Cart) Cart.showToast('Copy link thành công!');
+                if(window.Cart) Cart.showToast('Copy link thành công!');
             } catch (error) {
                 console.error(error);
-                alert('Copy link thành công!'); if(window.Cart) Cart.showToast('Copy link thành công!');
+                if(window.Cart) Cart.showToast('Có lỗi xảy ra khi copy link!');
             }
         }
 
