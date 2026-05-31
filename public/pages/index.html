@@ -135,6 +135,15 @@
             <h2>Bộ Sưu Tập Mới</h2>
         </div>
 
+        <!-- Product Categories Filter -->
+        <div class="category-filter reveal" style="display: flex; justify-content: center; gap: 1rem; margin-bottom: 2.5rem; flex-wrap: wrap;">
+            <button class="btn btn-liquid filter-btn active" data-filter="all" style="padding: 0.5rem 1.5rem; font-size: 0.9rem;">Tất cả</button>
+            <button class="btn btn-liquid filter-btn" data-filter="nhan" style="padding: 0.5rem 1.5rem; font-size: 0.9rem;">Nhẫn</button>
+            <button class="btn btn-liquid filter-btn" data-filter="day-chuyen" style="padding: 0.5rem 1.5rem; font-size: 0.9rem;">Dây chuyền</button>
+            <button class="btn btn-liquid filter-btn" data-filter="vong-tay" style="padding: 0.5rem 1.5rem; font-size: 0.9rem;">Vòng tay</button>
+            <button class="btn btn-liquid filter-btn" data-filter="bong-tai" style="padding: 0.5rem 1.5rem; font-size: 0.9rem;">Bông tai</button>
+        </div>
+
         <div class="product-grid" id="product-grid">
             <!-- Sản phẩm sẽ được load từ API -->
         </div>
@@ -631,40 +640,56 @@
         async function loadProducts() {
             try {
                 allProducts = await API.getProducts();
-                const grid = document.getElementById('product-grid');
-
-                // Chỉ hiển thị 4 sản phẩm đầu tiên trên trang chủ
-                const displayProducts = allProducts.slice(0, 4);
-
-                grid.innerHTML = displayProducts.map((product, i) => {
-                    const discount = Number(product.discountPercentage || 0);
-                    const finalPrice = discount > 0 ? product.price * (1 - discount / 100) : product.price;
-
-                    return `
-                    <div class="product-card" onclick="window.location.href='product-detail.html?id=${product._id}'" style="cursor: pointer; position: relative;">
-                        ${discount > 0 ? `<div class="discount-tag" style="position: absolute; top: 15px; left: 15px; background: #e74c3c; color: white; padding: 4px 10px; border-radius: 4px; font-size: 0.8rem; font-weight: 700; z-index: 2;">-${discount}%</div>` : ''}
-                        <div class="product-img-wrap">
-                            <img src="${(product.image && (product.image.startsWith('http') || product.image.startsWith('data:'))) ? product.image : '..' + product.image}" alt="${product.name}" class="product-img">
-                            <div class="product-actions">
-                                <button class="action-btn" title="Thêm vào giỏ" onclick="event.stopPropagation(); addToCartQuick(${i})"><i class="fa-solid fa-cart-plus"></i></button>
-                                <a href="product-detail.html?id=${product._id}" class="action-btn" title="Xem chi tiết" onclick="event.stopPropagation()"><i class="fa-regular fa-eye"></i></a>
-                            </div>
-                        </div>
-                        <div class="product-info">
-                            <div class="product-category">${categoryMap[product.category] || product.category}</div>
-                            <h3 class="product-title">${product.name}</h3>
-                            <div class="product-price">
-                                ${discount > 0 ? `
-                                    <span style="color: #e74c3c;">${formatPrice(finalPrice)}</span>
-                                    <span style="font-size: 0.85rem; color: var(--text-muted); text-decoration: line-through; margin-left: 8px; font-weight: 400;">${formatPrice(product.price)}</span>
-                                ` : formatPrice(product.price)}
-                            </div>
-                        </div>
-                    </div>
-                `}).join('');
+                renderProducts('all');
             } catch (error) {
                 console.error('Lỗi load sản phẩm:', error);
             }
+        }
+
+        function renderProducts(category = 'all') {
+            const grid = document.getElementById('product-grid');
+            if (!grid) return;
+
+            let filtered = allProducts;
+            if (category !== 'all') {
+                filtered = allProducts.filter(p => p.category === category);
+            }
+
+            // Chỉ hiển thị 4 sản phẩm
+            const displayProducts = filtered.slice(0, 4);
+
+            if (displayProducts.length === 0) {
+                grid.innerHTML = '<p style="text-align:center; width:100%; grid-column: 1/-1; color: var(--text-muted);">Không tìm thấy sản phẩm nào.</p>';
+                return;
+            }
+
+            grid.innerHTML = displayProducts.map((product, i) => {
+                const discount = Number(product.discountPercentage || 0);
+                const finalPrice = discount > 0 ? product.price * (1 - discount / 100) : product.price;
+                const originalIndex = allProducts.findIndex(p => p._id === product._id);
+
+                return `
+                <div class="product-card" onclick="window.location.href='product-detail.html?id=${product._id}'" style="cursor: pointer; position: relative;">
+                    ${discount > 0 ? `<div class="discount-tag" style="position: absolute; top: 15px; left: 15px; background: #e74c3c; color: white; padding: 4px 10px; border-radius: 4px; font-size: 0.8rem; font-weight: 700; z-index: 2;">-${discount}%</div>` : ''}
+                    <div class="product-img-wrap">
+                        <img src="${(product.image && (product.image.startsWith('http') || product.image.startsWith('data:'))) ? product.image : '..' + product.image}" alt="${product.name}" class="product-img">
+                        <div class="product-actions">
+                            <button class="action-btn" title="Thêm vào giỏ" onclick="event.stopPropagation(); addToCartQuick(${originalIndex})"><i class="fa-solid fa-cart-plus"></i></button>
+                            <a href="product-detail.html?id=${product._id}" class="action-btn" title="Xem chi tiết" onclick="event.stopPropagation()"><i class="fa-regular fa-eye"></i></a>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category">${categoryMap[product.category] || product.category}</div>
+                        <h3 class="product-title">${product.name}</h3>
+                        <div class="product-price">
+                            ${discount > 0 ? `
+                                <span style="color: #e74c3c;">${formatPrice(finalPrice)}</span>
+                                <span style="font-size: 0.85rem; color: var(--text-muted); text-decoration: line-through; margin-left: 8px; font-weight: 400;">${formatPrice(product.price)}</span>
+                            ` : formatPrice(product.price)}
+                        </div>
+                    </div>
+                </div>
+            `}).join('');
         }
 
         function addToCartQuick(index) {
@@ -676,6 +701,19 @@
 
         document.addEventListener('DOMContentLoaded', () => {
             loadProducts();
+
+            // Filter button logic
+            const filterBtns = document.querySelectorAll('.filter-btn');
+            filterBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    // Remove active class
+                    filterBtns.forEach(b => b.classList.remove('active'));
+                    // Add active class
+                    btn.classList.add('active');
+                    // Filter products
+                    renderProducts(btn.dataset.filter);
+                });
+            });
 
             // Scroll Reveal Logic
             const reveal = () => {
