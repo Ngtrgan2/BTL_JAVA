@@ -2026,8 +2026,9 @@ html:not(.dark-mode) .footer-brand-outline {
 }
 
 html:not(.dark-mode) .footer-brand-outline:hover {
-  -webkit-text-stroke: 1px rgba(170, 140, 44, 0.4) !important;
-  text-shadow: 0 0 20px rgba(170, 140, 44, 0.1) !important;
+  color: rgba(170, 140, 44, 0.4) !important;
+  -webkit-text-stroke: 1px rgba(170, 140, 44, 0.6) !important;
+  text-shadow: 0 0 20px rgba(170, 140, 44, 0.3) !important;
 }
 
 /* Search in light mode */
@@ -2099,6 +2100,7 @@ html:not(.dark-mode) .showcase-features li > div {
     transition: all 0.5s ease;
 }
 .footer-brand-outline:hover {
-    -webkit-text-stroke: 1px rgba(212, 175, 55, 0.5);
-    text-shadow: 0 0 30px rgba(212, 175, 55, 0.1);
+    color: rgba(212, 175, 55, 0.3);
+    -webkit-text-stroke: 1px rgba(212, 175, 55, 0.7);
+    text-shadow: 0 0 30px rgba(212, 175, 55, 0.2);
 }
