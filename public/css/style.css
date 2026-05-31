@@ -1984,20 +1984,50 @@ html:not(.dark-mode) .dropdown-content a:hover {
 /* Footer in light mode */
 html:not(.dark-mode) footer,
 html:not(.dark-mode) .footer {
-  background: #1a1a1a;
-  color: #f5f5f5;
+  background: var(--bg-dark); /* #faf8f5 cream */
+  color: #332f26; /* Deep warm brown/gray */
+  border-top: 1px solid var(--border-color);
 }
 
 html:not(.dark-mode) footer h3,
 html:not(.dark-mode) footer h4,
 html:not(.dark-mode) .footer h3,
-html:not(.dark-mode) .footer h4 {
-  color: var(--gold-light);
+html:not(.dark-mode) .footer h4,
+html:not(.dark-mode) .footer .logo {
+  color: var(--gold-dark); /* Darker gold for better contrast, no black stroke */
 }
 
+/* Elegant dark brown for text, lists, and links */
+html:not(.dark-mode) footer p,
+html:not(.dark-mode) .footer p,
+html:not(.dark-mode) footer ul,
+html:not(.dark-mode) .footer ul,
 html:not(.dark-mode) footer a,
-html:not(.dark-mode) .footer a {
-  color: #ccc;
+html:not(.dark-mode) .footer a,
+html:not(.dark-mode) .footer .footer-bottom,
+html:not(.dark-mode) .footer [style*="color: var(--text-muted)"] {
+  color: #554e42 !important; /* Soft dark brown/gray */
+}
+
+html:not(.dark-mode) footer a:hover,
+html:not(.dark-mode) .footer a:hover {
+  color: var(--gold-dark) !important;
+}
+
+html:not(.dark-mode) .footer [style*="color: var(--gold-primary)"] {
+  color: var(--gold-dark) !important; /* Muted darker gold */
+}
+
+/* Very subtle background outline text */
+html:not(.dark-mode) .footer-brand-outline {
+  color: transparent !important;
+  -webkit-text-stroke: 1px rgba(170, 140, 44, 0.2) !important; /* Faint gold outline */
+  text-shadow: none !important;
+}
+
+html:not(.dark-mode) .footer-brand-outline:hover {
+  -webkit-text-stroke: 1px rgba(170, 140, 44, 0.4) !important;
+  text-shadow: 0 0 20px rgba(170, 140, 44, 0.1) !important;
 }
 
 /* Search in light mode */
