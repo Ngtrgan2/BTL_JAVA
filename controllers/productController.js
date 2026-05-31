@@ -41,7 +41,7 @@ const getProducts = async (req, res) => {
 const getProductById = async (req, res) => {
     try {
         const db = getDB();
-        const id = req.url.split('/')[3];
+        const id = req.url.split('?')[0].split('/')[3];
         if (!isValidObjectId(id)) {
             res.writeHead(400, { 'Content-Type': 'application/json' });
             return res.end(JSON.stringify({ message: 'ID sản phẩm không hợp lệ' }));
@@ -118,7 +118,7 @@ const updateProduct = async (req, res) => {
             return res.end(JSON.stringify({ message: 'Forbidden' }));
         }
 
-        const id = req.url.split('/')[3];
+        const id = req.url.split('?')[0].split('/')[3];
         if (!isValidObjectId(id)) {
             res.writeHead(400, { 'Content-Type': 'application/json' });
             return res.end(JSON.stringify({ message: 'ID sản phẩm không hợp lệ' }));
@@ -165,7 +165,7 @@ const deleteProduct = async (req, res) => {
             return res.end(JSON.stringify({ message: 'Forbidden' }));
         }
 
-        const id = req.url.split('/')[3];
+        const id = req.url.split('?')[0].split('/')[3];
         if (!isValidObjectId(id)) {
             res.writeHead(400, { 'Content-Type': 'application/json' });
             return res.end(JSON.stringify({ message: 'ID sản phẩm không hợp lệ' }));
@@ -341,7 +341,7 @@ const likeProduct = async (req, res) => {
             return res.end(JSON.stringify({ message: 'Vui lòng đăng nhập để thả tim' }));
         }
 
-        const id = req.url.split('/')[3];
+        const id = req.url.split('?')[0].split('/')[3];
         if (!isValidObjectId(id)) {
             res.writeHead(400, { 'Content-Type': 'application/json' });
             return res.end(JSON.stringify({ message: 'ID không hợp lệ' }));
@@ -382,7 +382,7 @@ const likeProduct = async (req, res) => {
 
 const shareProduct = async (req, res) => {
     try {
-        const id = req.url.split('/')[3];
+        const id = req.url.split('?')[0].split('/')[3];
         if (!isValidObjectId(id)) {
             res.writeHead(400, { 'Content-Type': 'application/json' });
             return res.end(JSON.stringify({ message: 'ID không hợp lệ' }));
@@ -407,7 +407,7 @@ const shareProduct = async (req, res) => {
 
 const shareSEO = async (req, res) => {
     try {
-        const id = req.url.split('/')[3];
+        const id = req.url.split('?')[0].split('/')[3];
         if (!isValidObjectId(id)) {
             res.writeHead(404, { 'Content-Type': 'text/html; charset=utf-8' });
             return res.end('<h1>Không tìm thấy sản phẩm</h1>');
@@ -421,9 +421,15 @@ const shareSEO = async (req, res) => {
             return res.end('<h1>Không tìm thấy sản phẩm</h1>');
         }
 
+        const protocol = req.headers['x-forwarded-proto'] || 'http';
+        const host = req.headers.host;
+        const origin = `${protocol}://${host}`;
         const price = product.price.toLocaleString('vi-VN') + ' đ';
         const title = product.name + ' - An LUXURY';
-        const image = 'https://anluxury.com.vn/images/' + (product.images ? product.images[0] : product.image);
+        
+        let imagePath = product.images && product.images.length > 0 ? product.images[0] : product.image;
+        if (!imagePath) imagePath = '/images/logo.png';
+        const image = imagePath.startsWith('http') ? imagePath : origin + (imagePath.startsWith('/') ? imagePath : '/' + imagePath);
         
         const html = `
             <!DOCTYPE html>
@@ -434,7 +440,7 @@ const shareSEO = async (req, res) => {
                 <meta property="og:title" content="${title}">
                 <meta property="og:description" content="Khám phá ngay sản phẩm đẳng cấp tại An LUXURY với giá chỉ ${price}.">
                 <meta property="og:image" content="${image}">
-                <meta property="og:url" content="https://anluxury.com.vn/share/product/${id}">
+                <meta property="og:url" content="${origin}/share/product/${id}">
                 <meta property="og:type" content="product">
                 <script>
                     // Redirect to actual product detail page after load
