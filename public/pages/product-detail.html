@@ -937,19 +937,11 @@
                 <p style="color: var(--text-secondary); max-width: 600px; margin: 0 auto;">Khám phá từng đường nét tinh xảo của sản phẩm qua các góc nhìn mô phỏng 3D độ phân giải cực cao.</p>
             </div>
 
-            <div style="display: grid; grid-template-columns: 1.5fr 1fr; gap: 2rem; align-items: center;">
+            <div style="display: grid; grid-template-columns: 1fr; max-width: 800px; margin: 0 auto; gap: 2rem; align-items: center;">
                 <div style="position: relative; border-radius: 20px; overflow: hidden; height: 500px; box-shadow: 0 30px 60px rgba(0,0,0,0.5); border: 1px solid var(--border-light);">
                     <img src="../images/mockups/mockup1.png" alt="3D View" id="3d-viewer-main" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.8s cubic-bezier(0.2, 0, 0.2, 1);">
                     <div style="position: absolute; bottom: 20px; left: 20px; background: rgba(0,0,0,0.6); padding: 0.5rem 1rem; border-radius: 30px; font-size: 0.8rem; backdrop-filter: blur(10px); color: var(--gold-primary); border: 1px solid var(--gold-dark);">
                         <i class="fa-solid fa-cube fa-spin" style="margin-right: 8px;"></i> 3D MOCKUP RENDER
-                    </div>
-                </div>
-                <div style="display: grid; grid-template-rows: 1fr 1fr; gap: 2rem;">
-                    <div style="border-radius: 15px; overflow: hidden; height: 235px; border: 1px solid var(--border-light); cursor: pointer;" onclick="document.getElementById('3d-viewer-main').src='../images/mockups/mockup2.png'">
-                        <img src="../images/mockups/mockup2.png" alt="Mockup 2" style="width: 100%; height: 100%; object-fit: cover; transition: 0.3s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
-                    </div>
-                    <div style="border-radius: 15px; overflow: hidden; height: 235px; border: 1px solid var(--border-light); cursor: pointer;" onclick="document.getElementById('3d-viewer-main').src='../images/mockups/mockup3.png'">
-                        <img src="../images/mockups/mockup3.png" alt="Mockup 3" style="width: 100%; height: 100%; object-fit: cover; transition: 0.3s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
                     </div>
                 </div>
             </div>
@@ -1391,37 +1383,11 @@
             // Sync 3D/Mockup section with the same product images
             const viewerMain = document.getElementById('3d-viewer-main');
             if (viewerMain) {
-                viewerMain.src = getImgPath(images[0]);
-                const sideImageWrappers = document.querySelectorAll('div[onclick*="viewer-main"]');
+                let firstImg = images.find(img => !(img && (img.includes('video') || img.includes('.mp4') || img.startsWith('data:video'))));
+                if (!firstImg && images.length > 0) firstImg = images[0];
                 
-                // Hiển thị/Ẩn các góc nhìn phụ dựa trên số lượng ảnh thực tế
-                if (images.length >= 2) {
-                    sideImageWrappers[0].style.display = 'block';
-                    const img0 = sideImageWrappers[0].querySelector('img');
-                    img0.src = getImgPath(images[1]);
-                    sideImageWrappers[0].setAttribute('onclick', `document.getElementById('3d-viewer-main').src='${getImgPath(images[1])}'`);
-                } else {
-                    sideImageWrappers[0].style.display = 'none';
-                }
-
-                if (images.length >= 3) {
-                    sideImageWrappers[1].style.display = 'block';
-                    const img1 = sideImageWrappers[1].querySelector('img');
-                    img1.src = getImgPath(images[2]);
-                    sideImageWrappers[1].setAttribute('onclick', `document.getElementById('3d-viewer-main').src='${getImgPath(images[2])}'`);
-                } else {
-                    sideImageWrappers[1].style.display = 'none';
-                }
-
-                // Nếu chỉ có 1 ảnh, thay đổi layout của phần mockup cho cân đối
-                const mockupGrid = viewerMain.closest('div[style*="display: grid"]');
-                if (images.length === 1 && mockupGrid) {
-                    mockupGrid.style.gridTemplateColumns = '1fr';
-                    mockupGrid.style.maxWidth = '800px';
-                    mockupGrid.style.margin = '0 auto';
-                } else if (mockupGrid) {
-                    mockupGrid.style.gridTemplateColumns = '1.5fr 1fr';
-                    mockupGrid.style.maxWidth = 'none';
+                if (firstImg) {
+                    viewerMain.src = getImgPath(firstImg);
                 }
             }
 
