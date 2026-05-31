@@ -276,16 +276,19 @@
                     </div>
 
                     <div class="form-group-admin">
-                        <label>Hình ảnh sản phẩm</label>
-                        <div style="display: flex; gap: 0.8rem;">
-                            <input type="text" id="image" class="form-control-admin" placeholder="Đường dẫn hoặc Base64..." style="flex: 1;">
-                            <label for="imageUpload" class="btn-admin" style="display: flex; align-items: center; justify-content: center; background: var(--admin-border); border: none; cursor: pointer; min-width: 120px; white-space: nowrap;">
-                                <i class="fa-solid fa-upload" style="margin-right: 8px;"></i> Tải lên
-                            </label>
-                            <input type="file" id="imageUpload" accept="image/*" style="display: none;" onchange="handleFileUpload(this)">
+                        <label>Hình ảnh & Video sản phẩm</label>
+                        <div style="display: flex; gap: 0.8rem; flex-direction: column;">
+                            <div style="display: flex; gap: 0.8rem;">
+                                <input type="text" id="mediaUrlInput" class="form-control-admin" placeholder="Thêm bằng đường dẫn..." style="flex: 1;">
+                                <button type="button" class="btn-admin" style="background: var(--admin-border); border: none;" onclick="addMediaUrl()">Thêm Link</button>
+                                <label for="imageUpload" class="btn-admin" style="display: flex; align-items: center; justify-content: center; background: var(--admin-border); border: none; cursor: pointer; min-width: 120px; white-space: nowrap;">
+                                    <i class="fa-solid fa-upload" style="margin-right: 8px;"></i> Tải lên
+                                </label>
+                                <input type="file" id="imageUpload" accept="image/*,video/*" multiple style="display: none;" onchange="handleFileUpload(this)">
+                            </div>
                         </div>
-                        <div id="imagePreview" style="margin-top: 10px; display: none;">
-                            <img src="" id="previewImg" style="max-height: 100px; border-radius: 4px; border: 1px solid var(--admin-border);">
+                        <div id="imagePreview" style="margin-top: 15px; display: flex; gap: 10px; flex-wrap: wrap;">
+                            <!-- Previews will go here -->
                         </div>
                     </div>
 
@@ -515,11 +518,14 @@
             return map[cat] || cat;
         }
 
+        let uploadedMedia = [];
+
         function openAddModal() {
             document.getElementById('modalTitle').textContent = 'Thêm Sản Phẩm Mới';
             document.getElementById('productId').value = '';
             document.getElementById('productForm').reset();
-            document.getElementById('imagePreview').style.display = 'none';
+            uploadedMedia = [];
+            renderMediaPreview();
             document.getElementById('productModal').classList.add('active');
         }
 
@@ -534,19 +540,18 @@
             document.getElementById('price').value = p.price;
             document.getElementById('discountPercentage').value = p.discountPercentage || 0;
             document.getElementById('stock').value = p.stock || 0;
-            document.getElementById('image').value = p.image || '';
             document.getElementById('description').value = p.description || '';
             document.getElementById('material').value = p.material || '';
             document.getElementById('gemstone').value = p.gemstone || '';
 
-            if (p.image) {
-                const preview = document.getElementById('imagePreview');
-                const previewImg = document.getElementById('previewImg');
-                previewImg.src = (p.image.startsWith('data:') || p.image.startsWith('http')) ? p.image : '../../' + p.image;
-                preview.style.display = 'block';
+            if (p.images && p.images.length > 0) {
+                uploadedMedia = [...p.images];
+            } else if (p.image) {
+                uploadedMedia = [p.image];
             } else {
-                document.getElementById('imagePreview').style.display = 'none';
+                uploadedMedia = [];
             }
+            renderMediaPreview();
 
             document.getElementById('productModal').classList.add('active');
         }
@@ -555,34 +560,93 @@
             document.getElementById('productModal').classList.remove('active');
         }
 
-        function handleFileUpload(input) {
-            const file = input.files[0];
-            if (!file) return;
-
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                const base64 = e.target.result;
-                document.getElementById('image').value = base64;
+        function renderMediaPreview() {
+            const preview = document.getElementById('imagePreview');
+            preview.innerHTML = '';
+            if (uploadedMedia.length === 0) {
+                preview.style.display = 'none';
+                return;
+            }
+            preview.style.display = 'flex';
+            
+            uploadedMedia.forEach((media, index) => {
+                const wrapper = document.createElement('div');
+                wrapper.style.position = 'relative';
+                wrapper.style.width = '100px';
+                wrapper.style.height = '100px';
+                wrapper.style.borderRadius = '4px';
+                wrapper.style.overflow = 'hidden';
+                wrapper.style.border = '1px solid var(--admin-border)';
                 
-                const preview = document.getElementById('imagePreview');
-                const previewImg = document.getElementById('previewImg');
-                previewImg.src = base64;
-                preview.style.display = 'block';
-            };
-            reader.readAsDataURL(file);
+                const isVideo = media.includes('video') || media.includes('.mp4') || media.includes('data:video');
+                if (isVideo) {
+                    wrapper.innerHTML = `<video src="${media.startsWith('data:') || media.startsWith('http') ? media : '../../' + media}" style="width:100%; height:100%; object-fit:cover;" autoplay muted loop></video>`;
+                } else {
+                    wrapper.innerHTML = `<img src="${media.startsWith('data:') || media.startsWith('http') ? media : '../../' + media}" style="width:100%; height:100%; object-fit:cover;">`;
+                }
+
+                const deleteBtn = document.createElement('button');
+                deleteBtn.innerHTML = '<i class="fa-solid fa-times"></i>';
+                deleteBtn.style.position = 'absolute';
+                deleteBtn.style.top = '4px';
+                deleteBtn.style.right = '4px';
+                deleteBtn.style.background = 'rgba(0,0,0,0.7)';
+                deleteBtn.style.color = 'white';
+                deleteBtn.style.border = 'none';
+                deleteBtn.style.borderRadius = '50%';
+                deleteBtn.style.width = '24px';
+                deleteBtn.style.height = '24px';
+                deleteBtn.style.cursor = 'pointer';
+                deleteBtn.style.display = 'flex';
+                deleteBtn.style.alignItems = 'center';
+                deleteBtn.style.justifyContent = 'center';
+                deleteBtn.style.fontSize = '12px';
+                deleteBtn.onclick = (e) => {
+                    e.preventDefault();
+                    uploadedMedia.splice(index, 1);
+                    renderMediaPreview();
+                };
+                
+                wrapper.appendChild(deleteBtn);
+                preview.appendChild(wrapper);
+            });
+        }
+
+        function addMediaUrl() {
+            const urlInput = document.getElementById('mediaUrlInput');
+            const url = urlInput.value.trim();
+            if (url) {
+                uploadedMedia.push(url);
+                urlInput.value = '';
+                renderMediaPreview();
+            }
+        }
+
+        function handleFileUpload(input) {
+            const files = input.files;
+            if (!files || files.length === 0) return;
+
+            Array.from(files).forEach(file => {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    uploadedMedia.push(e.target.result);
+                    renderMediaPreview();
+                };
+                reader.readAsDataURL(file);
+            });
+            input.value = '';
         }
 
         async function saveProduct() {
             const id = document.getElementById('productId').value;
-            const imageValue = document.getElementById('image').value;
             const data = {
                 name: document.getElementById('name').value,
                 category: document.getElementById('category').value,
                 price: Number(document.getElementById('price').value),
                 discountPercentage: Number(document.getElementById('discountPercentage').value || 0),
                 stock: Number(document.getElementById('stock').value),
-                image: imageValue,
-                images: [imageValue], // Đồng bộ mảng ảnh để hiển thị ở trang chi tiết
+                image: uploadedMedia.length > 0 ? uploadedMedia[0] : '',
+                images: uploadedMedia,
                 description: document.getElementById('description').value,
                 material: document.getElementById('material').value,
                 gemstone: document.getElementById('gemstone').value
