@@ -203,6 +203,8 @@
 
         const socket = io();
         let currentSessionId = null;
+        let unreadCounts = {};
+        window.lastSessionsList = [];
 
         const joinAdminRoom = () => {
             if (userInfo) {
@@ -217,6 +219,7 @@
         else socket.on('connect', joinAdminRoom);
 
         socket.on('sessions_list', (sessions) => {
+            window.lastSessionsList = sessions;
             renderSessions(sessions);
         });
 
@@ -228,13 +231,16 @@
             if (msg.sessionId === currentSessionId) {
                 appendMessage(msg);
                 scrollToBottom();
+            } else {
+                unreadCounts[msg.sessionId] = (unreadCounts[msg.sessionId] || 0) + 1;
+                renderSessions(window.lastSessionsList);
             }
             
             // Phát âm thanh thông báo nếu là tin nhắn của khách (không phải do chính admin gửi)
             if (msg.senderRole === 'user') {
                 try {
-                    const audio = new Audio('https://assets.mixkit.co/active_storage/sfx/2869/2869-preview.mp3');
-                    audio.volume = 0.5;
+                    const audio = new Audio('/images/notification.mp3');
+                    audio.volume = 1.0;
                     audio.play().catch(e => console.log('Audio play prevented', e));
                 } catch(e) {}
             }
@@ -261,6 +267,7 @@
                 const isGuest = session.sessionId.startsWith('guest_');
                 const name = session.customerName || (isGuest ? 'Khách vãng lai' : 'Khách hàng');
                 const time = new Date(session.lastUpdated).toLocaleTimeString('vi-VN', {hour: '2-digit', minute:'2-digit'});
+                const unread = unreadCounts[session.sessionId] || 0;
                 
                 const div = document.createElement('div');
                 div.className = 'session-item';
@@ -270,11 +277,14 @@
                     <div class="session-name">${name}</div>
                     <div class="session-preview">${session.lastMessage || 'Bắt đầu chat...'}</div>
                     <div class="session-time">${time}</div>
+                    ${unread > 0 ? `<div style="position: absolute; right: 20px; bottom: 15px; background: red; color: white; padding: 2px 8px; border-radius: 12px; font-size: 0.75rem; font-weight: bold;">${unread}</div>` : ''}
                 `;
 
                 div.onclick = () => {
                     document.querySelectorAll('.session-item').forEach(el => el.classList.remove('active'));
                     div.classList.add('active');
+                    unreadCounts[session.sessionId] = 0;
+                    renderSessions(window.lastSessionsList);
                     openChat(session.sessionId, name);
                 };
                 list.appendChild(div);
