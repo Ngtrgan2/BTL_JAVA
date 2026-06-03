@@ -147,7 +147,7 @@ const getUsers = async (req, res) => {
         const users = db.collection('users');
         const currentUser = await users.findOne({ _id: new ObjectId(decoded.id) });
 
-        if (currentUser.role !== 'admin') {
+        if (!currentUser || currentUser.role !== 'admin') {
             res.writeHead(403, { 'Content-Type': 'application/json' });
             return res.end(JSON.stringify({ message: 'Forbidden' }));
         }
