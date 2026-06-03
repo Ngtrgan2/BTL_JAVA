@@ -99,7 +99,7 @@ async function startServer() {
     await connectDB();
     
     // Auto-seed if empty
-    await autoSeedProducts();
+    // await autoSeedProducts();
 
     const server = http.createServer((req, res) => {
         // Pass everything to router

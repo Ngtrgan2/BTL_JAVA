@@ -1,0 +1,852 @@
+[
+  {
+    "_id": "6a1c31c112501d31d21ec5e9",
+    "name": "Nhẫn Ruby Huyết Bồ Câu Hoàng Gia Tỏa Sáng #101",
+    "category": "nhan",
+    "material": "Vàng 18K",
+    "stone": "Ruby Huyết Bồ Câu",
+    "price": 203803900,
+    "images": [
+      "/images/products/soleil-main.png"
+    ],
+    "image": "/images/products/soleil-main.png",
+    "stock": 8,
+    "certificate": "GIA 67378448",
+    "description": "Tuyệt tác Nhẫn Ruby Huyết Bồ Câu Hoàng Gia Tỏa Sáng #101 được chế tác thủ công tỉ mỉ từ Vàng 18K và Ruby Huyết Bồ Câu quý hiếm.",
+    "isActive": true,
+    "createdAt": "2026-05-31T13:04:01.065Z"
+  },
+  {
+    "_id": "6a1c31c112501d31d21ec5ea",
+    "name": "Bông tai Emerald (Ngọc Lục Bảo) Tinh Tế Tỏa Sáng #102",
+    "category": "bong-tai",
+    "material": "Vàng Trắng 14K",
+    "stone": "Emerald (Ngọc Lục Bảo)",
+    "price": 149838099,
+    "images": [
+      "/images/product-earrings.png"
+    ],
+    "image": "/images/product-earrings.png",
+    "stock": 6,
+    "certificate": "GIA 54330807",
+    "description": "Tuyệt tác Bông tai Emerald (Ngọc Lục Bảo) Tinh Tế Tỏa Sáng #102 được chế tác thủ công tỉ mỉ từ Vàng Trắng 14K và Emerald (Ngọc Lục Bảo) quý hiếm.",
+    "isActive": true,
+    "createdAt": "2026-05-31T13:04:01.065Z"
+  },
+  {
+    "_id": "6a1c31c112501d31d21ec5eb",
+    "name": "Vòng tay Moissanite Cao Cấp Huyền Bí #103",
+    "category": "vong-tay",
+    "material": "Vàng Trắng 14K",
+    "stone": "Moissanite",
+    "price": 416074652,
+    "images": [
+      "/images/product-bracelet.png"
+    ],
+    "image": "/images/product-bracelet.png",
+    "stock": 2,
+    "certificate": "GIA 39017860",
+    "description": "Tuyệt tác Vòng tay Moissanite Cao Cấp Huyền Bí #103 được chế tác thủ công tỉ mỉ từ Vàng Trắng 14K và Moissanite quý hiếm.",
+    "isActive": true,
+    "createdAt": "2026-05-31T13:04:01.065Z"
+  },
+  {
+    "_id": "6a1c31c112501d31d21ec5ec",
+    "name": "Nhẫn Kim cương GIA Cao Cấp Độc Bản #104",
+    "category": "nhan",
+    "material": "Vàng Trắng 14K",
+    "stone": "Kim cương GIA",
+    "price": 272020008,
+    "images": [
+      "/images/product-ring.png"
+    ],
+    "image": "/images/product-ring.png",
+    "stock": 4,
+    "certificate": "GIA 27656304",
+    "description": "Tuyệt tác Nhẫn Kim cương GIA Cao Cấp Độc Bản #104 được chế tác thủ công tỉ mỉ từ Vàng Trắng 14K và Kim cương GIA quý hiếm.",
+    "isActive": true,
+    "createdAt": "2026-05-31T13:04:01.065Z"
+  },
+  {
+    "_id": "6a1c31c112501d31d21ec5ed",
+    "name": "Nhẫn Emerald (Ngọc Lục Bảo) Sang Trọng Quyến Rũ #105",
+    "category": "nhan",
+    "material": "Vàng 18K",
+    "stone": "Emerald (Ngọc Lục Bảo)",
+    "price": 97178190,
+    "images": [
+      "/images/products/soleil-main.png"
+    ],
+    "image": "/images/products/soleil-main.png",
+    "stock": 8,
+    "certificate": "GIA 46829385",
+    "description": "Tuyệt tác Nhẫn Emerald (Ngọc Lục Bảo) Sang Trọng Quyến Rũ #105 được chế tác thủ công tỉ mỉ từ Vàng 18K và Emerald (Ngọc Lục Bảo) quý hiếm.",
+    "isActive": true,
+    "createdAt": "2026-05-31T13:04:01.065Z"
+  },
+  {
+    "_id": "6a1c31c112501d31d21ec5ee",
+    "name": "Bông tai Sapphire Xanh Hoàng Gia Vĩnh Cửu #106",
+    "category": "bong-tai",
+    "material": "Bạch Kim (Platinum)",
+    "stone": "Sapphire Xanh",
+    "price": 478109626,
+    "images": [
+      "/images/product-earrings.png"
+    ],
+    "image": "/images/product-earrings.png",
+    "stock": 6,
+    "certificate": "GIA 89866309",
+    "description": "Tuyệt tác Bông tai Sapphire Xanh Hoàng Gia Vĩnh Cửu #106 được chế tác thủ công tỉ mỉ từ Bạch Kim (Platinum) và Sapphire Xanh quý hiếm.",
+    "isActive": true,
+    "createdAt": "2026-05-31T13:04:01.065Z"
+  },
+  {
+    "_id": "6a1c31c112501d31d21ec5ef",
+    "name": "Vòng tay Emerald (Ngọc Lục Bảo) Quý Phái Huyền Bí #107",
+    "category": "vong-tay",
+    "material": "Vàng Hồng 18K",
+    "stone": "Emerald (Ngọc Lục Bảo)",
+    "price": 221642194,
+    "images": [
+      "/images/product-bracelet.png"
+    ],
+    "image": "/images/product-bracelet.png",
+    "stock": 7,
+    "certificate": "GIA 52360209",
+    "description": "Tuyệt tác Vòng tay Emerald (Ngọc Lục Bảo) Quý Phái Huyền Bí #107 được chế tác thủ công tỉ mỉ từ Vàng Hồng 18K và Emerald (Ngọc Lục Bảo) quý hiếm.",
+    "isActive": true,
+    "createdAt": "2026-05-31T13:04:01.065Z"
+  },
+  {
+    "_id": "6a1c31c112501d31d21ec5f0",
+    "name": "Dây chuyền Sapphire Xanh Quý Phái Kiêu Sa #108",
+    "category": "day-chuyen",
+    "material": "Vàng Trắng 14K",
+    "stone": "Sapphire Xanh",
+    "price": 380191368,
+    "images": [
+      "/images/product-necklace.png"
+    ],
+    "image": "/images/product-necklace.png",
+    "stock": 10,
+    "certificate": "GIA 61068420",
+    "description": "Tuyệt tác Dây chuyền Sapphire Xanh Quý Phái Kiêu Sa #108 được chế tác thủ công tỉ mỉ từ Vàng Trắng 14K và Sapphire Xanh quý hiếm.",
+    "isActive": true,
+    "createdAt": "2026-05-31T13:04:01.065Z"
+  },
+  {
+    "_id": "6a1c31c112501d31d21ec5f1",
+    "name": "Bông tai Sapphire Xanh Đẳng Cấp Quyến Rũ #109",
+    "category": "bong-tai",
+    "material": "Vàng Hồng 18K",
+    "stone": "Sapphire Xanh",
+    "price": 416936886,
+    "images": [
+      "/images/product-earrings.png"
+    ],
+    "image": "/images/product-earrings.png",
+    "stock": 2,
+    "certificate": "GIA 45911876",
+    "description": "Tuyệt tác Bông tai Sapphire Xanh Đẳng Cấp Quyến Rũ #109 được chế tác thủ công tỉ mỉ từ Vàng Hồng 18K và Sapphire Xanh quý hiếm.",
+    "isActive": true,
+    "createdAt": "2026-05-31T13:04:01.065Z"
+  },
+  {
+    "_id": "6a1c31c112501d31d21ec5f2",
+    "name": "Vòng tay Sapphire Xanh Quý Phái Kiêu Sa #110",
+    "category": "vong-tay",
+    "material": "Bạch Kim (Platinum)",
+    "stone": "Sapphire Xanh",
+    "price": 48995471,
+    "images": [
+      "/images/product-bracelet.png"
+    ],
+    "image": "/images/product-bracelet.png",
+    "stock": 5,
+    "certificate": "GIA 20606403",
+    "description": "Tuyệt tác Vòng tay Sapphire Xanh Quý Phái Kiêu Sa #110 được chế tác thủ công tỉ mỉ từ Bạch Kim (Platinum) và Sapphire Xanh quý hiếm.",
+    "isActive": true,
+    "createdAt": "2026-05-31T13:04:01.065Z"
+  },
+  {
+    "_id": "6a1c31c112501d31d21ec5f3",
+    "name": "Vòng tay Ruby Huyết Bồ Câu Thanh Lịch Độc Bản #111",
+    "category": "vong-tay",
+    "material": "Vàng 18K",
+    "stone": "Ruby Huyết Bồ Câu",
+    "price": 140248172,
+    "images": [
+      "/images/product-bracelet.png"
+    ],
+    "image": "/images/product-bracelet.png",
+    "stock": 2,
+    "certificate": "GIA 11877486",
+    "description": "Tuyệt tác Vòng tay Ruby Huyết Bồ Câu Thanh Lịch Độc Bản #111 được chế tác thủ công tỉ mỉ từ Vàng 18K và Ruby Huyết Bồ Câu quý hiếm.",
+    "isActive": true,
+    "createdAt": "2026-05-31T13:04:01.065Z"
+  },
+  {
+    "_id": "6a1c31c112501d31d21ec5f4",
+    "name": "Nhẫn Moissanite Thanh Lịch Huyền Bí #112",
+    "category": "nhan",
+    "material": "Vàng Trắng 14K",
+    "stone": "Moissanite",
+    "price": 282415462,
+    "images": [
+      "/images/product-ring.png"
+    ],
+    "image": "/images/product-ring.png",
+    "stock": 5,
+    "certificate": "GIA 14897852",
+    "description": "Tuyệt tác Nhẫn Moissanite Thanh Lịch Huyền Bí #112 được chế tác thủ công tỉ mỉ từ Vàng Trắng 14K và Moissanite quý hiếm.",
+    "isActive": true,
+    "createdAt": "2026-05-31T13:04:01.065Z"
+  },
+  {
+    "_id": "6a1c31c112501d31d21ec5f5",
+    "name": "Nhẫn Kim cương GIA Đẳng Cấp Quyến Rũ #113",
+    "category": "nhan",
+    "material": "Vàng Trắng 14K",
+    "stone": "Kim cương GIA",
+    "price": 47422878,
+    "images": [
+      "/images/products/soleil-main.png"
+    ],
+    "image": "/images/products/soleil-main.png",
+    "stock": 7,
+    "certificate": "GIA 31530033",
+    "description": "Tuyệt tác Nhẫn Kim cương GIA Đẳng Cấp Quyến Rũ #113 được chế tác thủ công tỉ mỉ từ Vàng Trắng 14K và Kim cương GIA quý hiếm.",
+    "isActive": true,
+    "createdAt": "2026-05-31T13:04:01.065Z"
+  },
+  {
+    "_id": "6a1c31c112501d31d21ec5f6",
+    "name": "Bông tai Ruby Huyết Bồ Câu Sang Trọng Tỏa Sáng #114",
+    "category": "bong-tai",
+    "material": "Bạch Kim (Platinum)",
+    "stone": "Ruby Huyết Bồ Câu",
+    "price": 125018384,
+    "images": [
+      "/images/product-earrings.png"
+    ],
+    "image": "/images/product-earrings.png",
+    "stock": 3,
+    "certificate": "GIA 35224628",
+    "description": "Tuyệt tác Bông tai Ruby Huyết Bồ Câu Sang Trọng Tỏa Sáng #114 được chế tác thủ công tỉ mỉ từ Bạch Kim (Platinum) và Ruby Huyết Bồ Câu quý hiếm.",
+    "isActive": true,
+    "createdAt": "2026-05-31T13:04:01.065Z"
+  },
+  {
+    "_id": "6a1c31c112501d31d21ec5f7",
+    "name": "Nhẫn Ruby Huyết Bồ Câu Tinh Tế Vĩnh Cửu #115",
+    "category": "nhan",
+    "material": "Bạch Kim (Platinum)",
+    "stone": "Ruby Huyết Bồ Câu",
+    "price": 430279712,
+    "images": [
+      "/images/products/soleil-main.png"
+    ],
+    "image": "/images/products/soleil-main.png",
+    "stock": 6,
+    "certificate": "GIA 10866077",
+    "description": "Tuyệt tác Nhẫn Ruby Huyết Bồ Câu Tinh Tế Vĩnh Cửu #115 được chế tác thủ công tỉ mỉ từ Bạch Kim (Platinum) và Ruby Huyết Bồ Câu quý hiếm.",
+    "isActive": true,
+    "createdAt": "2026-05-31T13:04:01.065Z"
+  },
+  {
+    "_id": "6a1c31c112501d31d21ec5f8",
+    "name": "Nhẫn Ruby Huyết Bồ Câu Sang Trọng Tỏa Sáng #116",
+    "category": "nhan",
+    "material": "Vàng Trắng 14K",
+    "stone": "Ruby Huyết Bồ Câu",
+    "price": 407783077,
+    "images": [
+      "/images/product-ring.png"
+    ],
+    "image": "/images/product-ring.png",
+    "stock": 8,
+    "certificate": "GIA 49886598",
+    "description": "Tuyệt tác Nhẫn Ruby Huyết Bồ Câu Sang Trọng Tỏa Sáng #116 được chế tác thủ công tỉ mỉ từ Vàng Trắng 14K và Ruby Huyết Bồ Câu quý hiếm.",
+    "isActive": true,
+    "createdAt": "2026-05-31T13:04:01.065Z"
+  },
+  {
+    "_id": "6a1c31c112501d31d21ec5f9",
+    "name": "Nhẫn Moissanite Thanh Lịch Quyến Rũ #117",
+    "category": "nhan",
+    "material": "Vàng Trắng 14K",
+    "stone": "Moissanite",
+    "price": 29414154,
+    "images": [
+      "/images/product-ring.png"
+    ],
+    "image": "/images/product-ring.png",
+    "stock": 4,
+    "certificate": "GIA 32234723",
+    "description": "Tuyệt tác Nhẫn Moissanite Thanh Lịch Quyến Rũ #117 được chế tác thủ công tỉ mỉ từ Vàng Trắng 14K và Moissanite quý hiếm.",
+    "isActive": true,
+    "createdAt": "2026-05-31T13:04:01.065Z"
+  },
+  {
+    "_id": "6a1c31c112501d31d21ec5fa",
+    "name": "Nhẫn Emerald (Ngọc Lục Bảo) Tinh Tế Độc Bản #118",
+    "category": "nhan",
+    "material": "Vàng Hồng 18K",
+    "stone": "Emerald (Ngọc Lục Bảo)",
+    "price": 296355986,
+    "images": [
+      "/images/product-ring.png"
+    ],
+    "image": "/images/product-ring.png",
+    "stock": 4,
+    "certificate": "GIA 47424214",
+    "description": "Tuyệt tác Nhẫn Emerald (Ngọc Lục Bảo) Tinh Tế Độc Bản #118 được chế tác thủ công tỉ mỉ từ Vàng Hồng 18K và Emerald (Ngọc Lục Bảo) quý hiếm.",
+    "isActive": true,
+    "createdAt": "2026-05-31T13:04:01.065Z"
+  },
+  {
+    "_id": "6a1c31c112501d31d21ec5fb",
+    "name": "Vòng tay Emerald (Ngọc Lục Bảo) Quý Phái Kiêu Sa #119",
+    "category": "vong-tay",
+    "material": "Vàng Hồng 18K",
+    "stone": "Emerald (Ngọc Lục Bảo)",
+    "price": 56743198,
+    "images": [
+      "/images/product-bracelet.png"
+    ],
+    "image": "/images/product-bracelet.png",
+    "stock": 9,
+    "certificate": "GIA 55008030",
+    "description": "Tuyệt tác Vòng tay Emerald (Ngọc Lục Bảo) Quý Phái Kiêu Sa #119 được chế tác thủ công tỉ mỉ từ Vàng Hồng 18K và Emerald (Ngọc Lục Bảo) quý hiếm.",
+    "isActive": true,
+    "createdAt": "2026-05-31T13:04:01.065Z"
+  },
+  {
+    "_id": "6a1c31c112501d31d21ec5fc",
+    "name": "Dây chuyền Emerald (Ngọc Lục Bảo) Cao Cấp Kiêu Sa #120",
+    "category": "day-chuyen",
+    "material": "Bạch Kim (Platinum)",
+    "stone": "Emerald (Ngọc Lục Bảo)",
+    "price": 105135035,
+    "images": [
+      "/images/product-necklace.png"
+    ],
+    "image": "/images/product-necklace.png",
+    "stock": 3,
+    "certificate": "GIA 28124355",
+    "description": "Tuyệt tác Dây chuyền Emerald (Ngọc Lục Bảo) Cao Cấp Kiêu Sa #120 được chế tác thủ công tỉ mỉ từ Bạch Kim (Platinum) và Emerald (Ngọc Lục Bảo) quý hiếm.",
+    "isActive": true,
+    "createdAt": "2026-05-31T13:04:01.065Z"
+  },
+  {
+    "_id": "6a1c31c112501d31d21ec5fd",
+    "name": "Bông tai Moissanite Đẳng Cấp Quyến Rũ #121",
+    "category": "bong-tai",
+    "material": "Vàng Trắng 14K",
+    "stone": "Moissanite",
+    "price": 149720819,
+    "images": [
+      "/images/product-earrings.png"
+    ],
+    "image": "/images/product-earrings.png",
+    "stock": 10,
+    "certificate": "GIA 98283669",
+    "description": "Tuyệt tác Bông tai Moissanite Đẳng Cấp Quyến Rũ #121 được chế tác thủ công tỉ mỉ từ Vàng Trắng 14K và Moissanite quý hiếm.",
+    "isActive": true,
+    "createdAt": "2026-05-31T13:04:01.065Z"
+  },
+  {
+    "_id": "6a1c31c112501d31d21ec5fe",
+    "name": "Vòng tay Emerald (Ngọc Lục Bảo) Sang Trọng Tỏa Sáng #122",
+    "category": "vong-tay",
+    "material": "Vàng Hồng 18K",
+    "stone": "Emerald (Ngọc Lục Bảo)",
+    "price": 279344550,
+    "images": [
+      "/images/product-bracelet.png"
+    ],
+    "image": "/images/product-bracelet.png",
+    "stock": 10,
+    "certificate": "GIA 80297271",
+    "description": "Tuyệt tác Vòng tay Emerald (Ngọc Lục Bảo) Sang Trọng Tỏa Sáng #122 được chế tác thủ công tỉ mỉ từ Vàng Hồng 18K và Emerald (Ngọc Lục Bảo) quý hiếm.",
+    "isActive": true,
+    "createdAt": "2026-05-31T13:04:01.065Z"
+  },
+  {
+    "_id": "6a1c31c112501d31d21ec5ff",
+    "name": "Bông tai Moissanite Đẳng Cấp Kiêu Sa #123",
+    "category": "bong-tai",
+    "material": "Bạch Kim (Platinum)",
+    "stone": "Moissanite",
+    "price": 421772740,
+    "images": [
+      "/images/product-earrings.png"
+    ],
+    "image": "/images/product-earrings.png",
+    "stock": 3,
+    "certificate": "GIA 42165981",
+    "description": "Tuyệt tác Bông tai Moissanite Đẳng Cấp Kiêu Sa #123 được chế tác thủ công tỉ mỉ từ Bạch Kim (Platinum) và Moissanite quý hiếm.",
+    "isActive": true,
+    "createdAt": "2026-05-31T13:04:01.065Z"
+  },
+  {
+    "_id": "6a1c31c112501d31d21ec600",
+    "name": "Vòng tay Emerald (Ngọc Lục Bảo) Hoàng Gia Quyến Rũ #124",
+    "category": "vong-tay",
+    "material": "Vàng Hồng 18K",
+    "stone": "Emerald (Ngọc Lục Bảo)",
+    "price": 389081730,
+    "images": [
+      "/images/product-bracelet.png"
+    ],
+    "image": "/images/product-bracelet.png",
+    "stock": 9,
+    "certificate": "GIA 23608629",
+    "description": "Tuyệt tác Vòng tay Emerald (Ngọc Lục Bảo) Hoàng Gia Quyến Rũ #124 được chế tác thủ công tỉ mỉ từ Vàng Hồng 18K và Emerald (Ngọc Lục Bảo) quý hiếm.",
+    "isActive": true,
+    "createdAt": "2026-05-31T13:04:01.065Z"
+  },
+  {
+    "_id": "6a1c31c112501d31d21ec601",
+    "name": "Nhẫn Sapphire Xanh Tinh Tế Độc Bản #125",
+    "category": "nhan",
+    "material": "Vàng 18K",
+    "stone": "Sapphire Xanh",
+    "price": 460818042,
+    "images": [
+      "/images/product-ring.png"
+    ],
+    "image": "/images/product-ring.png",
+    "stock": 1,
+    "certificate": "GIA 55583964",
+    "description": "Tuyệt tác Nhẫn Sapphire Xanh Tinh Tế Độc Bản #125 được chế tác thủ công tỉ mỉ từ Vàng 18K và Sapphire Xanh quý hiếm.",
+    "isActive": true,
+    "createdAt": "2026-05-31T13:04:01.065Z"
+  },
+  {
+    "_id": "6a1c31c112501d31d21ec602",
+    "name": "Nhẫn Kim cương GIA Sang Trọng Độc Bản #126",
+    "category": "nhan",
+    "material": "Vàng 18K",
+    "stone": "Kim cương GIA",
+    "price": 28733908,
+    "images": [
+      "/images/product-ring.png"
+    ],
+    "image": "/images/product-ring.png",
+    "stock": 8,
+    "certificate": "GIA 29489895",
+    "description": "Tuyệt tác Nhẫn Kim cương GIA Sang Trọng Độc Bản #126 được chế tác thủ công tỉ mỉ từ Vàng 18K và Kim cương GIA quý hiếm.",
+    "isActive": true,
+    "createdAt": "2026-05-31T13:04:01.065Z"
+  },
+  {
+    "_id": "6a1c31c112501d31d21ec603",
+    "name": "Vòng tay Kim cương GIA Quý Phái Kiêu Sa #127",
+    "category": "vong-tay",
+    "material": "Bạch Kim (Platinum)",
+    "stone": "Kim cương GIA",
+    "price": 89976802,
+    "images": [
+      "/images/product-bracelet.png"
+    ],
+    "image": "/images/product-bracelet.png",
+    "stock": 8,
+    "certificate": "GIA 60107316",
+    "description": "Tuyệt tác Vòng tay Kim cương GIA Quý Phái Kiêu Sa #127 được chế tác thủ công tỉ mỉ từ Bạch Kim (Platinum) và Kim cương GIA quý hiếm.",
+    "isActive": true,
+    "createdAt": "2026-05-31T13:04:01.065Z"
+  },
+  {
+    "_id": "6a1c31c112501d31d21ec604",
+    "name": "Nhẫn Sapphire Xanh Hoàng Gia Huyền Bí #128",
+    "category": "nhan",
+    "material": "Vàng Hồng 18K",
+    "stone": "Sapphire Xanh",
+    "price": 477929966,
+    "images": [
+      "/images/products/soleil-main.png"
+    ],
+    "image": "/images/products/soleil-main.png",
+    "stock": 6,
+    "certificate": "GIA 81774773",
+    "description": "Tuyệt tác Nhẫn Sapphire Xanh Hoàng Gia Huyền Bí #128 được chế tác thủ công tỉ mỉ từ Vàng Hồng 18K và Sapphire Xanh quý hiếm.",
+    "isActive": true,
+    "createdAt": "2026-05-31T13:04:01.065Z"
+  },
+  {
+    "_id": "6a1c31c112501d31d21ec605",
+    "name": "Nhẫn Ruby Huyết Bồ Câu Hoàng Gia Vĩnh Cửu #129",
+    "category": "nhan",
+    "material": "Vàng Trắng 14K",
+    "stone": "Ruby Huyết Bồ Câu",
+    "price": 287039225,
+    "images": [
+      "/images/products/soleil-main.png"
+    ],
+    "image": "/images/products/soleil-main.png",
+    "stock": 10,
+    "certificate": "GIA 40061223",
+    "description": "Tuyệt tác Nhẫn Ruby Huyết Bồ Câu Hoàng Gia Vĩnh Cửu #129 được chế tác thủ công tỉ mỉ từ Vàng Trắng 14K và Ruby Huyết Bồ Câu quý hiếm.",
+    "isActive": true,
+    "createdAt": "2026-05-31T13:04:01.065Z"
+  },
+  {
+    "_id": "6a1c31c112501d31d21ec606",
+    "name": "Dây chuyền Emerald (Ngọc Lục Bảo) Tinh Tế Kiêu Sa #130",
+    "category": "day-chuyen",
+    "material": "Bạch Kim (Platinum)",
+    "stone": "Emerald (Ngọc Lục Bảo)",
+    "price": 434283822,
+    "images": [
+      "/images/product-necklace.png"
+    ],
+    "image": "/images/product-necklace.png",
+    "stock": 4,
+    "certificate": "GIA 78686494",
+    "description": "Tuyệt tác Dây chuyền Emerald (Ngọc Lục Bảo) Tinh Tế Kiêu Sa #130 được chế tác thủ công tỉ mỉ từ Bạch Kim (Platinum) và Emerald (Ngọc Lục Bảo) quý hiếm.",
+    "isActive": true,
+    "createdAt": "2026-05-31T13:04:01.065Z"
+  },
+  {
+    "_id": "6a1c31c112501d31d21ec607",
+    "name": "Bông tai Sapphire Xanh Hoàng Gia Độc Bản #131",
+    "category": "bong-tai",
+    "material": "Vàng Trắng 14K",
+    "stone": "Sapphire Xanh",
+    "price": 497533091,
+    "images": [
+      "/images/product-earrings.png"
+    ],
+    "image": "/images/product-earrings.png",
+    "stock": 10,
+    "certificate": "GIA 22008133",
+    "description": "Tuyệt tác Bông tai Sapphire Xanh Hoàng Gia Độc Bản #131 được chế tác thủ công tỉ mỉ từ Vàng Trắng 14K và Sapphire Xanh quý hiếm.",
+    "isActive": true,
+    "createdAt": "2026-05-31T13:04:01.065Z"
+  },
+  {
+    "_id": "6a1c31c112501d31d21ec608",
+    "name": "Vòng tay Kim cương GIA Đẳng Cấp Độc Bản #132",
+    "category": "vong-tay",
+    "material": "Vàng Trắng 14K",
+    "stone": "Kim cương GIA",
+    "price": 24422435,
+    "images": [
+      "/images/product-bracelet.png"
+    ],
+    "image": "/images/product-bracelet.png",
+    "stock": 3,
+    "certificate": "GIA 68771887",
+    "description": "Tuyệt tác Vòng tay Kim cương GIA Đẳng Cấp Độc Bản #132 được chế tác thủ công tỉ mỉ từ Vàng Trắng 14K và Kim cương GIA quý hiếm.",
+    "isActive": true,
+    "createdAt": "2026-05-31T13:04:01.065Z"
+  },
+  {
+    "_id": "6a1c31c112501d31d21ec609",
+    "name": "Nhẫn Emerald (Ngọc Lục Bảo) Đẳng Cấp Kiêu Sa #133",
+    "category": "nhan",
+    "material": "Bạch Kim (Platinum)",
+    "stone": "Emerald (Ngọc Lục Bảo)",
+    "price": 258437552,
+    "images": [
+      "/images/product-ring.png"
+    ],
+    "image": "/images/product-ring.png",
+    "stock": 10,
+    "certificate": "GIA 84137842",
+    "description": "Tuyệt tác Nhẫn Emerald (Ngọc Lục Bảo) Đẳng Cấp Kiêu Sa #133 được chế tác thủ công tỉ mỉ từ Bạch Kim (Platinum) và Emerald (Ngọc Lục Bảo) quý hiếm.",
+    "isActive": true,
+    "createdAt": "2026-05-31T13:04:01.065Z"
+  },
+  {
+    "_id": "6a1c31c112501d31d21ec60a",
+    "name": "Bông tai Sapphire Xanh Đẳng Cấp Vĩnh Cửu #134",
+    "category": "bong-tai",
+    "material": "Vàng 18K",
+    "stone": "Sapphire Xanh",
+    "price": 340908817,
+    "images": [
+      "/images/product-earrings.png"
+    ],
+    "image": "/images/product-earrings.png",
+    "stock": 3,
+    "certificate": "GIA 86083007",
+    "description": "Tuyệt tác Bông tai Sapphire Xanh Đẳng Cấp Vĩnh Cửu #134 được chế tác thủ công tỉ mỉ từ Vàng 18K và Sapphire Xanh quý hiếm.",
+    "isActive": true,
+    "createdAt": "2026-05-31T13:04:01.065Z"
+  },
+  {
+    "_id": "6a1c31c112501d31d21ec60b",
+    "name": "Nhẫn Ruby Huyết Bồ Câu Tinh Tế Quyến Rũ #135",
+    "category": "nhan",
+    "material": "Vàng 18K",
+    "stone": "Ruby Huyết Bồ Câu",
+    "price": 100321755,
+    "images": [
+      "/images/product-ring.png"
+    ],
+    "image": "/images/product-ring.png",
+    "stock": 3,
+    "certificate": "GIA 89385029",
+    "description": "Tuyệt tác Nhẫn Ruby Huyết Bồ Câu Tinh Tế Quyến Rũ #135 được chế tác thủ công tỉ mỉ từ Vàng 18K và Ruby Huyết Bồ Câu quý hiếm.",
+    "isActive": true,
+    "createdAt": "2026-05-31T13:04:01.065Z"
+  },
+  {
+    "_id": "6a1c31c112501d31d21ec60c",
+    "name": "Vòng tay Emerald (Ngọc Lục Bảo) Sang Trọng Quyến Rũ #136",
+    "category": "vong-tay",
+    "material": "Vàng Trắng 14K",
+    "stone": "Emerald (Ngọc Lục Bảo)",
+    "price": 227010796,
+    "images": [
+      "/images/product-bracelet.png"
+    ],
+    "image": "/images/product-bracelet.png",
+    "stock": 5,
+    "certificate": "GIA 66028626",
+    "description": "Tuyệt tác Vòng tay Emerald (Ngọc Lục Bảo) Sang Trọng Quyến Rũ #136 được chế tác thủ công tỉ mỉ từ Vàng Trắng 14K và Emerald (Ngọc Lục Bảo) quý hiếm.",
+    "isActive": true,
+    "createdAt": "2026-05-31T13:04:01.065Z"
+  },
+  {
+    "_id": "6a1c31c112501d31d21ec60d",
+    "name": "Bông tai Ruby Huyết Bồ Câu Tinh Tế Tỏa Sáng #137",
+    "category": "bong-tai",
+    "material": "Bạch Kim (Platinum)",
+    "stone": "Ruby Huyết Bồ Câu",
+    "price": 212680528,
+    "images": [
+      "/images/product-earrings.png"
+    ],
+    "image": "/images/product-earrings.png",
+    "stock": 4,
+    "certificate": "GIA 93464870",
+    "description": "Tuyệt tác Bông tai Ruby Huyết Bồ Câu Tinh Tế Tỏa Sáng #137 được chế tác thủ công tỉ mỉ từ Bạch Kim (Platinum) và Ruby Huyết Bồ Câu quý hiếm.",
+    "isActive": true,
+    "createdAt": "2026-05-31T13:04:01.065Z"
+  },
+  {
+    "_id": "6a1c31c112501d31d21ec60e",
+    "name": "Vòng tay Kim cương GIA Tinh Tế Quyến Rũ #138",
+    "category": "vong-tay",
+    "material": "Vàng Hồng 18K",
+    "stone": "Kim cương GIA",
+    "price": 116567972,
+    "images": [
+      "/images/product-bracelet.png"
+    ],
+    "image": "/images/product-bracelet.png",
+    "stock": 6,
+    "certificate": "GIA 45433567",
+    "description": "Tuyệt tác Vòng tay Kim cương GIA Tinh Tế Quyến Rũ #138 được chế tác thủ công tỉ mỉ từ Vàng Hồng 18K và Kim cương GIA quý hiếm.",
+    "isActive": true,
+    "createdAt": "2026-05-31T13:04:01.065Z"
+  },
+  {
+    "_id": "6a1c31c112501d31d21ec60f",
+    "name": "Nhẫn Emerald (Ngọc Lục Bảo) Cao Cấp Độc Bản #139",
+    "category": "nhan",
+    "material": "Vàng 18K",
+    "stone": "Emerald (Ngọc Lục Bảo)",
+    "price": 195705919,
+    "images": [
+      "/images/product-ring.png"
+    ],
+    "image": "/images/product-ring.png",
+    "stock": 9,
+    "certificate": "GIA 65461892",
+    "description": "Tuyệt tác Nhẫn Emerald (Ngọc Lục Bảo) Cao Cấp Độc Bản #139 được chế tác thủ công tỉ mỉ từ Vàng 18K và Emerald (Ngọc Lục Bảo) quý hiếm.",
+    "isActive": true,
+    "createdAt": "2026-05-31T13:04:01.065Z"
+  },
+  {
+    "_id": "6a1c31c112501d31d21ec610",
+    "name": "Vòng tay Kim cương GIA Hoàng Gia Huyền Bí #140",
+    "category": "vong-tay",
+    "material": "Bạch Kim (Platinum)",
+    "stone": "Kim cương GIA",
+    "price": 202594140,
+    "images": [
+      "/images/product-bracelet.png"
+    ],
+    "image": "/images/product-bracelet.png",
+    "stock": 2,
+    "certificate": "GIA 76572126",
+    "description": "Tuyệt tác Vòng tay Kim cương GIA Hoàng Gia Huyền Bí #140 được chế tác thủ công tỉ mỉ từ Bạch Kim (Platinum) và Kim cương GIA quý hiếm.",
+    "isActive": true,
+    "createdAt": "2026-05-31T13:04:01.065Z"
+  },
+  {
+    "_id": "6a1c31c112501d31d21ec611",
+    "name": "Dây chuyền Moissanite Quý Phái Độc Bản #141",
+    "category": "day-chuyen",
+    "material": "Vàng Hồng 18K",
+    "stone": "Moissanite",
+    "price": 262258205,
+    "images": [
+      "/images/product-necklace.png"
+    ],
+    "image": "/images/product-necklace.png",
+    "stock": 5,
+    "certificate": "GIA 47313235",
+    "description": "Tuyệt tác Dây chuyền Moissanite Quý Phái Độc Bản #141 được chế tác thủ công tỉ mỉ từ Vàng Hồng 18K và Moissanite quý hiếm.",
+    "isActive": true,
+    "createdAt": "2026-05-31T13:04:01.065Z"
+  },
+  {
+    "_id": "6a1c31c112501d31d21ec612",
+    "name": "Bông tai Kim cương GIA Đẳng Cấp Quyến Rũ #142",
+    "category": "bong-tai",
+    "material": "Vàng 18K",
+    "stone": "Kim cương GIA",
+    "price": 106264241,
+    "images": [
+      "/images/product-earrings.png"
+    ],
+    "image": "/images/product-earrings.png",
+    "stock": 3,
+    "certificate": "GIA 20415644",
+    "description": "Tuyệt tác Bông tai Kim cương GIA Đẳng Cấp Quyến Rũ #142 được chế tác thủ công tỉ mỉ từ Vàng 18K và Kim cương GIA quý hiếm.",
+    "isActive": true,
+    "createdAt": "2026-05-31T13:04:01.065Z"
+  },
+  {
+    "_id": "6a1c31c112501d31d21ec613",
+    "name": "Vòng tay Ruby Huyết Bồ Câu Tinh Tế Tỏa Sáng #143",
+    "category": "vong-tay",
+    "material": "Bạch Kim (Platinum)",
+    "stone": "Ruby Huyết Bồ Câu",
+    "price": 401140886,
+    "images": [
+      "/images/product-bracelet.png"
+    ],
+    "image": "/images/product-bracelet.png",
+    "stock": 5,
+    "certificate": "GIA 82731932",
+    "description": "Tuyệt tác Vòng tay Ruby Huyết Bồ Câu Tinh Tế Tỏa Sáng #143 được chế tác thủ công tỉ mỉ từ Bạch Kim (Platinum) và Ruby Huyết Bồ Câu quý hiếm.",
+    "isActive": true,
+    "createdAt": "2026-05-31T13:04:01.065Z"
+  },
+  {
+    "_id": "6a1c31c112501d31d21ec614",
+    "name": "Nhẫn Sapphire Xanh Thanh Lịch Quyến Rũ #144",
+    "category": "nhan",
+    "material": "Vàng 18K",
+    "stone": "Sapphire Xanh",
+    "price": 70857773,
+    "images": [
+      "/images/product-ring.png"
+    ],
+    "image": "/images/product-ring.png",
+    "stock": 5,
+    "certificate": "GIA 40999622",
+    "description": "Tuyệt tác Nhẫn Sapphire Xanh Thanh Lịch Quyến Rũ #144 được chế tác thủ công tỉ mỉ từ Vàng 18K và Sapphire Xanh quý hiếm.",
+    "isActive": true,
+    "createdAt": "2026-05-31T13:04:01.065Z"
+  },
+  {
+    "_id": "6a1c31c112501d31d21ec615",
+    "name": "Dây chuyền Moissanite Đẳng Cấp Tỏa Sáng #145",
+    "category": "day-chuyen",
+    "material": "Bạch Kim (Platinum)",
+    "stone": "Moissanite",
+    "price": 426383107,
+    "images": [
+      "/images/product-necklace.png"
+    ],
+    "image": "/images/product-necklace.png",
+    "stock": 5,
+    "certificate": "GIA 60427666",
+    "description": "Tuyệt tác Dây chuyền Moissanite Đẳng Cấp Tỏa Sáng #145 được chế tác thủ công tỉ mỉ từ Bạch Kim (Platinum) và Moissanite quý hiếm.",
+    "isActive": true,
+    "createdAt": "2026-05-31T13:04:01.065Z"
+  },
+  {
+    "_id": "6a1c31c112501d31d21ec616",
+    "name": "Nhẫn Kim cương GIA Quý Phái Quyến Rũ #146",
+    "category": "nhan",
+    "material": "Bạch Kim (Platinum)",
+    "stone": "Kim cương GIA",
+    "price": 269659197,
+    "images": [
+      "/images/products/soleil-main.png"
+    ],
+    "image": "/images/products/soleil-main.png",
+    "stock": 5,
+    "certificate": "GIA 88465387",
+    "description": "Tuyệt tác Nhẫn Kim cương GIA Quý Phái Quyến Rũ #146 được chế tác thủ công tỉ mỉ từ Bạch Kim (Platinum) và Kim cương GIA quý hiếm.",
+    "isActive": true,
+    "createdAt": "2026-05-31T13:04:01.065Z"
+  },
+  {
+    "_id": "6a1c31c112501d31d21ec617",
+    "name": "Nhẫn Ruby Huyết Bồ Câu Hoàng Gia Huyền Bí #147",
+    "category": "nhan",
+    "material": "Vàng Trắng 14K",
+    "stone": "Ruby Huyết Bồ Câu",
+    "price": 240016926,
+    "images": [
+      "/images/products/soleil-main.png"
+    ],
+    "image": "/images/products/soleil-main.png",
+    "stock": 3,
+    "certificate": "GIA 96860697",
+    "description": "Tuyệt tác Nhẫn Ruby Huyết Bồ Câu Hoàng Gia Huyền Bí #147 được chế tác thủ công tỉ mỉ từ Vàng Trắng 14K và Ruby Huyết Bồ Câu quý hiếm.",
+    "isActive": true,
+    "createdAt": "2026-05-31T13:04:01.065Z"
+  },
+  {
+    "_id": "6a1c31c112501d31d21ec618",
+    "name": "Dây chuyền Ruby Huyết Bồ Câu Thanh Lịch Quyến Rũ #148",
+    "category": "day-chuyen",
+    "material": "Vàng 18K",
+    "stone": "Ruby Huyết Bồ Câu",
+    "price": 448700949,
+    "images": [
+      "/images/product-necklace.png"
+    ],
+    "image": "/images/product-necklace.png",
+    "stock": 9,
+    "certificate": "GIA 53876876",
+    "description": "Tuyệt tác Dây chuyền Ruby Huyết Bồ Câu Thanh Lịch Quyến Rũ #148 được chế tác thủ công tỉ mỉ từ Vàng 18K và Ruby Huyết Bồ Câu quý hiếm.",
+    "isActive": true,
+    "createdAt": "2026-05-31T13:04:01.065Z"
+  },
+  {
+    "_id": "6a1c31c112501d31d21ec619",
+    "name": "Nhẫn Emerald (Ngọc Lục Bảo) Thanh Lịch Vĩnh Cửu #149",
+    "category": "nhan",
+    "material": "Vàng 18K",
+    "stone": "Emerald (Ngọc Lục Bảo)",
+    "price": 49152046,
+    "images": [
+      "/images/product-ring.png"
+    ],
+    "image": "/images/product-ring.png",
+    "stock": 3,
+    "certificate": "GIA 13850227",
+    "description": "Tuyệt tác Nhẫn Emerald (Ngọc Lục Bảo) Thanh Lịch Vĩnh Cửu #149 được chế tác thủ công tỉ mỉ từ Vàng 18K và Emerald (Ngọc Lục Bảo) quý hiếm.",
+    "isActive": true,
+    "createdAt": "2026-05-31T13:04:01.065Z"
+  },
+  {
+    "_id": "6a1c31c112501d31d21ec61a",
+    "name": "Dây chuyền Moissanite Sang Trọng Tỏa Sáng #150",
+    "category": "day-chuyen",
+    "material": "Vàng 18K",
+    "stone": "Moissanite",
+    "price": 399719098,
+    "images": [
+      "/images/product-necklace.png"
+    ],
+    "image": "/images/product-necklace.png",
+    "stock": 2,
+    "certificate": "GIA 81578686",
+    "description": "Tuyệt tác Dây chuyền Moissanite Sang Trọng Tỏa Sáng #150 được chế tác thủ công tỉ mỉ từ Vàng 18K và Moissanite quý hiếm.",
+    "isActive": true,
+    "createdAt": "2026-05-31T13:04:01.065Z"
+  }
+]

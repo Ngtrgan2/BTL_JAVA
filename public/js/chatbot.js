@@ -167,7 +167,7 @@ const Chatbot = {
                 </div>
             </div>
             <div id="ai-chat-toggle">
-                <i class="fa-solid fa-robot"></i>
+                <img src="../images/kimcuong2.png" alt="AI Chat" style="width: 32px; height: 32px; object-fit: contain;">
                 <span class="chat-badge">AI</span>
             </div>
         `;

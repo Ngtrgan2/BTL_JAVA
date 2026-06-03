@@ -4,49 +4,52 @@ document.addEventListener('DOMContentLoaded', () => {
     const link = document.createElement('link');
     link.rel = 'stylesheet';
     link.href = '/css/chat.css';
-    document.head.appendChild(link);
-
-    const socketScript = document.createElement('script');
-    socketScript.src = '/socket.io/socket.io.js';
-    socketScript.onload = initChat;
-    document.body.appendChild(socketScript);
-
-    // 2. Inject HTML Widget
-    const widgetHTML = `
-        <div class="chat-widget-container">
-            <div class="chat-widget-toggle" id="live-chat-toggle">
-                <i class="fa-solid fa-comments"></i>
-                <div class="chat-unread-badge" id="live-chat-badge">0</div>
-            </div>
-
-            <div class="chat-widget-window" id="live-chat-window">
-                <div class="chat-header">
-                    <div class="chat-header-info">
-                        <h4>An LUXURY Hỗ Trợ</h4>
-                        <p>Chúng tôi luôn trực tuyến 24/7</p>
-                    </div>
-                    <div class="chat-close-btn" id="live-chat-close">
-                        <i class="fa-solid fa-times"></i>
-                    </div>
-                </div>
-                
-                <div class="chat-body" id="live-chat-messages">
-                    <div class="chat-message system">
-                        Chào mừng đến với An LUXURY! Hãy nhắn tin cho chúng tôi nếu bạn cần tư vấn.
-                    </div>
-                </div>
-
-                <div class="chat-footer">
-                    <input type="text" class="chat-input" id="live-chat-input" placeholder="Nhập tin nhắn...">
-                    <button class="chat-send-btn" id="live-chat-send">
-                        <i class="fa-solid fa-paper-plane"></i>
-                    </button>
-                </div>
-            </div>
-        </div>
-    `;
     
-    document.body.insertAdjacentHTML('beforeend', widgetHTML);
+    // 2. Inject HTML Widget only after CSS is loaded to prevent flashing
+    link.onload = () => {
+        const widgetHTML = `
+            <div class="chat-widget-container">
+                <div class="chat-widget-toggle" id="live-chat-toggle">
+                    <i class="fa-solid fa-comments"></i>
+                    <div class="chat-unread-badge" id="live-chat-badge">0</div>
+                </div>
+
+                <div class="chat-widget-window" id="live-chat-window">
+                    <div class="chat-header">
+                        <div class="chat-header-info">
+                            <h4>An LUXURY Hỗ Trợ</h4>
+                            <p>Chúng tôi luôn trực tuyến 24/7</p>
+                        </div>
+                        <div class="chat-close-btn" id="live-chat-close">
+                            <i class="fa-solid fa-times"></i>
+                        </div>
+                    </div>
+                    
+                    <div class="chat-body" id="live-chat-messages">
+                        <div class="chat-message system">
+                            Chào mừng đến với An LUXURY! Hãy nhắn tin cho chúng tôi nếu bạn cần tư vấn.
+                        </div>
+                    </div>
+
+                    <div class="chat-footer">
+                        <input type="text" class="chat-input" id="live-chat-input" placeholder="Nhập tin nhắn...">
+                        <button class="chat-send-btn" id="live-chat-send">
+                            <i class="fa-solid fa-paper-plane"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        `;
+        document.body.insertAdjacentHTML('beforeend', widgetHTML);
+        
+        // Load socket.io after UI is injected
+        const socketScript = document.createElement('script');
+        socketScript.src = '/socket.io/socket.io.js';
+        socketScript.onload = initChat;
+        document.body.appendChild(socketScript);
+    };
+    
+    document.head.appendChild(link);
 });
 
 let socket;

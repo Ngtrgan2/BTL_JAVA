@@ -52,6 +52,16 @@ const fetchAPI = async (endpoint, options = {}) => {
     }
 };
 
+// Auto-hide news menu for staff in admin panel
+document.addEventListener('DOMContentLoaded', () => {
+    try {
+        const userInfo = JSON.parse(localStorage.getItem('userInfo'));
+        if (userInfo && userInfo.role === 'staff') {
+            document.querySelectorAll('a[href="news.html"]').forEach(nav => nav.style.display = 'none');
+        }
+    } catch(e) {}
+});
+
 window.API = {
     getProducts: (query = '') => fetchAPI(`/products${query}`),
     getProduct: (id) => fetchAPI(`/products/${id}`),

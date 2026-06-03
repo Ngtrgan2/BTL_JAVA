@@ -1,0 +1,56 @@
+[{
+  "_id": {
+    "$oid": "6a087b4b63a0f329f52b24b4"
+  },
+  "title": "Siết chất lượng, nguồn gốc vàng trang sức mỹ nghệ",
+  "summary": "Ngoài việc quản lý chất lượng vàng trang sức mỹ nghệ, mới đây một dự thảo đề cập đến truy xuất nguồn gốc xuất xứ sản phẩm vàng. Những quy định này nhằm bảo vệ người tiêu dùng nhưng doanh nghiệp sản xuất kinh doanh vàng sẽ gặp không ít khó khăn trong bối cảnh nguồn nguyên liệu khan hiếm.",
+  "url": "https://thanhnien.vn/siet-chat-luong-nguon-goc-vang-trang-suc-my-nghe-185260515224019978.htm",
+  "image": "https://images2.thanhnien.vn/thumb_w/640/528068263637045248/2026/5/15/anh-1-17788594291921804073273.jpg",
+  "isLatest": false,
+  "source": "ThanhNien",
+  "createdAt": {
+    "$date": "2026-05-16T14:12:27.263Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6a087b8863a0f329f52b24b5"
+  },
+  "title": "Những bộ trang sức làm nên sức hút tại thảm đỏ Baeksang",
+  "summary": "Bên cạnh việc tôn vinh tài năng điện ảnh, thảm đỏ Baeksang 2026 còn trở thành cuộc đua phong cách đầy mãn nhãn, nơi dàn sao Hàn khéo léo khẳng định đẳng cấp qua những bộ trang sức xa xỉ và tinh xảo.",
+  "url": "https://thanhnien.vn/thoi-trang-tre/nhung-bo-trang-suc-lam-nen-suc-hut-tai-tham-do-baeksang-1852605141119078.htm",
+  "image": "https://images2.thanhnien.vn/thumb_w/640/528068263637045248/2026/5/14/lee-chae-min-1778731480581242451197.jpg",
+  "isLatest": false,
+  "source": "ThanhNien",
+  "createdAt": {
+    "$date": "2026-05-16T14:13:28.324Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6a087f6863a0f329f52b24b6"
+  },
+  "title": "🚨 CHÍNH THỨC: KHỞI TỐ CA SĨ MIU LÊ (LÊ ÁNH NHẬT) VÌ HÀNH VI TỔ CHỨC SỬ DỤNG TRÁI PHÉP VÀ TÀNG TRỮ TRÁI PHÉP CHẤT CẤM!! 💥",
+  "summary": "🚨 CHÍNH THỨC: KHỞI TỐ CA SĨ MIU LÊ (LÊ ÁNH NHẬT) VÌ HÀNH VI TỔ CHỨC SỬ DỤNG TRÁI PHÉP VÀ TÀNG TRỮ TRÁI PHÉP CHẤT CẤM!! 💥",
+  "url": "https://www.facebook.com/share/p/18ZzhxA2er/",
+  "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRIYsvhBrJ1DFhF9fMYEpwooDSb9-JK_Rpexw&s",
+  "isLatest": false,
+  "source": "fb",
+  "createdAt": {
+    "$date": "2026-05-16T14:30:00.741Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6a099b6024002451eef8884e"
+  },
+  "title": "Sinh viên ‘cắm bản’ ở Nghệ An, tình nguyện sửa trường, dạy chữ cho trẻ em vùng cao",
+  "summary": "Trong Chiến dịch 'Mùa Hè Xanh' 2025, hàng chục sinh viên rời Hà Nội đến xã miền núi Tương Dương (tỉnh Nghệ An) để tham gia sửa trường học, tổ chức lớp học Hè và hỗ trợ người dân địa phương. Những ngày ‘cắm bản’ giữa núi rừng giúp các bạn trẻ học được nhiều bài học thực tế không có trên giảng đường.",
+  "url": "https://svvn.tienphong.vn/sinh-vien-cam-ban-o-nghe-an-tinh-nguyen-sua-truong-day-chu-cho-tre-em-vung-cao-post1760299.tpo?fbclid=IwY2xjawR2enVleHRuA2FlbQIxMABicmlkETF6RGNMOWpDNFNPWWxTUzNGc3J0YwZhcHBfaWQQMjIyMDM5MTc4ODIwMDg5MgABHnQGG85rxhsJttYtr1byliwaIGXeQdbSg7w-RIbhVwlce_y0YCEBe23VUfXg_aem_loH4kBuFo7ci8BPg6sgUlw",
+  "image": "https://cdn.tienphong.vn/images/36a7a83b54ae958d7a999aab5cbf600ab77ef680b62e2a5d84ad9db7e2e035caa2bd92dbecff31f3f0cd62ca169e5b95714ef85a15986e12ec866c53661a093d/nguyen-truong-an.jpg.avif",
+  "isLatest": true,
+  "source": "SinhVienVietNam",
+  "createdAt": {
+    "$date": "2026-05-17T10:41:36.862Z"
+  }
+}]

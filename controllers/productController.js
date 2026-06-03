@@ -90,6 +90,7 @@ const createProduct = async (req, res) => {
             certificate: productData.certificate || '',
             description: productData.description || '',
             discountPercentage: Number(productData.discountPercentage || 0),
+            isFeatured: productData.isFeatured === true,
             isActive: productData.isActive !== undefined ? productData.isActive : true,
             createdAt: new Date()
         };

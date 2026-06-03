@@ -1,0 +1,28 @@
+[{
+  "_id": {
+    "$oid": "6a1c2d2a22376669d2ee96b8"
+  },
+  "sessionId": "guest_8l3mzh34v",
+  "createdAt": {
+    "$date": "2026-05-31T12:44:26.137Z"
+  },
+  "customerName": "Khách vãng lai",
+  "lastUpdated": {
+    "$date": "2026-05-31T12:44:28.761Z"
+  },
+  "unreadCount": 0
+},
+{
+  "_id": {
+    "$oid": "6a1c330522376669d2ee96b9"
+  },
+  "sessionId": "guest_3i989y6bv",
+  "createdAt": {
+    "$date": "2026-05-31T13:09:25.172Z"
+  },
+  "customerName": "Khách vãng lai",
+  "lastUpdated": {
+    "$date": "2026-05-31T13:22:50.763Z"
+  },
+  "unreadCount": 0
+}]

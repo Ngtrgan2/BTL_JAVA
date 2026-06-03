@@ -1,0 +1,452 @@
+[
+  {
+    "userId": null,
+    "customerName": "Đặng Ngọc Lan",
+    "phone": "0354144943",
+    "email": "dangngoclan21@gmail.com",
+    "category": "Mua quà tặng",
+    "date": "2026-06-18",
+    "time": "14:30",
+    "note": "",
+    "productIds": [],
+    "status": "completed",
+    "createdAt": {
+      "$date": "2026-05-28T13:33:01.895Z"
+    }
+  },
+  {
+    "userId": null,
+    "customerName": "Vũ Thị Linh",
+    "phone": "0906303404",
+    "email": "vuthilinh78@gmail.com",
+    "category": "Thiết kế trang sức",
+    "date": "2026-05-27",
+    "time": "09:30",
+    "note": "Bảo hành bông tai bị rớt hột",
+    "productIds": [],
+    "status": "pending",
+    "createdAt": {
+      "$date": "2026-05-26T13:33:01.895Z"
+    }
+  },
+  {
+    "userId": null,
+    "customerName": "Dương Gia Nam",
+    "phone": "0915100847",
+    "email": "duonggianam63@gmail.com",
+    "category": "Thiết kế trang sức",
+    "date": "2026-05-29",
+    "time": "10:00",
+    "note": "Tôi muốn thiết kế nhẫn đôi theo yêu cầu",
+    "productIds": [],
+    "status": "confirmed",
+    "createdAt": {
+      "$date": "2026-05-23T13:33:01.895Z"
+    }
+  },
+  {
+    "userId": null,
+    "customerName": "Phạm Đức Dũng",
+    "phone": "0909284180",
+    "email": "phamducdung48@gmail.com",
+    "category": "Bảo hành & Sửa chữa",
+    "date": "2026-06-06",
+    "time": "09:30",
+    "note": "Tôi muốn thiết kế nhẫn đôi theo yêu cầu",
+    "productIds": [],
+    "status": "cancelled",
+    "createdAt": {
+      "$date": "2026-05-22T13:33:01.895Z"
+    }
+  },
+  {
+    "userId": null,
+    "customerName": "Bùi Tuấn Dũng",
+    "phone": "0986811496",
+    "email": "buituandung26@gmail.com",
+    "category": "Tư vấn mua hàng",
+    "date": "2026-06-14",
+    "time": "17:00",
+    "note": "Tôi muốn thiết kế nhẫn đôi theo yêu cầu",
+    "productIds": [],
+    "status": "cancelled",
+    "createdAt": {
+      "$date": "2026-05-23T13:33:01.895Z"
+    }
+  },
+  {
+    "userId": null,
+    "customerName": "Huỳnh Quốc Cường",
+    "phone": "0709419103",
+    "email": "huynhquoccuong64@gmail.com",
+    "category": "Bảo hành & Sửa chữa",
+    "date": "2026-05-29",
+    "time": "11:00",
+    "note": "Cần tư vấn thiết kế dây chuyền cưới",
+    "productIds": [],
+    "status": "completed",
+    "createdAt": {
+      "$date": "2026-05-25T13:33:01.895Z"
+    }
+  },
+  {
+    "userId": null,
+    "customerName": "Đặng Hữu Hương",
+    "phone": "0345490470",
+    "email": "danghuuhuong30@gmail.com",
+    "category": "Làm mới trang sức",
+    "date": "2026-06-02",
+    "time": "15:00",
+    "note": "Quan tâm đến bộ sưu tập mới Soleil",
+    "productIds": [],
+    "status": "cancelled",
+    "createdAt": {
+      "$date": "2026-05-26T13:33:01.895Z"
+    }
+  },
+  {
+    "userId": null,
+    "customerName": "Võ Hải Anh",
+    "phone": "0906960521",
+    "email": "vohaianh61@gmail.com",
+    "category": "Làm mới trang sức",
+    "date": "2026-06-28",
+    "time": "10:30",
+    "note": "Tôi muốn thiết kế nhẫn đôi theo yêu cầu",
+    "productIds": [],
+    "status": "cancelled",
+    "createdAt": {
+      "$date": "2026-05-26T13:33:01.895Z"
+    }
+  },
+  {
+    "userId": null,
+    "customerName": "Trần Hữu Tùng",
+    "phone": "0791486914",
+    "email": "tranhuutung30@gmail.com",
+    "category": "Làm mới trang sức",
+    "date": "2026-05-25",
+    "time": "16:00",
+    "note": "Tôi muốn xem nhẫn kim cương",
+    "productIds": [],
+    "status": "pending",
+    "createdAt": {
+      "$date": "2026-05-30T13:33:01.895Z"
+    }
+  },
+  {
+    "userId": null,
+    "customerName": "Võ Tuấn Dũng",
+    "phone": "0356201169",
+    "email": "votuandung4@gmail.com",
+    "category": "Thiết kế trang sức",
+    "date": "2026-06-29",
+    "time": "17:00",
+    "note": "Tư vấn quà tặng sinh nhật cho vợ",
+    "productIds": [],
+    "status": "completed",
+    "createdAt": {
+      "$date": "2026-05-24T13:33:01.895Z"
+    }
+  },
+  {
+    "userId": null,
+    "customerName": "Đỗ Hoài Hương",
+    "phone": "0799498613",
+    "email": "dohoaihuong57@gmail.com",
+    "category": "Mua quà tặng",
+    "date": "2026-06-25",
+    "time": "14:00",
+    "note": "Mang nhẫn đến đánh bóng",
+    "productIds": [],
+    "status": "confirmed",
+    "createdAt": {
+      "$date": "2026-05-21T13:33:01.895Z"
+    }
+  },
+  {
+    "userId": null,
+    "customerName": "Đặng Hữu Hương",
+    "phone": "0915660422",
+    "email": "danghuuhuong28@gmail.com",
+    "category": "Tư vấn mua hàng",
+    "date": "2026-06-06",
+    "time": "10:30",
+    "note": "Tôi muốn xem nhẫn kim cương",
+    "productIds": [],
+    "status": "completed",
+    "createdAt": {
+      "$date": "2026-05-28T13:33:01.895Z"
+    }
+  },
+  {
+    "userId": null,
+    "customerName": "Lê Quang Lan",
+    "phone": "0347025385",
+    "email": "lequanglan66@gmail.com",
+    "category": "Bảo hành & Sửa chữa",
+    "date": "2026-05-28",
+    "time": "10:30",
+    "note": "Bảo hành bông tai bị rớt hột",
+    "productIds": [],
+    "status": "completed",
+    "createdAt": {
+      "$date": "2026-05-26T13:33:01.895Z"
+    }
+  },
+  {
+    "userId": null,
+    "customerName": "Nguyễn Đức Hà",
+    "phone": "0868563963",
+    "email": "nguyenducha96@gmail.com",
+    "category": "Mua quà tặng",
+    "date": "2026-06-19",
+    "time": "17:00",
+    "note": "Tư vấn quà tặng sinh nhật cho vợ",
+    "productIds": [],
+    "status": "cancelled",
+    "createdAt": {
+      "$date": "2026-05-28T13:33:01.895Z"
+    }
+  },
+  {
+    "userId": null,
+    "customerName": "Dương Hoài Linh",
+    "phone": "0919864265",
+    "email": "duonghoailinh83@gmail.com",
+    "category": "Bảo hành & Sửa chữa",
+    "date": "2026-06-03",
+    "time": "14:30",
+    "note": "Cần tư vấn thiết kế dây chuyền cưới",
+    "productIds": [],
+    "status": "confirmed",
+    "createdAt": {
+      "$date": "2026-05-30T13:33:01.895Z"
+    }
+  },
+  {
+    "userId": null,
+    "customerName": "Đặng Gia Dũng",
+    "phone": "0986511352",
+    "email": "danggiadung4@gmail.com",
+    "category": "Thiết kế trang sức",
+    "date": "2026-06-13",
+    "time": "16:30",
+    "note": "Mang nhẫn đến đánh bóng",
+    "productIds": [],
+    "status": "completed",
+    "createdAt": {
+      "$date": "2026-05-26T13:33:01.895Z"
+    }
+  },
+  {
+    "userId": null,
+    "customerName": "Phạm Ngọc Yến",
+    "phone": "0913864610",
+    "email": "phamngocyen17@gmail.com",
+    "category": "Thiết kế trang sức",
+    "date": "2026-06-28",
+    "time": "16:00",
+    "note": "Bảo hành bông tai bị rớt hột",
+    "productIds": [],
+    "status": "completed",
+    "createdAt": {
+      "$date": "2026-05-21T13:33:01.895Z"
+    }
+  },
+  {
+    "userId": null,
+    "customerName": "Bùi Ngọc Nam",
+    "phone": "0913696427",
+    "email": "buingocnam54@gmail.com",
+    "category": "Tư vấn mua hàng",
+    "date": "2026-06-14",
+    "time": "14:30",
+    "note": "Mang nhẫn đến đánh bóng",
+    "productIds": [],
+    "status": "confirmed",
+    "createdAt": {
+      "$date": "2026-05-30T13:33:01.895Z"
+    }
+  },
+  {
+    "userId": null,
+    "customerName": "Đỗ Ngọc Anh",
+    "phone": "0794683801",
+    "email": "dongocanh38@gmail.com",
+    "category": "Làm mới trang sức",
+    "date": "2026-06-15",
+    "time": "09:00",
+    "note": "Cần tư vấn thiết kế dây chuyền cưới",
+    "productIds": [],
+    "status": "confirmed",
+    "createdAt": {
+      "$date": "2026-05-24T13:33:01.895Z"
+    }
+  },
+  {
+    "userId": null,
+    "customerName": "Phạm Đức Phong",
+    "phone": "0349006350",
+    "email": "phamducphong23@gmail.com",
+    "category": "Làm mới trang sức",
+    "date": "2026-06-09",
+    "time": "10:30",
+    "note": "Tư vấn quà tặng sinh nhật cho vợ",
+    "productIds": [],
+    "status": "cancelled",
+    "createdAt": {
+      "$date": "2026-05-21T13:33:01.895Z"
+    }
+  },
+  {
+    "userId": null,
+    "customerName": "Huỳnh Quang Yến",
+    "phone": "0861799513",
+    "email": "huynhquangyen88@gmail.com",
+    "category": "Tư vấn mua hàng",
+    "date": "2026-06-09",
+    "time": "11:00",
+    "note": "",
+    "productIds": [],
+    "status": "cancelled",
+    "createdAt": {
+      "$date": "2026-05-24T13:33:01.895Z"
+    }
+  },
+  {
+    "userId": null,
+    "customerName": "Phan Hải Phong",
+    "phone": "0864520652",
+    "email": "phanhaiphong9@gmail.com",
+    "category": "Làm mới trang sức",
+    "date": "2026-05-26",
+    "time": "16:30",
+    "note": "Tôi muốn thiết kế nhẫn đôi theo yêu cầu",
+    "productIds": [],
+    "status": "cancelled",
+    "createdAt": {
+      "$date": "2026-05-23T13:33:01.895Z"
+    }
+  },
+  {
+    "userId": null,
+    "customerName": "Vũ Thị Hương",
+    "phone": "0913551147",
+    "email": "vuthihuong79@gmail.com",
+    "category": "Mua quà tặng",
+    "date": "2026-06-28",
+    "time": "14:00",
+    "note": "Tư vấn quà tặng sinh nhật cho vợ",
+    "productIds": [],
+    "status": "confirmed",
+    "createdAt": {
+      "$date": "2026-05-23T13:33:01.895Z"
+    }
+  },
+  {
+    "userId": null,
+    "customerName": "Phạm Tuấn Trang",
+    "phone": "0702024993",
+    "email": "phamtuantrang85@gmail.com",
+    "category": "Làm mới trang sức",
+    "date": "2026-06-06",
+    "time": "09:00",
+    "note": "Bảo hành bông tai bị rớt hột",
+    "productIds": [],
+    "status": "cancelled",
+    "createdAt": {
+      "$date": "2026-05-25T13:33:01.895Z"
+    }
+  },
+  {
+    "userId": null,
+    "customerName": "Phan Thanh Dũng",
+    "phone": "0797960632",
+    "email": "phanthanhdung90@gmail.com",
+    "category": "Bảo hành & Sửa chữa",
+    "date": "2026-06-17",
+    "time": "17:00",
+    "note": "Quan tâm đến bộ sưu tập mới Soleil",
+    "productIds": [],
+    "status": "completed",
+    "createdAt": {
+      "$date": "2026-05-23T13:33:01.895Z"
+    }
+  },
+  {
+    "userId": null,
+    "customerName": "Võ Hải Hà",
+    "phone": "0905241422",
+    "email": "vohaiha2@gmail.com",
+    "category": "Mua quà tặng",
+    "date": "2026-06-16",
+    "time": "09:00",
+    "note": "Quan tâm đến bộ sưu tập mới Soleil",
+    "productIds": [],
+    "status": "completed",
+    "createdAt": {
+      "$date": "2026-05-21T13:33:01.895Z"
+    }
+  },
+  {
+    "userId": null,
+    "customerName": "Võ Hoài Bình",
+    "phone": "0912014745",
+    "email": "vohoaibinh71@gmail.com",
+    "category": "Mua quà tặng",
+    "date": "2026-06-15",
+    "time": "16:30",
+    "note": "Tôi muốn thiết kế nhẫn đôi theo yêu cầu",
+    "productIds": [],
+    "status": "completed",
+    "createdAt": {
+      "$date": "2026-05-26T13:33:01.895Z"
+    }
+  },
+  {
+    "userId": null,
+    "customerName": "Đặng Quốc Linh",
+    "phone": "0866348057",
+    "email": "dangquoclinh50@gmail.com",
+    "category": "Thiết kế trang sức",
+    "date": "2026-06-06",
+    "time": "11:00",
+    "note": "",
+    "productIds": [],
+    "status": "completed",
+    "createdAt": {
+      "$date": "2026-05-21T13:33:01.895Z"
+    }
+  },
+  {
+    "userId": null,
+    "customerName": "Ngô Thị Hương",
+    "phone": "0983669513",
+    "email": "ngothihuong87@gmail.com",
+    "category": "Làm mới trang sức",
+    "date": "2026-06-13",
+    "time": "16:00",
+    "note": "Tôi muốn xem nhẫn kim cương",
+    "productIds": [],
+    "status": "pending",
+    "createdAt": {
+      "$date": "2026-05-24T13:33:01.895Z"
+    }
+  },
+  {
+    "userId": null,
+    "customerName": "Vũ Gia Tùng",
+    "phone": "0984546108",
+    "email": "vugiatung96@gmail.com",
+    "category": "Thiết kế trang sức",
+    "date": "2026-05-24",
+    "time": "10:30",
+    "note": "Mang nhẫn đến đánh bóng",
+    "productIds": [],
+    "status": "cancelled",
+    "createdAt": {
+      "$date": "2026-05-21T13:33:01.895Z"
+    }
+  }
+]

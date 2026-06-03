@@ -61,12 +61,14 @@
     pointer-events: none;
     transform: translateY(20px);
     transition: all 0.3s ease;
+    visibility: hidden;
 }
 
 .chat-widget-window.open {
     opacity: 1;
     pointer-events: auto;
     transform: translateY(0);
+    visibility: visible;
 }
 
 .chat-header {
