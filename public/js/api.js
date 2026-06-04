@@ -42,6 +42,13 @@ const fetchAPI = async (endpoint, options = {}) => {
         }
         
         if (!response.ok) {
+            if (response.status === 401 || response.status === 403) {
+                localStorage.removeItem('token');
+                localStorage.removeItem('userInfo');
+                window.location.href = '/pages/login.html';
+                // Stop execution
+                await new Promise(() => {});
+            }
             throw new Error(data.message || 'Có lỗi xảy ra!');
         }
         
