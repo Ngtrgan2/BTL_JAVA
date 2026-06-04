@@ -518,11 +518,18 @@
                 
                 for(let i = 0; i < order.items.length; i++) {
                     const item = order.items[i];
-                    // Fetch product details for technical specs if possible, otherwise use from order
                     const specs = item.material + (item.size ? ' | Size: ' + item.size : '') + (item.stone ? ' | Đá: ' + item.stone : '');
                     
-                    // Generate professional warranty code matching standard format
-                    const warrantyCode = 'AL-' + order._id.toString().slice(-6).toUpperCase() + '-' + String(i + 1).padStart(2, '0');
+                    // Lấy mã bảo hành từ CSDL (nếu có), fallback sang mã tự tạo cho đơn cũ
+                    let warrantyCode = 'AL-' + order._id.toString().slice(-6).toUpperCase() + '-' + String(i + 1).padStart(2, '0');
+                    let warrantyExpiry = '';
+                    if (order.warranties && order.warranties[i]) {
+                        warrantyCode = order.warranties[i].warrantyCode;
+                        if (order.warranties[i].expiryDate) {
+                            const exp = new Date(order.warranties[i].expiryDate);
+                            warrantyExpiry = ' (HSD: ' + exp.toLocaleDateString('vi-VN') + ')';
+                        }
+                    }
                     
                     itemsHtml += `
                         <tr>
@@ -530,7 +537,7 @@
                             <td>
                                 <b>${item.name}</b><br>
                                 <span style="font-size: 11pt; color: #444;">Thông số: ${specs || 'Chế tác thủ công theo yêu cầu'}</span><br>
-                                <span style="font-size: 10.5pt; color: #000; font-weight: bold; display: inline-block; margin-top: 4px;">Mã bảo hành: ${warrantyCode}</span>
+                                <span style="font-size: 10.5pt; color: #000; font-weight: bold; display: inline-block; margin-top: 4px;">Mã bảo hành: ${warrantyCode}${warrantyExpiry}</span>
                             </td>
                             <td class="text-center">${item.quantity}</td>
                             <td class="text-right">${formatPrice(item.price)}</td>

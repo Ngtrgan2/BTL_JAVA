@@ -81,7 +81,36 @@ const createOrder = async (req, res) => {
             }
         }
 
-        const responseData = { message: 'Order created', id: result.insertedId };
+        // === AUTO-GENERATE WARRANTY CODES ===
+        const orderId = result.insertedId.toString();
+        const orderIdSuffix = orderId.slice(-6).toUpperCase();
+        const purchaseDate = new Date();
+        const expiryDate = new Date(purchaseDate);
+        expiryDate.setFullYear(expiryDate.getFullYear() + 2); // Bảo hành 2 năm
+
+        const warrantyCodes = [];
+        for (let i = 0; i < order.items.length; i++) {
+            const item = order.items[i];
+            const warrantyCode = 'AL-' + orderIdSuffix + '-' + String(i + 1).padStart(2, '0');
+
+            const warrantyDoc = {
+                warrantyCode: warrantyCode,
+                orderId: orderId,
+                productId: item.productId,
+                productName: item.name,
+                customerName: order.customerName || '',
+                phone: order.phone || '',
+                email: order.email || '',
+                purchaseDate: purchaseDate,
+                expiryDate: expiryDate,
+                status: 'active'
+            };
+
+            await db.collection('warranties').insertOne(warrantyDoc);
+            warrantyCodes.push(warrantyCode);
+        }
+
+        const responseData = { message: 'Order created', id: result.insertedId, warrantyCodes };
         if (lowStockWarnings.length > 0) {
             responseData.lowStockWarnings = lowStockWarnings;
         }
@@ -249,6 +278,12 @@ const getOrderById = async (req, res) => {
 
         // Normalize for frontend
         if (order.total && !order.totalAmount) order.totalAmount = order.total;
+
+        // Attach warranty codes from DB
+        const warranties = await db.collection('warranties').find({ orderId: id }).toArray();
+        if (warranties.length > 0) {
+            order.warranties = warranties;
+        }
         
         res.writeHead(200, { 'Content-Type': 'application/json' });
         res.end(JSON.stringify(order));
