@@ -217,6 +217,7 @@
                     <table class="admin-table">
                         <thead>
                             <tr>
+                                <th style="width: 50px; text-align: center;">STT</th>
                                 <th>Sản phẩm</th>
                                 <th>Danh mục</th>
                                 <th>Giá bán</th>
@@ -228,7 +229,7 @@
                         </thead>
                         <tbody id="productTableBody">
                             <!-- JS will render here -->
-                            <tr><td colspan="6" style="text-align: center; padding: 3rem;"><i class="fa-solid fa-spinner fa-spin"></i> Đang tải...</td></tr>
+                            <tr><td colspan="8" style="text-align: center; padding: 3rem;"><i class="fa-solid fa-spinner fa-spin"></i> Đang tải...</td></tr>
                         </tbody>
                     </table>
                 </div>
@@ -337,7 +338,7 @@
                 calculateStats(products);
                 renderProducts(products);
             } catch (error) {
-                tbody.innerHTML = '<tr><td colspan="6" style="text-align: center; color: var(--status-danger);">Lỗi tải dữ liệu</td></tr>';
+                tbody.innerHTML = '<tr><td colspan="8" style="text-align: center; color: var(--status-danger);">Lỗi tải dữ liệu</td></tr>';
             }
         }
 
@@ -466,11 +467,11 @@
             }
 
             if (filtered.length === 0) {
-                tbody.innerHTML = '<tr><td colspan="7" style="text-align: center; padding: 3rem;">Không tìm thấy sản phẩm nào</td></tr>';
+                tbody.innerHTML = '<tr><td colspan="8" style="text-align: center; padding: 3rem;">Không tìm thấy sản phẩm nào</td></tr>';
                 return;
             }
 
-            tbody.innerHTML = filtered.map(p => {
+            tbody.innerHTML = filtered.map((p, index) => {
                 let stockDisplay = '';
                 if (p.stock <= 0) {
                     stockDisplay = `<span style="color: var(--status-danger); font-weight: 600;"><i class="fa-solid fa-circle-xmark"></i> Hết hàng</span>`;
@@ -485,6 +486,7 @@
 
                 return `
                 <tr style="${p.stock <= 0 ? 'opacity: 0.6;' : p.stock <= LOW_STOCK_THRESHOLD ? 'background: rgba(243, 156, 18, 0.05);' : ''}">
+                    <td style="text-align: center; font-weight: bold; color: var(--admin-text-light);">${index + 1}</td>
                     <td>
                         <div class="product-cell">
                             <img src="${(p.image && (p.image.startsWith('data:') || p.image.startsWith('http'))) ? p.image : '../../' + p.image}" alt="" class="product-thumb" onerror="this.src='../../images/product-ring.png'">

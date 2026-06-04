@@ -139,6 +139,7 @@
                         <table class="admin-table">
                             <thead>
                                 <tr>
+                                    <th style="width: 50px; text-align: center;">STT</th>
                                     <th>Mã ĐH</th>
                                     <th>Khách hàng</th>
                                     <th>Tổng tiền</th>
@@ -147,7 +148,7 @@
                                 </tr>
                             </thead>
                             <tbody id="recentOrdersBody">
-                                <tr><td colspan="5" style="text-align: center; padding: 2rem;">Đang tải...</td></tr>
+                                <tr><td colspan="6" style="text-align: center; padding: 2rem;">Đang tải...</td></tr>
                             </tbody>
                         </table>
                     </div>
@@ -233,8 +234,9 @@
                 const recentOrders = [...orders].sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)).slice(0, 5);
                 
                 if (recentOrders.length > 0) {
-                    ordersBody.innerHTML = recentOrders.map(order => `
+                    ordersBody.innerHTML = recentOrders.map((order, index) => `
                         <tr>
+                            <td style="text-align: center; font-weight: bold; color: var(--admin-text-light);">${index + 1}</td>
                             <td><a href="orders.html" style="color: var(--admin-accent); font-weight: 500;">#OD-${order._id.slice(-6).toUpperCase()}</a></td>
                             <td>${order.customerName || (order.address ? order.address.split(',')[0] : 'Khách lẻ')}</td>
                             <td style="font-weight: 500;">${Number(order.totalAmount || order.total || 0).toLocaleString('vi-VN')} ₫</td>
@@ -243,7 +245,7 @@
                         </tr>
                     `).join('');
                 } else {
-                    ordersBody.innerHTML = '<tr><td colspan="5" style="text-align: center; padding: 2rem;">Chưa có đơn hàng nào</td></tr>';
+                    ordersBody.innerHTML = '<tr><td colspan="6" style="text-align: center; padding: 2rem;">Chưa có đơn hàng nào</td></tr>';
                 }
 
                 // Render Today's Bookings

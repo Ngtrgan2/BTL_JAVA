@@ -194,6 +194,7 @@
                     <table class="admin-table">
                         <thead>
                             <tr>
+                                <th style="width: 50px; text-align: center;">STT</th>
                                 <th>Mã lịch</th>
                                 <th>Khách hàng</th>
                                 <th>Dịch vụ</th>
@@ -203,7 +204,7 @@
                             </tr>
                         </thead>
                         <tbody id="bookingTableBody">
-                            <tr><td colspan="6" style="text-align: center; padding: 3rem;"><i class="fa-solid fa-spinner fa-spin"></i> Đang tải dữ liệu...</td></tr>
+                            <tr><td colspan="7" style="text-align: center; padding: 3rem;"><i class="fa-solid fa-spinner fa-spin"></i> Đang tải dữ liệu...</td></tr>
                         </tbody>
                     </table>
                 </div>
@@ -270,12 +271,13 @@
                 const bookings = await API.getBookings();
                 
                 if (bookings.length === 0) {
-                    tbody.innerHTML = '<tr><td colspan="6" style="text-align: center; padding: 3rem;">Chưa có lịch hẹn nào</td></tr>';
+                    tbody.innerHTML = '<tr><td colspan="7" style="text-align: center; padding: 3rem;">Chưa có lịch hẹn nào</td></tr>';
                     return;
                 }
 
-                tbody.innerHTML = bookings.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)).map(b => `
+                tbody.innerHTML = bookings.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)).map((b, index) => `
                     <tr class="clickable-row" onclick="showDetail(${JSON.stringify(b).replace(/"/g, '&quot;')})">
+                        <td style="text-align: center; font-weight: bold; color: var(--admin-text-light);">${index + 1}</td>
                         <td><span style="font-weight: 500;">#BK-${b._id.slice(-4).toUpperCase()}</span></td>
                         <td>
                             <div style="font-weight: 500;">${b.customerName || 'N/A'}</div>
@@ -299,7 +301,7 @@
 
             } catch (error) {
                 console.error('Lỗi load bookings:', error);
-                tbody.innerHTML = '<tr><td colspan="6" style="text-align: center; color: var(--status-danger); padding: 3rem;">Lỗi tải dữ liệu</td></tr>';
+                tbody.innerHTML = '<tr><td colspan="7" style="text-align: center; color: var(--status-danger); padding: 3rem;">Lỗi tải dữ liệu</td></tr>';
             }
         }
 

@@ -221,6 +221,7 @@
                     <table class="admin-table">
                         <thead>
                             <tr>
+                                <th style="width: 50px; text-align: center;">STT</th>
                                 <th>Mã Giao Dịch</th>
                                 <th>Khách hàng</th>
                                 <th>Ngày</th>
@@ -229,7 +230,7 @@
                             </tr>
                         </thead>
                         <tbody id="revenueTableBody">
-                            <tr><td colspan="5" style="text-align: center; padding: 2rem;">Đang tải dữ liệu...</td></tr>
+                            <tr><td colspan="6" style="text-align: center; padding: 2rem;">Đang tải dữ liệu...</td></tr>
                         </tbody>
                     </table>
                 </div>
@@ -434,8 +435,9 @@
                 const recentBig = completedOrders.sort((a,b) => b.totalAmount - a.totalAmount).slice(0, 8);
                 
                 if (recentBig.length > 0) {
-                    tbody.innerHTML = recentBig.map(o => `
+                    tbody.innerHTML = recentBig.map((o, index) => `
                         <tr>
+                            <td style="text-align: center; font-weight: bold; color: var(--admin-text-light);">${index + 1}</td>
                             <td><strong style="color: var(--admin-accent);">#TX-${o._id.slice(-6).toUpperCase()}</strong></td>
                             <td>${o.customerName || (o.address ? o.address.split(',')[0] : 'Khách lẻ')}</td>
                             <td style="color: var(--admin-text-light);">${new Date(o.createdAt).toLocaleDateString('vi-VN')}</td>
@@ -444,7 +446,7 @@
                         </tr>
                     `).join('');
                 } else {
-                    tbody.innerHTML = '<tr><td colspan="5" style="text-align: center; padding: 2rem;">Chưa có dữ liệu hoàn thành</td></tr>';
+                    tbody.innerHTML = '<tr><td colspan="6" style="text-align: center; padding: 2rem;">Chưa có dữ liệu hoàn thành</td></tr>';
                 }
 
             } catch (error) {

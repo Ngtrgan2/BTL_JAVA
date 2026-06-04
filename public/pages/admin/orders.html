@@ -240,6 +240,7 @@
                     <table class="admin-table">
                         <thead>
                             <tr>
+                                <th style="width: 50px; text-align: center;">STT</th>
                                 <th>Mã Đơn</th>
                                 <th>Khách hàng</th>
                                 <th>Tổng tiền</th>
@@ -249,7 +250,7 @@
                             </tr>
                         </thead>
                         <tbody id="orderTableBody">
-                            <tr><td colspan="6" style="text-align: center; padding: 3rem;"><i class="fa-solid fa-spinner fa-spin"></i> Đang tải dữ liệu...</td></tr>
+                            <tr><td colspan="7" style="text-align: center; padding: 3rem;"><i class="fa-solid fa-spinner fa-spin"></i> Đang tải dữ liệu...</td></tr>
                         </tbody>
                     </table>
                 </div>
@@ -277,7 +278,7 @@
                 updateStats(orders);
             } catch (error) {
                 console.error('Lỗi load orders:', error);
-                tbody.innerHTML = '<tr><td colspan="6" style="text-align: center; color: var(--status-danger); padding: 3rem;">Lỗi tải dữ liệu</td></tr>';
+                tbody.innerHTML = '<tr><td colspan="7" style="text-align: center; color: var(--status-danger); padding: 3rem;">Lỗi tải dữ liệu</td></tr>';
             }
         }
 
@@ -293,14 +294,15 @@
             });
 
             if (filtered.length === 0) {
-                tbody.innerHTML = '<tr><td colspan="6" style="text-align: center; padding: 3rem;">Không tìm thấy đơn hàng nào</td></tr>';
+                tbody.innerHTML = '<tr><td colspan="7" style="text-align: center; padding: 3rem;">Không tìm thấy đơn hàng nào</td></tr>';
                 return;
             }
 
-            tbody.innerHTML = filtered.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)).map(o => {
+            tbody.innerHTML = filtered.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)).map((o, index) => {
                 const totalAmt = o.totalAmount || o.total || 0;
                 return `
                 <tr>
+                    <td style="text-align: center; font-weight: bold; color: var(--admin-text-light);">${index + 1}</td>
                     <td>
                         <div style="font-weight: 600; color: var(--admin-accent);">#OD-${o._id.slice(-6).toUpperCase()}</div>
                         <small style="color: var(--admin-text-light);">${new Date(o.createdAt).toLocaleDateString('vi-VN')}</small>

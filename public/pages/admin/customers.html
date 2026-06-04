@@ -81,6 +81,7 @@
                 <table class="admin-table">
                     <thead>
                         <tr>
+                            <th style="width: 50px; text-align: center;">STT</th>
                             <th>KHÁCH HÀNG</th>
                             <th>LIÊN HỆ</th>
                             <th>NGÀY THAM GIA</th>
@@ -146,12 +147,13 @@
                 );
 
                 if (filtered.length === 0) {
-                    tbody.innerHTML = '<tr><td colspan="5" style="text-align: center; padding: 3rem;">Không tìm thấy khách hàng nào</td></tr>';
+                    tbody.innerHTML = '<tr><td colspan="6" style="text-align: center; padding: 3rem;">Không tìm thấy khách hàng nào</td></tr>';
                     return;
                 }
 
-                tbody.innerHTML = filtered.map(u => `
+                tbody.innerHTML = filtered.map((u, index) => `
                     <tr>
+                        <td style="text-align: center; font-weight: bold; color: var(--admin-text-light);">${index + 1}</td>
                         <td>
                             <div style="font-weight: 600;">${u.fullName}</div>
                             <small style="color: var(--admin-text-light);">${u._id}</small>
@@ -175,7 +177,7 @@
                     </tr>
                 `).join('');
             } catch (error) {
-                tbody.innerHTML = '<tr><td colspan="5" style="text-align: center; color: var(--status-danger);">Lỗi: ' + error.message + '</td></tr>';
+                tbody.innerHTML = '<tr><td colspan="6" style="text-align: center; color: var(--status-danger);">Lỗi: ' + error.message + '</td></tr>';
             }
         }
 

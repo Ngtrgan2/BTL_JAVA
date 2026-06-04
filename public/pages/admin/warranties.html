@@ -254,6 +254,7 @@
                 <table class="admin-table">
                     <thead>
                         <tr>
+                            <th style="width: 50px; text-align: center;">STT</th>
                             <th>MÃ BẢO HÀNH</th>
                             <th>SẢN PHẨM</th>
                             <th>KHÁCH HÀNG</th>
@@ -264,7 +265,7 @@
                         </tr>
                     </thead>
                     <tbody id="warrantyTableBody">
-                        <tr><td colspan="7" style="text-align: center; padding: 3rem;"><i class="fa-solid fa-circle-notch fa-spin"></i> Đang tải...</td></tr>
+                        <tr><td colspan="8" style="text-align: center; padding: 3rem;"><i class="fa-solid fa-circle-notch fa-spin"></i> Đang tải...</td></tr>
                     </tbody>
                 </table>
             </div>
@@ -407,11 +408,11 @@
                 document.getElementById('stat-cancelled').textContent = totalCancelled;
 
                 if (filtered.length === 0) {
-                    tbody.innerHTML = '<tr><td colspan="7" style="text-align: center; padding: 3rem; color: rgba(255,255,255,0.4);">Không tìm thấy mã bảo hành nào</td></tr>';
+                    tbody.innerHTML = '<tr><td colspan="8" style="text-align: center; padding: 3rem; color: rgba(255,255,255,0.4);">Không tìm thấy mã bảo hành nào</td></tr>';
                     return;
                 }
 
-                tbody.innerHTML = filtered.map(w => {
+                tbody.innerHTML = filtered.map((w, index) => {
                     const purchaseDate = w.purchaseDate ? new Date(w.purchaseDate).toLocaleDateString('vi-VN') : 'N/A';
                     const expiryDate = w.expiryDate ? new Date(w.expiryDate).toLocaleDateString('vi-VN') : 'N/A';
                     
@@ -422,6 +423,7 @@
 
                     return `
                         <tr>
+                            <td style="text-align: center; font-weight: bold; color: var(--admin-text-light);">${index + 1}</td>
                             <td>
                                 <div style="font-weight: 700; color: #d4af37; font-family: monospace; font-size: 0.95rem;">${w.warrantyCode}</div>
                                 <small style="color: var(--admin-text-light);">Đơn: ${w.orderId ? w.orderId.slice(-6).toUpperCase() : 'N/A'}</small>
@@ -445,7 +447,7 @@
                 }).join('');
 
             } catch (error) {
-                tbody.innerHTML = '<tr><td colspan="7" style="text-align: center; color: #e74c3c; padding: 3rem;">Lỗi tải dữ liệu: ' + error.message + '</td></tr>';
+                tbody.innerHTML = '<tr><td colspan="8" style="text-align: center; color: #e74c3c; padding: 3rem;">Lỗi tải dữ liệu: ' + error.message + '</td></tr>';
             }
         }
 
