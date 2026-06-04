@@ -1,9 +1,9 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sáº£n Pháº©m | An LUXURY Admin</title>
+    <title>Sản Phẩm | An LUXURY Admin</title>
     <link rel="stylesheet" href="../../css/admin.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -80,36 +80,39 @@
         <aside class="admin-sidebar">
             <div class="sidebar-header">
                 <div class="sidebar-logo">An LUXURY</div>
-                <div id="sidebar-role-text" style="font-size: 0.8rem; color: var(--admin-text-light); margin-top: 5px;">Quáº£n Trá»‹ Há»‡ Thá»‘ng</div>
+                <div id="sidebar-role-text" style="font-size: 0.8rem; color: var(--admin-text-light); margin-top: 5px;">Quản Trị Hệ Thống</div>
             </div>
             
             <div class="sidebar-menu">
                 <a href="dashboard.html" class="menu-item" id="nav-dashboard">
-                    <i class="fa-solid fa-chart-pie menu-icon"></i> BÃ n lÃ m viá»‡c
+                    <i class="fa-solid fa-chart-pie menu-icon"></i> Bàn làm việc
                 </a>
                 <a href="revenue.html" class="menu-item" id="nav-revenue">
                     <i class="fa-solid fa-money-bill-trend-up menu-icon"></i> Doanh thu
                 </a>
                 <a href="products.html" class="menu-item" id="nav-products">
-                    <i class="fa-solid fa-gem menu-icon"></i> Sáº£n pháº©m
+                    <i class="fa-solid fa-gem menu-icon"></i> Sản phẩm
                 </a>
                 <a href="orders.html" class="menu-item" id="nav-orders">
-                    <i class="fa-solid fa-cart-flatbed menu-icon"></i> ÄÆ¡n hÃ ng
+                    <i class="fa-solid fa-cart-flatbed menu-icon"></i> Đơn hàng
                 </a>
                 <a href="bookings.html" class="menu-item" id="nav-bookings">
-                    <i class="fa-regular fa-calendar-check menu-icon"></i> Lá»‹ch háº¹n VIP
+                    <i class="fa-regular fa-calendar-check menu-icon"></i> Lịch hẹn VIP
                 </a>
                 <a href="warranties.html" class="menu-item" id="nav-warranties">
-                    <i class="fa-solid fa-shield-halved menu-icon"></i> Báº£o hÃ nh
+                    <i class="fa-solid fa-shield-halved menu-icon"></i> Bảo hành
+                </a>
+                <a href="discounts.html" class="menu-item" id="nav-discounts">
+                    <i class="fa-solid fa-tags menu-icon"></i> Mã giảm giá
                 </a>
                 <a href="news.html" class="menu-item" id="nav-news">
-                    <i class="fa-solid fa-newspaper menu-icon"></i> Tin tá»©c
+                    <i class="fa-solid fa-newspaper menu-icon"></i> Tin tức
                 </a>
                 <a href="chat.html" class="menu-item" id="nav-chat">
-                    <i class="fa-solid fa-comments menu-icon"></i> Chat Há»— Trá»£
+                    <i class="fa-solid fa-comments menu-icon"></i> Chat Hỗ Trợ
                 </a>
                 <a href="customers.html" class="menu-item" id="nav-customers" style="display: none;">
-                    <i class="fa-solid fa-users menu-icon"></i> KhÃ¡ch hÃ ng
+                    <i class="fa-solid fa-users menu-icon"></i> Khách hàng
                 </a>
             </div>
             
@@ -119,7 +122,7 @@
                     <i class="fa-solid fa-globe menu-icon"></i> Xem website
                 </a>
                 <a href="#" class="menu-item logout-btn" style="padding: 0; color: #e74c3c; font-size: 0.9rem;">
-                    <i class="fa-solid fa-arrow-right-from-bracket menu-icon" style="color: #e74c3c;"></i> ÄÄƒng xuáº¥t
+                    <i class="fa-solid fa-arrow-right-from-bracket menu-icon" style="color: #e74c3c;"></i> Đăng xuất
                 </a>
             </div>
         </aside>
@@ -127,48 +130,48 @@
         <!-- Main Content -->
         <main class="admin-main">
             <div class="page-header">
-                <h1 class="page-title">Quáº£n LÃ½ Sáº£n Pháº©m</h1>
+                <h1 class="page-title">Quản Lý Sản Phẩm</h1>
                 <button class="btn-admin btn-primary" onclick="openAddModal()">
-                    <i class="fa-solid fa-plus"></i> ThÃªm sáº£n pháº©m
+                    <i class="fa-solid fa-plus"></i> Thêm sản phẩm
                 </button>
             </div>
 
-            <!-- Thá»‘ng kÃª sáº£n pháº©m -->
+            <!-- Thống kê sản phẩm -->
             <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; margin-bottom: 1.5rem;">
                 <div class="admin-card" style="padding: 1.5rem; border-left: 4px solid var(--admin-accent, #8e44ad); display: flex; flex-direction: column; justify-content: center;">
-                    <div style="font-size: 0.85rem; color: var(--admin-text-light); margin-bottom: 0.5rem; text-transform: uppercase; font-weight: 600;">Tá»•ng giÃ¡ trá»‹ kho</div>
-                    <div style="font-size: 1.5rem; font-weight: 700; color: #fff;" id="statTotalValue">0 â‚«</div>
+                    <div style="font-size: 0.85rem; color: var(--admin-text-light); margin-bottom: 0.5rem; text-transform: uppercase; font-weight: 600;">Tổng giá trị kho</div>
+                    <div style="font-size: 1.5rem; font-weight: 700; color: #fff;" id="statTotalValue">0 ₫</div>
                 </div>
                 <div class="admin-card" style="padding: 1.5rem; border-left: 4px solid var(--status-success, #2ecc71); display: flex; flex-direction: column; justify-content: center;">
-                    <div style="font-size: 0.85rem; color: var(--admin-text-light); margin-bottom: 0.5rem; text-transform: uppercase; font-weight: 600;">GiÃ¡ trung bÃ¬nh</div>
-                    <div style="font-size: 1.5rem; font-weight: 700; color: #fff;" id="statAvgPrice">0 â‚«</div>
+                    <div style="font-size: 0.85rem; color: var(--admin-text-light); margin-bottom: 0.5rem; text-transform: uppercase; font-weight: 600;">Giá trung bình</div>
+                    <div style="font-size: 1.5rem; font-weight: 700; color: #fff;" id="statAvgPrice">0 ₫</div>
                 </div>
                 <div class="admin-card" style="padding: 1.5rem; border-left: 4px solid var(--gold-primary, #d4af37); display: flex; flex-direction: column; justify-content: center;">
-                    <div style="font-size: 0.85rem; color: var(--admin-text-light); margin-bottom: 0.5rem; text-transform: uppercase; font-weight: 600;">GiÃ¡ trá»‹ lá»›n nháº¥t</div>
-                    <div style="font-size: 1.5rem; font-weight: 700; color: #fff;" id="statMaxPrice">0 â‚«</div>
+                    <div style="font-size: 0.85rem; color: var(--admin-text-light); margin-bottom: 0.5rem; text-transform: uppercase; font-weight: 600;">Giá trị lớn nhất</div>
+                    <div style="font-size: 1.5rem; font-weight: 700; color: #fff;" id="statMaxPrice">0 ₫</div>
                 </div>
                 <div class="admin-card" style="padding: 1.5rem; border-left: 4px solid var(--status-danger, #e74c3c); display: flex; flex-direction: column; justify-content: center;">
-                    <div style="font-size: 0.85rem; color: var(--admin-text-light); margin-bottom: 0.5rem; text-transform: uppercase; font-weight: 600;">GiÃ¡ trá»‹ nhá» nháº¥t</div>
-                    <div style="font-size: 1.5rem; font-weight: 700; color: #fff;" id="statMinPrice">0 â‚«</div>
+                    <div style="font-size: 0.85rem; color: var(--admin-text-light); margin-bottom: 0.5rem; text-transform: uppercase; font-weight: 600;">Giá trị nhỏ nhất</div>
+                    <div style="font-size: 1.5rem; font-weight: 700; color: #fff;" id="statMinPrice">0 ₫</div>
                 </div>
             </div>
 
             <div class="admin-card" style="margin-bottom: 1.5rem;">
                 <div class="card-header" style="border-bottom: 1px solid var(--admin-border); margin-bottom: 1rem; padding-bottom: 1rem;">
-                    <h2 style="font-size: 1.1rem;"><i class="fa-solid fa-chart-line" style="margin-right: 8px; color: var(--gold-primary);"></i> Thá»‘ng kÃª sáº£n pháº©m má»›i thÃªm</h2>
+                    <h2 style="font-size: 1.1rem;"><i class="fa-solid fa-chart-line" style="margin-right: 8px; color: var(--gold-primary);"></i> Thống kê sản phẩm mới thêm</h2>
                 </div>
                 <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem;">
                     <div style="text-align: center; padding: 1.5rem; background: rgba(255,255,255,0.02); border-radius: 8px; border: 1px solid var(--admin-border);">
                         <div style="font-size: 2.5rem; font-weight: 700; color: var(--gold-primary); margin-bottom: 0.5rem;" id="statDay">0</div>
-                        <div style="font-size: 0.9rem; color: var(--admin-text-light); text-transform: uppercase; letter-spacing: 1px;">Trong ngÃ y</div>
+                        <div style="font-size: 0.9rem; color: var(--admin-text-light); text-transform: uppercase; letter-spacing: 1px;">Trong ngày</div>
                     </div>
                     <div style="text-align: center; padding: 1.5rem; background: rgba(255,255,255,0.02); border-radius: 8px; border: 1px solid var(--admin-border);">
                         <div style="font-size: 2.5rem; font-weight: 700; color: var(--gold-primary); margin-bottom: 0.5rem;" id="statMonth">0</div>
-                        <div style="font-size: 0.9rem; color: var(--admin-text-light); text-transform: uppercase; letter-spacing: 1px;">Trong thÃ¡ng</div>
+                        <div style="font-size: 0.9rem; color: var(--admin-text-light); text-transform: uppercase; letter-spacing: 1px;">Trong tháng</div>
                     </div>
                     <div style="text-align: center; padding: 1.5rem; background: rgba(255,255,255,0.02); border-radius: 8px; border: 1px solid var(--admin-border);">
                         <div style="font-size: 2.5rem; font-weight: 700; color: var(--gold-primary); margin-bottom: 0.5rem;" id="statYear">0</div>
-                        <div style="font-size: 0.9rem; color: var(--admin-text-light); text-transform: uppercase; letter-spacing: 1px;">Trong nÄƒm</div>
+                        <div style="font-size: 0.9rem; color: var(--admin-text-light); text-transform: uppercase; letter-spacing: 1px;">Trong năm</div>
                     </div>
                 </div>
             </div>
@@ -178,15 +181,15 @@
             <div class="admin-card" style="margin-bottom: 1.5rem; background: linear-gradient(90deg, rgba(212, 175, 55, 0.1), transparent);">
                 <div style="display: flex; justify-content: space-between; align-items: center; padding: 1.2rem;">
                     <div>
-                        <h3 style="font-size: 1rem; color: var(--gold-primary); margin-bottom: 0.3rem;">THIáº¾T Láº¬P GIáº¢M GIÃ TOÃ€N Bá»˜ Sáº¢N PHáº¨M</h3>
-                        <p style="font-size: 0.8rem; color: var(--admin-text-light);">Ãp dá»¥ng má»©c giáº£m giÃ¡ chung cho táº¥t cáº£ sáº£n pháº©m trong kho.</p>
+                        <h3 style="font-size: 1rem; color: var(--gold-primary); margin-bottom: 0.3rem;">THIẾT LẬP GIẢM GIÁ TOÀN BỘ SẢN PHẨM</h3>
+                        <p style="font-size: 0.8rem; color: var(--admin-text-light);">Áp dụng mức giảm giá chung cho tất cả sản phẩm trong kho.</p>
                     </div>
                     <div style="display: flex; gap: 0.8rem; align-items: center;">
                         <div style="position: relative;">
-                            <input type="number" id="globalDiscountInput" class="form-control-admin" placeholder="Nháº­p % giáº£m" style="width: 140px; padding-right: 2.5rem;">
+                            <input type="number" id="globalDiscountInput" class="form-control-admin" placeholder="Nhập % giảm" style="width: 140px; padding-right: 2.5rem;">
                             <span style="position: absolute; right: 1rem; top: 50%; transform: translateY(-50%); color: var(--admin-text-light);">%</span>
                         </div>
-                        <button class="btn-admin btn-primary" onclick="handleGlobalDiscount()" style="background: #fff; color: #000; border: none;">ÃP Dá»¤NG NGAY</button>
+                        <button class="btn-admin btn-primary" onclick="handleGlobalDiscount()" style="background: #fff; color: #000; border: none;">ÁP DỤNG NGAY</button>
                     </div>
                 </div>
             </div>
@@ -194,20 +197,20 @@
             <div class="admin-card">
                 <div class="card-header" style="border-bottom: none; padding-bottom: 0;">
                     <div style="display: flex; gap: 1rem; width: 100%;">
-                        <input type="text" id="searchProduct" class="form-control-admin" placeholder="TÃ¬m kiáº¿m theo tÃªn sáº£n pháº©m..." style="flex: 2;">
+                        <input type="text" id="searchProduct" class="form-control-admin" placeholder="Tìm kiếm theo tên sản phẩm..." style="flex: 2;">
                         <select id="filterCategory" class="form-control-admin" style="flex: 1;" onchange="loadProducts()">
-                            <option value="">Táº¥t cáº£ danh má»¥c</option>
-                            <option value="nhan">Nháº«n</option>
-                            <option value="day-chuyen">DÃ¢y chuyá»n</option>
-                            <option value="bong-tai">BÃ´ng tai</option>
-                            <option value="vong-tay">VÃ²ng tay</option>
+                            <option value="">Tất cả danh mục</option>
+                            <option value="nhan">Nhẫn</option>
+                            <option value="day-chuyen">Dây chuyền</option>
+                            <option value="bong-tai">Bông tai</option>
+                            <option value="vong-tay">Vòng tay</option>
                         </select>
                         <select id="filterStock" class="form-control-admin" style="flex: 1;" onchange="loadProducts()">
-                            <option value="">Táº¥t cáº£ tá»“n kho</option>
-                            <option value="critical">Háº¿t / Sáº¯p háº¿t (â‰¤ 2)</option>
-                            <option value="out">Háº¿t hÃ ng (0)</option>
-                            <option value="low">Sáº¯p háº¿t hÃ ng (1-2)</option>
-                            <option value="normal">CÃ²n hÃ ng dá»“i dÃ o (> 2)</option>
+                            <option value="">Tất cả tồn kho</option>
+                            <option value="critical">Hết / Sắp hết (≤ 2)</option>
+                            <option value="out">Hết hàng (0)</option>
+                            <option value="low">Sắp hết hàng (1-2)</option>
+                            <option value="normal">Còn hàng dồi dào (> 2)</option>
                         </select>
                         <button class="btn-admin btn-primary" onclick="loadProducts()"><i class="fa-solid fa-magnifying-glass"></i></button>
                     </div>
@@ -218,18 +221,18 @@
                         <thead>
                             <tr>
                                 <th style="width: 50px; text-align: center;">STT</th>
-                                <th>Sáº£n pháº©m</th>
-                                <th>Danh má»¥c</th>
-                                <th>GiÃ¡ bÃ¡n</th>
-                                <th>Giáº£m (%)</th>
-                                <th>Tá»“n kho</th>
-                                <th>Tráº¡ng thÃ¡i</th>
-                                <th style="text-align: right;">Thao tÃ¡c</th>
+                                <th>Sản phẩm</th>
+                                <th>Danh mục</th>
+                                <th>Giá bán</th>
+                                <th>Giảm (%)</th>
+                                <th>Tồn kho</th>
+                                <th>Trạng thái</th>
+                                <th style="text-align: right;">Thao tác</th>
                             </tr>
                         </thead>
                         <tbody id="productTableBody">
                             <!-- JS will render here -->
-                            <tr><td colspan="8" style="text-align: center; padding: 3rem;"><i class="fa-solid fa-spinner fa-spin"></i> Äang táº£i...</td></tr>
+                            <tr><td colspan="8" style="text-align: center; padding: 3rem;"><i class="fa-solid fa-spinner fa-spin"></i> Đang tải...</td></tr>
                         </tbody>
                     </table>
                 </div>
@@ -242,7 +245,7 @@
     <div class="modal" id="productModal">
         <div class="modal-content">
             <div class="modal-header">
-                <h2 id="modalTitle" style="font-size: 1.25rem;">ThÃªm Sáº£n Pháº©m Má»›i</h2>
+                <h2 id="modalTitle" style="font-size: 1.25rem;">Thêm Sản Phẩm Mới</h2>
                 <button class="btn-icon" style="border: none;" onclick="closeModal()"><i class="fa-solid fa-times"></i></button>
             </div>
             <div class="modal-body">
@@ -250,50 +253,50 @@
                     <input type="hidden" id="productId">
                     <div class="form-row">
                         <div class="form-group-admin">
-                            <label>TÃªn sáº£n pháº©m *</label>
+                            <label>Tên sản phẩm *</label>
                             <input type="text" id="name" class="form-control-admin" required>
                         </div>
                         <div class="form-group-admin">
-                            <label>Danh má»¥c *</label>
+                            <label>Danh mục *</label>
                             <select id="category" class="form-control-admin" required>
-                                <option value="">Chá»n danh má»¥c</option>
-                                <option value="nhan">Nháº«n</option>
-                                <option value="day-chuyen">DÃ¢y chuyá»n</option>
-                                <option value="bong-tai">BÃ´ng tai</option>
-                                <option value="vong-tay">VÃ²ng tay</option>
+                                <option value="">Chọn danh mục</option>
+                                <option value="nhan">Nhẫn</option>
+                                <option value="day-chuyen">Dây chuyền</option>
+                                <option value="bong-tai">Bông tai</option>
+                                <option value="vong-tay">Vòng tay</option>
                             </select>
                         </div>
                     </div>
                     
                     <div class="form-group-admin" style="display: flex; align-items: center; gap: 10px;">
                         <input type="checkbox" id="isFeatured" style="width: 18px; height: 18px; accent-color: var(--gold-primary);">
-                        <label for="isFeatured" style="margin-bottom: 0; font-size: 1rem; cursor: pointer;">ÄÃ¡nh dáº¥u lÃ  Sáº£n pháº©m Ná»•i báº­t (Hiá»ƒn thá»‹ Æ°u tiÃªn á»Ÿ trang chá»§)</label>
+                        <label for="isFeatured" style="margin-bottom: 0; font-size: 1rem; cursor: pointer;">Đánh dấu là Sản phẩm Nổi bật (Hiển thị ưu tiên ở trang chủ)</label>
                     </div>
                     
                     <div class="form-row">
                         <div class="form-group-admin">
-                            <label>GiÃ¡ bÃ¡n (VNÄ) *</label>
+                            <label>Giá bán (VNĐ) *</label>
                             <input type="number" id="price" class="form-control-admin" required>
                         </div>
                         <div class="form-group-admin">
-                            <label>Giáº£m giÃ¡ (%)</label>
+                            <label>Giảm giá (%)</label>
                             <input type="number" id="discountPercentage" class="form-control-admin" placeholder="0" min="0" max="100">
                         </div>
                     </div>
                     
                     <div class="form-group-admin">
-                        <label>Sá»‘ lÆ°á»£ng tá»“n kho *</label>
+                        <label>Số lượng tồn kho *</label>
                         <input type="number" id="stock" class="form-control-admin" required>
                     </div>
 
                     <div class="form-group-admin">
-                        <label>HÃ¬nh áº£nh & Video sáº£n pháº©m</label>
+                        <label>Hình ảnh & Video sản phẩm</label>
                         <div style="display: flex; gap: 0.8rem; flex-direction: column;">
                             <div style="display: flex; gap: 0.8rem;">
-                                <input type="text" id="mediaUrlInput" class="form-control-admin" placeholder="ThÃªm báº±ng Ä‘Æ°á»ng dáº«n..." style="flex: 1;">
-                                <button type="button" class="btn-admin" style="background: var(--admin-border); border: none;" onclick="addMediaUrl()">ThÃªm Link</button>
+                                <input type="text" id="mediaUrlInput" class="form-control-admin" placeholder="Thêm bằng đường dẫn..." style="flex: 1;">
+                                <button type="button" class="btn-admin" style="background: var(--admin-border); border: none;" onclick="addMediaUrl()">Thêm Link</button>
                                 <label for="imageUpload" class="btn-admin" style="display: flex; align-items: center; justify-content: center; background: var(--admin-border); border: none; cursor: pointer; min-width: 120px; white-space: nowrap;">
-                                    <i class="fa-solid fa-upload" style="margin-right: 8px;"></i> Táº£i lÃªn
+                                    <i class="fa-solid fa-upload" style="margin-right: 8px;"></i> Tải lên
                                 </label>
                                 <input type="file" id="imageUpload" accept="image/*,video/*" multiple style="display: none;" onchange="handleFileUpload(this)">
                             </div>
@@ -304,25 +307,25 @@
                     </div>
 
                     <div class="form-group-admin">
-                        <label>MÃ´ táº£ chi tiáº¿t</label>
+                        <label>Mô tả chi tiết</label>
                         <textarea id="description" class="form-control-admin"></textarea>
                     </div>
 
                     <div class="form-row">
                         <div class="form-group-admin">
-                            <label>Cháº¥t liá»‡u</label>
-                            <input type="text" id="material" class="form-control-admin" placeholder="VD: VÃ ng tráº¯ng 18K">
+                            <label>Chất liệu</label>
+                            <input type="text" id="material" class="form-control-admin" placeholder="VD: Vàng trắng 18K">
                         </div>
                         <div class="form-group-admin">
-                            <label>ThÃ´ng tin Ä‘Ã¡ quÃ½</label>
-                            <input type="text" id="gemstone" class="form-control-admin" placeholder="VD: Kim cÆ°Æ¡ng 1.5ct">
+                            <label>Thông tin đá quý</label>
+                            <input type="text" id="gemstone" class="form-control-admin" placeholder="VD: Kim cương 1.5ct">
                         </div>
                     </div>
                 </form>
             </div>
             <div class="modal-footer">
-                <button class="btn-admin" style="background: transparent; border: 1px solid var(--admin-border);" onclick="closeModal()">Há»§y</button>
-                <button class="btn-admin btn-primary" onclick="saveProduct()">LÆ°u Sáº£n Pháº©m</button>
+                <button class="btn-admin" style="background: transparent; border: 1px solid var(--admin-border);" onclick="closeModal()">Hủy</button>
+                <button class="btn-admin btn-primary" onclick="saveProduct()">Lưu Sản Phẩm</button>
             </div>
         </div>
     </div>
@@ -342,7 +345,7 @@
                 calculateStats(products);
                 renderProducts(products);
             } catch (error) {
-                tbody.innerHTML = '<tr><td colspan="8" style="text-align: center; color: var(--status-danger);">Lá»—i táº£i dá»¯ liá»‡u</td></tr>';
+                tbody.innerHTML = '<tr><td colspan="8" style="text-align: center; color: var(--status-danger);">Lỗi tải dữ liệu</td></tr>';
             }
         }
 
@@ -386,10 +389,10 @@
 
             const avgPrice = (products && products.length > 0) ? (totalPrice / products.length) : 0;
 
-            document.getElementById('statTotalValue').textContent = totalValue.toLocaleString('vi-VN') + ' â‚«';
-            document.getElementById('statAvgPrice').textContent = Math.round(avgPrice).toLocaleString('vi-VN') + ' â‚«';
-            document.getElementById('statMaxPrice').textContent = maxPrice.toLocaleString('vi-VN') + ' â‚«';
-            document.getElementById('statMinPrice').textContent = minPrice.toLocaleString('vi-VN') + ' â‚«';
+            document.getElementById('statTotalValue').textContent = totalValue.toLocaleString('vi-VN') + ' ₫';
+            document.getElementById('statAvgPrice').textContent = Math.round(avgPrice).toLocaleString('vi-VN') + ' ₫';
+            document.getElementById('statMaxPrice').textContent = maxPrice.toLocaleString('vi-VN') + ' ₫';
+            document.getElementById('statMinPrice').textContent = minPrice.toLocaleString('vi-VN') + ' ₫';
             
             document.getElementById('statDay').textContent = addedDay;
             document.getElementById('statMonth').textContent = addedMonth;
@@ -458,10 +461,10 @@
                     <div style="background: rgba(231, 76, 60, 0.15); border: 1px solid rgba(231, 76, 60, 0.3); border-radius: 8px; padding: 1rem 1.5rem; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 1rem;">
                         <i class="fa-solid fa-triangle-exclamation" style="color: #e74c3c; font-size: 1.5rem;"></i>
                         <div>
-                            <strong style="color: #e74c3c;">Cáº£nh bÃ¡o tá»“n kho!</strong>
+                            <strong style="color: #e74c3c;">Cảnh báo tồn kho!</strong>
                             <span style="color: var(--admin-text-light); margin-left: 0.5rem;">
-                                ${outOfStockProducts.length > 0 ? `<span style="color: #e74c3c; font-weight: 600;">${outOfStockProducts.length} háº¿t hÃ ng</span> Â· ` : ''}
-                                ${lowStockProducts.length} sáº£n pháº©m sáº¯p háº¿t (â‰¤ ${LOW_STOCK_THRESHOLD})
+                                ${outOfStockProducts.length > 0 ? `<span style="color: #e74c3c; font-weight: 600;">${outOfStockProducts.length} hết hàng</span> · ` : ''}
+                                ${lowStockProducts.length} sản phẩm sắp hết (≤ ${LOW_STOCK_THRESHOLD})
                             </span>
                         </div>
                     </div>
@@ -471,7 +474,7 @@
             }
 
             if (filtered.length === 0) {
-                tbody.innerHTML = '<tr><td colspan="8" style="text-align: center; padding: 3rem;">KhÃ´ng tÃ¬m tháº¥y sáº£n pháº©m nÃ o</td></tr>';
+                tbody.innerHTML = '<tr><td colspan="8" style="text-align: center; padding: 3rem;">Không tìm thấy sản phẩm nào</td></tr>';
                 const pag = document.getElementById('pagination');
                 if (pag) pag.innerHTML = '';
                 return;
@@ -486,11 +489,11 @@
                 const index = startIndex + i;
                 let stockDisplay = '';
                 if (p.stock <= 0) {
-                    stockDisplay = `<span style="color: var(--status-danger); font-weight: 600;"><i class="fa-solid fa-circle-xmark"></i> Háº¿t hÃ ng</span>`;
+                    stockDisplay = `<span style="color: var(--status-danger); font-weight: 600;"><i class="fa-solid fa-circle-xmark"></i> Hết hàng</span>`;
                 } else if (p.stock <= LOW_STOCK_THRESHOLD) {
-                    stockDisplay = `<span style="color: #f39c12; font-weight: 600;"><i class="fa-solid fa-triangle-exclamation" style="animation: blink 1s infinite;"></i> Sáº¯p háº¿t (${p.stock})</span>`;
+                    stockDisplay = `<span style="color: #f39c12; font-weight: 600;"><i class="fa-solid fa-triangle-exclamation" style="animation: blink 1s infinite;"></i> Sắp hết (${p.stock})</span>`;
                 } else {
-                    stockDisplay = `<span style="color: var(--status-success); font-weight: 500;">CÃ²n hÃ ng (${p.stock})</span>`;
+                    stockDisplay = `<span style="color: var(--status-success); font-weight: 500;">Còn hàng (${p.stock})</span>`;
                 }
 
                 const discount = Number(p.discountPercentage || 0);
@@ -505,17 +508,17 @@
                             <div>
                                 <div style="font-weight: 500; font-size: 0.95rem;">${p.name}</div>
                                 <div style="font-size: 0.8rem; color: var(--admin-text-light);">ID: ${p._id.slice(-6).toUpperCase()}</div>
-                                ${p.isFeatured ? '<div style="display:inline-block; margin-top:2px; font-size: 0.7rem; padding: 2px 6px; background: rgba(212, 175, 55, 0.2); color: var(--gold-primary); border-radius: 4px; border: 1px solid rgba(212, 175, 55, 0.5);">â˜… Ná»•i báº­t</div>' : ''}
+                                ${p.isFeatured ? '<div style="display:inline-block; margin-top:2px; font-size: 0.7rem; padding: 2px 6px; background: rgba(212, 175, 55, 0.2); color: var(--gold-primary); border-radius: 4px; border: 1px solid rgba(212, 175, 55, 0.5);">★ Nổi bật</div>' : ''}
                             </div>
                         </div>
                     </td>
                     <td>${getCategoryName(p.category)}</td>
                     <td style="font-weight: 500;">
                         ${discount > 0 ? `
-                            <div style="color: var(--status-danger);">${finalPrice.toLocaleString('vi-VN')} â‚«</div>
-                            <div style="font-size: 0.8rem; color: var(--admin-text-light); text-decoration: line-through;">${Number(p.price).toLocaleString('vi-VN')} â‚«</div>
+                            <div style="color: var(--status-danger);">${finalPrice.toLocaleString('vi-VN')} ₫</div>
+                            <div style="font-size: 0.8rem; color: var(--admin-text-light); text-decoration: line-through;">${Number(p.price).toLocaleString('vi-VN')} ₫</div>
                         ` : `
-                            <div>${Number(p.price).toLocaleString('vi-VN')} â‚«</div>
+                            <div>${Number(p.price).toLocaleString('vi-VN')} ₫</div>
                         `}
                     </td>
                     <td>
@@ -527,11 +530,11 @@
                         </div>
                     </td>
                     <td>${stockDisplay}</td>
-                    <td><span class="badge ${p.stock > 0 ? 'badge-success' : 'badge-danger'}">${p.stock > 0 ? 'Äang bÃ¡n' : 'Ngá»«ng bÃ¡n'}</span></td>
+                    <td><span class="badge ${p.stock > 0 ? 'badge-success' : 'badge-danger'}">${p.stock > 0 ? 'Đang bán' : 'Ngừng bán'}</span></td>
                     <td style="text-align: right;">
                         <div class="action-btns" style="justify-content: flex-end;">
-                            <button class="btn-icon" title="Sá»­a" onclick="openEditModal('${p._id}')"><i class="fa-solid fa-pen"></i></button>
-                            <button class="btn-icon" title="XÃ³a" style="color: var(--status-danger);" onclick="deleteProduct('${p._id}')"><i class="fa-regular fa-trash-can"></i></button>
+                            <button class="btn-icon" title="Sửa" onclick="openEditModal('${p._id}')"><i class="fa-solid fa-pen"></i></button>
+                            <button class="btn-icon" title="Xóa" style="color: var(--status-danger);" onclick="deleteProduct('${p._id}')"><i class="fa-regular fa-trash-can"></i></button>
                         </div>
                     </td>
                 </tr>
@@ -542,7 +545,7 @@
                 if (totalPages <= 1) {
                     pag.innerHTML = '';
                 } else {
-                    let html = `<div class="pagination-info">Trang ${currentPage} / ${totalPages} (Tá»•ng ${filtered.length} sáº£n pháº©m)</div>`;
+                    let html = `<div class="pagination-info">Trang ${currentPage} / ${totalPages} (Tổng ${filtered.length} sản phẩm)</div>`;
                     html += `<button onclick="changePage(${currentPage - 1})" ${currentPage === 1 ? 'disabled' : ''}><i class="fa-solid fa-chevron-left"></i></button>`;
                     for (let i = 1; i <= totalPages; i++) {
                         if (i === 1 || i === totalPages || (i >= currentPage - 1 && i <= currentPage + 1)) {
@@ -564,10 +567,10 @@
 
         function getCategoryName(cat) {
             const map = {
-                'nhan': 'Nháº«n',
-                'day-chuyen': 'DÃ¢y chuyá»n',
-                'bong-tai': 'BÃ´ng tai',
-                'vong-tay': 'VÃ²ng tay'
+                'nhan': 'Nhẫn',
+                'day-chuyen': 'Dây chuyền',
+                'bong-tai': 'Bông tai',
+                'vong-tay': 'Vòng tay'
             };
             return map[cat] || cat;
         }
@@ -575,7 +578,7 @@
         let uploadedMedia = [];
 
         function openAddModal() {
-            document.getElementById('modalTitle').textContent = 'ThÃªm Sáº£n Pháº©m Má»›i';
+            document.getElementById('modalTitle').textContent = 'Thêm Sản Phẩm Mới';
             document.getElementById('productId').value = '';
             document.getElementById('productForm').reset();
             document.getElementById('isFeatured').checked = false;
@@ -588,7 +591,7 @@
             const p = allProducts.find(product => product._id === id);
             if (!p) return;
 
-            document.getElementById('modalTitle').textContent = 'Chá»‰nh Sá»­a Sáº£n Pháº©m';
+            document.getElementById('modalTitle').textContent = 'Chỉnh Sửa Sản Phẩm';
             document.getElementById('productId').value = p._id;
             document.getElementById('name').value = p.name;
             document.getElementById('category').value = p.category;
@@ -711,51 +714,51 @@
             };
 
             if (!data.name || !data.category || isNaN(data.price)) {
-                alert('Vui lÃ²ng Ä‘iá»n Ä‘áº§y Ä‘á»§ cÃ¡c trÆ°á»ng báº¯t buá»™c!');
+                alert('Vui lòng điền đầy đủ các trường bắt buộc!');
                 return;
             }
 
             try {
                 if (id) {
                     await API.updateProduct(id, data);
-                    alert('ÄÃ£ cáº­p nháº­t sáº£n pháº©m!');
+                    alert('Đã cập nhật sản phẩm!');
                 } else {
                     await API.createProduct(data);
-                    alert('ÄÃ£ thÃªm sáº£n pháº©m má»›i!');
+                    alert('Đã thêm sản phẩm mới!');
                 }
                 closeModal();
                 loadProducts();
             } catch (error) {
-                alert('Lá»—i: ' + error.message);
+                alert('Lỗi: ' + error.message);
             }
         }
 
         async function deleteProduct(id) {
             const isConfirmed = window.AnLuxuryNotification 
-                ? await AnLuxuryNotification.confirm('Báº¡n cÃ³ cháº¯c cháº¯n muá»‘n xÃ³a sáº£n pháº©m nÃ y khÃ´ng?', 'XÃ¡c Nháº­n XÃ³a', 'warning') 
-                : confirm('Báº¡n cÃ³ cháº¯c cháº¯n muá»‘n xÃ³a sáº£n pháº©m nÃ y khÃ´ng?');
+                ? await AnLuxuryNotification.confirm('Bạn có chắc chắn muốn xóa sản phẩm này không?', 'Xác Nhận Xóa', 'warning') 
+                : confirm('Bạn có chắc chắn muốn xóa sản phẩm này không?');
                 
             if (!isConfirmed) return;
 
             try {
                 await API.deleteProduct(id);
-                alert('ÄÃ£ xÃ³a sáº£n pháº©m!');
+                alert('Đã xóa sản phẩm!');
                 loadProducts();
             } catch (error) {
-                alert('Lá»—i: ' + error.message);
+                alert('Lỗi: ' + error.message);
             }
         }
 
         async function handleGlobalDiscount() {
             const percentage = document.getElementById('globalDiscountInput').value;
             if (!percentage || percentage < 0 || percentage > 100) {
-                alert('Vui lÃ²ng nháº­p pháº§n trÄƒm giáº£m giÃ¡ há»£p lá»‡ (0-100)');
+                alert('Vui lòng nhập phần trăm giảm giá hợp lệ (0-100)');
                 return;
             }
 
             const isConfirmed = window.AnLuxuryNotification 
-                ? await AnLuxuryNotification.confirm(`Báº¡n cÃ³ cháº¯c cháº¯n muá»‘n Ã¡p dá»¥ng giáº£m giÃ¡ ${percentage}% cho Táº¤T Cáº¢ sáº£n pháº©m khÃ´ng?`, 'Ãp Dá»¥ng Giáº£m GiÃ¡', 'warning') 
-                : confirm(`Báº¡n cÃ³ cháº¯c cháº¯n muá»‘n Ã¡p dá»¥ng giáº£m giÃ¡ ${percentage}% cho Táº¤T Cáº¢ sáº£n pháº©m khÃ´ng?`);
+                ? await AnLuxuryNotification.confirm(`Bạn có chắc chắn muốn áp dụng giảm giá ${percentage}% cho TẤT CẢ sản phẩm không?`, 'Áp Dụng Giảm Giá', 'warning') 
+                : confirm(`Bạn có chắc chắn muốn áp dụng giảm giá ${percentage}% cho TẤT CẢ sản phẩm không?`);
 
             if (!isConfirmed) return;
 
@@ -764,14 +767,14 @@
                 alert(res.message);
                 loadProducts();
             } catch (error) {
-                alert('Lá»—i: ' + error.message);
+                alert('Lỗi: ' + error.message);
             }
         }
 
         async function updateDiscount(id, value) {
             const percentage = Number(value);
             if (isNaN(percentage) || percentage < 0 || percentage > 100) {
-                alert('Vui lÃ²ng nháº­p pháº§n trÄƒm há»£p lá»‡ (0-100)');
+                alert('Vui lòng nhập phần trăm hợp lệ (0-100)');
                 return;
             }
 
@@ -780,7 +783,7 @@
                 // Don't alert here to keep it smooth, just reload data
                 loadProducts();
             } catch (error) {
-                alert('Lá»—i: ' + error.message);
+                alert('Lỗi: ' + error.message);
             }
         }
 
@@ -798,7 +801,7 @@
             if (userInfo.role === 'staff') {
                 if (dashNav) dashNav.href = 'staff-dashboard.html';
                 if (revNav) revNav.style.display = 'none';
-                document.getElementById('sidebar-role-text').textContent = 'Há»‡ Thá»‘ng TÆ° Váº¥n ViÃªn';
+                document.getElementById('sidebar-role-text').textContent = 'Hệ Thống Tư Vấn Viên';
             }
             if (userInfo.role === 'admin' && revNav) {
                 revNav.style.display = 'flex';
@@ -828,7 +831,7 @@
                         <img src="${avatarUrl}" style="width: 35px; height: 35px; border-radius: 50%; object-fit: cover;">
                         <div style="overflow: hidden;">
                             <div style="font-size: 0.85rem; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: #fff;">${userInfo.fullName}</div>
-                            <div style="font-size: 0.7rem; color: var(--admin-text-light); text-transform: capitalize;">${userInfo.role === 'admin' ? 'Quáº£n trá»‹ viÃªn' : 'TÆ° váº¥n viÃªn'}</div>
+                            <div style="font-size: 0.7rem; color: var(--admin-text-light); text-transform: capitalize;">${userInfo.role === 'admin' ? 'Quản trị viên' : 'Tư vấn viên'}</div>
                         </div>
                     </div>
                 `;
@@ -849,4 +852,3 @@
     </script>
 </body>
 </html>
-
