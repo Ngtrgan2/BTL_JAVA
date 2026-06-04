@@ -4,7 +4,7 @@ const { register, login, updateProfile, getUsers, updateUserRole, googleLogin, f
 const { getProducts, getProductById, createProduct, updateProduct, deleteProduct, applyGlobalDiscount, likeProduct, shareProduct, shareSEO, seedAll, getLikedProducts } = require('./controllers/productController');
 const { createOrder, getOrders, getOrderById, updateOrder, deleteOrder } = require('./controllers/orderController');
 const { createBooking, getBookings, updateBooking, deleteBooking } = require('./controllers/bookingController');
-const { getWarrantyByCode } = require('./controllers/warrantyController');
+const { getWarrantyByCode, getWarranties, updateWarranty, deleteWarranty } = require('./controllers/warrantyController');
 const { chatResponse } = require('./controllers/chatController');
 const { getNews, createNews, updateNews, deleteNews } = require('./controllers/newsController');
 const { getComments, createComment, likeComment, deleteComment } = require('./controllers/commentController');
@@ -173,6 +173,15 @@ function router(req, res) {
     }
 
     // API Routes - Warranty
+    if (url === '/api/warranties' && method === 'GET') {
+        return getWarranties(req, res);
+    }
+    if (url.startsWith('/api/warranties/') && method === 'PUT') {
+        return updateWarranty(req, res);
+    }
+    if (url.startsWith('/api/warranties/') && method === 'DELETE') {
+        return deleteWarranty(req, res);
+    }
     if (url.startsWith('/api/warranty/') && method === 'GET') {
         return getWarrantyByCode(req, res);
     }

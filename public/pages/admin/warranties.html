@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản lý Bảo hành | An LUXURY</title>
+    <link rel="stylesheet" href="../../css/admin.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" type="image/png" href="../../images/kimcuong2.png">
+    <style>
+        .warranty-stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .stat-card {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(212,175,55,0.15);
+            border-radius: 12px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        .stat-card:hover {
+            border-color: rgba(212,175,55,0.4);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+        }
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #d4af37;
+            display: block;
+        }
+        .stat-label {
+            font-size: 0.8rem;
+            color: rgba(255,255,255,0.5);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 0.3rem;
+        }
+        .filter-bar {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+        .filter-bar input, .filter-bar select {
+            padding: 0.7rem 1rem;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 8px;
+            color: #fff;
+            font-size: 0.9rem;
+        }
+        .filter-bar input { flex: 1; min-width: 250px; }
+        .filter-bar select { min-width: 180px; }
+        .filter-bar input:focus, .filter-bar select:focus {
+            outline: none;
+            border-color: rgba(212,175,55,0.5);
+        }
+        .status-active { color: #2ecc71; }
+        .status-expired { color: #e74c3c; }
+        .status-cancelled { color: #95a5a6; }
+        .badge-status {
+            display: inline-block;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.78rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+        .badge-active { background: rgba(46,204,113,0.15); color: #2ecc71; border: 1px solid rgba(46,204,113,0.3); }
+        .badge-expired { background: rgba(231,76,60,0.15); color: #e74c3c; border: 1px solid rgba(231,76,60,0.3); }
+        .badge-cancelled { background: rgba(149,165,166,0.15); color: #95a5a6; border: 1px solid rgba(149,165,166,0.3); }
+        
+        /* Modal */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0,0,0,0.7);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            backdrop-filter: blur(4px);
+        }
+        .modal-overlay.show { display: flex; }
+        .modal-content {
+            background: #1a1a1a;
+            border: 1px solid rgba(212,175,55,0.3);
+            border-radius: 16px;
+            padding: 2.5rem;
+            width: 500px;
+            max-width: 90vw;
+            max-height: 85vh;
+            overflow-y: auto;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+        }
+        .modal-content h3 {
+            color: #d4af37;
+            margin-bottom: 1.5rem;
+            font-size: 1.3rem;
+        }
+        .form-group-modal {
+            margin-bottom: 1.2rem;
+        }
+        .form-group-modal label {
+            display: block;
+            font-size: 0.85rem;
+            color: rgba(255,255,255,0.6);
+            margin-bottom: 0.4rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .form-group-modal input, .form-group-modal select {
+            width: 100%;
+            padding: 0.7rem 1rem;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 8px;
+            color: #fff;
+            font-size: 0.95rem;
+        }
+        .form-group-modal input:focus, .form-group-modal select:focus {
+            outline: none;
+            border-color: rgba(212,175,55,0.5);
+        }
+        .modal-actions {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+            justify-content: flex-end;
+        }
+        .btn-modal {
+            padding: 0.7rem 1.5rem;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.3s;
+        }
+        .btn-modal-save { background: #d4af37; color: #000; }
+        .btn-modal-save:hover { background: #b8972e; }
+        .btn-modal-cancel { background: rgba(255,255,255,0.1); color: #fff; }
+        .btn-modal-cancel:hover { background: rgba(255,255,255,0.2); }
+
+        @media (max-width: 768px) {
+            .warranty-stats { grid-template-columns: repeat(2, 1fr); }
+            .filter-bar { flex-direction: column; }
+            .filter-bar input, .filter-bar select { width: 100%; min-width: auto; }
+        }
+    </style>
+</head>
+<body>
+    <div class="admin-grain-bg">
+        <div class="admin-ball admin-ball-1"></div>
+        <div class="admin-ball admin-ball-2"></div>
+        <div class="noise-overlay"></div>
+    </div>
+
+    <div class="admin-layout">
+        <!-- Sidebar -->
+        <aside class="admin-sidebar">
+            <div class="sidebar-header">
+                <div class="sidebar-logo">An LUXURY</div>
+                <div id="sidebar-role-text" style="font-size: 0.8rem; color: var(--admin-text-light); margin-top: 5px;">Quản Trị Hệ Thống</div>
+            </div>
+            
+            <div class="sidebar-menu">
+                <a href="dashboard.html" class="menu-item" id="nav-dashboard">
+                    <i class="fa-solid fa-chart-pie menu-icon"></i> Bàn làm việc
+                </a>
+                <a href="revenue.html" class="menu-item" id="nav-revenue">
+                    <i class="fa-solid fa-money-bill-trend-up menu-icon"></i> Doanh thu
+                </a>
+                <a href="products.html" class="menu-item" id="nav-products">
+                    <i class="fa-solid fa-gem menu-icon"></i> Sản phẩm
+                </a>
+                <a href="orders.html" class="menu-item" id="nav-orders">
+                    <i class="fa-solid fa-cart-flatbed menu-icon"></i> Đơn hàng
+                </a>
+                <a href="bookings.html" class="menu-item" id="nav-bookings">
+                    <i class="fa-regular fa-calendar-check menu-icon"></i> Lịch hẹn VIP
+                </a>
+                <a href="warranties.html" class="menu-item active" id="nav-warranties">
+                    <i class="fa-solid fa-shield-halved menu-icon"></i> Bảo hành
+                </a>
+                <a href="news.html" class="menu-item" id="nav-news">
+                    <i class="fa-solid fa-newspaper menu-icon"></i> Tin tức
+                </a>
+                <a href="chat.html" class="menu-item" id="nav-chat">
+                    <i class="fa-solid fa-comments menu-icon"></i> Chat Hỗ Trợ
+                </a>
+                <a href="customers.html" class="menu-item" id="nav-customers">
+                    <i class="fa-solid fa-users menu-icon"></i> Khách hàng
+                </a>
+            </div>
+            
+            <div class="sidebar-footer">
+                <div id="sidebar-user-info"></div>
+                <a href="../index.html" class="menu-item" style="padding: 0; margin-bottom: 1rem; font-size: 0.9rem;">
+                    <i class="fa-solid fa-globe menu-icon"></i> Xem website
+                </a>
+                <a href="#" class="menu-item logout-btn" style="padding: 0; color: #e74c3c; font-size: 0.9rem;">
+                    <i class="fa-solid fa-arrow-right-from-bracket menu-icon" style="color: #e74c3c;"></i> Đăng xuất
+                </a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="admin-main">
+            <div class="page-header">
+                <h1 class="page-title">Quản Lý Bảo Hành</h1>
+            </div>
+
+            <!-- Stats Cards -->
+            <div class="warranty-stats">
+                <div class="stat-card">
+                    <span class="stat-number" id="stat-total">0</span>
+                    <span class="stat-label">Tổng mã bảo hành</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number" id="stat-active" style="color: #2ecc71;">0</span>
+                    <span class="stat-label">Đang hiệu lực</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number" id="stat-expired" style="color: #e74c3c;">0</span>
+                    <span class="stat-label">Hết hạn</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number" id="stat-cancelled" style="color: #95a5a6;">0</span>
+                    <span class="stat-label">Đã hủy</span>
+                </div>
+            </div>
+
+            <!-- Filter & Search -->
+            <div class="admin-card">
+                <div class="filter-bar">
+                    <input type="text" id="searchInput" placeholder="Tìm kiếm theo mã bảo hành, tên khách hàng, SĐT, sản phẩm...">
+                    <select id="statusFilter">
+                        <option value="">Tất cả trạng thái</option>
+                        <option value="active">Đang hiệu lực</option>
+                        <option value="expired">Hết hạn</option>
+                        <option value="cancelled">Đã hủy</option>
+                    </select>
+                    <button class="btn-admin btn-primary" onclick="loadWarranties()"><i class="fa-solid fa-filter"></i> Lọc</button>
+                </div>
+
+                <!-- Table -->
+                <table class="admin-table">
+                    <thead>
+                        <tr>
+                            <th>MÃ BẢO HÀNH</th>
+                            <th>SẢN PHẨM</th>
+                            <th>KHÁCH HÀNG</th>
+                            <th>NGÀY KÍCH HOẠT</th>
+                            <th>NGÀY HẾT HẠN</th>
+                            <th>TRẠNG THÁI</th>
+                            <th style="text-align: right;">THAO TÁC</th>
+                        </tr>
+                    </thead>
+                    <tbody id="warrantyTableBody">
+                        <tr><td colspan="7" style="text-align: center; padding: 3rem;"><i class="fa-solid fa-circle-notch fa-spin"></i> Đang tải...</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </main>
+    </div>
+
+    <!-- Edit Modal -->
+    <div class="modal-overlay" id="editModal">
+        <div class="modal-content">
+            <h3><i class="fa-solid fa-shield-halved" style="margin-right: 8px;"></i> Chỉnh sửa Bảo hành</h3>
+            <input type="hidden" id="edit-id">
+            
+            <div class="form-group-modal">
+                <label>Mã bảo hành</label>
+                <input type="text" id="edit-code" disabled style="opacity: 0.5;">
+            </div>
+            <div class="form-group-modal">
+                <label>Sản phẩm</label>
+                <input type="text" id="edit-product" disabled style="opacity: 0.5;">
+            </div>
+            <div class="form-group-modal">
+                <label>Tên khách hàng</label>
+                <input type="text" id="edit-name">
+            </div>
+            <div class="form-group-modal">
+                <label>Số điện thoại</label>
+                <input type="text" id="edit-phone">
+            </div>
+            <div class="form-group-modal">
+                <label>Email</label>
+                <input type="email" id="edit-email">
+            </div>
+            <div class="form-group-modal">
+                <label>Ngày hết hạn</label>
+                <input type="date" id="edit-expiry">
+            </div>
+            <div class="form-group-modal">
+                <label>Trạng thái</label>
+                <select id="edit-status">
+                    <option value="active">Đang hiệu lực</option>
+                    <option value="expired">Hết hạn</option>
+                    <option value="cancelled">Đã hủy</option>
+                </select>
+            </div>
+
+            <div class="modal-actions">
+                <button class="btn-modal btn-modal-cancel" onclick="closeModal()">Hủy</button>
+                <button class="btn-modal btn-modal-save" onclick="saveWarranty()"><i class="fa-solid fa-check" style="margin-right: 5px;"></i> Lưu thay đổi</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="../../js/api.js"></script>
+    <script>
+        let allWarranties = [];
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const userInfo = JSON.parse(localStorage.getItem('userInfo'));
+            if (!userInfo || userInfo.role !== 'admin') {
+                window.location.href = '../login.html';
+                return;
+            }
+
+            const avatarUrl = (userInfo.avatar && String(userInfo.avatar).trim())
+                ? userInfo.avatar
+                : `https://ui-avatars.com/api/?name=${encodeURIComponent(userInfo.fullName)}&background=1a1a1a&color=d4af37`;
+
+            document.getElementById('sidebar-user-info').innerHTML = `
+                <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem; padding: 0 0.5rem;">
+                    <img src="${avatarUrl}" style="width: 35px; height: 35px; border-radius: 50%; object-fit: cover;">
+                    <div style="overflow: hidden;">
+                        <div style="font-size: 0.85rem; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: #fff;">${userInfo.fullName}</div>
+                        <div style="font-size: 0.7rem; color: var(--admin-text-light); text-transform: capitalize;">Quản trị viên</div>
+                    </div>
+                </div>
+            `;
+
+            loadWarranties();
+
+            // Logout
+            document.querySelectorAll('.logout-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    localStorage.removeItem('userInfo');
+                    localStorage.removeItem('token');
+                    window.location.href = '../login.html';
+                });
+            });
+
+            // Search on Enter
+            document.getElementById('searchInput').addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') loadWarranties();
+            });
+
+            // Close modal on overlay click
+            document.getElementById('editModal').addEventListener('click', (e) => {
+                if (e.target === e.currentTarget) closeModal();
+            });
+        });
+
+        async function loadWarranties() {
+            const tbody = document.getElementById('warrantyTableBody');
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase().trim();
+            const statusFilter = document.getElementById('statusFilter').value;
+
+            try {
+                allWarranties = await API.getWarranties();
+                const now = new Date();
+
+                // Auto-detect expired
+                allWarranties.forEach(w => {
+                    if (w.status === 'active' && new Date(w.expiryDate) < now) {
+                        w.displayStatus = 'expired';
+                    } else {
+                        w.displayStatus = w.status || 'active';
+                    }
+                });
+
+                // Filter
+                let filtered = allWarranties;
+                if (searchTerm) {
+                    filtered = filtered.filter(w =>
+                        (w.warrantyCode || '').toLowerCase().includes(searchTerm) ||
+                        (w.customerName || '').toLowerCase().includes(searchTerm) ||
+                        (w.phone || '').includes(searchTerm) ||
+                        (w.productName || '').toLowerCase().includes(searchTerm)
+                    );
+                }
+                if (statusFilter) {
+                    filtered = filtered.filter(w => w.displayStatus === statusFilter);
+                }
+
+                // Update stats
+                const totalActive = allWarranties.filter(w => w.displayStatus === 'active').length;
+                const totalExpired = allWarranties.filter(w => w.displayStatus === 'expired').length;
+                const totalCancelled = allWarranties.filter(w => w.displayStatus === 'cancelled').length;
+                document.getElementById('stat-total').textContent = allWarranties.length;
+                document.getElementById('stat-active').textContent = totalActive;
+                document.getElementById('stat-expired').textContent = totalExpired;
+                document.getElementById('stat-cancelled').textContent = totalCancelled;
+
+                if (filtered.length === 0) {
+                    tbody.innerHTML = '<tr><td colspan="7" style="text-align: center; padding: 3rem; color: rgba(255,255,255,0.4);">Không tìm thấy mã bảo hành nào</td></tr>';
+                    return;
+                }
+
+                tbody.innerHTML = filtered.map(w => {
+                    const purchaseDate = w.purchaseDate ? new Date(w.purchaseDate).toLocaleDateString('vi-VN') : 'N/A';
+                    const expiryDate = w.expiryDate ? new Date(w.expiryDate).toLocaleDateString('vi-VN') : 'N/A';
+                    
+                    let badgeClass = 'badge-active';
+                    let badgeText = 'Hiệu lực';
+                    if (w.displayStatus === 'expired') { badgeClass = 'badge-expired'; badgeText = 'Hết hạn'; }
+                    if (w.displayStatus === 'cancelled') { badgeClass = 'badge-cancelled'; badgeText = 'Đã hủy'; }
+
+                    return `
+                        <tr>
+                            <td>
+                                <div style="font-weight: 700; color: #d4af37; font-family: monospace; font-size: 0.95rem;">${w.warrantyCode}</div>
+                                <small style="color: var(--admin-text-light);">Đơn: ${w.orderId ? w.orderId.slice(-6).toUpperCase() : 'N/A'}</small>
+                            </td>
+                            <td>
+                                <div style="font-weight: 500;">${w.productName || 'N/A'}</div>
+                            </td>
+                            <td>
+                                <div style="font-weight: 500;">${w.customerName || '<span style="color: rgba(255,255,255,0.3);">Chưa cập nhật</span>'}</div>
+                                <small style="color: var(--admin-text-light);">${w.phone || ''}</small>
+                            </td>
+                            <td style="color: var(--admin-text-light);">${purchaseDate}</td>
+                            <td style="color: var(--admin-text-light);">${expiryDate}</td>
+                            <td><span class="badge-status ${badgeClass}">${badgeText}</span></td>
+                            <td style="text-align: right;">
+                                <button class="btn-icon" title="Chỉnh sửa" onclick='openEditModal(${JSON.stringify(w).replace(/'/g, "&#39;")})'><i class="fa-solid fa-pen-to-square"></i></button>
+                                <button class="btn-icon" title="Xóa" onclick="deleteWarranty('${w._id}')" style="color: #e74c3c;"><i class="fa-solid fa-trash-can"></i></button>
+                            </td>
+                        </tr>
+                    `;
+                }).join('');
+
+            } catch (error) {
+                tbody.innerHTML = '<tr><td colspan="7" style="text-align: center; color: #e74c3c; padding: 3rem;">Lỗi tải dữ liệu: ' + error.message + '</td></tr>';
+            }
+        }
+
+        function openEditModal(w) {
+            document.getElementById('edit-id').value = w._id;
+            document.getElementById('edit-code').value = w.warrantyCode;
+            document.getElementById('edit-product').value = w.productName || '';
+            document.getElementById('edit-name').value = w.customerName || '';
+            document.getElementById('edit-phone').value = w.phone || '';
+            document.getElementById('edit-email').value = w.email || '';
+            
+            if (w.expiryDate) {
+                const d = new Date(w.expiryDate);
+                document.getElementById('edit-expiry').value = d.toISOString().split('T')[0];
+            }
+            
+            document.getElementById('edit-status').value = w.displayStatus || w.status || 'active';
+            document.getElementById('editModal').classList.add('show');
+        }
+
+        function closeModal() {
+            document.getElementById('editModal').classList.remove('show');
+        }
+
+        async function saveWarranty() {
+            const id = document.getElementById('edit-id').value;
+            const data = {
+                customerName: document.getElementById('edit-name').value.trim(),
+                phone: document.getElementById('edit-phone').value.trim(),
+                email: document.getElementById('edit-email').value.trim(),
+                expiryDate: document.getElementById('edit-expiry').value,
+                status: document.getElementById('edit-status').value
+            };
+
+            try {
+                await API.updateWarranty(id, data);
+                alert('Cập nhật bảo hành thành công!');
+                closeModal();
+                loadWarranties();
+            } catch (error) {
+                alert('Lỗi: ' + error.message);
+            }
+        }
+
+        async function deleteWarranty(id) {
+            if (!confirm('Bạn có chắc chắn muốn xóa mã bảo hành này? Hành động không thể hoàn tác!')) return;
+            
+            try {
+                await API.deleteWarranty(id);
+                alert('Đã xóa mã bảo hành!');
+                loadWarranties();
+            } catch (error) {
+                alert('Lỗi: ' + error.message);
+            }
+        }
+    </script>
+</body>
+</html>
