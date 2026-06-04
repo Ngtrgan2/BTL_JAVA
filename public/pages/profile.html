@@ -812,15 +812,15 @@
                             </div>
                             <div>
                                 <p style="color: var(--text-muted); font-size: 0.8rem; text-transform: uppercase; margin-bottom: 0.3rem;">Chủ sở hữu</p>
-                                <p style="font-weight: 600;">${data.customerName}</p>
-                                <p style="color: var(--text-secondary); font-size: 0.85rem;">SĐT: ${data.phone}</p>
+                                <p style="font-weight: 600;">${data.customerName || 'Chưa cập nhật'}</p>
+                                <p style="color: var(--text-secondary); font-size: 0.85rem;">SĐT: ${data.phone || 'Chưa cập nhật'}</p>
                             </div>
                         </div>
 
                         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 2rem; padding: 1.5rem; background: rgba(0,0,0,0.2); border-radius: 8px;">
                             <div>
                                 <p style="color: var(--text-muted); font-size: 0.8rem; margin-bottom: 0.2rem;">Ngày kích hoạt</p>
-                                <p style="font-weight: 500;">${new Date(data.startDate).toLocaleDateString('vi-VN')}</p>
+                                <p style="font-weight: 500;">${new Date(data.purchaseDate).toLocaleDateString('vi-VN')}</p>
                             </div>
                             <div>
                                 <p style="color: var(--text-muted); font-size: 0.8rem; margin-bottom: 0.2rem;">Ngày hết hạn</p>
@@ -831,7 +831,7 @@
                         <div>
                             <p style="color: var(--gold-light); font-weight: 600; margin-bottom: 1rem; font-size: 0.9rem;"><i class="fa-solid fa-star" style="margin-right: 5px;"></i> Đặc quyền bảo hành:</p>
                             <ul style="list-style: none; padding-left: 0.5rem;">
-                                ${(data.benefits || []).map(b => `<li style="color: var(--text-secondary); font-size: 0.85rem; margin-bottom: 0.5rem;"><i class="fa-solid fa-check" style="color: #2ecc71; margin-right: 10px; font-size: 0.7rem;"></i> ${b}</li>`).join('')}
+                                ${(data.benefits || ['Miễn phí làm sạch, đánh bóng trọn đời', 'Kiểm tra định kỳ chấu giữ kim cương', 'Bảo hành kỹ thuật, chỉnh sửa size nhẫn', 'Hỗ trợ thu đổi lên đời sản phẩm']).map(b => `<li style="color: var(--text-secondary); font-size: 0.85rem; margin-bottom: 0.5rem;"><i class="fa-solid fa-check" style="color: #2ecc71; margin-right: 10px; font-size: 0.7rem;"></i> ${b}</li>`).join('')}
                             </ul>
                         </div>
                     </div>
