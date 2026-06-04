@@ -101,5 +101,9 @@ window.API = {
     deleteWarranty: (id) => fetchAPI(`/warranties/${id}`, { method: 'DELETE' }),
     likeProduct: (id) => fetchAPI(`/products/${id}/like`, { method: 'PUT' }),
     shareProduct: (id) => fetchAPI(`/products/${id}/share`, { method: 'PUT' }),
-    getLikedProducts: () => fetchAPI('/users/liked-products')
+    getLikedProducts: () => fetchAPI('/users/liked-products'),
+    getDiscounts: () => fetchAPI('/discounts'),
+    createDiscount: (data) => fetchAPI('/discounts', { method: 'POST', body: JSON.stringify(data) }),
+    updateDiscount: (id, data) => fetchAPI(`/discounts/${id}`, { method: 'PUT', body: JSON.stringify(data) }),
+    deleteDiscount: (id) => fetchAPI(`/discounts/${id}`, { method: 'DELETE' })
 };

@@ -1,9 +1,9 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quản Lý Tin Tức | An LUXURY Admin</title>
+    <title>Quáº£n LÃ½ Tin Tá»©c | An LUXURY Admin</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../../css/admin.css">
@@ -94,7 +94,7 @@
         .admin-news-card:hover .action-overlay {
             opacity: 1;
         }
-        /* Fix đè layout và hiệu ứng ghosting */
+        /* Fix Ä‘Ã¨ layout vÃ  hiá»‡u á»©ng ghosting */
         /* Layout Base */
         .admin-container {
             display: flex;
@@ -234,7 +234,7 @@
         }
         .modal-content::-webkit-scrollbar-thumb:hover { background: var(--gold-primary); }
 
-        /* Bỏ cái quầng sáng lỗi */
+        /* Bá» cÃ¡i quáº§ng sÃ¡ng lá»—i */
         .menu-item.active {
             background: rgba(212, 175, 55, 0.15) !important;
             box-shadow: none !important;
@@ -252,36 +252,36 @@
         <aside class="admin-sidebar">
             <div class="sidebar-header">
                 <div class="sidebar-logo">An LUXURY</div>
-                <div id="sidebar-role-text" style="font-size: 0.8rem; color: var(--admin-text-light); margin-top: 5px;">Quản Trị Hệ Thống</div>
+                <div id="sidebar-role-text" style="font-size: 0.8rem; color: var(--admin-text-light); margin-top: 5px;">Quáº£n Trá»‹ Há»‡ Thá»‘ng</div>
             </div>
             
             <div class="sidebar-menu">
                 <a href="dashboard.html" class="menu-item" id="nav-dashboard">
-                    <i class="fa-solid fa-chart-pie menu-icon"></i> Bàn làm việc
+                    <i class="fa-solid fa-chart-pie menu-icon"></i> BÃ n lÃ m viá»‡c
                 </a>
                 <a href="revenue.html" class="menu-item" id="nav-revenue">
                     <i class="fa-solid fa-money-bill-trend-up menu-icon"></i> Doanh thu
                 </a>
                 <a href="products.html" class="menu-item" id="nav-products">
-                    <i class="fa-solid fa-gem menu-icon"></i> Sản phẩm
+                    <i class="fa-solid fa-gem menu-icon"></i> Sáº£n pháº©m
                 </a>
                 <a href="orders.html" class="menu-item" id="nav-orders">
-                    <i class="fa-solid fa-cart-flatbed menu-icon"></i> Đơn hàng
+                    <i class="fa-solid fa-cart-flatbed menu-icon"></i> ÄÆ¡n hÃ ng
                 </a>
                 <a href="bookings.html" class="menu-item" id="nav-bookings">
-                    <i class="fa-regular fa-calendar-check menu-icon"></i> Lịch hẹn VIP
+                    <i class="fa-regular fa-calendar-check menu-icon"></i> Lá»‹ch háº¹n VIP
                 </a>
                 <a href="warranties.html" class="menu-item" id="nav-warranties">
-                    <i class="fa-solid fa-shield-halved menu-icon"></i> Bảo hành
+                    <i class="fa-solid fa-shield-halved menu-icon"></i> Báº£o hÃ nh
                 </a>
                 <a href="news.html" class="menu-item active" id="nav-news">
-                    <i class="fa-solid fa-newspaper menu-icon"></i> Tin tức
+                    <i class="fa-solid fa-newspaper menu-icon"></i> Tin tá»©c
                 </a>
                 <a href="chat.html" class="menu-item" id="nav-chat">
-                    <i class="fa-solid fa-comments menu-icon"></i> Chat Hỗ Trợ
+                    <i class="fa-solid fa-comments menu-icon"></i> Chat Há»— Trá»£
                 </a>
                 <a href="customers.html" class="menu-item" id="nav-customers" style="display: none;">
-                    <i class="fa-solid fa-users menu-icon"></i> Khách hàng
+                    <i class="fa-solid fa-users menu-icon"></i> KhÃ¡ch hÃ ng
                 </a>
             </div>
             
@@ -291,7 +291,7 @@
                     <i class="fa-solid fa-globe menu-icon"></i> Xem website
                 </a>
                 <a href="#" class="menu-item logout-btn" style="padding: 0; color: #e74c3c; font-size: 0.9rem;">
-                    <i class="fa-solid fa-arrow-right-from-bracket menu-icon" style="color: #e74c3c;"></i> Đăng xuất
+                    <i class="fa-solid fa-arrow-right-from-bracket menu-icon" style="color: #e74c3c;"></i> ÄÄƒng xuáº¥t
                 </a>
             </div>
         </aside>
@@ -299,23 +299,23 @@
         <!-- Main Content -->
         <main class="admin-main">
             <div class="page-header">
-                <h1 class="page-title">Quản Lý Tin Tức</h1>
+                <h1 class="page-title">Quáº£n LÃ½ Tin Tá»©c</h1>
                 <button class="btn-admin btn-primary" onclick="openAddModal()">
-                    <i class="fa-solid fa-plus"></i> Đăng tin mới
+                    <i class="fa-solid fa-plus"></i> ÄÄƒng tin má»›i
                 </button>
             </div>
 
             <div class="admin-card">
                 <div class="card-header">
-                    <h2 style="font-size: 1.1rem;">Danh sách bài viết</h2>
-                    <p style="font-size: 0.85rem; color: var(--admin-text-light);">Những tin đánh dấu <span style="color: var(--gold-primary); font-weight: 600;">LATEST</span> sẽ hiện ưu tiên lên trang chủ.</p>
+                    <h2 style="font-size: 1.1rem;">Danh sÃ¡ch bÃ i viáº¿t</h2>
+                    <p style="font-size: 0.85rem; color: var(--admin-text-light);">Nhá»¯ng tin Ä‘Ã¡nh dáº¥u <span style="color: var(--gold-primary); font-weight: 600;">LATEST</span> sáº½ hiá»‡n Æ°u tiÃªn lÃªn trang chá»§.</p>
                 </div>
 
                 <div id="news-container" class="news-card-grid">
                     <!-- JS will render news cards here -->
                     <div style="grid-column: 1/-1; text-align: center; padding: 3rem;">
                         <i class="fa-solid fa-spinner fa-spin fa-2x"></i>
-                        <p style="margin-top: 1rem;">Đang tải danh sách tin tức...</p>
+                        <p style="margin-top: 1rem;">Äang táº£i danh sÃ¡ch tin tá»©c...</p>
                     </div>
                 </div>
             </div>
@@ -326,53 +326,53 @@
     <div class="modal" id="newsModal">
         <div class="modal-content">
             <div class="modal-header">
-                <h2 id="modalTitle">Đăng Tin Tức Mới</h2>
+                <h2 id="modalTitle">ÄÄƒng Tin Tá»©c Má»›i</h2>
                 <button class="btn-icon" onclick="closeModal()"><i class="fa-solid fa-times"></i></button>
             </div>
             <div class="modal-body">
                 <form id="newsForm">
                     <input type="hidden" id="newsId">
                     <div class="form-group-admin">
-                        <label>Tiêu đề bài viết *</label>
-                        <input type="text" id="title" class="form-control-admin" required placeholder="VD: Khai trương chi nhánh mới tại Hà Nội">
+                        <label>TiÃªu Ä‘á» bÃ i viáº¿t *</label>
+                        <input type="text" id="title" class="form-control-admin" required placeholder="VD: Khai trÆ°Æ¡ng chi nhÃ¡nh má»›i táº¡i HÃ  Ná»™i">
                     </div>
                     
                     <div class="form-group-admin">
-                        <label>Tóm tắt ngắn</label>
-                        <textarea id="summary" class="form-control-admin" rows="3" placeholder="Mô tả ngắn gọn nội dung bài viết..."></textarea>
+                        <label>TÃ³m táº¯t ngáº¯n</label>
+                        <textarea id="summary" class="form-control-admin" rows="3" placeholder="MÃ´ táº£ ngáº¯n gá»n ná»™i dung bÃ i viáº¿t..."></textarea>
                     </div>
 
                     <div class="form-group-admin">
-                        <label>Đường dẫn bài báo (URL) *</label>
+                        <label>ÄÆ°á»ng dáº«n bÃ i bÃ¡o (URL) *</label>
                         <input type="url" id="newsUrl" class="form-control-admin" required placeholder="https://vnexpress.net/...">
                     </div>
 
                     <div class="form-row">
                         <div class="form-group-admin">
-                            <label>Hình ảnh bìa</label>
+                            <label>HÃ¬nh áº£nh bÃ¬a</label>
                             <div style="display: flex; gap: 10px; align-items: center;">
-                                <input type="text" id="image" class="form-control-admin" placeholder="Link ảnh hoặc Base64" style="flex: 1;">
+                                <input type="text" id="image" class="form-control-admin" placeholder="Link áº£nh hoáº·c Base64" style="flex: 1;">
                                 <label for="imageUploadBtn" class="btn-admin btn-primary" style="margin: 0; padding: 12px 16px; cursor: pointer; border-radius: 8px; font-weight: 500; font-size: 0.9rem; display: flex; align-items: center; gap: 6px; white-space: nowrap;">
-                                    <i class="fa-solid fa-folder-open"></i> Chọn ảnh
+                                    <i class="fa-solid fa-folder-open"></i> Chá»n áº£nh
                                 </label>
                                 <input type="file" id="imageUploadBtn" accept="image/*" style="display: none;">
                             </div>
                         </div>
                         <div class="form-group-admin">
-                            <label>Nguồn tin</label>
+                            <label>Nguá»“n tin</label>
                             <input type="text" id="source" class="form-control-admin" placeholder="VD: VnExpress, An LUXURY">
                         </div>
                     </div>
 
                     <div class="form-group-admin" style="flex-direction: row; align-items: center; gap: 10px;">
                         <input type="checkbox" id="isLatest" style="width: 20px; height: 20px; cursor: pointer;">
-                        <label for="isLatest" style="cursor: pointer; margin: 0;">Đánh dấu là tin nổi bật (LATEST)</label>
+                        <label for="isLatest" style="cursor: pointer; margin: 0;">ÄÃ¡nh dáº¥u lÃ  tin ná»•i báº­t (LATEST)</label>
                     </div>
                 </form>
             </div>
             <div class="modal-footer">
-                <button class="btn-admin" onclick="closeModal()">Hủy</button>
-                <button class="btn-admin btn-primary" onclick="saveNews()">Lưu Bài Viết</button>
+                <button class="btn-admin" onclick="closeModal()">Há»§y</button>
+                <button class="btn-admin btn-primary" onclick="saveNews()">LÆ°u BÃ i Viáº¿t</button>
             </div>
         </div>
     </div>
@@ -387,14 +387,14 @@
                 allNews = await API.getNews();
                 renderNews(allNews);
             } catch (error) {
-                container.innerHTML = `<div style="grid-column: 1/-1; text-align: center; color: var(--status-danger);">Lỗi tải dữ liệu: ${error.message}</div>`;
+                container.innerHTML = `<div style="grid-column: 1/-1; text-align: center; color: var(--status-danger);">Lá»—i táº£i dá»¯ liá»‡u: ${error.message}</div>`;
             }
         }
 
         function renderNews(newsList) {
             const container = document.getElementById('news-container');
             if (newsList.length === 0) {
-                container.innerHTML = `<div style="grid-column: 1/-1; text-align: center; padding: 3rem; color: var(--admin-text-light);">Chưa có tin tức nào được đăng.</div>`;
+                container.innerHTML = `<div style="grid-column: 1/-1; text-align: center; padding: 3rem; color: var(--admin-text-light);">ChÆ°a cÃ³ tin tá»©c nÃ o Ä‘Æ°á»£c Ä‘Äƒng.</div>`;
                 return;
             }
 
@@ -407,19 +407,19 @@
                         <div class="news-summary">${news.summary}</div>
                         <div class="news-meta">
                             <span><i class="fa-regular fa-clock"></i> ${new Date(news.createdAt).toLocaleDateString('vi-VN')}</span>
-                            <span><i class="fa-solid fa-link"></i> ${news.source || 'Nguồn'}</span>
+                            <span><i class="fa-solid fa-link"></i> ${news.source || 'Nguá»“n'}</span>
                         </div>
                     </div>
                     <div class="action-overlay">
-                        <button class="btn-admin" style="background: var(--gold-primary); color: #000; border: none;" onclick="openEditModal('${news._id}')"><i class="fa-solid fa-pen"></i> Sửa</button>
-                        <button class="btn-admin" style="background: #e74c3c; color: #fff; border: none;" onclick="deleteNews('${news._id}')"><i class="fa-solid fa-trash"></i> Xóa</button>
+                        <button class="btn-admin" style="background: var(--gold-primary); color: #000; border: none;" onclick="openEditModal('${news._id}')"><i class="fa-solid fa-pen"></i> Sá»­a</button>
+                        <button class="btn-admin" style="background: #e74c3c; color: #fff; border: none;" onclick="deleteNews('${news._id}')"><i class="fa-solid fa-trash"></i> XÃ³a</button>
                     </div>
                 </div>
             `).join('');
         }
 
         function openAddModal() {
-            document.getElementById('modalTitle').textContent = 'Đăng Tin Tức Mới';
+            document.getElementById('modalTitle').textContent = 'ÄÄƒng Tin Tá»©c Má»›i';
             document.getElementById('newsId').value = '';
             document.getElementById('newsForm').reset();
             document.getElementById('newsModal').classList.add('active');
@@ -429,7 +429,7 @@
             const news = allNews.find(n => n._id === id);
             if (!news) return;
 
-            document.getElementById('modalTitle').textContent = 'Chỉnh Sửa Tin Tức';
+            document.getElementById('modalTitle').textContent = 'Chá»‰nh Sá»­a Tin Tá»©c';
             document.getElementById('newsId').value = news._id;
             document.getElementById('title').value = news.title;
             document.getElementById('summary').value = news.summary || '';
@@ -457,17 +457,17 @@
             };
 
             if (!data.title || !data.url) {
-                alert('Vui lòng điền tiêu đề và đường dẫn bài báo!');
+                alert('Vui lÃ²ng Ä‘iá»n tiÃªu Ä‘á» vÃ  Ä‘Æ°á»ng dáº«n bÃ i bÃ¡o!');
                 return;
             }
 
             try {
                 if (id) {
                     await API.updateNews(id, data);
-                    alert('Cập nhật thành công!');
+                    alert('Cáº­p nháº­t thÃ nh cÃ´ng!');
                 } else {
                     await API.createNews(data);
-                    alert('Đã đăng tin mới!');
+                    alert('ÄÃ£ Ä‘Äƒng tin má»›i!');
                 }
                 closeModal();
                 
@@ -484,17 +484,17 @@
                             reader.onload = (event) => {
                                 imageInput.value = event.target.result;
                                 if (window.AnLuxuryNotification) {
-                                    AnLuxuryNotification.show('Đã tải ảnh lên!', 'success');
+                                    AnLuxuryNotification.show('ÄÃ£ táº£i áº£nh lÃªn!', 'success');
                                 } else {
-                                    alert('Đã tải ảnh lên!');
+                                    alert('ÄÃ£ táº£i áº£nh lÃªn!');
                                 }
                             };
                             reader.readAsDataURL(file);
                         } else {
                             if (window.AnLuxuryNotification) {
-                                AnLuxuryNotification.show('Vui lòng chọn file ảnh!', 'error');
+                                AnLuxuryNotification.show('Vui lÃ²ng chá»n file áº£nh!', 'error');
                             } else {
-                                alert('Vui lòng chọn file ảnh!');
+                                alert('Vui lÃ²ng chá»n file áº£nh!');
                             }
                         }
                     }
@@ -504,23 +504,23 @@
             loadNews();
 
             } catch (error) {
-                alert('Lỗi: ' + error.message);
+                alert('Lá»—i: ' + error.message);
             }
         }
 
         async function deleteNews(id) {
             const isConfirmed = window.AnLuxuryNotification 
-                ? await AnLuxuryNotification.confirm('Bạn có chắc chắn muốn xóa bài viết này?', 'Xác Nhận Xóa', 'warning') 
-                : confirm('Bạn có chắc chắn muốn xóa bài viết này?');
+                ? await AnLuxuryNotification.confirm('Báº¡n cÃ³ cháº¯c cháº¯n muá»‘n xÃ³a bÃ i viáº¿t nÃ y?', 'XÃ¡c Nháº­n XÃ³a', 'warning') 
+                : confirm('Báº¡n cÃ³ cháº¯c cháº¯n muá»‘n xÃ³a bÃ i viáº¿t nÃ y?');
                 
             if (!isConfirmed) return;
             
             try {
                 await API.deleteNews(id);
-                alert('Đã xóa!');
+                alert('ÄÃ£ xÃ³a!');
                 loadNews();
             } catch (error) {
-                alert('Lỗi: ' + error.message);
+                alert('Lá»—i: ' + error.message);
             }
         }
 
@@ -551,7 +551,7 @@
                         <img src="${avatarUrl}" style="width: 35px; height: 35px; border-radius: 50%; object-fit: cover;">
                         <div style="overflow: hidden;">
                             <div style="font-size: 0.85rem; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: #fff;">${userInfo.fullName}</div>
-                            <div style="font-size: 0.7rem; color: var(--admin-text-light); text-transform: capitalize;">Quản trị viên</div>
+                            <div style="font-size: 0.7rem; color: var(--admin-text-light); text-transform: capitalize;">Quáº£n trá»‹ viÃªn</div>
                         </div>
                     </div>
                 `;
@@ -571,3 +571,4 @@
     </script>
 </body>
 </html>
+

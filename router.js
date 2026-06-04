@@ -8,6 +8,7 @@ const { getWarrantyByCode, getWarranties, updateWarranty, deleteWarranty } = req
 const { chatResponse } = require('./controllers/chatController');
 const { getNews, createNews, updateNews, deleteNews } = require('./controllers/newsController');
 const { getComments, createComment, likeComment, deleteComment } = require('./controllers/commentController');
+const { getDiscounts, createDiscount, updateDiscount, deleteDiscount } = require('./controllers/discountController');
 
 function router(req, res) {
     const fullUrl = req.url;
@@ -184,6 +185,20 @@ function router(req, res) {
     }
     if (url.startsWith('/api/warranty/') && method === 'GET') {
         return getWarrantyByCode(req, res);
+    }
+    
+    // API Routes - Discounts
+    if (url === '/api/discounts' && method === 'GET') {
+        return getDiscounts(req, res);
+    }
+    if (url === '/api/discounts' && method === 'POST') {
+        return createDiscount(req, res);
+    }
+    if (url.startsWith('/api/discounts/') && method === 'PUT') {
+        return updateDiscount(req, res);
+    }
+    if (url.startsWith('/api/discounts/') && method === 'DELETE') {
+        return deleteDiscount(req, res);
     }
     
     // API Routes - News

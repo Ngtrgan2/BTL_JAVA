@@ -1,9 +1,9 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quản Lý Đơn Hàng | An LUXURY Admin</title>
+    <title>Quáº£n LÃ½ ÄÆ¡n HÃ ng | An LUXURY Admin</title>
     <link rel="stylesheet" href="../../css/admin.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -144,36 +144,36 @@
         <aside class="admin-sidebar">
             <div class="sidebar-header">
                 <div class="sidebar-logo">An LUXURY</div>
-                <div id="sidebar-role-text" style="font-size: 0.8rem; color: var(--admin-text-light); margin-top: 5px;">Quản Trị Hệ Thống</div>
+                <div id="sidebar-role-text" style="font-size: 0.8rem; color: var(--admin-text-light); margin-top: 5px;">Quáº£n Trá»‹ Há»‡ Thá»‘ng</div>
             </div>
             
             <div class="sidebar-menu">
                 <a href="dashboard.html" class="menu-item" id="nav-dashboard">
-                    <i class="fa-solid fa-chart-pie menu-icon"></i> Bàn làm việc
+                    <i class="fa-solid fa-chart-pie menu-icon"></i> BÃ n lÃ m viá»‡c
                 </a>
                 <a href="revenue.html" class="menu-item" id="nav-revenue">
                     <i class="fa-solid fa-money-bill-trend-up menu-icon"></i> Doanh thu
                 </a>
                 <a href="products.html" class="menu-item" id="nav-products">
-                    <i class="fa-solid fa-gem menu-icon"></i> Sản phẩm
+                    <i class="fa-solid fa-gem menu-icon"></i> Sáº£n pháº©m
                 </a>
                 <a href="orders.html" class="menu-item" id="nav-orders">
-                    <i class="fa-solid fa-cart-flatbed menu-icon"></i> Đơn hàng
+                    <i class="fa-solid fa-cart-flatbed menu-icon"></i> ÄÆ¡n hÃ ng
                 </a>
                 <a href="bookings.html" class="menu-item" id="nav-bookings">
-                    <i class="fa-regular fa-calendar-check menu-icon"></i> Lịch hẹn VIP
+                    <i class="fa-regular fa-calendar-check menu-icon"></i> Lá»‹ch háº¹n VIP
                 </a>
                 <a href="warranties.html" class="menu-item" id="nav-warranties">
-                    <i class="fa-solid fa-shield-halved menu-icon"></i> Bảo hành
+                    <i class="fa-solid fa-shield-halved menu-icon"></i> Báº£o hÃ nh
                 </a>
                 <a href="news.html" class="menu-item" id="nav-news">
-                    <i class="fa-solid fa-newspaper menu-icon"></i> Tin tức
+                    <i class="fa-solid fa-newspaper menu-icon"></i> Tin tá»©c
                 </a>
                 <a href="chat.html" class="menu-item" id="nav-chat">
-                    <i class="fa-solid fa-comments menu-icon"></i> Chat Hỗ Trợ
+                    <i class="fa-solid fa-comments menu-icon"></i> Chat Há»— Trá»£
                 </a>
                 <a href="customers.html" class="menu-item" id="nav-customers" style="display: none;">
-                    <i class="fa-solid fa-users menu-icon"></i> Khách hàng
+                    <i class="fa-solid fa-users menu-icon"></i> KhÃ¡ch hÃ ng
                 </a>
             </div>
             
@@ -183,7 +183,7 @@
                     <i class="fa-solid fa-globe menu-icon"></i> Xem website
                 </a>
                 <a href="#" class="menu-item logout-btn" style="padding: 0; color: #e74c3c; font-size: 0.9rem;">
-                    <i class="fa-solid fa-arrow-right-from-bracket menu-icon" style="color: #e74c3c;"></i> Đăng xuất
+                    <i class="fa-solid fa-arrow-right-from-bracket menu-icon" style="color: #e74c3c;"></i> ÄÄƒng xuáº¥t
                 </a>
             </div>
         </aside>
@@ -191,31 +191,31 @@
         <!-- Main Content -->
         <main class="admin-main">
             <div class="page-header">
-                <h1 class="page-title">Quản Lý Đơn Hàng</h1>
+                <h1 class="page-title">Quáº£n LÃ½ ÄÆ¡n HÃ ng</h1>
             </div>
 
             <div class="stat-grid" style="grid-template-columns: repeat(4, 1fr);" id="orderStats">
                 <div class="stat-card" style="padding: 1rem;">
                     <div>
-                        <div style="font-size: 0.85rem; color: var(--admin-text-light);">Tất cả đơn</div>
+                        <div style="font-size: 0.85rem; color: var(--admin-text-light);">Táº¥t cáº£ Ä‘Æ¡n</div>
                         <div class="stat-val" style="font-size: 1.5rem; font-weight: 600;">0</div>
                     </div>
                 </div>
                 <div class="stat-card" style="padding: 1rem; border-left: 4px solid var(--status-pending);">
                     <div>
-                        <div style="font-size: 0.85rem; color: var(--admin-text-light);">Chờ xác nhận</div>
+                        <div style="font-size: 0.85rem; color: var(--admin-text-light);">Chá» xÃ¡c nháº­n</div>
                         <div class="stat-val" style="font-size: 1.5rem; font-weight: 600;">0</div>
                     </div>
                 </div>
                 <div class="stat-card" style="padding: 1rem; border-left: 4px solid var(--status-info);">
                     <div>
-                        <div style="font-size: 0.85rem; color: var(--admin-text-light);">Đang giao hàng</div>
+                        <div style="font-size: 0.85rem; color: var(--admin-text-light);">Äang giao hÃ ng</div>
                         <div class="stat-val" style="font-size: 1.5rem; font-weight: 600;">0</div>
                     </div>
                 </div>
                 <div class="stat-card" style="padding: 1rem; border-left: 4px solid var(--status-success);">
                     <div>
-                        <div style="font-size: 0.85rem; color: var(--admin-text-light);">Đã hoàn thành</div>
+                        <div style="font-size: 0.85rem; color: var(--admin-text-light);">ÄÃ£ hoÃ n thÃ nh</div>
                         <div class="stat-val" style="font-size: 1.5rem; font-weight: 600;">0</div>
                     </div>
                 </div>
@@ -224,15 +224,15 @@
             <div class="admin-card">
                 <div class="card-header" style="border-bottom: none; padding-bottom: 0;">
                     <div style="display: flex; gap: 1rem; width: 100%;">
-                        <input type="text" id="searchOrder" class="form-control-admin" placeholder="Tìm kiếm theo mã đơn, địa chỉ..." style="flex: 2;">
+                        <input type="text" id="searchOrder" class="form-control-admin" placeholder="TÃ¬m kiáº¿m theo mÃ£ Ä‘Æ¡n, Ä‘á»‹a chá»‰..." style="flex: 2;">
                         <select id="filterStatus" class="form-control-admin" style="flex: 1;">
-                            <option value="">Tất cả trạng thái</option>
-                            <option value="pending">Chờ xác nhận</option>
-                            <option value="shipped">Đang giao</option>
-                            <option value="done">Hoàn thành</option>
-                            <option value="cancelled">Đã hủy</option>
+                            <option value="">Táº¥t cáº£ tráº¡ng thÃ¡i</option>
+                            <option value="pending">Chá» xÃ¡c nháº­n</option>
+                            <option value="shipped">Äang giao</option>
+                            <option value="done">HoÃ n thÃ nh</option>
+                            <option value="cancelled">ÄÃ£ há»§y</option>
                         </select>
-                        <button class="btn-admin btn-primary" onclick="loadOrders()"><i class="fa-solid fa-filter"></i> Lọc</button>
+                        <button class="btn-admin btn-primary" onclick="loadOrders()"><i class="fa-solid fa-filter"></i> Lá»c</button>
                     </div>
                 </div>
 
@@ -241,16 +241,16 @@
                         <thead>
                             <tr>
                                 <th style="width: 50px; text-align: center;">STT</th>
-                                <th>Mã Đơn</th>
-                                <th>Khách hàng</th>
-                                <th>Tổng tiền</th>
-                                <th>Thanh toán</th>
-                                <th>Trạng thái</th>
-                                <th style="text-align: right;">Thao tác</th>
+                                <th>MÃ£ ÄÆ¡n</th>
+                                <th>KhÃ¡ch hÃ ng</th>
+                                <th>Tá»•ng tiá»n</th>
+                                <th>Thanh toÃ¡n</th>
+                                <th>Tráº¡ng thÃ¡i</th>
+                                <th style="text-align: right;">Thao tÃ¡c</th>
                             </tr>
                         </thead>
                         <tbody id="orderTableBody">
-                            <tr><td colspan="7" style="text-align: center; padding: 3rem;"><i class="fa-solid fa-spinner fa-spin"></i> Đang tải dữ liệu...</td></tr>
+                            <tr><td colspan="7" style="text-align: center; padding: 3rem;"><i class="fa-solid fa-spinner fa-spin"></i> Äang táº£i dá»¯ liá»‡u...</td></tr>
                         </tbody>
                     </table>
                 </div>
@@ -281,8 +281,8 @@
                 renderOrders(orders);
                 updateStats(orders);
             } catch (error) {
-                console.error('Lỗi load orders:', error);
-                tbody.innerHTML = '<tr><td colspan="7" style="text-align: center; color: var(--status-danger); padding: 3rem;">Lỗi tải dữ liệu</td></tr>';
+                console.error('Lá»—i load orders:', error);
+                tbody.innerHTML = '<tr><td colspan="7" style="text-align: center; color: var(--status-danger); padding: 3rem;">Lá»—i táº£i dá»¯ liá»‡u</td></tr>';
             }
         }
 
@@ -298,7 +298,7 @@
             });
 
             if (filtered.length === 0) {
-                tbody.innerHTML = '<tr><td colspan="7" style="text-align: center; padding: 3rem;">Không tìm thấy đơn hàng nào</td></tr>';
+                tbody.innerHTML = '<tr><td colspan="7" style="text-align: center; padding: 3rem;">KhÃ´ng tÃ¬m tháº¥y Ä‘Æ¡n hÃ ng nÃ o</td></tr>';
                 const pag = document.getElementById('pagination');
                 if (pag) pag.innerHTML = '';
                 return;
@@ -321,25 +321,25 @@
                         <small style="color: var(--admin-text-light);">${new Date(o.createdAt).toLocaleDateString('vi-VN')}</small>
                     </td>
                     <td>
-                        <div style="font-weight: 500;">${o.customerName || (o.address ? o.address.split(',')[0] : 'Khách lẻ')}</div>
-                        <small style="color: var(--admin-text-light);">${o.phone ? o.phone + ', ' : ''}${o.address || 'Không để lại địa chỉ'}</small>
+                        <div style="font-weight: 500;">${o.customerName || (o.address ? o.address.split(',')[0] : 'KhÃ¡ch láº»')}</div>
+                        <small style="color: var(--admin-text-light);">${o.phone ? o.phone + ', ' : ''}${o.address || 'KhÃ´ng Ä‘á»ƒ láº¡i Ä‘á»‹a chá»‰'}</small>
                     </td>
-                    <td style="font-weight: 600; color: var(--gold-primary);">${Number(totalAmt).toLocaleString('vi-VN')} ₫</td>
+                    <td style="font-weight: 600; color: var(--gold-primary);">${Number(totalAmt).toLocaleString('vi-VN')} â‚«</td>
                     <td>
-                        <div style="font-size: 0.85rem;">${o.paymentMethod === 'cod' ? 'COD (Thanh toán khi nhận)' : 'Chuyển khoản'}</div>
+                        <div style="font-size: 0.85rem;">${o.paymentMethod === 'cod' ? 'COD (Thanh toÃ¡n khi nháº­n)' : 'Chuyá»ƒn khoáº£n'}</div>
                     </td>
                     <td>
                         <select class="status-dropdown ${o.status}" onchange="updateOrderStatus('${o._id}', this.value)">
-                            <option value="pending" ${o.status === 'pending' ? 'selected' : ''}>Chờ xác nhận</option>
-                            <option value="processing" ${o.status === 'processing' ? 'selected' : ''}>Đang xử lý</option>
-                            <option value="shipped" ${o.status === 'shipped' ? 'selected' : ''}>Đang giao</option>
-                            <option value="done" ${o.status === 'done' ? 'selected' : ''}>Hoàn thành</option>
-                            <option value="cancelled" ${o.status === 'cancelled' ? 'selected' : ''}>Đã hủy</option>
+                            <option value="pending" ${o.status === 'pending' ? 'selected' : ''}>Chá» xÃ¡c nháº­n</option>
+                            <option value="processing" ${o.status === 'processing' ? 'selected' : ''}>Äang xá»­ lÃ½</option>
+                            <option value="shipped" ${o.status === 'shipped' ? 'selected' : ''}>Äang giao</option>
+                            <option value="done" ${o.status === 'done' ? 'selected' : ''}>HoÃ n thÃ nh</option>
+                            <option value="cancelled" ${o.status === 'cancelled' ? 'selected' : ''}>ÄÃ£ há»§y</option>
                         </select>
                     </td>
                     <td style="text-align: right;">
-                        <button class="btn-icon" title="Xem chi tiết" onclick="viewOrderDetails('${o._id}')"><i class="fa-regular fa-eye"></i></button>
-                        <button class="btn-icon" title="Xóa" style="color: var(--status-danger);" onclick="deleteOrder('${o._id}')"><i class="fa-solid fa-trash-can"></i></button>
+                        <button class="btn-icon" title="Xem chi tiáº¿t" onclick="viewOrderDetails('${o._id}')"><i class="fa-regular fa-eye"></i></button>
+                        <button class="btn-icon" title="XÃ³a" style="color: var(--status-danger);" onclick="deleteOrder('${o._id}')"><i class="fa-solid fa-trash-can"></i></button>
                     </td>
                 </tr>
             `}).join('');
@@ -349,7 +349,7 @@
                 if (totalPages <= 1) {
                     pag.innerHTML = '';
                 } else {
-                    let html = `<div class="pagination-info">Trang ${currentPage} / ${totalPages} (Tổng ${filtered.length} đơn hàng)</div>`;
+                    let html = `<div class="pagination-info">Trang ${currentPage} / ${totalPages} (Tá»•ng ${filtered.length} Ä‘Æ¡n hÃ ng)</div>`;
                     html += `<button onclick="changePage(${currentPage - 1})" ${currentPage === 1 ? 'disabled' : ''}><i class="fa-solid fa-chevron-left"></i></button>`;
                     for (let i = 1; i <= totalPages; i++) {
                         if (i === 1 || i === totalPages || (i >= currentPage - 1 && i <= currentPage + 1)) {
@@ -382,17 +382,17 @@
                 await API.updateOrder(id, { status });
                 loadOrders();
             } catch (error) {
-                alert('Lỗi: ' + error.message);
+                alert('Lá»—i: ' + error.message);
             }
         }
 
         async function deleteOrder(id) {
-            if (!confirm('Bạn có chắc chắn muốn xóa đơn hàng này?')) return;
+            if (!confirm('Báº¡n cÃ³ cháº¯c cháº¯n muá»‘n xÃ³a Ä‘Æ¡n hÃ ng nÃ y?')) return;
             try {
                 await API.deleteOrder(id);
                 loadOrders();
             } catch (error) {
-                alert('Lỗi: ' + error.message);
+                alert('Lá»—i: ' + error.message);
             }
         }
 
@@ -403,17 +403,17 @@
             const modalContent = document.getElementById('modalContent');
             const totalAmt = o.totalAmount || o.total || 0;
             const statusLabels = {
-                'pending': 'Chờ xác nhận',
-                'processing': 'Đang xử lý',
-                'shipped': 'Đang giao',
-                'done': 'Hoàn thành',
-                'cancelled': 'Đã hủy'
+                'pending': 'Chá» xÃ¡c nháº­n',
+                'processing': 'Äang xá»­ lÃ½',
+                'shipped': 'Äang giao',
+                'done': 'HoÃ n thÃ nh',
+                'cancelled': 'ÄÃ£ há»§y'
             };
 
             modalContent.innerHTML = `
                 <div class="details-header">
                     <div>
-                        <h2 style="font-family: var(--font-heading); margin-bottom: 0.3rem;">Đơn hàng #OD-${o._id.slice(-6).toUpperCase()}</h2>
+                        <h2 style="font-family: var(--font-heading); margin-bottom: 0.3rem;">ÄÆ¡n hÃ ng #OD-${o._id.slice(-6).toUpperCase()}</h2>
                         <span class="badge badge-${o.status === 'pending' ? 'pending' : (o.status === 'done' ? 'success' : 'info')}">${statusLabels[o.status]}</span>
                     </div>
                     <button class="close-modal-btn" onclick="document.getElementById('orderModal').classList.remove('active')"><i class="fa-solid fa-xmark"></i></button>
@@ -422,20 +422,20 @@
                 <div class="details-body">
                     <div class="info-grid">
                         <div class="info-section">
-                            <h4>Thông tin khách hàng</h4>
-                            <div class="info-item"><span>Họ tên</span>${o.customerName || (o.address ? o.address.split(',')[0] : 'N/A')}</div>
-                            <div class="info-item"><span>Số điện thoại</span>${o.phone || 'N/A'}</div>
-                            <div class="info-item"><span>Địa chỉ</span>${o.address || 'N/A'}</div>
+                            <h4>ThÃ´ng tin khÃ¡ch hÃ ng</h4>
+                            <div class="info-item"><span>Há» tÃªn</span>${o.customerName || (o.address ? o.address.split(',')[0] : 'N/A')}</div>
+                            <div class="info-item"><span>Sá»‘ Ä‘iá»‡n thoáº¡i</span>${o.phone || 'N/A'}</div>
+                            <div class="info-item"><span>Äá»‹a chá»‰</span>${o.address || 'N/A'}</div>
                         </div>
                         <div class="info-section">
-                            <h4>Thông tin thanh toán</h4>
-                            <div class="info-item"><span>Ngày đặt</span>${new Date(o.createdAt).toLocaleString('vi-VN')}</div>
-                            <div class="info-item"><span>Phương thức</span>${o.paymentMethod === 'cod' ? 'Thanh toán khi nhận hàng (COD)' : 'Chuyển khoản ngân hàng'}</div>
-                            <div class="info-item"><span>Trạng thái</span>${o.status === 'done' ? 'Đã thanh toán' : 'Chờ xử lý'}</div>
+                            <h4>ThÃ´ng tin thanh toÃ¡n</h4>
+                            <div class="info-item"><span>NgÃ y Ä‘áº·t</span>${new Date(o.createdAt).toLocaleString('vi-VN')}</div>
+                            <div class="info-item"><span>PhÆ°Æ¡ng thá»©c</span>${o.paymentMethod === 'cod' ? 'Thanh toÃ¡n khi nháº­n hÃ ng (COD)' : 'Chuyá»ƒn khoáº£n ngÃ¢n hÃ ng'}</div>
+                            <div class="info-item"><span>Tráº¡ng thÃ¡i</span>${o.status === 'done' ? 'ÄÃ£ thanh toÃ¡n' : 'Chá» xá»­ lÃ½'}</div>
                         </div>
                     </div>
 
-                    <h4 style="font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; color: var(--gold-primary); margin-bottom: 1rem;">Sản phẩm đã đặt</h4>
+                    <h4 style="font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; color: var(--gold-primary); margin-bottom: 1rem;">Sáº£n pháº©m Ä‘Ã£ Ä‘áº·t</h4>
                     <div class="order-items-list">
                         ${o.items.map(item => `
                             <div class="item-row">
@@ -444,29 +444,29 @@
                                     <div style="font-weight: 500; margin-bottom: 0.3rem;">${item.name}</div>
                                     <div style="font-size: 0.75rem; color: var(--admin-text-light);">Size: ${item.size || 'N/A'} | SL: ${item.quantity}</div>
                                 </div>
-                                <div style="text-align: right; font-weight: 600;">${Number(item.price * item.quantity).toLocaleString('vi-VN')} ₫</div>
+                                <div style="text-align: right; font-weight: 600;">${Number(item.price * item.quantity).toLocaleString('vi-VN')} â‚«</div>
                             </div>
                         `).join('')}
                     </div>
 
                     <div class="total-summary">
                         <div class="row">
-                            <span style="color: var(--admin-text-light);">Tạm tính:</span>
-                            <span>${Number(totalAmt).toLocaleString('vi-VN')} ₫</span>
+                            <span style="color: var(--admin-text-light);">Táº¡m tÃ­nh:</span>
+                            <span>${Number(totalAmt).toLocaleString('vi-VN')} â‚«</span>
                         </div>
                         <div class="row">
-                            <span style="color: var(--admin-text-light);">Phí vận chuyển:</span>
-                            <span>Miễn phí</span>
+                            <span style="color: var(--admin-text-light);">PhÃ­ váº­n chuyá»ƒn:</span>
+                            <span>Miá»…n phÃ­</span>
                         </div>
                         <div class="row grand-total">
-                            <span>Tổng thanh toán:</span>
-                            <span>${Number(totalAmt).toLocaleString('vi-VN')} ₫</span>
+                            <span>Tá»•ng thanh toÃ¡n:</span>
+                            <span>${Number(totalAmt).toLocaleString('vi-VN')} â‚«</span>
                         </div>
                     </div>
                 </div>
                 <div style="padding: 1.5rem 2rem; border-top: 1px solid var(--admin-border); text-align: right; background: rgba(255,255,255,0.01);">
-                    <button class="btn-admin" style="background: transparent; border: 1px solid var(--admin-border);" onclick="document.getElementById('orderModal').classList.remove('active')">Đóng cửa sổ</button>
-                    ${o.status === 'pending' ? `<button class="btn-admin btn-primary" style="margin-left: 1rem;" onclick="updateOrderStatus('${o._id}', 'processing')">Xác nhận đơn</button>` : ''}
+                    <button class="btn-admin" style="background: transparent; border: 1px solid var(--admin-border);" onclick="document.getElementById('orderModal').classList.remove('active')">ÄÃ³ng cá»­a sá»•</button>
+                    ${o.status === 'pending' ? `<button class="btn-admin btn-primary" style="margin-left: 1rem;" onclick="updateOrderStatus('${o._id}', 'processing')">XÃ¡c nháº­n Ä‘Æ¡n</button>` : ''}
                 </div>
             `;
 
@@ -487,7 +487,7 @@
             if (userInfo.role === 'staff') {
                 if (dashNav) dashNav.href = 'staff-dashboard.html';
                 if (revNav) revNav.style.display = 'none';
-                document.getElementById('sidebar-role-text').textContent = 'Hệ Thống Tư Vấn Viên';
+                document.getElementById('sidebar-role-text').textContent = 'Há»‡ Thá»‘ng TÆ° Váº¥n ViÃªn';
             }
             if (userInfo.role === 'admin' && revNav) {
                 revNav.style.display = 'flex';
@@ -517,7 +517,7 @@
                         <img src="${avatarUrl}" style="width: 35px; height: 35px; border-radius: 50%; object-fit: cover;">
                         <div style="overflow: hidden;">
                             <div style="font-size: 0.85rem; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: #fff;">${userInfo.fullName}</div>
-                            <div style="font-size: 0.7rem; color: var(--admin-text-light); text-transform: capitalize;">${userInfo.role === 'admin' ? 'Quản trị viên' : 'Tư vấn viên'}</div>
+                            <div style="font-size: 0.7rem; color: var(--admin-text-light); text-transform: capitalize;">${userInfo.role === 'admin' ? 'Quáº£n trá»‹ viÃªn' : 'TÆ° váº¥n viÃªn'}</div>
                         </div>
                     </div>
                 `;
@@ -538,3 +538,4 @@
     </script>
 </body>
 </html>
+
