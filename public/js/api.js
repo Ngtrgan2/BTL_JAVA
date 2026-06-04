@@ -105,5 +105,6 @@ window.API = {
     getDiscounts: () => fetchAPI('/discounts'),
     createDiscount: (data) => fetchAPI('/discounts', { method: 'POST', body: JSON.stringify(data) }),
     updateDiscount: (id, data) => fetchAPI(`/discounts/${id}`, { method: 'PUT', body: JSON.stringify(data) }),
-    deleteDiscount: (id) => fetchAPI(`/discounts/${id}`, { method: 'DELETE' })
+    deleteDiscount: (id) => fetchAPI(`/discounts/${id}`, { method: 'DELETE' }),
+    validateDiscount: (code) => fetchAPI(`/discounts/validate/${code}`)
 };

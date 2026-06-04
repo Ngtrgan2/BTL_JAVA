@@ -54,6 +54,7 @@ const createOrder = async (req, res) => {
                 quantity: Number(item.quantity || item.qty || 1)
             })),
             totalAmount: Number(total),
+            discountCode: parsedBody.discountCode || '',
             status: 'pending',
             address,
             paymentMethod,
@@ -61,6 +62,13 @@ const createOrder = async (req, res) => {
         };
 
         const result = await db.collection('orders').insertOne(order);
+
+        if (parsedBody.discountCode) {
+            await db.collection('discounts').updateOne(
+                { code: parsedBody.discountCode.toUpperCase().trim() },
+                { $inc: { usedCount: 1 } }
+            );
+        }
 
         // Auto-deduct stock for each item and check low stock
         const lowStockWarnings = [];

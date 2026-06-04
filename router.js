@@ -8,7 +8,7 @@ const { getWarrantyByCode, getWarranties, updateWarranty, deleteWarranty } = req
 const { chatResponse } = require('./controllers/chatController');
 const { getNews, createNews, updateNews, deleteNews } = require('./controllers/newsController');
 const { getComments, createComment, likeComment, deleteComment } = require('./controllers/commentController');
-const { getDiscounts, createDiscount, updateDiscount, deleteDiscount } = require('./controllers/discountController');
+const { getDiscounts, createDiscount, updateDiscount, deleteDiscount, validateDiscount } = require('./controllers/discountController');
 
 function router(req, res) {
     const fullUrl = req.url;
@@ -188,6 +188,9 @@ function router(req, res) {
     }
     
     // API Routes - Discounts
+    if (url.startsWith('/api/discounts/validate/') && method === 'GET') {
+        return validateDiscount(req, res);
+    }
     if (url === '/api/discounts' && method === 'GET') {
         return getDiscounts(req, res);
     }

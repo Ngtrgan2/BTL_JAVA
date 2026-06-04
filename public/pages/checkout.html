@@ -439,13 +439,7 @@
     <script>
         let currentDiscount = { code: '', value: 0, type: '' }; // type: 'percent' or 'fixed'
 
-        const discountCodes = {
-            'ANLUXURY10': { value: 10, type: 'percent', desc: 'Giảm 10%' },
-            'VIP20': { value: 20, type: 'percent', desc: 'Giảm 20% cho VIP' },
-            'GIAM500K': { value: 500000, type: 'fixed', desc: 'Giảm 500.000đ' }
-        };
-
-        function applyDiscount() {
+        async function applyDiscount() {
             const codeInput = document.getElementById('discount-code').value.trim().toUpperCase();
             const messageEl = document.getElementById('discount-message');
             const discountLine = document.getElementById('discount-line');
@@ -456,18 +450,20 @@
                 return;
             }
 
-            if (discountCodes[codeInput]) {
-                currentDiscount.code = codeInput;
-                currentDiscount.value = discountCodes[codeInput].value;
-                currentDiscount.type = discountCodes[codeInput].type;
+            try {
+                const discount = await API.validateDiscount(codeInput);
+                
+                currentDiscount.code = discount.code;
+                currentDiscount.value = discount.discountValue;
+                currentDiscount.type = discount.discountType;
                 
                 messageEl.textContent = `Áp dụng thành công mã ${codeInput}!`;
                 messageEl.style.color = '#2ecc71';
                 
                 renderCheckout(); // Re-render to update totals
-            } else {
+            } catch (error) {
                 currentDiscount = { code: '', value: 0, type: '' };
-                messageEl.textContent = 'Mã giảm giá không hợp lệ hoặc đã hết hạn!';
+                messageEl.textContent = error.message || 'Mã giảm giá không hợp lệ hoặc đã hết hạn!';
                 messageEl.style.color = '#e74c3c';
                 discountLine.style.display = 'none';
                 renderCheckout();

@@ -130,9 +130,57 @@ const deleteDiscount = async (req, res) => {
     }
 };
 
+// === CUSTOMER: Validate mã giảm giá ===
+const validateDiscount = async (req, res) => {
+    try {
+        const db = getDB();
+        const code = req.url.split('/')[4]; // /api/discounts/validate/:code
+
+        if (!code) {
+            res.writeHead(400, { 'Content-Type': 'application/json' });
+            return res.end(JSON.stringify({ message: 'Vui lòng cung cấp mã giảm giá' }));
+        }
+
+        const discount = await db.collection('discounts').findOne({ code: code.toUpperCase().trim() });
+
+        if (!discount) {
+            res.writeHead(404, { 'Content-Type': 'application/json' });
+            return res.end(JSON.stringify({ message: 'Mã giảm giá không tồn tại' }));
+        }
+
+        if (!discount.isActive) {
+            res.writeHead(400, { 'Content-Type': 'application/json' });
+            return res.end(JSON.stringify({ message: 'Mã giảm giá đã bị khóa' }));
+        }
+
+        const now = new Date();
+        if (discount.expiryDate && new Date(discount.expiryDate) < now) {
+            res.writeHead(400, { 'Content-Type': 'application/json' });
+            return res.end(JSON.stringify({ message: 'Mã giảm giá đã hết hạn' }));
+        }
+
+        if (discount.maxUsage && discount.usedCount >= discount.maxUsage) {
+            res.writeHead(400, { 'Content-Type': 'application/json' });
+            return res.end(JSON.stringify({ message: 'Mã giảm giá đã hết lượt sử dụng' }));
+        }
+
+        // Nếu hợp lệ, trả về thông tin giảm giá
+        res.writeHead(200, { 'Content-Type': 'application/json' });
+        res.end(JSON.stringify({
+            code: discount.code,
+            discountType: discount.discountType,
+            discountValue: discount.discountValue
+        }));
+    } catch (error) {
+        res.writeHead(500, { 'Content-Type': 'application/json' });
+        res.end(JSON.stringify({ message: error.message }));
+    }
+};
+
 module.exports = {
     getDiscounts,
     createDiscount,
     updateDiscount,
-    deleteDiscount
+    deleteDiscount,
+    validateDiscount
 };
