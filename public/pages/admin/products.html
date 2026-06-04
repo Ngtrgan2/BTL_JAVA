@@ -233,6 +233,7 @@
                         </tbody>
                     </table>
                 </div>
+                <div id="pagination" class="pagination"></div>
             </div>
         </main>
     </div>
@@ -329,8 +330,11 @@
     <script src="../../js/api.js"></script>
     <script>
         let allProducts = [];
+        let currentPage = 1;
+        const itemsPerPage = 10;
 
         async function loadProducts() {
+            currentPage = 1;
             const tbody = document.getElementById('productTableBody');
             try {
                 const products = await API.getProducts();
@@ -468,10 +472,18 @@
 
             if (filtered.length === 0) {
                 tbody.innerHTML = '<tr><td colspan="8" style="text-align: center; padding: 3rem;">Không tìm thấy sản phẩm nào</td></tr>';
+                const pag = document.getElementById('pagination');
+                if (pag) pag.innerHTML = '';
                 return;
             }
 
-            tbody.innerHTML = filtered.map((p, index) => {
+            const totalPages = Math.ceil(filtered.length / itemsPerPage);
+            if (currentPage > totalPages) currentPage = totalPages || 1;
+            const startIndex = (currentPage - 1) * itemsPerPage;
+            const paginated = filtered.slice(startIndex, startIndex + itemsPerPage);
+
+            tbody.innerHTML = paginated.map((p, i) => {
+                const index = startIndex + i;
                 let stockDisplay = '';
                 if (p.stock <= 0) {
                     stockDisplay = `<span style="color: var(--status-danger); font-weight: 600;"><i class="fa-solid fa-circle-xmark"></i> Hết hàng</span>`;
@@ -524,6 +536,30 @@
                     </td>
                 </tr>
             `}).join('');
+
+            const pag = document.getElementById('pagination');
+            if (pag) {
+                if (totalPages <= 1) {
+                    pag.innerHTML = '';
+                } else {
+                    let html = `<div class="pagination-info">Trang ${currentPage} / ${totalPages} (Tổng ${filtered.length} sản phẩm)</div>`;
+                    html += `<button onclick="changePage(${currentPage - 1})" ${currentPage === 1 ? 'disabled' : ''}><i class="fa-solid fa-chevron-left"></i></button>`;
+                    for (let i = 1; i <= totalPages; i++) {
+                        if (i === 1 || i === totalPages || (i >= currentPage - 1 && i <= currentPage + 1)) {
+                            html += `<button onclick="changePage(${i})" class="${i === currentPage ? 'active' : ''}">${i}</button>`;
+                        } else if (i === currentPage - 2 || i === currentPage + 2) {
+                            html += `<span style="color: var(--admin-text-light);">...</span>`;
+                        }
+                    }
+                    html += `<button onclick="changePage(${currentPage + 1})" ${currentPage === totalPages ? 'disabled' : ''}><i class="fa-solid fa-chevron-right"></i></button>`;
+                    pag.innerHTML = html.replace(/\.\.\.<\/span><span style="color: var\(--admin-text-light\);">\.\.\./g, '...</span>'); // clean up double ellipsis
+                }
+            }
+        }
+
+        function changePage(page) {
+            currentPage = page;
+            renderProducts(allProducts);
         }
 
         function getCategoryName(cat) {

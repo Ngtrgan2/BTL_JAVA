@@ -266,9 +266,9 @@
                     </thead>
                     <tbody id="warrantyTableBody">
                         <tr><td colspan="8" style="text-align: center; padding: 3rem;"><i class="fa-solid fa-circle-notch fa-spin"></i> Đang tải...</td></tr>
-                    </tbody>
                 </table>
             </div>
+            <div id="pagination" class="pagination"></div>
         </main>
     </div>
 
@@ -366,13 +366,31 @@
             });
         });
 
+        let allWarranties = [];
+        let currentPage = 1;
+        const itemsPerPage = 10;
+
         async function loadWarranties() {
+            currentPage = 1;
             const tbody = document.getElementById('warrantyTableBody');
             const searchTerm = document.getElementById('searchInput').value.toLowerCase().trim();
             const statusFilter = document.getElementById('statusFilter').value;
 
             try {
-                allWarranties = await API.getWarranties();
+                const fetchedWarranties = await API.getWarranties();
+                allWarranties = fetchedWarranties;
+                renderWarranties();
+            } catch (error) {
+                tbody.innerHTML = '<tr><td colspan="8" style="text-align: center; color: #e74c3c; padding: 3rem;">Lỗi tải dữ liệu: ' + error.message + '</td></tr>';
+            }
+        }
+
+        function renderWarranties() {
+            const tbody = document.getElementById('warrantyTableBody');
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase().trim();
+            const statusFilter = document.getElementById('statusFilter').value;
+            
+            try {
                 const now = new Date();
 
                 // Auto-detect expired
@@ -409,10 +427,18 @@
 
                 if (filtered.length === 0) {
                     tbody.innerHTML = '<tr><td colspan="8" style="text-align: center; padding: 3rem; color: rgba(255,255,255,0.4);">Không tìm thấy mã bảo hành nào</td></tr>';
+                    const pag = document.getElementById('pagination');
+                    if (pag) pag.innerHTML = '';
                     return;
                 }
 
-                tbody.innerHTML = filtered.map((w, index) => {
+                const totalPages = Math.ceil(filtered.length / itemsPerPage);
+                if (currentPage > totalPages) currentPage = totalPages || 1;
+                const startIndex = (currentPage - 1) * itemsPerPage;
+                const paginated = filtered.slice(startIndex, startIndex + itemsPerPage);
+
+                tbody.innerHTML = paginated.map((w, i) => {
+                    const index = startIndex + i;
                     const purchaseDate = w.purchaseDate ? new Date(w.purchaseDate).toLocaleDateString('vi-VN') : 'N/A';
                     const expiryDate = w.expiryDate ? new Date(w.expiryDate).toLocaleDateString('vi-VN') : 'N/A';
                     
@@ -446,9 +472,33 @@
                     `;
                 }).join('');
 
+                const pag = document.getElementById('pagination');
+                if (pag) {
+                    if (totalPages <= 1) {
+                        pag.innerHTML = '';
+                    } else {
+                        let html = `<div class="pagination-info">Trang ${currentPage} / ${totalPages} (Tổng ${filtered.length} bảo hành)</div>`;
+                        html += `<button onclick="changePage(${currentPage - 1})" ${currentPage === 1 ? 'disabled' : ''}><i class="fa-solid fa-chevron-left"></i></button>`;
+                        for (let i = 1; i <= totalPages; i++) {
+                            if (i === 1 || i === totalPages || (i >= currentPage - 1 && i <= currentPage + 1)) {
+                                html += `<button onclick="changePage(${i})" class="${i === currentPage ? 'active' : ''}">${i}</button>`;
+                            } else if (i === currentPage - 2 || i === currentPage + 2) {
+                                html += `<span style="color: var(--admin-text-light);">...</span>`;
+                            }
+                        }
+                        html += `<button onclick="changePage(${currentPage + 1})" ${currentPage === totalPages ? 'disabled' : ''}><i class="fa-solid fa-chevron-right"></i></button>`;
+                        pag.innerHTML = html.replace(/\.\.\.<\/span><span style="color: var\(--admin-text-light\);">\.\.\./g, '...</span>');
+                    }
+                }
+
             } catch (error) {
                 tbody.innerHTML = '<tr><td colspan="8" style="text-align: center; color: #e74c3c; padding: 3rem;">Lỗi tải dữ liệu: ' + error.message + '</td></tr>';
             }
+        }
+
+        function changePage(page) {
+            currentPage = page;
+            renderWarranties();
         }
 
         function openEditModal(w) {

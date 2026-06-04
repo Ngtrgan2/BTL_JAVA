@@ -254,6 +254,7 @@
                         </tbody>
                     </table>
                 </div>
+                <div id="pagination" class="pagination"></div>
             </div>
         </main>
     </div>
@@ -268,8 +269,11 @@
     <script src="../../js/api.js"></script>
     <script>
         let allOrders = [];
+        let currentPage = 1;
+        const itemsPerPage = 10;
 
         async function loadOrders() {
+            currentPage = 1;
             const tbody = document.getElementById('orderTableBody');
             try {
                 const orders = await API.getOrders();
@@ -295,10 +299,19 @@
 
             if (filtered.length === 0) {
                 tbody.innerHTML = '<tr><td colspan="7" style="text-align: center; padding: 3rem;">Không tìm thấy đơn hàng nào</td></tr>';
+                const pag = document.getElementById('pagination');
+                if (pag) pag.innerHTML = '';
                 return;
             }
 
-            tbody.innerHTML = filtered.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)).map((o, index) => {
+            const totalPages = Math.ceil(filtered.length / itemsPerPage);
+            if (currentPage > totalPages) currentPage = totalPages || 1;
+            const startIndex = (currentPage - 1) * itemsPerPage;
+            const sortedOrders = filtered.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+            const paginated = sortedOrders.slice(startIndex, startIndex + itemsPerPage);
+
+            tbody.innerHTML = paginated.map((o, i) => {
+                const index = startIndex + i;
                 const totalAmt = o.totalAmount || o.total || 0;
                 return `
                 <tr>
@@ -330,6 +343,30 @@
                     </td>
                 </tr>
             `}).join('');
+
+            const pag = document.getElementById('pagination');
+            if (pag) {
+                if (totalPages <= 1) {
+                    pag.innerHTML = '';
+                } else {
+                    let html = `<div class="pagination-info">Trang ${currentPage} / ${totalPages} (Tổng ${filtered.length} đơn hàng)</div>`;
+                    html += `<button onclick="changePage(${currentPage - 1})" ${currentPage === 1 ? 'disabled' : ''}><i class="fa-solid fa-chevron-left"></i></button>`;
+                    for (let i = 1; i <= totalPages; i++) {
+                        if (i === 1 || i === totalPages || (i >= currentPage - 1 && i <= currentPage + 1)) {
+                            html += `<button onclick="changePage(${i})" class="${i === currentPage ? 'active' : ''}">${i}</button>`;
+                        } else if (i === currentPage - 2 || i === currentPage + 2) {
+                            html += `<span style="color: var(--admin-text-light);">...</span>`;
+                        }
+                    }
+                    html += `<button onclick="changePage(${currentPage + 1})" ${currentPage === totalPages ? 'disabled' : ''}><i class="fa-solid fa-chevron-right"></i></button>`;
+                    pag.innerHTML = html.replace(/\.\.\.<\/span><span style="color: var\(--admin-text-light\);">\.\.\./g, '...</span>');
+                }
+            }
+        }
+
+        function changePage(page) {
+            currentPage = page;
+            renderOrders(allOrders);
         }
 
         function updateStats(orders) {

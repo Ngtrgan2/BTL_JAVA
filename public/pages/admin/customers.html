@@ -94,6 +94,7 @@
                     </tbody>
                 </table>
             </div>
+            <div id="pagination" class="pagination"></div>
         </main>
     </div>
 
@@ -134,13 +135,30 @@
             });
         });
 
+        let allUsers = [];
+        let currentPage = 1;
+        const itemsPerPage = 10;
+
         async function loadUsers() {
+            currentPage = 1;
             const tbody = document.getElementById('userTableBody');
             const searchTerm = document.getElementById('searchUser').value.toLowerCase();
             
             try {
                 const users = await API.getUsers();
-                const filtered = users.filter(u => 
+                allUsers = users;
+                renderUsers();
+            } catch (error) {
+                tbody.innerHTML = '<tr><td colspan="6" style="text-align: center; color: var(--status-danger);">Lỗi: ' + error.message + '</td></tr>';
+            }
+        }
+
+        function renderUsers() {
+            const tbody = document.getElementById('userTableBody');
+            const searchTerm = document.getElementById('searchUser').value.toLowerCase();
+
+            try {
+                const filtered = allUsers.filter(u => 
                     u.fullName.toLowerCase().includes(searchTerm) || 
                     u.email.toLowerCase().includes(searchTerm) ||
                     (u.phone && u.phone.includes(searchTerm))
@@ -148,10 +166,19 @@
 
                 if (filtered.length === 0) {
                     tbody.innerHTML = '<tr><td colspan="6" style="text-align: center; padding: 3rem;">Không tìm thấy khách hàng nào</td></tr>';
+                    const pag = document.getElementById('pagination');
+                    if (pag) pag.innerHTML = '';
                     return;
                 }
 
-                tbody.innerHTML = filtered.map((u, index) => `
+                const totalPages = Math.ceil(filtered.length / itemsPerPage);
+                if (currentPage > totalPages) currentPage = totalPages || 1;
+                const startIndex = (currentPage - 1) * itemsPerPage;
+                const paginated = filtered.slice(startIndex, startIndex + itemsPerPage);
+
+                tbody.innerHTML = paginated.map((u, i) => {
+                    const index = startIndex + i;
+                    return `
                     <tr>
                         <td style="text-align: center; font-weight: bold; color: var(--admin-text-light);">${index + 1}</td>
                         <td>
@@ -176,9 +203,34 @@
                         </td>
                     </tr>
                 `).join('');
+
+                const pag = document.getElementById('pagination');
+                if (pag) {
+                    if (totalPages <= 1) {
+                        pag.innerHTML = '';
+                    } else {
+                        let html = `<div class="pagination-info">Trang ${currentPage} / ${totalPages} (Tổng ${filtered.length} khách hàng)</div>`;
+                        html += `<button onclick="changePage(${currentPage - 1})" ${currentPage === 1 ? 'disabled' : ''}><i class="fa-solid fa-chevron-left"></i></button>`;
+                        for (let i = 1; i <= totalPages; i++) {
+                            if (i === 1 || i === totalPages || (i >= currentPage - 1 && i <= currentPage + 1)) {
+                                html += `<button onclick="changePage(${i})" class="${i === currentPage ? 'active' : ''}">${i}</button>`;
+                            } else if (i === currentPage - 2 || i === currentPage + 2) {
+                                html += `<span style="color: var(--admin-text-light);">...</span>`;
+                            }
+                        }
+                        html += `<button onclick="changePage(${currentPage + 1})" ${currentPage === totalPages ? 'disabled' : ''}><i class="fa-solid fa-chevron-right"></i></button>`;
+                        pag.innerHTML = html.replace(/\.\.\.<\/span><span style="color: var\(--admin-text-light\);">\.\.\./g, '...</span>');
+                    }
+                }
+
             } catch (error) {
                 tbody.innerHTML = '<tr><td colspan="6" style="text-align: center; color: var(--status-danger);">Lỗi: ' + error.message + '</td></tr>';
             }
+        }
+
+        function changePage(page) {
+            currentPage = page;
+            renderUsers();
         }
 
         async function updateRole(id, role) {
