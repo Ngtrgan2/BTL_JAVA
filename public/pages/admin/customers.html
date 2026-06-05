@@ -164,7 +164,7 @@
     </div>
 
     <!-- Edit User Modal -->
-    <div class="modal-overlay" id="userModal">
+    <div class="modal-overlay" id="editUserModal">
         <div class="modal-content">
             <h3><i class="fa-solid fa-user-pen" style="margin-right: 8px;"></i> Chỉnh sửa Khách hàng</h3>
             <input type="hidden" id="edit-id">
@@ -194,7 +194,7 @@
     </div>
 
     <!-- Edit User Modal -->
-    <div class="modal-overlay" id="userModal">
+    <div class="modal-overlay" id="editUserModal">
         <div class="modal-content">
             <h3><i class="fa-solid fa-user-pen" style="margin-right: 8px;"></i> Chỉnh sửa Khách hàng</h3>
             <input type="hidden" id="edit-id">
@@ -236,7 +236,7 @@
         }
 
         function closeUserModal() {
-            document.getElementById('userModal').classList.remove('active');
+            document.getElementById('editUserModal').classList.remove('active');
         }
 
         async function saveUserInfo() {
