@@ -48,7 +48,8 @@ Câu trả lời của bạn:
 `;
 
         // 4. Call Gemini AI
-        const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
+        const apiKey = process.env.GEMINI_API_KEY || 'AIzaSyBi0VyrnqnyAAUEA55UgJ0ya2iu1dkjvk0';
+        const ai = new GoogleGenAI({ apiKey: apiKey });
         const response = await ai.models.generateContent({
             model: 'gemini-2.5-flash',
             contents: prompt
