@@ -544,6 +544,8 @@
             if (userInfo.role === 'admin') {
                 if (revNav) revNav.style.display = 'flex';
                 if (custNav) custNav.style.display = 'flex';
+                const setNav = document.getElementById('nav-settings');
+                if(setNav) setNav.style.display = 'flex';
             }
 
             // User Info

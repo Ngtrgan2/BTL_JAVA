@@ -275,6 +275,8 @@
             // Show admin-only nav items
             const custNav = document.getElementById('nav-customers');
             if (custNav) custNav.style.display = 'flex';
+                const setNav = document.getElementById('nav-settings');
+                if(setNav) setNav.style.display = 'flex';
 
             document.querySelectorAll('.logout-btn').forEach(btn => {
                 btn.addEventListener('click', (e) => {

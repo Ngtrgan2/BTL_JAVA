@@ -321,6 +321,8 @@
             }
             if (userInfo.role === 'admin' && custNav) {
                 custNav.style.display = 'flex';
+                const setNav = document.getElementById('nav-settings');
+                if(setNav) setNav.style.display = 'flex';
             }
 
             // Set Active Menu

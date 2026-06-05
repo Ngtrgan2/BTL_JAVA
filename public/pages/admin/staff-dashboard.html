@@ -298,6 +298,8 @@
             if (userInfo.role === 'admin') {
                 document.getElementById('nav-revenue').style.display = 'flex';
                 document.getElementById('nav-customers').style.display = 'flex';
+                const setNav = document.getElementById('nav-settings');
+                if(setNav) setNav.style.display = 'flex';
                 document.getElementById('nav-warranties').style.display = 'flex';
                 document.getElementById('nav-discounts').style.display = 'flex';
                 document.getElementById('sidebar-role-text').textContent = 'Hệ Thống Quản Trị';

@@ -776,6 +776,8 @@
             // Sidebar Role Sync
             document.getElementById('sidebar-role-text').textContent = 'Quản Trị Hệ Thống';
             document.getElementById('nav-customers').style.display = 'flex';
+                const setNav = document.getElementById('nav-settings');
+                if(setNav) setNav.style.display = 'flex';
 
             // Sidebar User Footer
             const avatarUrl = (userInfo.avatar && String(userInfo.avatar).trim())
