@@ -24,6 +24,25 @@ const chatResponse = async (req, res) => {
             reply = 'Sản phẩm tại An LUXURY được bảo hành làm mới, đánh bóng trọn đời. Chính sách đổi trả linh hoạt trong vòng 7 ngày nếu có lỗi sản xuất ạ.';
         } else if (msg.includes('đo size') || msg.includes('kích cỡ')) {
             reply = 'Dạ, trong phần chi tiết mỗi sản phẩm đều có bảng hướng dẫn đo size. Hoặc anh/chị có thể cho em biết chiều cao, cân nặng để em tư vấn size tương đối nhé.';
+        } else if (msg.includes('mã giảm giá') || msg.includes('giảm giá') || msg.includes('khuyến mãi') || msg.includes('ưu đãi') || msg.includes('voucher')) {
+            const now = new Date();
+            const discountsRaw = await db.collection('discounts').find({ isActive: true }).toArray();
+            const activeDiscounts = discountsRaw.filter(d => {
+                if (d.expiryDate && new Date(d.expiryDate) < now) return false;
+                if (d.maxUsage && d.usedCount >= d.maxUsage) return false;
+                return true;
+            });
+
+            if (activeDiscounts.length > 0) {
+                reply = 'Dạ, hiện tại An LUXURY đang có các mã giảm giá siêu hot sau ạ:\n' + 
+                    activeDiscounts.map(d => {
+                        const val = d.discountType === 'percent' ? `${d.discountValue}%` : `${Number(d.discountValue).toLocaleString('vi-VN')} ₫`;
+                        return `- Nhập mã "${d.code}": Giảm ngay ${val}`;
+                    }).join('\n') + 
+                    '\nAnh/chị lưu lại mã này và nhập ở bước Thanh toán nhé!';
+            } else {
+                reply = 'Dạ, hiện tại các chương trình ưu đãi vừa kết thúc. Anh/chị hãy theo dõi website để đón chờ các mã giảm giá đợt tới nhé!';
+            }
         }
 
         // 2. Product Search (Dynamic)
