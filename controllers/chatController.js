@@ -48,7 +48,10 @@ Câu trả lời của bạn:
 `;
 
         // 4. Call Gemini AI
-        const apiKey = process.env.GEMINI_API_KEY || 'AIzaSyBi0VyrnqnyAAUEA55UgJ0ya2iu1dkjvk0';
+        const apiKey = process.env.GEMINI_API_KEY;
+        if (!apiKey) {
+            throw new Error("Missing GEMINI_API_KEY in environment variables.");
+        }
         const ai = new GoogleGenAI({ apiKey: apiKey });
         const response = await ai.models.generateContent({
             model: 'gemini-2.5-flash',
