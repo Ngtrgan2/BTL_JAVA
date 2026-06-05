@@ -39,6 +39,16 @@
         .btn-modal-save { background: var(--gold-gradient); color: #000; }
         .badge { padding: 0.3rem 0.6rem; border-radius: 4px; font-size: 0.75rem; font-weight: 600; margin-left: 10px; }
         .badge-banned { background: rgba(231, 76, 60, 0.1); color: #e74c3c; border: 1px solid rgba(231, 76, 60, 0.3); }
+    
+        .active-filter { border: 1px solid var(--gold-primary) !important; box-shadow: 0 0 15px rgba(212, 175, 55, 0.2); }
+        .stat-card { cursor: pointer; transition: all 0.3s ease; border: 1px solid transparent; }
+        .stat-card:hover { transform: translateY(-3px); }
+        
+        /* Preview Modal Table */
+        .preview-table { width: 100%; border-collapse: collapse; margin-top: 15px; font-size: 0.85rem; color: #ddd; }
+        .preview-table th, .preview-table td { padding: 8px; border: 1px solid rgba(255,255,255,0.1); text-align: left; }
+        .preview-table th { background: rgba(255,255,255,0.05); color: var(--gold-primary); }
+
     </style>
 </head>
 <body>
@@ -105,26 +115,26 @@
             <div class="page-header">
                 <h1 class="page-title">Quản Lý Khách Hàng</h1>
                 <div class="header-actions">
-                    <button class="btn-admin" style="background: var(--admin-surface); border: 1px solid var(--admin-border); color: #fff;" onclick="exportToExcel()"><i class="fa-solid fa-file-excel" style="color: #2ecc71; margin-right: 8px;"></i> Xuất Excel</button>
+                    <button class="btn-admin" style="background: var(--admin-surface); border: 1px solid var(--admin-border); color: #fff;" onclick="previewExcel()"><i class="fa-solid fa-file-excel" style="color: #2ecc71; margin-right: 8px;"></i> Xuất Excel</button>
                 </div>
             </div>
 
             <div class="stat-grid">
-                <div class="stat-card">
+                <div class="stat-card active-filter" onclick="setFilter('all', this)" id="filter-all">
                     <div class="stat-icon"><i class="fa-solid fa-users"></i></div>
                     <div class="stat-info">
                         <h3>Tổng số tài khoản</h3>
                         <div class="stat-value" id="stat-total">0</div>
                     </div>
                 </div>
-                <div class="stat-card">
+                <div class="stat-card" onclick="setFilter('loyal', this)" id="filter-loyal">
                     <div class="stat-icon" style="color: #2ecc71;"><i class="fa-solid fa-user-check"></i></div>
                     <div class="stat-info">
                         <h3>Khách hàng thân thiết</h3>
                         <div class="stat-value" id="stat-loyal">0</div>
                     </div>
                 </div>
-                <div class="stat-card">
+                <div class="stat-card" onclick="setFilter('banned', this)" id="filter-banned">
                     <div class="stat-icon" style="color: #e74c3c;"><i class="fa-solid fa-user-lock"></i></div>
                     <div class="stat-info">
                         <h3>Tài khoản bị khóa</h3>
@@ -255,8 +265,32 @@
             }
         }
 
-        function exportToExcel() {
-            let csvContent = "data:text/csv;charset=utf-8,\uFEFF";
+        function previewExcel() {
+            const tbody = document.getElementById('previewExcelBody');
+            if(allUsers.length === 0) {
+                AnLuxuryNotification.alert('Không có dữ liệu để xuất!', 'Thông báo', 'warning');
+                return;
+            }
+            // Generate up to 10 rows for preview
+            const previewUsers = allUsers.slice(0, 10);
+            tbody.innerHTML = previewUsers.map(u => `
+                <tr>
+                    <td>${u.fullName}</td>
+                    <td>${u.email}</td>
+                    <td>${u.phone || ''}</td>
+                    <td>${u.role}</td>
+                    <td><span class="badge ${u.isBanned ? 'badge-banned' : ''}">${u.isBanned ? 'Đã khóa' : 'Hoạt động'}</span></td>
+                </tr>
+            `).join('');
+            if(allUsers.length > 10) {
+                tbody.innerHTML += `<tr><td colspan="5" style="text-align: center; color: #888; font-style: italic;">... và ${allUsers.length - 10} người dùng khác (sẽ được xuất đầy đủ)</td></tr>`;
+            }
+            document.getElementById('excelPreviewModal').classList.add('active');
+        }
+
+        function confirmExportExcel() {
+            document.getElementById('excelPreviewModal').classList.remove('active');
+            let csvContent = "data:text/csv;charset=utf-8,﻿";
             csvContent += "ID,Họ tên,Email,SĐT,Vai trò,Ngày đăng ký,Trạng thái\n";
             
             allUsers.forEach(u => {
@@ -276,10 +310,11 @@
             const encodedUri = encodeURI(csvContent);
             const link = document.createElement("a");
             link.setAttribute("href", encodedUri);
-            link.setAttribute("download", `khach_hang_${new Date().toISOString().split('T')[0]}.csv`);
+            link.setAttribute("download", "Danh_sach_khach_hang.csv");
             document.body.appendChild(link);
             link.click();
             document.body.removeChild(link);
+            AnLuxuryNotification.alert('Đã xuất file Excel thành công!', 'Thành công', 'success');
         }
     </script>
     <script>
@@ -325,6 +360,16 @@
         });
 
         let allUsers = [];
+
+        let currentFilter = 'all';
+        function setFilter(filterType, el) {
+            currentFilter = filterType;
+            document.querySelectorAll('.stat-card').forEach(card => card.classList.remove('active-filter'));
+            if(el) el.classList.add('active-filter');
+            currentPage = 1;
+            renderUsers();
+        }
+
         let currentPage = 1;
         const itemsPerPage = 10;
 
@@ -451,5 +496,32 @@
         }
     </script>
     <script src="../../js/toast.js"></script>
+
+    <!-- Excel Preview Modal -->
+    <div class="modal-overlay" id="excelPreviewModal">
+        <div class="modal-content" style="max-width: 800px; width: 95%;">
+            <h3><i class="fa-solid fa-file-excel" style="margin-right: 8px; color: #2ecc71;"></i> Xem trước dữ liệu xuất Excel</h3>
+            <div style="max-height: 400px; overflow-y: auto; margin: 15px 0;">
+                <table class="preview-table">
+                    <thead>
+                        <tr>
+                            <th>Họ tên</th>
+                            <th>Email</th>
+                            <th>SĐT</th>
+                            <th>Vai trò</th>
+                            <th>Trạng thái</th>
+                        </tr>
+                    </thead>
+                    <tbody id="previewExcelBody">
+                    </tbody>
+                </table>
+            </div>
+            <div class="modal-actions">
+                <button class="btn-modal btn-modal-cancel" onclick="document.getElementById('excelPreviewModal').classList.remove('active')">Hủy</button>
+                <button class="btn-modal btn-modal-save" onclick="confirmExportExcel()"><i class="fa-solid fa-download" style="margin-right: 5px;"></i> Xác nhận Xuất</button>
+            </div>
+        </div>
+    </div>
+
 </body>
 </html>
