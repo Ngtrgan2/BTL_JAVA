@@ -12,7 +12,7 @@ const defaultSettings = {
     zalo_url: 'https://zalo.me/0392326230',
     banner_main_title: 'ĐẲNG CẤP TRANG SỨC THƯỢNG LƯU',
     banner_main_subtitle: 'Tuyệt tác trang sức thiết kế độc quyền, nâng tầm vẻ đẹp và sự quý phái của bạn.',
-    banner_main_image: '../images/products/nhan-kim-cuong-2.jpg'
+    banner_main_image: '/images/products/nhan-kim-cuong-2.jpg'
 };
 
 const getSettings = async (req, res) => {
