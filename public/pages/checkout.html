@@ -324,9 +324,9 @@
                 <div class="checkout-section">
                     <h2 class="checkout-title">3. Phương thức thanh toán</h2>
 
-                    <div class="payment-method active" id="pm-transfer">
+                    <div class="payment-method" id="pm-transfer">
                         <div class="payment-header" onclick="selectPayment('transfer')">
-                            <input type="radio" name="payment" id="transfer" checked>
+                            <input type="radio" name="payment" id="transfer">
                             <label for="transfer" class="payment-label">
                                 Chuyển khoản ngân hàng (Chuyển khoản trước 100%)
                                 <i class="fa-solid fa-money-bill-transfer"
@@ -614,7 +614,13 @@
             const district = document.getElementById('checkout-district').value;
             const address = document.getElementById('checkout-address').value;
             const note = document.getElementById('checkout-note').value;
-            const paymentMethod = document.getElementById('transfer').checked ? 'transfer' : 'cod';
+            const isTransfer = document.getElementById('transfer').checked;
+            const isCod = document.getElementById('cod').checked;
+            if (!isTransfer && !isCod) {
+                alert('Vui lòng chọn phương thức thanh toán!');
+                return;
+            }
+            const paymentMethod = isTransfer ? 'transfer' : 'cod';
 
             // Validate
             if (!name || !email || !phone || !city || !district || !address) {
