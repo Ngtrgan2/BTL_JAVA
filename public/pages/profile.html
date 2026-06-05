@@ -1,9 +1,9 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Há»“ sÆ¡ cá»§a tÃ´i | An LUXURY</title>
+    <title>Hồ sơ của tôi | An LUXURY</title>
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -223,17 +223,17 @@
                 <a href="index.html">An LUXURY</a>
             </div>
             <nav class="nav-links">
-                <a href="index.html">Trang chá»§</a>
-                <a href="collection.html">Bá»™ sÆ°u táº­p</a>
-                <a href="about.html">Vá» chÃºng tÃ´i</a>
-                <a href="index.html#promises">Cam káº¿t</a>
+                <a href="index.html">Trang chủ</a>
+                <a href="collection.html">Bộ sưu tập</a>
+                <a href="about.html">Về chúng tôi</a>
+                <a href="index.html#promises">Cam kết</a>
             </nav>
             <div class="nav-icons">
                 <div class="search-container" id="search-container">
                     <i class="fa-solid fa-search search-icon-btn" id="search-icon"></i>
-                    <input type="text" class="search-input" id="search-input" placeholder="TÃ¬m kiáº¿m trang sá»©c...">
+                    <input type="text" class="search-input" id="search-input" placeholder="Tìm kiếm trang sức...">
                 </div>
-                <div class="nav-icon" title="TÃ i khoáº£n"><a href="profile.html"><i class="fa-regular fa-user"></i></a>
+                <div class="nav-icon" title="Tài khoản"><a href="profile.html"><i class="fa-regular fa-user"></i></a>
                 </div>
                 <div class="nav-icon">
                     <a href="cart.html"><i class="fa-solid fa-cart-shopping"></i></a>
@@ -241,7 +241,7 @@
                 </div>
                 <!-- Theme Toggle Button -->
 
-                                <button id="theme-toggle" class="theme-toggle-btn" title="Chuyá»ƒn Ä‘á»•i Light/Dark mode">
+                                <button id="theme-toggle" class="theme-toggle-btn" title="Chuyển đổi Light/Dark mode">
 
                                     <i class="fa-solid fa-sun theme-icon-light"></i>
 
@@ -277,31 +277,31 @@
                 <div class="profile-avatar-wrap">
                     <div class="profile-avatar" id="profile-avatar" onclick="document.getElementById('avatar-input').click()">
                         ?
-                        <div class="profile-avatar-overlay">Thay Ä‘á»•i</div>
+                        <div class="profile-avatar-overlay">Thay đổi</div>
                     </div>
                     <input type="file" id="avatar-input" hidden accept="image/*" onchange="handleAvatarChange(this)">
-                    <h3 class="profile-name" id="profile-name">Äang táº£i...</h3>
-                    <p class="profile-tier" id="profile-tier"><i class="fa-solid fa-crown" style="margin-right: 5px;"></i> KhÃ¡ch hÃ ng ThÃ¢n thiáº¿t</p>
+                    <h3 class="profile-name" id="profile-name">Đang tải...</h3>
+                    <p class="profile-tier" id="profile-tier"><i class="fa-solid fa-crown" style="margin-right: 5px;"></i> Khách hàng Thân thiết</p>
                 </div>
 
                 <ul class="profile-menu">
                     <li class="profile-menu-item active" onclick="switchProfileTab('info', this)">
-                        <i class="fa-regular fa-user"></i> ThÃ´ng tin tÃ i khoáº£n
+                        <i class="fa-regular fa-user"></i> Thông tin tài khoản
                     </li>
                     <li class="profile-menu-item" onclick="switchProfileTab('orders', this)">
-                        <i class="fa-solid fa-cart-flatbed"></i> ÄÆ¡n hÃ ng cá»§a tÃ´i
+                        <i class="fa-solid fa-cart-flatbed"></i> Đơn hàng của tôi
                     </li>
                     <li class="profile-menu-item" onclick="switchProfileTab('bookings', this)">
-                        <i class="fa-regular fa-calendar-check"></i> Lá»‹ch háº¹n tÆ° váº¥n
+                        <i class="fa-regular fa-calendar-check"></i> Lịch hẹn tư vấn
                     </li>
                     <li class="profile-menu-item" onclick="switchProfileTab('likes', this)">
-                        <i class="fa-solid fa-heart"></i> Sáº£n pháº©m yÃªu thÃ­ch
+                        <i class="fa-solid fa-heart"></i> Sản phẩm yêu thích
                     </li>
                     <li class="profile-menu-item" onclick="switchProfileTab('warranty', this)">
-                        <i class="fa-solid fa-shield-halved"></i> Tra cá»©u báº£o hÃ nh
+                        <i class="fa-solid fa-shield-halved"></i> Tra cứu bảo hành
                     </li>
                     <li class="profile-menu-item" style="margin-top: 2rem; color: #e74c3c;" id="profile-logout-btn">
-                        <i class="fa-solid fa-arrow-right-from-bracket"></i> ÄÄƒng xuáº¥t
+                        <i class="fa-solid fa-arrow-right-from-bracket"></i> Đăng xuất
                     </li>
                 </ul>
             </aside>
@@ -311,12 +311,12 @@
                 
                 <!-- Content: Account Info -->
                 <div id="tab-info" class="profile-content-area active">
-                    <h2 class="profile-section-title">ThÃ´ng Tin TÃ i Khoáº£n</h2>
+                    <h2 class="profile-section-title">Thông Tin Tài Khoản</h2>
                     
                     <form>
                         <div class="profile-form-grid">
                             <div class="form-group">
-                                <label class="form-label">Há» vÃ  tÃªn</label>
+                                <label class="form-label">Họ và tên</label>
                                 <input type="text" class="form-control" id="profile-fullname">
                             </div>
                             <div class="form-group">
@@ -324,83 +324,83 @@
                                 <input type="email" class="form-control" disabled id="profile-email">
                             </div>
                             <div class="form-group">
-                                <label class="form-label">Sá»‘ Ä‘iá»‡n thoáº¡i</label>
+                                <label class="form-label">Số điện thoại</label>
                                 <input type="tel" class="form-control" id="profile-phone">
                             </div>
                             <div class="form-group">
-                                <label class="form-label">NgÃ y sinh</label>
+                                <label class="form-label">Ngày sinh</label>
                                 <input type="date" class="form-control" id="profile-birthday">
                             </div>
                         </div>
                         
                         <div class="form-group">
-                            <label class="form-label">Äá»‹a chá»‰ nháº­n hÃ ng máº·c Ä‘á»‹nh</label>
-                            <textarea class="form-control" id="profile-address" rows="2" placeholder="Nháº­p Ä‘á»‹a chá»‰..."></textarea>
+                            <label class="form-label">Địa chỉ nhận hàng mặc định</label>
+                            <textarea class="form-control" id="profile-address" rows="2" placeholder="Nhập địa chỉ..."></textarea>
                         </div>
                         
-                        <button type="button" class="btn btn-primary" onclick="saveProfile()" style="padding: 0.8rem 2rem;">LÆ°u thay Ä‘á»•i</button>
+                        <button type="button" class="btn btn-primary" onclick="saveProfile()" style="padding: 0.8rem 2rem;">Lưu thay đổi</button>
                     </form>
 
                     <div style="margin-top: 4rem; padding-top: 2rem; border-top: 1px solid var(--border-light);">
-                        <h3 style="font-family: var(--font-body); font-size: 1.1rem; margin-bottom: 1rem;">Äá»•i máº­t kháº©u</h3>
+                        <h3 style="font-family: var(--font-body); font-size: 1.1rem; margin-bottom: 1rem;">Đổi mật khẩu</h3>
                         <div style="max-width: 400px;">
                             <div class="form-group">
-                                <input type="password" class="form-control" id="profile-new-password" placeholder="Máº­t kháº©u má»›i">
+                                <input type="password" class="form-control" id="profile-new-password" placeholder="Mật khẩu mới">
                             </div>
-                            <button class="btn btn-outline" onclick="saveProfile(true)" style="padding: 0.6rem 1.5rem;">Cáº­p nháº­t máº­t kháº©u</button>
+                            <button class="btn btn-outline" onclick="saveProfile(true)" style="padding: 0.6rem 1.5rem;">Cập nhật mật khẩu</button>
                         </div>
                     </div>
                 </div>
 
                 <!-- Content: Orders (dynamic) -->
                 <div id="tab-orders" class="profile-content-area">
-                    <h2 class="profile-section-title">Lá»‹ch Sá»­ ÄÆ¡n HÃ ng</h2>
+                    <h2 class="profile-section-title">Lịch Sử Đơn Hàng</h2>
                     <div id="orders-container">
                         <div class="empty-state">
                             <i class="fa-solid fa-spinner fa-spin"></i>
-                            <p>Äang táº£i Ä‘Æ¡n hÃ ng...</p>
+                            <p>Đang tải đơn hàng...</p>
                         </div>
                     </div>
                 </div>
 
                 <!-- Content: Bookings (dynamic) -->
                 <div id="tab-bookings" class="profile-content-area">
-                    <h2 class="profile-section-title">Lá»‹ch Háº¹n TÆ° Váº¥n VIP</h2>
+                    <h2 class="profile-section-title">Lịch Hẹn Tư Vấn VIP</h2>
                     <div id="bookings-container">
                         <div class="empty-state">
                             <i class="fa-solid fa-spinner fa-spin"></i>
-                            <p>Äang táº£i lá»‹ch háº¹n...</p>
+                            <p>Đang tải lịch hẹn...</p>
                         </div>
                     </div>
                 </div>
 
                 <!-- Content: Liked Products -->
                 <div id="tab-likes" class="profile-content-area">
-                    <h2 class="profile-section-title">Sáº£n Pháº©m YÃªu ThÃ­ch</h2>
+                    <h2 class="profile-section-title">Sản Phẩm Yêu Thích</h2>
                     <div id="likes-container" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1.5rem;">
                         <div class="empty-state" style="grid-column: 1/-1;">
                             <i class="fa-solid fa-spinner fa-spin"></i>
-                            <p>Äang táº£i...</p>
+                            <p>Đang tải...</p>
                         </div>
                     </div>
                 </div>
 
                 <!-- Content: Warranty -->
                 <div id="tab-warranty" class="profile-content-area">
-                    <h2 class="profile-section-title">Tra Cá»©u Báº£o HÃ nh</h2>
+                    <h2 class="profile-section-title">Tra Cứu Bảo Hành</h2>
                     <div style="max-width: 600px;">
                         <div class="form-group">
-                            <label class="form-label">Nháº­p mÃ£ báº£o hÃ nh (Ghi trÃªn tháº» báº£o hÃ nh/GIA)</label>
+                            <label class="form-label">Nhập mã bảo hành (Ghi trên thẻ bảo hành/GIA)</label>
                             <div style="display: flex; gap: 0.5rem;">
                                 <input type="text" id="warranty-input" class="form-control" placeholder="VD: AL-123456" style="flex: 1;">
-                                <button class="btn btn-primary" onclick="lookupWarranty()" style="padding: 0.8rem 1.5rem;">Tra cá»©u</button>
+                                <button class="btn btn-primary" onclick="lookupWarranty()" style="padding: 0.8rem 1.5rem;">Tra cứu</button>
                             </div>
                         </div>
-                        <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 1rem;">MÃ£ báº£o hÃ nh Ä‘Æ°á»£c ghi trÃªn giáº¥y chá»©ng nháº­n kÃ¨m theo sáº£n pháº©m khi mua hÃ ng táº¡i An LUXURY.</p>
+                        <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 1rem;">Mã bảo hành được ghi trên giấy chứng nhận kèm theo sản phẩm khi mua hàng tại An LUXURY.</p>
                         
                         <!-- Result Area -->
                         <div id="warranty-result" style="margin-top: 3rem; display: none;">
-                            <!-- Sáº½ Ä‘Æ°á»£c render bá»Ÿi JS -->
+                            <!-- Sẽ được render bởi JS -->
                         </div>
                     </div>
                 </div>
@@ -414,7 +414,7 @@
     <script src="../js/auth.js"></script>
     <script>
         function formatPrice(price) {
-            return Number(price).toLocaleString('vi-VN') + ' â‚«';
+            return Number(price).toLocaleString('vi-VN') + ' ₫';
         }
 
         function formatDate(dateStr) {
@@ -425,12 +425,12 @@
 
         function getStatusBadge(status) {
             const map = {
-                'pending': '<span class="status-badge status-pending">Äang xá»­ lÃ½</span>',
-                'confirmed': '<span class="status-badge status-info">ÄÃ£ xÃ¡c nháº­n</span>',
-                'shipping': '<span class="status-badge status-info">Äang giao hÃ ng</span>',
-                'completed': '<span class="status-badge status-success">HoÃ n thÃ nh</span>',
-                'done': '<span class="status-badge status-success">HoÃ n thÃ nh</span>',
-                'cancelled': '<span class="status-badge status-cancelled">ÄÃ£ há»§y</span>'
+                'pending': '<span class="status-badge status-pending">Đang xử lý</span>',
+                'confirmed': '<span class="status-badge status-info">Đã xác nhận</span>',
+                'shipping': '<span class="status-badge status-info">Đang giao hàng</span>',
+                'completed': '<span class="status-badge status-success">Hoàn thành</span>',
+                'done': '<span class="status-badge status-success">Hoàn thành</span>',
+                'cancelled': '<span class="status-badge status-cancelled">Đã hủy</span>'
             };
             return map[status] || '<span class="status-badge status-pending">' + status + '</span>';
         }
@@ -445,8 +445,8 @@
                     container.innerHTML = `
                         <div class="empty-state" style="grid-column: 1/-1;">
                             <i class="fa-regular fa-heart"></i>
-                            <p>Báº¡n chÆ°a yÃªu thÃ­ch sáº£n pháº©m nÃ o.</p>
-                            <a href="collection.html" class="btn btn-primary" style="padding: 0.8rem 1.5rem;">KhÃ¡m phÃ¡ ngay</a>
+                            <p>Bạn chưa yêu thích sản phẩm nào.</p>
+                            <a href="collection.html" class="btn btn-primary" style="padding: 0.8rem 1.5rem;">Khám phá ngay</a>
                         </div>
                     `;
                     return;
@@ -471,7 +471,7 @@
                 container.innerHTML = `
                     <div class="empty-state" style="grid-column: 1/-1;">
                         <i class="fa-solid fa-triangle-exclamation"></i>
-                        <p>Lá»—i táº£i sáº£n pháº©m yÃªu thÃ­ch.</p>
+                        <p>Lỗi tải sản phẩm yêu thích.</p>
                     </div>
                 `;
             }
@@ -484,13 +484,13 @@
             document.getElementById('tab-' + tabId).classList.add('active');
             element.classList.add('active');
 
-            // Load data khi chuyá»ƒn tab
+            // Load data khi chuyển tab
             if (tabId === 'orders') loadOrders();
             if (tabId === 'bookings') loadBookings();
             if (tabId === 'likes') loadLikedProducts();
         }
 
-        // Load Ä‘Æ¡n hÃ ng tá»« API
+        // Load đơn hàng từ API
         async function loadOrders() {
             const container = document.getElementById('orders-container');
             const currentUser = JSON.parse(localStorage.getItem('userInfo'));
@@ -508,14 +508,14 @@
                     container.innerHTML = `
                         <div class="empty-state">
                             <i class="fa-solid fa-box-open"></i>
-                            <p>Báº¡n chÆ°a cÃ³ Ä‘Æ¡n hÃ ng nÃ o.</p>
-                            <a href="collection.html" class="btn btn-primary" style="padding: 0.8rem 1.5rem;">Mua sáº¯m ngay</a>
+                            <p>Bạn chưa có đơn hàng nào.</p>
+                            <a href="collection.html" class="btn btn-primary" style="padding: 0.8rem 1.5rem;">Mua sắm ngay</a>
                         </div>
                     `;
                     return;
                 }
 
-                // Sáº¯p xáº¿p má»›i nháº¥t trÆ°á»›c
+                // Sắp xếp mới nhất trước
                 orders.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
 
                 container.innerHTML = orders.map((order, index) => {
@@ -528,13 +528,13 @@
                             const imgSrc = item.image ? '..' + item.image : '../images/product-ring.png';
                             return `
                                 <div class="order-item">
-                                    <img src="${imgSrc}" alt="${item.name || 'Sáº£n pháº©m'}" class="order-item-img">
+                                    <img src="${imgSrc}" alt="${item.name || 'Sản phẩm'}" class="order-item-img">
                                     <div>
-                                        <h4 style="font-size: 1rem; margin-bottom: 0.2rem;">${item.name || 'Sáº£n pháº©m'}</h4>
+                                        <h4 style="font-size: 1rem; margin-bottom: 0.2rem;">${item.name || 'Sản phẩm'}</h4>
                                         <p style="color: var(--text-secondary); font-size: 0.85rem;">
                                             ${item.material || ''}${item.material && item.size ? ' | Size ' + item.size : (item.size ? 'Size ' + item.size : '')}
                                         </p>
-                                        <p style="color: var(--text-secondary); font-size: 0.85rem;">Sá»‘ lÆ°á»£ng: ${item.quantity || 1}</p>
+                                        <p style="color: var(--text-secondary); font-size: 0.85rem;">Số lượng: ${item.quantity || 1}</p>
                                     </div>
                                     <div style="margin-left: auto; font-weight: 500; white-space: nowrap;">${formatPrice(item.price * (item.quantity || 1))}</div>
                                 </div>
@@ -548,7 +548,7 @@
                         const deposit = Math.round(order.totalAmount * 0.1);
                         paymentHtml = `
                             <div class="order-total-row">
-                                <span style="color: var(--text-secondary);">Thanh toÃ¡n Ä‘á»£t 1 (Cá»c COD 10%):</span>
+                                <span style="color: var(--text-secondary);">Thanh toán đợt 1 (Cọc COD 10%):</span>
                                 <span>${formatPrice(deposit)}</span>
                             </div>
                         `;
@@ -558,7 +558,7 @@
                     const invoiceBtn = (order.status === 'completed' || order.status === 'done') 
                         ? `<div style="margin-top: 1.5rem; text-align: right;">
                              <a href="invoice.html?id=${order._id}" class="btn btn-outline" style="font-size: 0.85rem; padding: 0.5rem 1rem;">
-                                <i class="fa-solid fa-file-invoice" style="margin-right: 5px;"></i> Xem Chá»©ng nháº­n & HÃ³a Ä‘Æ¡n
+                                <i class="fa-solid fa-file-invoice" style="margin-right: 5px;"></i> Xem Chứng nhận & Hóa đơn
                              </a>
                            </div>` 
                         : '';
@@ -567,8 +567,8 @@
                         <div class="history-card">
                             <div class="history-header">
                                 <div>
-                                    <div class="history-id">ÄÆ¡n hÃ ng #OD-${orderId}</div>
-                                    <div class="history-date">NgÃ y Ä‘áº·t: ${formatDate(order.createdAt)}</div>
+                                    <div class="history-id">Đơn hàng #OD-${orderId}</div>
+                                    <div class="history-date">Ngày đặt: ${formatDate(order.createdAt)}</div>
                                 </div>
                                 ${getStatusBadge(order.status)}
                             </div>
@@ -578,7 +578,7 @@
                                 </div>
                                 ${paymentHtml}
                                 <div class="order-total-row" style="${paymentHtml ? 'border-top: none; padding-top: 0.5rem;' : ''}">
-                                    <span style="color: var(--text-secondary);">Tá»•ng giÃ¡ trá»‹ Ä‘Æ¡n hÃ ng:</span>
+                                    <span style="color: var(--text-secondary);">Tổng giá trị đơn hàng:</span>
                                     <span style="color: var(--gold-primary); font-weight: bold;">${formatPrice(totalAmount)}</span>
                                 </div>
                                 ${order.address ? `<p style="color: var(--text-muted); font-size: 0.85rem; margin-top: 1rem;"><i class="fa-solid fa-location-dot" style="margin-right: 5px;"></i> ${order.address}</p>` : ''}
@@ -589,18 +589,18 @@
                 }).join('');
 
             } catch (error) {
-                console.error('Lá»—i load Ä‘Æ¡n hÃ ng:', error);
+                console.error('Lỗi load đơn hàng:', error);
                 container.innerHTML = `
                     <div class="empty-state">
                         <i class="fa-solid fa-box-open"></i>
-                        <p>Báº¡n chÆ°a cÃ³ Ä‘Æ¡n hÃ ng nÃ o.</p>
-                        <a href="collection.html" class="btn btn-primary" style="padding: 0.8rem 1.5rem;">Mua sáº¯m ngay</a>
+                        <p>Bạn chưa có đơn hàng nào.</p>
+                        <a href="collection.html" class="btn btn-primary" style="padding: 0.8rem 1.5rem;">Mua sắm ngay</a>
                     </div>
                 `;
             }
         }
 
-        // Load lá»‹ch háº¹n tá»« API
+        // Load lịch hẹn từ API
         async function loadBookings() {
             const container = document.getElementById('bookings-container');
             const currentUser = JSON.parse(localStorage.getItem('userInfo'));
@@ -618,8 +618,8 @@
                     container.innerHTML = `
                         <div class="empty-state">
                             <i class="fa-regular fa-calendar"></i>
-                            <p>Báº¡n chÆ°a cÃ³ lá»‹ch háº¹n nÃ o.</p>
-                            <a href="booking.html" class="btn btn-primary" style="padding: 0.8rem 1.5rem;">Äáº·t lá»‹ch háº¹n</a>
+                            <p>Bạn chưa có lịch hẹn nào.</p>
+                            <a href="booking.html" class="btn btn-primary" style="padding: 0.8rem 1.5rem;">Đặt lịch hẹn</a>
                         </div>
                     `;
                     return;
@@ -631,32 +631,32 @@
                     const bookingId = booking._id ? booking._id.toString().slice(-4).toUpperCase() : (index + 1);
                     
                     const categoryLabels = {
-                        'nhan': 'Nháº«n',
-                        'vong-tay': 'VÃ²ng tay',
-                        'bong-tai': 'BÃ´ng tai',
-                        'day-chuyen': 'DÃ¢y chuyá»n',
-                        'tu-van': 'TÆ° váº¥n chung'
+                        'nhan': 'Nhẫn',
+                        'vong-tay': 'Vòng tay',
+                        'bong-tai': 'Bông tai',
+                        'day-chuyen': 'Dây chuyền',
+                        'tu-van': 'Tư vấn chung'
                     };
 
                     return `
                         <div class="history-card">
                             <div class="history-header">
                                 <div>
-                                    <div class="history-id">${booking.category ? categoryLabels[booking.category] || booking.category : 'Lá»‹ch háº¹n tÆ° váº¥n mua sáº¯m'}</div>
-                                    <div class="history-date">MÃ£ lá»‹ch: BK-${bookingId}</div>
+                                    <div class="history-id">${booking.category ? categoryLabels[booking.category] || booking.category : 'Lịch hẹn tư vấn mua sắm'}</div>
+                                    <div class="history-date">Mã lịch: BK-${bookingId}</div>
                                 </div>
                                 ${getStatusBadge(booking.status)}
                             </div>
                             <div class="history-body">
                                 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
                                     <div>
-                                        <p style="color: var(--text-secondary); margin-bottom: 0.3rem; font-size: 0.9rem;">Thá»i gian háº¹n:</p>
+                                        <p style="color: var(--text-secondary); margin-bottom: 0.3rem; font-size: 0.9rem;">Thời gian hẹn:</p>
                                         <p style="font-weight: 500; font-size: 1.1rem; color: var(--gold-light);">
-                                            ${booking.time || 'N/A'} | NgÃ y ${booking.date || 'N/A'}
+                                            ${booking.time || 'N/A'} | Ngày ${booking.date || 'N/A'}
                                         </p>
                                     </div>
                                     <div>
-                                        <p style="color: var(--text-secondary); margin-bottom: 0.3rem; font-size: 0.9rem;">KhÃ¡ch hÃ ng:</p>
+                                        <p style="color: var(--text-secondary); margin-bottom: 0.3rem; font-size: 0.9rem;">Khách hàng:</p>
                                         <p style="font-weight: 500;">${booking.customerName || 'N/A'}</p>
                                         <p style="color: var(--text-muted); font-size: 0.85rem;">${booking.phone || ''}</p>
                                     </div>
@@ -668,12 +668,12 @@
                 }).join('');
 
             } catch (error) {
-                console.error('Lá»—i load lá»‹ch háº¹n:', error);
+                console.error('Lỗi load lịch hẹn:', error);
                 container.innerHTML = `
                     <div class="empty-state">
                         <i class="fa-regular fa-calendar"></i>
-                        <p>Báº¡n chÆ°a cÃ³ lá»‹ch háº¹n nÃ o.</p>
-                        <a href="booking.html" class="btn btn-primary" style="padding: 0.8rem 1.5rem;">Äáº·t lá»‹ch háº¹n</a>
+                        <p>Bạn chưa có lịch hẹn nào.</p>
+                        <a href="booking.html" class="btn btn-primary" style="padding: 0.8rem 1.5rem;">Đặt lịch hẹn</a>
                     </div>
                 `;
             }
@@ -696,7 +696,7 @@
                     : '?';
                 document.getElementById('profile-avatar').textContent = initials;
             }
-            document.getElementById('profile-name').textContent = userInfo.fullName || 'NgÆ°á»i dÃ¹ng';
+            document.getElementById('profile-name').textContent = userInfo.fullName || 'Người dùng';
             document.getElementById('profile-fullname').value = userInfo.fullName || '';
             document.getElementById('profile-email').value = userInfo.email || '';
             document.getElementById('profile-phone').value = userInfo.phone || '';
@@ -706,19 +706,19 @@
             // Role Badge
             const tierEl = document.getElementById('profile-tier');
             if (userInfo.role === 'admin') {
-                tierEl.innerHTML = '<i class="fa-solid fa-user-shield" style="color: var(--gold-primary); margin-right: 5px;"></i> QUáº¢N TRá»Š VIÃŠN';
+                tierEl.innerHTML = '<i class="fa-solid fa-user-shield" style="color: var(--gold-primary); margin-right: 5px;"></i> QUẢN TRỊ VIÊN';
                 tierEl.style.color = 'var(--gold-primary)';
                 tierEl.style.fontWeight = 'bold';
             } else if (userInfo.role === 'staff') {
-                tierEl.innerHTML = '<i class="fa-solid fa-user-tie" style="color: var(--gold-primary); margin-right: 5px;"></i> TÆ¯ Váº¤N VIÃŠN';
+                tierEl.innerHTML = '<i class="fa-solid fa-user-tie" style="color: var(--gold-primary); margin-right: 5px;"></i> TƯ VẤN VIÊN';
                 tierEl.style.color = 'var(--gold-primary)';
                 tierEl.style.fontWeight = 'bold';
             } else if (userInfo.role === 'loyal') {
-                tierEl.innerHTML = '<i class="fa-solid fa-crown" style="color: var(--gold-primary); margin-right: 5px;"></i> KHÃCH HÃ€NG THÃ‚N THIáº¾T';
+                tierEl.innerHTML = '<i class="fa-solid fa-crown" style="color: var(--gold-primary); margin-right: 5px;"></i> KHÁCH HÀNG THÂN THIẾT';
                 tierEl.style.color = 'var(--gold-primary)';
                 tierEl.style.fontWeight = 'bold';
             } else {
-                tierEl.innerHTML = '<i class="fa-solid fa-user" style="margin-right: 5px;"></i> KHÃCH HÃ€NG Má»šI';
+                tierEl.innerHTML = '<i class="fa-solid fa-user" style="margin-right: 5px;"></i> KHÁCH HÀNG MỚI';
             }
 
             // Logout
@@ -755,7 +755,7 @@
                 if (currentAvatarBase64) data.avatar = currentAvatarBase64;
                 
                 if (isPassword) {
-                    if (!password) return alert('Vui lÃ²ng nháº­p máº­t kháº©u má»›i');
+                    if (!password) return alert('Vui lòng nhập mật khẩu mới');
                     data.password = password;
                 }
 
@@ -771,11 +771,11 @@
                 
                 localStorage.setItem('userInfo', JSON.stringify(userInfo));
 
-                alert('ÄÃ£ cáº­p nháº­t thÃ´ng tin thÃ nh cÃ´ng!');
+                alert('Đã cập nhật thông tin thành công!');
                 if (isPassword) document.getElementById('profile-new-password').value = '';
                 location.reload();
             } catch (error) {
-                alert('Lá»—i: ' + error.message);
+                alert('Lỗi: ' + error.message);
             }
         }
 
@@ -783,10 +783,10 @@
             const code = document.getElementById('warranty-input').value.trim();
             const resultDiv = document.getElementById('warranty-result');
             
-            if (!code) return alert('Vui lÃ²ng nháº­p mÃ£ báº£o hÃ nh');
+            if (!code) return alert('Vui lòng nhập mã bảo hành');
 
             resultDiv.style.display = 'block';
-            resultDiv.innerHTML = '<div style="text-align: center; padding: 2rem;"><i class="fa-solid fa-circle-notch fa-spin"></i> Äang tra cá»©u...</div>';
+            resultDiv.innerHTML = '<div style="text-align: center; padding: 2rem;"><i class="fa-solid fa-circle-notch fa-spin"></i> Đang tra cứu...</div>';
 
             try {
                 const data = await API.getWarranty(code);
@@ -797,42 +797,42 @@
                     <div style="background: rgba(212,175,55,0.05); border: 1px solid var(--gold-dark); border-radius: 12px; padding: 2rem;">
                         <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 2rem; border-bottom: 1px solid rgba(212,175,55,0.2); padding-bottom: 1.5rem;">
                             <div>
-                                <h3 style="color: var(--gold-primary); font-family: var(--font-heading); font-size: 1.5rem; margin-bottom: 0.5rem;">CHá»¨NG NHáº¬N Báº¢O HÃ€NH</h3>
-                                <p style="color: var(--text-muted); font-size: 0.9rem;">MÃ£ sá»‘: <span style="color: var(--text-primary); font-weight: bold;">${data.warrantyCode}</span></p>
+                                <h3 style="color: var(--gold-primary); font-family: var(--font-heading); font-size: 1.5rem; margin-bottom: 0.5rem;">CHỨNG NHẬN BẢO HÀNH</h3>
+                                <p style="color: var(--text-muted); font-size: 0.9rem;">Mã số: <span style="color: var(--text-primary); font-weight: bold;">${data.warrantyCode}</span></p>
                             </div>
                             <span class="status-badge ${isExpired ? 'status-cancelled' : 'status-success'}" style="font-size: 0.9rem; padding: 0.5rem 1.5rem;">
-                                ${isExpired ? 'Háº¿t háº¡n' : 'Äang hiá»‡u lá»±c'}
+                                ${isExpired ? 'Hết hạn' : 'Đang hiệu lực'}
                             </span>
                         </div>
 
                         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 2rem;">
                             <div>
-                                <p style="color: var(--text-muted); font-size: 0.8rem; text-transform: uppercase; margin-bottom: 0.3rem;">Sáº£n pháº©m</p>
+                                <p style="color: var(--text-muted); font-size: 0.8rem; text-transform: uppercase; margin-bottom: 0.3rem;">Sản phẩm</p>
                                 <p style="font-weight: 600; font-size: 1.1rem;">${data.productName}</p>
                                 <p style="color: var(--text-secondary); font-size: 0.85rem;">${data.specs || ''}</p>
                             </div>
                             <div>
-                                <p style="color: var(--text-muted); font-size: 0.8rem; text-transform: uppercase; margin-bottom: 0.3rem;">Chá»§ sá»Ÿ há»¯u</p>
-                                <p style="font-weight: 600;">${data.customerName || 'ChÆ°a cáº­p nháº­t'}</p>
-                                <p style="color: var(--text-secondary); font-size: 0.85rem;">SÄT: ${data.phone || 'ChÆ°a cáº­p nháº­t'}</p>
+                                <p style="color: var(--text-muted); font-size: 0.8rem; text-transform: uppercase; margin-bottom: 0.3rem;">Chủ sở hữu</p>
+                                <p style="font-weight: 600;">${data.customerName || 'Chưa cập nhật'}</p>
+                                <p style="color: var(--text-secondary); font-size: 0.85rem;">SĐT: ${data.phone || 'Chưa cập nhật'}</p>
                             </div>
                         </div>
 
                         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 2rem; padding: 1.5rem; background: rgba(0,0,0,0.2); border-radius: 8px;">
                             <div>
-                                <p style="color: var(--text-muted); font-size: 0.8rem; margin-bottom: 0.2rem;">NgÃ y kÃ­ch hoáº¡t</p>
+                                <p style="color: var(--text-muted); font-size: 0.8rem; margin-bottom: 0.2rem;">Ngày kích hoạt</p>
                                 <p style="font-weight: 500;">${new Date(data.purchaseDate).toLocaleDateString('vi-VN')}</p>
                             </div>
                             <div>
-                                <p style="color: var(--text-muted); font-size: 0.8rem; margin-bottom: 0.2rem;">NgÃ y háº¿t háº¡n</p>
+                                <p style="color: var(--text-muted); font-size: 0.8rem; margin-bottom: 0.2rem;">Ngày hết hạn</p>
                                 <p style="font-weight: 500; color: ${isExpired ? '#e74c3c' : '#2ecc71'};">${new Date(data.expiryDate).toLocaleDateString('vi-VN')}</p>
                             </div>
                         </div>
 
                         <div>
-                            <p style="color: var(--gold-light); font-weight: 600; margin-bottom: 1rem; font-size: 0.9rem;"><i class="fa-solid fa-star" style="margin-right: 5px;"></i> Äáº·c quyá»n báº£o hÃ nh:</p>
+                            <p style="color: var(--gold-light); font-weight: 600; margin-bottom: 1rem; font-size: 0.9rem;"><i class="fa-solid fa-star" style="margin-right: 5px;"></i> Đặc quyền bảo hành:</p>
                             <ul style="list-style: none; padding-left: 0.5rem;">
-                                ${(data.benefits || ['Miá»…n phÃ­ lÃ m sáº¡ch, Ä‘Ã¡nh bÃ³ng trá»n Ä‘á»i', 'Kiá»ƒm tra Ä‘á»‹nh ká»³ cháº¥u giá»¯ kim cÆ°Æ¡ng', 'Báº£o hÃ nh ká»¹ thuáº­t, chá»‰nh sá»­a size nháº«n', 'Há»— trá»£ thu Ä‘á»•i lÃªn Ä‘á»i sáº£n pháº©m']).map(b => `<li style="color: var(--text-secondary); font-size: 0.85rem; margin-bottom: 0.5rem;"><i class="fa-solid fa-check" style="color: #2ecc71; margin-right: 10px; font-size: 0.7rem;"></i> ${b}</li>`).join('')}
+                                ${(data.benefits || ['Miễn phí làm sạch, đánh bóng trọn đời', 'Kiểm tra định kỳ chấu giữ kim cương', 'Bảo hành kỹ thuật, chỉnh sửa size nhẫn', 'Hỗ trợ thu đổi lên đời sản phẩm']).map(b => `<li style="color: var(--text-secondary); font-size: 0.85rem; margin-bottom: 0.5rem;"><i class="fa-solid fa-check" style="color: #2ecc71; margin-right: 10px; font-size: 0.7rem;"></i> ${b}</li>`).join('')}
                             </ul>
                         </div>
                     </div>
@@ -841,7 +841,7 @@
                 resultDiv.innerHTML = `
                     <div style="text-align: center; padding: 3rem; background: rgba(231, 76, 60, 0.05); border: 1px solid rgba(231, 76, 60, 0.3); border-radius: 12px;">
                         <i class="fa-solid fa-circle-xmark" style="font-size: 3rem; color: #e74c3c; margin-bottom: 1rem;"></i>
-                        <h4 style="margin-bottom: 0.5rem;">KhÃ´ng tÃ¬m tháº¥y thÃ´ng tin</h4>
+                        <h4 style="margin-bottom: 0.5rem;">Không tìm thấy thông tin</h4>
                         <p style="color: var(--text-muted);">${error.message}</p>
                     </div>
                 `;
@@ -864,107 +864,107 @@
             <!-- Main Footer Grid -->
             <div style="display: grid; grid-template-columns: 2fr 1.2fr 1.5fr 1.5fr; gap: 3rem;">
 
-                <!-- Cá»™t 1: ThÃ´ng tin cÃ´ng ty -->
+                <!-- Cột 1: Thông tin công ty -->
                 <div>
                     <p style="color: var(--text-muted); line-height: 1.9; font-size: 0.9rem;">
-                        &copy; 2005 CÃ´ng Ty TNHH An LUXURY<br>
-                        21/33 Báº¡ch Äáº±ng, Há»“ng HÃ , HÃ  Ná»™i<br><br>
-                        ÄT: <a href="#" style="color: var(--gold-primary);">039 2326 230</a> - Fax: 028 3995 1702<br>
-                        Giáº¥y chá»©ng nháº­n Ä‘Äƒng kÃ½ kinh doanh: 036636363636 do Sá»Ÿ TÃ i chÃ­nh ThÃ nh phá»‘ HÃ  Ná»™i cáº¥p ngÃ y
+                        &copy; 2005 Công Ty TNHH An LUXURY<br>
+                        21/33 Bạch Đằng, Hồng Hà, Hà Nội<br><br>
+                        ĐT: <a href="#" style="color: var(--gold-primary);">039 2326 230</a> - Fax: 028 3995 1702<br>
+                        Giấy chứng nhận đăng ký kinh doanh: 036636363636 do Sở Tài chính Thành phố Hà Nội cấp ngày
                         10/12/2005.
                     </p>
                     <div style="margin-top: 1.5rem; color: var(--text-muted); font-size: 0.88rem; line-height: 2;">
-                        Tá»•ng Ä‘Ã i há»— trá»£ (08:00-21:00, miá»…n phÃ­ gá»i)<br>
-                        Gá»i mua: <a href="#" style="color: var(--gold-primary);">1800545457</a> (phÃ­m 1)<br>
-                        Khiáº¿u náº¡i: <a href="#" style="color: var(--gold-primary);">1800545457</a> (phÃ­m 2)<br>
-                        Email gÃ³p Ã½: <a href="#" style="color: var(--gold-primary);">cskh@anluxury.com.vn</a>
+                        Tổng đài hỗ trợ (08:00-21:00, miễn phí gọi)<br>
+                        Gọi mua: <a href="#" style="color: var(--gold-primary);">1800545457</a> (phím 1)<br>
+                        Khiếu nại: <a href="#" style="color: var(--gold-primary);">1800545457</a> (phím 2)<br>
+                        Email góp ý: <a href="#" style="color: var(--gold-primary);">cskh@anluxury.com.vn</a>
                     </div>
                 </div>
 
-                <!-- Cá»™t 2: Vá» An LUXURY -->
+                <!-- Cột 2: Về An LUXURY -->
                 <div>
                     <h4
                         style="margin-bottom: 1.5rem; font-family: var(--font-body); font-weight: 700; text-transform: uppercase; letter-spacing: 1px; font-size: 0.95rem;">
-                        Vá» An LUXURY</h4>
+                        Về An LUXURY</h4>
                     <ul style="list-style: none; color: var(--text-muted); line-height: 2.2; font-size: 0.9rem;">
                         <li><a href="ir.html" style="color: inherit; transition: color 0.3s;"
-                                onmouseover="this.style.color='#d4af37'" onmouseout="this.style.color='inherit'">Quan há»‡
-                                cá»• Ä‘Ã´ng (IR)</a></li>
+                                onmouseover="this.style.color='#d4af37'" onmouseout="this.style.color='inherit'">Quan hệ
+                                cổ đông (IR)</a></li>
                         <li><a href="careers.html" style="color: inherit; transition: color 0.3s;"
-                                onmouseover="this.style.color='#d4af37'" onmouseout="this.style.color='inherit'">Tuyá»ƒn
-                                dá»¥ng</a></li>
+                                onmouseover="this.style.color='#d4af37'" onmouseout="this.style.color='inherit'">Tuyển
+                                dụng</a></li>
                         <li><a href="export.html" style="color: inherit; transition: color 0.3s;"
-                                onmouseover="this.style.color='#d4af37'" onmouseout="this.style.color='inherit'">Xuáº¥t
-                                kháº©u</a></li>
+                                onmouseover="this.style.color='#d4af37'" onmouseout="this.style.color='inherit'">Xuất
+                                khẩu</a></li>
                         <li><a href="wholesale.html" style="color: inherit; transition: color 0.3s;"
                                 onmouseover="this.style.color='#d4af37'" onmouseout="this.style.color='inherit'">Kinh
-                                doanh sá»‰</a></li>
+                                doanh sỉ</a></li>
                         <li><a href="https://www.gia.edu" target="_blank" style="color: inherit; transition: color 0.3s;"
-                                onmouseover="this.style.color='#d4af37'" onmouseout="this.style.color='inherit'">Kiá»ƒm
-                                Ä‘á»‹nh kim cÆ°Æ¡ng</a></li>
+                                onmouseover="this.style.color='#d4af37'" onmouseout="this.style.color='inherit'">Kiểm
+                                định kim cương</a></li>
                         <li><a href="corporate-gifts.html" style="color: inherit; transition: color 0.3s;"
-                                onmouseover="this.style.color='#d4af37'" onmouseout="this.style.color='inherit'">QuÃ 
-                                táº·ng doanh nghiá»‡p</a></li>
+                                onmouseover="this.style.color='#d4af37'" onmouseout="this.style.color='inherit'">Quà
+                                tặng doanh nghiệp</a></li>
                     </ul>
                 </div>
 
-                <!-- Cá»™t 3: Dá»‹ch vá»¥ khÃ¡ch hÃ ng + ChÃ­nh sÃ¡ch -->
+                <!-- Cột 3: Dịch vụ khách hàng + Chính sách -->
                 <div>
                     <h4
                         style="margin-bottom: 1.5rem; font-family: var(--font-body); font-weight: 700; text-transform: uppercase; letter-spacing: 1px; font-size: 0.95rem;">
-                        Dá»‹ch vá»¥ khÃ¡ch hÃ ng</h4>
+                        Dịch vụ khách hàng</h4>
                     <ul
                         style="list-style: none; color: var(--text-muted); line-height: 2.2; font-size: 0.9rem; margin-bottom: 2rem;">
                         <li><a href="size-guide.html" style="color: inherit; transition: color 0.3s;"
-                                onmouseover="this.style.color='#d4af37'" onmouseout="this.style.color='inherit'">HÆ°á»›ng
-                                dáº«n Ä‘o size trang sá»©c</a></li>
+                                onmouseover="this.style.color='#d4af37'" onmouseout="this.style.color='inherit'">Hướng
+                                dẫn đo size trang sức</a></li>
                         <li><a href="installment.html" style="color: inherit; transition: color 0.3s;"
                                 onmouseover="this.style.color='#d4af37'" onmouseout="this.style.color='inherit'">Mua
-                                hÃ ng tráº£ gÃ³p</a></li>
+                                hàng trả góp</a></li>
                         <li><a href="shopping-guide.html" style="color: inherit; transition: color 0.3s;"
-                                onmouseover="this.style.color='#d4af37'" onmouseout="this.style.color='inherit'">HÆ°á»›ng
-                                dáº«n mua hÃ ng vÃ  thanh toÃ¡n</a></li>
+                                onmouseover="this.style.color='#d4af37'" onmouseout="this.style.color='inherit'">Hướng
+                                dẫn mua hàng và thanh toán</a></li>
                         <li><a href="price-lookup.html" style="color: inherit; transition: color 0.3s;"
-                                onmouseover="this.style.color='#d4af37'" onmouseout="this.style.color='inherit'">HÆ°á»›ng
-                                dáº«n tra cá»©u giÃ¡</a></li>
+                                onmouseover="this.style.color='#d4af37'" onmouseout="this.style.color='inherit'">Hướng
+                                dẫn tra cứu giá</a></li>
                         <li><a href="jewelry-manual.html" style="color: inherit; transition: color 0.3s;"
-                                onmouseover="this.style.color='#d4af37'" onmouseout="this.style.color='inherit'">Cáº©m
-                                nang sá»­ dá»¥ng trang sá»©c</a></li>
+                                onmouseover="this.style.color='#d4af37'" onmouseout="this.style.color='inherit'">Cẩm
+                                nang sử dụng trang sức</a></li>
                         <li><a href="faq.html" style="color: inherit; transition: color 0.3s;"
-                                onmouseover="this.style.color='#d4af37'" onmouseout="this.style.color='inherit'">CÃ¢u há»i
-                                thÆ°á»ng gáº·p</a></li>
+                                onmouseover="this.style.color='#d4af37'" onmouseout="this.style.color='inherit'">Câu hỏi
+                                thường gặp</a></li>
                     </ul>
 
                     <h4
                         style="margin-bottom: 1rem; font-family: var(--font-body); font-weight: 700; text-transform: uppercase; letter-spacing: 1px; font-size: 0.95rem;">
-                        Tá»•ng há»£p cÃ¡c chÃ­nh sÃ¡ch</h4>
+                        Tổng hợp các chính sách</h4>
                     <ul style="list-style: none; color: var(--text-muted); line-height: 2.2; font-size: 0.9rem;">
                         <li><a href="hoantien.html" style="color: inherit; transition: color 0.3s;"
-                                onmouseover="this.style.color='#d4af37'" onmouseout="this.style.color='inherit'">ChÃ­nh
-                                sÃ¡ch hoÃ n tiá»n</a></li>
+                                onmouseover="this.style.color='#d4af37'" onmouseout="this.style.color='inherit'">Chính
+                                sách hoàn tiền</a></li>
                         <li><a href="delivery-policy.html" style="color: inherit; transition: color 0.3s;"
-                                onmouseover="this.style.color='#d4af37'" onmouseout="this.style.color='inherit'">ChÃ­nh
-                                sÃ¡ch giao hÃ ng</a></li>
+                                onmouseover="this.style.color='#d4af37'" onmouseout="this.style.color='inherit'">Chính
+                                sách giao hàng</a></li>
                         <li><a href="warranty-policy.html" style="color: inherit; transition: color 0.3s;"
-                                onmouseover="this.style.color='#d4af37'" onmouseout="this.style.color='inherit'">ChÃ­nh
-                                sÃ¡ch báº£o hÃ nh thu Ä‘á»•i</a></li>
+                                onmouseover="this.style.color='#d4af37'" onmouseout="this.style.color='inherit'">Chính
+                                sách bảo hành thu đổi</a></li>
                         <li><a href="loyalty-policy.html" style="color: inherit; transition: color 0.3s;"
-                                onmouseover="this.style.color='#d4af37'" onmouseout="this.style.color='inherit'">ChÃ­nh
-                                sÃ¡ch khÃ¡ch hÃ ng thÃ¢n thiáº¿t</a></li>
+                                onmouseover="this.style.color='#d4af37'" onmouseout="this.style.color='inherit'">Chính
+                                sách khách hàng thân thiết</a></li>
                         <li><a href="privacy-policy.html" style="color: inherit; transition: color 0.3s;"
-                                onmouseover="this.style.color='#d4af37'" onmouseout="this.style.color='inherit'">ChÃ­nh
-                                sÃ¡ch báº£o máº­t thÃ´ng tin khÃ¡ch hÃ ng</a></li>
+                                onmouseover="this.style.color='#d4af37'" onmouseout="this.style.color='inherit'">Chính
+                                sách bảo mật thông tin khách hàng</a></li>
                         <li><a href="data-processing-policy.html" style="color: inherit; transition: color 0.3s;"
-                                onmouseover="this.style.color='#d4af37'" onmouseout="this.style.color='inherit'">ChÃ­nh
-                                sÃ¡ch xá»­ lÃ½ dá»¯ liá»‡u cÃ¡ nhÃ¢n</a></li>
+                                onmouseover="this.style.color='#d4af37'" onmouseout="this.style.color='inherit'">Chính
+                                sách xử lý dữ liệu cá nhân</a></li>
                     </ul>
                 </div>
 
-                <!-- Cá»™t 4: Káº¿t ná»‘i + Zalo OA -->
+                <!-- Cột 4: Kết nối + Zalo OA -->
                 <div>
                     <h4
                         style="margin-bottom: 1.5rem; font-family: var(--font-body); font-weight: 700; text-transform: uppercase; letter-spacing: 1px; font-size: 0.95rem;">
-                        Káº¿t ná»‘i vá»›i chÃºng tÃ´i</h4>
+                        Kết nối với chúng tôi</h4>
                     <div style="display: flex; gap: 0.8rem; margin-bottom: 2rem;">
                         <a href="https://www.facebook.com/ngtrgan1012/" target="_blank"
                             style="width: 42px; height: 42px; border-radius: 50%; background: #1877F2; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 1.2rem; transition: transform 0.3s, box-shadow 0.3s;"
@@ -990,13 +990,13 @@
 
                     <h4
                         style="margin-bottom: 1rem; font-family: var(--font-body); font-weight: 700; text-transform: uppercase; letter-spacing: 1px; font-size: 0.95rem;">
-                        Quan tÃ¢m Zalo OA</h4>
-                    <p style="color: var(--text-muted); font-size: 0.88rem; margin-bottom: 1rem;">Nháº­n cÃ¡c thÃ´ng tin
-                        khuyáº¿n mÃ£i háº¥p dáº«n</p>
+                        Quan tâm Zalo OA</h4>
+                    <p style="color: var(--text-muted); font-size: 0.88rem; margin-bottom: 1rem;">Nhận các thông tin
+                        khuyến mãi hấp dẫn</p>
                     <a href="https://zalo.me/0392326230" target="_blank"
                         style="display: inline-flex; align-items: center; gap: 0.5rem; background: #0068FF; color: #fff; padding: 0.6rem 1.2rem; border-radius: 20px; font-size: 0.85rem; font-weight: 600; text-decoration: none; transition: background 0.3s;"
                         onmouseover="this.style.background='#0055d4'" onmouseout="this.style.background='#0068FF'">
-                        <i class="fa-solid fa-comment-dots"></i> Quan tÃ¢m
+                        <i class="fa-solid fa-comment-dots"></i> Quan tâm
                     </a>
 
                     <!-- Location Map Component -->
@@ -1022,8 +1022,8 @@
                                 </div>
                             </div>
                             <div class="map-footer">
-                                <h3 class="location-name">33 Báº¡ch Äáº±ng, HÃ  Ná»™i</h3>
-                                <p class="location-coords">21.0315Â° N, 105.8617Â° E</p>
+                                <h3 class="location-name">33 Bạch Đằng, Hà Nội</h3>
+                                <p class="location-coords">21.0315° N, 105.8617° E</p>
                                 <div class="animated-underline"></div>
                             </div>
                         </div>
@@ -1038,13 +1038,13 @@
                 <div>
                     <h4
                         style="font-family: var(--font-body); font-weight: 700; text-transform: uppercase; letter-spacing: 1px; font-size: 0.85rem; margin-bottom: 1rem;">
-                        PhÆ°Æ¡ng thá»©c thanh toÃ¡n</h4>
+                        Phương thức thanh toán</h4>
                     <div style="display: flex; gap: 0.6rem; align-items: center; flex-wrap: wrap;">
                         <span
                             style="background: #fff; color: #1a1f71; padding: 0.4rem 0.7rem; border-radius: 4px; font-size: 0.75rem; font-weight: 800; letter-spacing: 1px;">VISA</span>
                         <span
                             style="background: #fff; padding: 0.4rem 0.7rem; border-radius: 4px; font-size: 0.75rem; font-weight: 800;">
-                            <span style="color: #EB001B;">â—</span><span style="color: #F79E1B;">â—</span>
+                            <span style="color: #EB001B;">●</span><span style="color: #F79E1B;">●</span>
                         </span>
                         <span
                             style="background: #fff; color: #cc0000; padding: 0.4rem 0.7rem; border-radius: 4px; font-size: 0.7rem; font-weight: 800;">JCB</span>
@@ -1053,20 +1053,20 @@
                         <span
                             style="background: #1ec28b; color: #fff; padding: 0.4rem 0.7rem; border-radius: 4px; font-size: 0.7rem; font-weight: 700;">MoMo</span>
                         <span
-                            style="background: #fff; color: #333; padding: 0.4rem 0.7rem; border-radius: 4px; font-size: 0.65rem; font-weight: 700;">TRáº¢
-                            GÃ“P 0%</span>
+                            style="background: #fff; color: #333; padding: 0.4rem 0.7rem; border-radius: 4px; font-size: 0.65rem; font-weight: 700;">TRẢ
+                            GÓP 0%</span>
                     </div>
                 </div>
                 <div>
                     <h4
                         style="font-family: var(--font-body); font-weight: 700; text-transform: uppercase; letter-spacing: 1px; font-size: 0.85rem; margin-bottom: 1rem;">
-                        Chá»©ng nháº­n</h4>
+                        Chứng nhận</h4>
                     <div style="display: flex; gap: 0.8rem; align-items: center;">
                         <div
                             style="background: #1a3a6b; color: #fff; padding: 0.5rem 1rem; border-radius: 4px; font-size: 0.65rem; text-align: center; line-height: 1.4; font-weight: 600; border: 1px solid #2a5a9b;">
                             <i class="fa-solid fa-shield-halved"
                                 style="font-size: 1rem; display: block; margin-bottom: 2px; color: #4da6ff;"></i>
-                            ÄÃƒ THÃ”NG BÃO<br>Bá»˜ CÃ”NG NÃ”NG
+                            ĐÃ THÔNG BÁO<br>BỘ CÔNG NÔNG
                         </div>
                         <div
                             style="background: rgba(212,175,55,0.1); color: var(--gold-primary); padding: 0.5rem 1rem; border-radius: 4px; font-size: 0.65rem; text-align: center; line-height: 1.4; font-weight: 600; border: 1px solid var(--gold-dark);">
@@ -1080,7 +1080,7 @@
             <!-- Copyright -->
             <div
                 style="margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid var(--border-light); text-align: center; color: var(--text-muted); font-size: 0.85rem;">
-                <p>2026 AN LUXURY. Dá»° ÃN KHÃ”NG THÆ¯Æ NG Máº I, Sá»¬ Dá»¤NG CHO Má»¤C ÄÃCH Há»ŒC Táº¬P, BÃ€I Táº¬P Lá»šN MÃ”N JAVASCRIPT VÃ€ Láº¬P TRÃŒNH WEB - NGUYá»„N TRÆ¯á»œNG AN - D12.48.04</p>
+                <p>2026 AN LUXURY. DỰ ÁN KHÔNG THƯƠNG MẠI, SỬ DỤNG CHO MỤC ĐÍCH HỌC TẬP, BÀI TẬP LỚN MÔN JAVASCRIPT VÀ LẬP TRÌNH WEB - NGUYỄN TRƯỜNG AN - D12.48.04</p>
             </div>
 
         </div>
@@ -1170,7 +1170,7 @@
             
             mapWrapper.addEventListener('click', (e) => {
                 if (mapCard.classList.contains('expanded')) {
-                    window.open('https://www.google.com/maps/search/?api=1&query=33+Báº¡ch+Äáº±ng,+Há»“ng+HÃ ,+HÃ +Ná»™i', '_blank');
+                    window.open('https://www.google.com/maps/search/?api=1&query=33+Bạch+Đằng,+Hồng+Hà,+Hà+Nội', '_blank');
                 } else {
                     mapCard.classList.add('expanded');
                     const hint = mapWrapper.querySelector('.click-hint');
@@ -1200,4 +1200,3 @@
 <script src="../js/chat-widget.js?v=3"></script>
 </body>
 </html>
-

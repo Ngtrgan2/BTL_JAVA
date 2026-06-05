@@ -1,9 +1,9 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quáº£n lÃ½ Lá»‹ch Háº¹n | An LUXURY Admin</title>
+    <title>Quản lý Lịch Hẹn | An LUXURY Admin</title>
     <link rel="stylesheet" href="../../css/admin.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -140,39 +140,39 @@
         <aside class="admin-sidebar">
             <div class="sidebar-header">
                 <div class="sidebar-logo">An LUXURY</div>
-                <div id="sidebar-role-text" style="font-size: 0.8rem; color: var(--admin-text-light); margin-top: 5px;">Quáº£n Trá»‹ Há»‡ Thá»‘ng</div>
+                <div id="sidebar-role-text" style="font-size: 0.8rem; color: var(--admin-text-light); margin-top: 5px;">Quản Trị Hệ Thống</div>
             </div>
             
             <div class="sidebar-menu">
                 <a href="dashboard.html" class="menu-item" id="nav-dashboard">
-                    <i class="fa-solid fa-chart-pie menu-icon"></i> BÃ n lÃ m viá»‡c
+                    <i class="fa-solid fa-chart-pie menu-icon"></i> Bàn làm việc
                 </a>
                 <a href="revenue.html" class="menu-item" id="nav-revenue">
                     <i class="fa-solid fa-money-bill-trend-up menu-icon"></i> Doanh thu
                 </a>
                 <a href="products.html" class="menu-item" id="nav-products">
-                    <i class="fa-solid fa-gem menu-icon"></i> Sáº£n pháº©m
+                    <i class="fa-solid fa-gem menu-icon"></i> Sản phẩm
                 </a>
                 <a href="orders.html" class="menu-item" id="nav-orders">
-                    <i class="fa-solid fa-cart-flatbed menu-icon"></i> ÄÆ¡n hÃ ng
+                    <i class="fa-solid fa-cart-flatbed menu-icon"></i> Đơn hàng
                 </a>
                 <a href="bookings.html" class="menu-item" id="nav-bookings">
-                    <i class="fa-regular fa-calendar-check menu-icon"></i> Lá»‹ch háº¹n VIP
+                    <i class="fa-regular fa-calendar-check menu-icon"></i> Lịch hẹn VIP
                 </a>
                 <a href="warranties.html" class="menu-item" id="nav-warranties" style="display: none;">
-                    <i class="fa-solid fa-shield-halved menu-icon"></i> Báº£o hÃ nh
+                    <i class="fa-solid fa-shield-halved menu-icon"></i> Bảo hành
                 </a>
                 <a href="discounts.html" class="menu-item" id="nav-discounts" style="display: none;">
-                    <i class="fa-solid fa-tags menu-icon"></i> MÃ£ giáº£m giÃ¡
+                    <i class="fa-solid fa-tags menu-icon"></i> Mã giảm giá
                 </a>
                 <a href="news.html" class="menu-item" id="nav-news">
-                    <i class="fa-solid fa-newspaper menu-icon"></i> Tin tá»©c
+                    <i class="fa-solid fa-newspaper menu-icon"></i> Tin tức
                 </a>
                 <a href="chat.html" class="menu-item" id="nav-chat">
-                    <i class="fa-solid fa-comments menu-icon"></i> Chat Há»— Trá»£
+                    <i class="fa-solid fa-comments menu-icon"></i> Chat Hỗ Trợ
                 </a>
                 <a href="customers.html" class="menu-item" id="nav-customers" style="display: none;">
-                    <i class="fa-solid fa-users menu-icon"></i> KhÃ¡ch hÃ ng
+                    <i class="fa-solid fa-users menu-icon"></i> Khách hàng
                 </a>
             </div>
             
@@ -182,14 +182,14 @@
                     <i class="fa-solid fa-globe menu-icon"></i> Xem website
                 </a>
                 <a href="#" class="menu-item logout-btn" style="padding: 0; color: #e74c3c; font-size: 0.9rem;">
-                    <i class="fa-solid fa-arrow-right-from-bracket menu-icon" style="color: #e74c3c;"></i> ÄÄƒng xuáº¥t
+                    <i class="fa-solid fa-arrow-right-from-bracket menu-icon" style="color: #e74c3c;"></i> Đăng xuất
                 </a>
             </div>
         </aside>
 
         <main class="admin-main">
             <div class="page-header">
-                <h1 class="page-title">Quáº£n LÃ½ Lá»‹ch Háº¹n VIP</h1>
+                <h1 class="page-title">Quản Lý Lịch Hẹn VIP</h1>
             </div>
 
             <div class="admin-card">
@@ -198,16 +198,16 @@
                         <thead>
                             <tr>
                                 <th style="width: 50px; text-align: center;">STT</th>
-                                <th>MÃ£ lá»‹ch</th>
-                                <th>KhÃ¡ch hÃ ng</th>
-                                <th>Dá»‹ch vá»¥</th>
-                                <th>Thá»i gian</th>
-                                <th>Tráº¡ng thÃ¡i</th>
-                                <th style="text-align: right;">Thao tÃ¡c</th>
+                                <th>Mã lịch</th>
+                                <th>Khách hàng</th>
+                                <th>Dịch vụ</th>
+                                <th>Thời gian</th>
+                                <th>Trạng thái</th>
+                                <th style="text-align: right;">Thao tác</th>
                             </tr>
                         </thead>
                         <tbody id="bookingTableBody">
-                            <tr><td colspan="7" style="text-align: center; padding: 3rem;"><i class="fa-solid fa-spinner fa-spin"></i> Äang táº£i dá»¯ liá»‡u...</td></tr>
+                            <tr><td colspan="7" style="text-align: center; padding: 3rem;"><i class="fa-solid fa-spinner fa-spin"></i> Đang tải dữ liệu...</td></tr>
                         </tbody>
                     </table>
                 </div>
@@ -221,17 +221,17 @@
     <div class="modal-overlay" id="bookingModal" onclick="if(event.target===this)closeModal()">
         <div class="modal-box">
             <div class="modal-header">
-                <h2><i class="fa-regular fa-calendar-check" style="margin-right: 8px; color: var(--admin-accent);"></i> Chi Tiáº¿t Lá»‹ch Háº¹n <span id="modal-id" style="color: var(--admin-accent);"></span></h2>
+                <h2><i class="fa-regular fa-calendar-check" style="margin-right: 8px; color: var(--admin-accent);"></i> Chi Tiết Lịch Hẹn <span id="modal-id" style="color: var(--admin-accent);"></span></h2>
                 <button class="modal-close" onclick="closeModal()">&times;</button>
             </div>
             <div class="modal-body">
                 <div class="detail-grid">
                     <div class="detail-item">
-                        <label>KhÃ¡ch hÃ ng</label>
+                        <label>Khách hàng</label>
                         <div class="value" id="modal-name"></div>
                     </div>
                     <div class="detail-item">
-                        <label>Sá»‘ Ä‘iá»‡n thoáº¡i</label>
+                        <label>Số điện thoại</label>
                         <div class="value" id="modal-phone"></div>
                     </div>
                     <div class="detail-item">
@@ -239,23 +239,23 @@
                         <div class="value" id="modal-email"></div>
                     </div>
                     <div class="detail-item">
-                        <label>Dá»‹ch vá»¥ quan tÃ¢m</label>
+                        <label>Dịch vụ quan tâm</label>
                         <div class="value" id="modal-category"></div>
                     </div>
                     <div class="detail-item">
-                        <label>NgÃ y háº¹n</label>
+                        <label>Ngày hẹn</label>
                         <div class="value" id="modal-date"></div>
                     </div>
                     <div class="detail-item">
-                        <label>Giá» háº¹n</label>
+                        <label>Giờ hẹn</label>
                         <div class="value" id="modal-time" style="font-size: 1.3rem; color: var(--admin-accent);"></div>
                     </div>
                     <div class="detail-item">
-                        <label>Tráº¡ng thÃ¡i</label>
+                        <label>Trạng thái</label>
                         <div class="value" id="modal-status"></div>
                     </div>
                     <div class="detail-item">
-                        <label>NgÃ y táº¡o</label>
+                        <label>Ngày tạo</label>
                         <div class="value" id="modal-created"></div>
                     </div>
                 </div>
@@ -282,8 +282,8 @@
                 allBookings = bookings;
                 renderBookings();
             } catch (error) {
-                console.error('Lá»—i load bookings:', error);
-                tbody.innerHTML = '<tr><td colspan="7" style="text-align: center; color: var(--status-danger); padding: 3rem;">Lá»—i táº£i dá»¯ liá»‡u</td></tr>';
+                console.error('Lỗi load bookings:', error);
+                tbody.innerHTML = '<tr><td colspan="7" style="text-align: center; color: var(--status-danger); padding: 3rem;">Lỗi tải dữ liệu</td></tr>';
             }
         }
 
@@ -292,7 +292,7 @@
             
             try {
                 if (allBookings.length === 0) {
-                    tbody.innerHTML = '<tr><td colspan="7" style="text-align: center; padding: 3rem;">ChÆ°a cÃ³ lá»‹ch háº¹n nÃ o</td></tr>';
+                    tbody.innerHTML = '<tr><td colspan="7" style="text-align: center; padding: 3rem;">Chưa có lịch hẹn nào</td></tr>';
                     const pag = document.getElementById('pagination');
                     if (pag) pag.innerHTML = '';
                     return;
@@ -321,11 +321,11 @@
                         </td>
                         <td><span class="badge badge-${b.status === 'pending' ? 'pending' : (b.status === 'confirmed' ? 'success' : 'danger')}">${getStatusLabel(b.status)}</span></td>
                         <td style="text-align: right;" onclick="event.stopPropagation()">
-                            <button class="action-btn detail" title="Xem chi tiáº¿t" onclick="showDetail(${JSON.stringify(b).replace(/"/g, '&quot;')})"><i class="fa-solid fa-eye"></i></button>
+                            <button class="action-btn detail" title="Xem chi tiết" onclick="showDetail(${JSON.stringify(b).replace(/"/g, '&quot;')})"><i class="fa-solid fa-eye"></i></button>
                             ${b.status === 'pending' ? `
-                                <button class="action-btn confirm" title="XÃ¡c nháº­n" onclick="updateStatus('${b._id}', 'confirmed')"><i class="fa-solid fa-check"></i></button>
+                                <button class="action-btn confirm" title="Xác nhận" onclick="updateStatus('${b._id}', 'confirmed')"><i class="fa-solid fa-check"></i></button>
                             ` : ''}
-                            <button class="action-btn cancel" title="XÃ³a/Há»§y" onclick="deleteBooking('${b._id}')"><i class="fa-solid fa-trash-can"></i></button>
+                            <button class="action-btn cancel" title="Xóa/Hủy" onclick="deleteBooking('${b._id}')"><i class="fa-solid fa-trash-can"></i></button>
                         </td>
                     </tr>
                 `;
@@ -336,7 +336,7 @@
                     if (totalPages <= 1) {
                         pag.innerHTML = '';
                     } else {
-                        let html = `<div class="pagination-info">Trang ${currentPage} / ${totalPages} (Tá»•ng ${allBookings.length} lá»‹ch háº¹n)</div>`;
+                        let html = `<div class="pagination-info">Trang ${currentPage} / ${totalPages} (Tổng ${allBookings.length} lịch hẹn)</div>`;
                         html += `<button onclick="changePage(${currentPage - 1})" ${currentPage === 1 ? 'disabled' : ''}><i class="fa-solid fa-chevron-left"></i></button>`;
                         for (let i = 1; i <= totalPages; i++) {
                             if (i === 1 || i === totalPages || (i >= currentPage - 1 && i <= currentPage + 1)) {
@@ -351,8 +351,8 @@
                 }
 
             } catch (error) {
-                console.error('Lá»—i render bookings:', error);
-                tbody.innerHTML = '<tr><td colspan="7" style="text-align: center; color: var(--status-danger); padding: 3rem;">Lá»—i táº£i dá»¯ liá»‡u</td></tr>';
+                console.error('Lỗi render bookings:', error);
+                tbody.innerHTML = '<tr><td colspan="7" style="text-align: center; color: var(--status-danger); padding: 3rem;">Lỗi tải dữ liệu</td></tr>';
             }
         }
 
@@ -363,9 +363,9 @@
 
         function getStatusLabel(status) {
             const map = {
-                'pending': 'Äang chá»',
-                'confirmed': 'ÄÃ£ xÃ¡c nháº­n',
-                'cancelled': 'ÄÃ£ há»§y'
+                'pending': 'Đang chờ',
+                'confirmed': 'Đã xác nhận',
+                'cancelled': 'Đã hủy'
             };
             return map[status] || status;
         }
@@ -378,17 +378,17 @@
 
         function getCategoryLabel(cat) {
             const map = {
-                'nhan': 'Nháº«n', 'vong-tay': 'VÃ²ng tay', 'bong-tai': 'BÃ´ng tai',
-                'day-chuyen': 'DÃ¢y chuyá»n', 'tu-van': 'TÆ° váº¥n chung'
+                'nhan': 'Nhẫn', 'vong-tay': 'Vòng tay', 'bong-tai': 'Bông tai',
+                'day-chuyen': 'Dây chuyền', 'tu-van': 'Tư vấn chung'
             };
-            return map[cat] || cat || 'TÆ° váº¥n';
+            return map[cat] || cat || 'Tư vấn';
         }
 
         function showDetail(b) {
             document.getElementById('modal-id').textContent = '#BK-' + b._id.slice(-4).toUpperCase();
             document.getElementById('modal-name').textContent = b.customerName || 'N/A';
-            document.getElementById('modal-phone').textContent = b.phone || 'ChÆ°a cÃ³';
-            document.getElementById('modal-email').textContent = b.email || 'ChÆ°a cÃ³';
+            document.getElementById('modal-phone').textContent = b.phone || 'Chưa có';
+            document.getElementById('modal-email').textContent = b.email || 'Chưa có';
             document.getElementById('modal-category').textContent = getCategoryLabel(b.category);
             document.getElementById('modal-date').textContent = formatDate(b.date);
             document.getElementById('modal-time').textContent = b.time || '--:--';
@@ -412,10 +412,10 @@
             // Footer actions
             let actionsHtml = '';
             if (b.status === 'pending') {
-                actionsHtml += `<button class="btn-admin btn-primary" onclick="updateStatus('${b._id}','confirmed');closeModal()"><i class="fa-solid fa-check" style="margin-right:5px;"></i> XÃ¡c nháº­n lá»‹ch háº¹n</button>`;
+                actionsHtml += `<button class="btn-admin btn-primary" onclick="updateStatus('${b._id}','confirmed');closeModal()"><i class="fa-solid fa-check" style="margin-right:5px;"></i> Xác nhận lịch hẹn</button>`;
             }
             if (b.phone) {
-                actionsHtml += `<a href="tel:${b.phone}" class="btn-admin" style="background:transparent;border:1px solid var(--admin-accent);color:var(--admin-accent);text-decoration:none;"><i class="fa-solid fa-phone" style="margin-right:5px;"></i> Gá»i ${b.phone}</a>`;
+                actionsHtml += `<a href="tel:${b.phone}" class="btn-admin" style="background:transparent;border:1px solid var(--admin-accent);color:var(--admin-accent);text-decoration:none;"><i class="fa-solid fa-phone" style="margin-right:5px;"></i> Gọi ${b.phone}</a>`;
             }
             document.getElementById('modal-actions').innerHTML = actionsHtml;
 
@@ -431,22 +431,22 @@
 
 
         async function updateStatus(id, status) {
-            if (!confirm(`XÃ¡c nháº­n chuyá»ƒn tráº¡ng thÃ¡i sang "${getStatusLabel(status)}"?`)) return;
+            if (!confirm(`Xác nhận chuyển trạng thái sang "${getStatusLabel(status)}"?`)) return;
             try {
                 await API.updateBooking(id, { status });
                 loadBookings();
             } catch (error) {
-                alert('Lá»—i: ' + error.message);
+                alert('Lỗi: ' + error.message);
             }
         }
 
         async function deleteBooking(id) {
-            if (!confirm('Báº¡n cÃ³ cháº¯c cháº¯n muá»‘n xÃ³a lá»‹ch háº¹n nÃ y khÃ´ng?')) return;
+            if (!confirm('Bạn có chắc chắn muốn xóa lịch hẹn này không?')) return;
             try {
                 await API.deleteBooking(id);
                 loadBookings();
             } catch (error) {
-                alert('Lá»—i: ' + error.message);
+                alert('Lỗi: ' + error.message);
             }
         }
 
@@ -464,7 +464,7 @@
             if (userInfo.role === 'staff') {
                 if (dashNav) dashNav.href = 'staff-dashboard.html';
                 if (revNav) revNav.style.display = 'none';
-                document.getElementById('sidebar-role-text').textContent = 'Há»‡ Thá»‘ng TÆ° Váº¥n ViÃªn';
+                document.getElementById('sidebar-role-text').textContent = 'Hệ Thống Tư Vấn Viên';
             }
             if (userInfo.role === 'admin' && revNav) {
                 revNav.style.display = 'flex';
@@ -494,7 +494,7 @@
                         <img src="${avatarUrl}" style="width: 35px; height: 35px; border-radius: 50%; object-fit: cover;">
                         <div style="overflow: hidden;">
                             <div style="font-size: 0.85rem; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: #fff;">${userInfo.fullName}</div>
-                            <div style="font-size: 0.7rem; color: var(--admin-text-light); text-transform: capitalize;">${userInfo.role === 'admin' ? 'Quáº£n trá»‹ viÃªn' : 'TÆ° váº¥n viÃªn'}</div>
+                            <div style="font-size: 0.7rem; color: var(--admin-text-light); text-transform: capitalize;">${userInfo.role === 'admin' ? 'Quản trị viên' : 'Tư vấn viên'}</div>
                         </div>
                     </div>
                 `;
@@ -516,4 +516,3 @@
     </script>
 </body>
 </html>
-

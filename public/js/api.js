@@ -1,4 +1,4 @@
-﻿// Load premium notification system
+// Load premium notification system
 (function() {
   if (!window.AnLuxuryNotification) {
     const script = document.createElement('script');
@@ -38,7 +38,7 @@ const fetchAPI = async (endpoint, options = {}) => {
             data = await response.json();
         } else {
             const text = await response.text();
-            throw new Error(`Server tráº£ vá» lá»—i khÃ´ng xÃ¡c Ä‘á»‹nh (${response.status}): ${text.substring(0, 50)}... táº¡i endpoint: ${endpoint}`);
+            throw new Error(`Server trả về lỗi không xác định (${response.status}): ${text.substring(0, 50)}... tại endpoint: ${endpoint}`);
         }
         
         if (!response.ok) {
@@ -50,7 +50,7 @@ const fetchAPI = async (endpoint, options = {}) => {
                 // Stop execution
                 await new Promise(() => {});
             }
-            throw new Error(data.message || 'CÃ³ lá»—i xáº£y ra!');
+            throw new Error(data.message || 'Có lỗi xảy ra!');
         }
         
         return data;
@@ -112,4 +112,3 @@ window.API = {
     deleteDiscount: (id) => fetchAPI(`/discounts/${id}`, { method: 'DELETE' }),
     validateDiscount: (code) => fetchAPI(`/discounts/validate/${code}`)
 };
-
