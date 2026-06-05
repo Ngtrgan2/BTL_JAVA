@@ -1,6 +1,6 @@
 const fs = require('fs');
 const path = require('path');
-const { register, login, updateProfile, getUsers, updateUserRole, googleLogin, forgotPassword, resetPassword, seedAdmin } = require('./controllers/userController');
+const { register, login, updateProfile, getUsers, updateUserRole, googleLogin, forgotPassword, resetPassword, seedAdmin, updateUserInfo, deleteUser, toggleBanUser } = require('./controllers/userController');
 const { getProducts, getProductById, createProduct, updateProduct, deleteProduct, applyGlobalDiscount, likeProduct, shareProduct, shareSEO, seedAll, getLikedProducts } = require('./controllers/productController');
 const { createOrder, getOrders, getOrderById, updateOrder, deleteOrder } = require('./controllers/orderController');
 const { createBooking, getBookings, updateBooking, deleteBooking } = require('./controllers/bookingController');
@@ -82,6 +82,15 @@ function router(req, res) {
     }
     if (url === '/api/users/liked-products' && method === 'GET') {
         return getLikedProducts(req, res);
+    }
+    if (url.match(/\/api\/users\/[^\/]+\/info$/) && method === 'PUT') {
+        return updateUserInfo(req, res);
+    }
+    if (url.match(/\/api\/users\/[^\/]+\/ban$/) && method === 'PUT') {
+        return toggleBanUser(req, res);
+    }
+    if (url.startsWith('/api/users/') && method === 'DELETE') {
+        return deleteUser(req, res);
     }
     if (url.startsWith('/api/users/') && method === 'PUT') {
         return updateUserRole(req, res);

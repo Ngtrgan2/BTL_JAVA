@@ -7,6 +7,39 @@
     <link rel="stylesheet" href="../../css/admin.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="icon" type="image/png" href="../../images/kimcuong2.png">
+
+    <style>
+        .modal-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.7); backdrop-filter: blur(5px);
+            display: none; align-items: center; justify-content: center; z-index: 1000;
+        }
+        .modal-overlay.active { display: flex; }
+        .modal-content {
+            background: var(--admin-surface);
+            border: 1px solid var(--admin-border);
+            border-radius: 16px;
+            width: 100%; max-width: 500px;
+            padding: 2rem;
+            position: relative;
+        }
+        .modal-content h3 { font-family: 'Playfair Display', serif; color: var(--admin-accent); margin-bottom: 1.5rem; font-size: 1.4rem; }
+        .form-group-modal { margin-bottom: 1.2rem; }
+        .form-group-modal label { display: block; margin-bottom: 0.5rem; color: var(--admin-text-light); font-size: 0.9rem; }
+        .form-group-modal input {
+            width: 100%; padding: 0.8rem 1rem;
+            background: rgba(0,0,0,0.3); border: 1px solid var(--admin-border);
+            color: #fff; border-radius: 8px; outline: none;
+        }
+        .form-group-modal input:focus { border-color: var(--admin-accent); }
+        .modal-actions { display: flex; justify-content: flex-end; gap: 1rem; margin-top: 2rem; }
+        .btn-modal { padding: 0.8rem 1.5rem; border-radius: 8px; font-weight: 600; cursor: pointer; border: none; transition: all 0.3s; }
+        .btn-modal-cancel { background: transparent; color: var(--admin-text-light); border: 1px solid var(--admin-border); }
+        .btn-modal-cancel:hover { background: rgba(255,255,255,0.05); color: #fff; }
+        .btn-modal-save { background: var(--gold-gradient); color: #000; }
+        .badge { padding: 0.3rem 0.6rem; border-radius: 4px; font-size: 0.75rem; font-weight: 600; margin-left: 10px; }
+        .badge-banned { background: rgba(231, 76, 60, 0.1); color: #e74c3c; border: 1px solid rgba(231, 76, 60, 0.3); }
+    </style>
 </head>
 <body>
     <div class="admin-grain-bg">
@@ -71,6 +104,33 @@
         <main class="admin-main">
             <div class="page-header">
                 <h1 class="page-title">Quản Lý Khách Hàng</h1>
+                <div class="header-actions">
+                    <button class="btn-admin" style="background: var(--admin-surface); border: 1px solid var(--admin-border); color: #fff;" onclick="exportToExcel()"><i class="fa-solid fa-file-excel" style="color: #2ecc71; margin-right: 8px;"></i> Xuất Excel</button>
+                </div>
+            </div>
+
+            <div class="stat-grid">
+                <div class="stat-card">
+                    <div class="stat-icon"><i class="fa-solid fa-users"></i></div>
+                    <div class="stat-info">
+                        <h3>Tổng số tài khoản</h3>
+                        <div class="stat-value" id="stat-total">0</div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon" style="color: #2ecc71;"><i class="fa-solid fa-user-check"></i></div>
+                    <div class="stat-info">
+                        <h3>Khách hàng thân thiết</h3>
+                        <div class="stat-value" id="stat-loyal">0</div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon" style="color: #e74c3c;"><i class="fa-solid fa-user-lock"></i></div>
+                    <div class="stat-info">
+                        <h3>Tài khoản bị khóa</h3>
+                        <div class="stat-value" id="stat-banned">0</div>
+                    </div>
+                </div>
             </div>
 
             <div class="admin-card">
@@ -98,10 +158,156 @@
                 </table>
             </div>
             <div id="pagination" class="pagination"></div>
+        
+        
         </main>
     </div>
 
-    <script src="../../js/api.js"></script>
+    <!-- Edit User Modal -->
+    <div class="modal-overlay" id="userModal">
+        <div class="modal-content">
+            <h3><i class="fa-solid fa-user-pen" style="margin-right: 8px;"></i> Chỉnh sửa Khách hàng</h3>
+            <input type="hidden" id="edit-id">
+            
+            <div class="form-group-modal">
+                <label>Họ và tên</label>
+                <input type="text" id="edit-fullname">
+            </div>
+            <div class="form-group-modal">
+                <label>Email</label>
+                <input type="email" id="edit-email">
+            </div>
+            <div class="form-group-modal">
+                <label>Số điện thoại</label>
+                <input type="text" id="edit-phone">
+            </div>
+            <div class="form-group-modal">
+                <label>Địa chỉ</label>
+                <input type="text" id="edit-address">
+            </div>
+
+            <div class="modal-actions">
+                <button class="btn-modal btn-modal-cancel" onclick="closeUserModal()">Hủy</button>
+                <button class="btn-modal btn-modal-save" onclick="saveUserInfo()"><i class="fa-solid fa-check" style="margin-right: 5px;"></i> Lưu thay đổi</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Edit User Modal -->
+    <div class="modal-overlay" id="userModal">
+        <div class="modal-content">
+            <h3><i class="fa-solid fa-user-pen" style="margin-right: 8px;"></i> Chỉnh sửa Khách hàng</h3>
+            <input type="hidden" id="edit-id">
+            
+            <div class="form-group-modal">
+                <label>Họ và tên</label>
+                <input type="text" id="edit-fullname">
+            </div>
+            <div class="form-group-modal">
+                <label>Email</label>
+                <input type="email" id="edit-email">
+            </div>
+            <div class="form-group-modal">
+                <label>Số điện thoại</label>
+                <input type="text" id="edit-phone">
+            </div>
+            <div class="form-group-modal">
+                <label>Địa chỉ</label>
+                <input type="text" id="edit-address">
+            </div>
+
+            <div class="modal-actions">
+                <button class="btn-modal btn-modal-cancel" onclick="closeUserModal()">Hủy</button>
+                <button class="btn-modal btn-modal-save" onclick="saveUserInfo()"><i class="fa-solid fa-check" style="margin-right: 5px;"></i> Lưu thay đổi</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="../../js/api.js">
+        function openEditUserModal(user) {
+            document.getElementById('edit-id').value = user._id;
+            document.getElementById('edit-fullname').value = user.fullName || '';
+            document.getElementById('edit-email').value = user.email || '';
+            document.getElementById('edit-phone').value = user.phone || '';
+            document.getElementById('edit-address').value = user.address || '';
+            document.getElementById('userModal').classList.add('active');
+        }
+
+        function closeUserModal() {
+            document.getElementById('userModal').classList.remove('active');
+        }
+
+        async function saveUserInfo() {
+            const id = document.getElementById('edit-id').value;
+            const data = {
+                fullName: document.getElementById('edit-fullname').value,
+                email: document.getElementById('edit-email').value,
+                phone: document.getElementById('edit-phone').value,
+                address: document.getElementById('edit-address').value
+            };
+
+            if (!data.fullName || !data.email) {
+                alert('Vui lòng nhập tên và email');
+                return;
+            }
+
+            try {
+                await API.updateUserInfo(id, data);
+                alert('Đã cập nhật thông tin!');
+                closeUserModal();
+                loadUsers();
+            } catch (error) {
+                alert('Lỗi: ' + error.message);
+            }
+        }
+
+        async function toggleBanUser(id, isBanned) {
+            if (!confirm(isBanned ? 'Khóa tài khoản này?' : 'Mở khóa tài khoản này?')) return;
+            try {
+                await API.toggleBanUser(id, isBanned);
+                loadUsers();
+            } catch (error) {
+                alert('Lỗi: ' + error.message);
+            }
+        }
+
+        async function deleteUser(id) {
+            if (!confirm('Chú ý: Hành động này không thể hoàn tác! Xóa tài khoản này?')) return;
+            try {
+                await API.deleteUser(id);
+                loadUsers();
+            } catch (error) {
+                alert('Lỗi: ' + error.message);
+            }
+        }
+
+        function exportToExcel() {
+            let csvContent = "data:text/csv;charset=utf-8,\uFEFF";
+            csvContent += "ID,Họ tên,Email,SĐT,Vai trò,Ngày đăng ký,Trạng thái\n";
+            
+            allUsers.forEach(u => {
+                const status = u.isBanned ? 'Đã khóa' : 'Hoạt động';
+                const row = [
+                    u._id,
+                    `"${u.fullName}"`,
+                    u.email,
+                    u.phone || '',
+                    u.role,
+                    new Date(u.createdAt).toLocaleDateString('vi-VN'),
+                    status
+                ].join(',');
+                csvContent += row + "\n";
+            });
+
+            const encodedUri = encodeURI(csvContent);
+            const link = document.createElement("a");
+            link.setAttribute("href", encodedUri);
+            link.setAttribute("download", `khach_hang_${new Date().toISOString().split('T')[0]}.csv`);
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+    </script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const userInfo = JSON.parse(localStorage.getItem('userInfo'));
@@ -136,6 +342,11 @@
                     window.location.href = '../login.html';
                 });
             });
+        
+            // Modal click outside to close
+            document.getElementById('userModal').addEventListener('click', (e) => {
+                if (e.target === e.currentTarget) closeUserModal();
+            });
         });
 
         let allUsers = [];
@@ -167,6 +378,11 @@
                     (u.phone && u.phone.includes(searchTerm))
                 );
 
+                // Update Stats
+                document.getElementById('stat-total').textContent = allUsers.length;
+                document.getElementById('stat-loyal').textContent = allUsers.filter(u => u.role === 'loyal').length;
+                document.getElementById('stat-banned').textContent = allUsers.filter(u => u.isBanned).length;
+
                 if (filtered.length === 0) {
                     tbody.innerHTML = '<tr><td colspan="6" style="text-align: center; padding: 3rem;">Không tìm thấy khách hàng nào</td></tr>';
                     const pag = document.getElementById('pagination');
@@ -182,10 +398,10 @@
                 tbody.innerHTML = paginated.map((u, i) => {
                     const index = startIndex + i;
                     return `
-                    <tr>
+                    <tr style="${u.isBanned ? 'opacity: 0.6; background: rgba(231, 76, 60, 0.05);' : ''}">
                         <td style="text-align: center; font-weight: bold; color: var(--admin-text-light);">${index + 1}</td>
                         <td>
-                            <div style="font-weight: 600;">${u.fullName}</div>
+                            <div style="font-weight: 600;">${u.fullName} ${u.isBanned ? '<span class="badge badge-banned"><i class="fa-solid fa-lock"></i> Đã khóa</span>' : ''}</div>
                             <small style="color: var(--admin-text-light);">${u._id}</small>
                         </td>
                         <td>
@@ -201,8 +417,15 @@
                                 <option value="admin" ${u.role === 'admin' ? 'selected' : ''}>Quản trị viên</option>
                             </select>
                         </td>
-                        <td style="text-align: right;">
+                        <td style="text-align: right; white-space: nowrap;">
+                            <button class="btn-icon" title="Sửa thông tin" onclick='openEditUserModal(${JSON.stringify(u).replace(/'/g, "&#39;")})'><i class="fa-solid fa-pen"></i></button>
                             <button class="btn-icon" title="Lịch sử mua hàng" onclick="window.location.href='orders.html?userId=${u._id}'"><i class="fa-solid fa-clock-rotate-left"></i></button>
+                            ${u.role !== 'admin' ? `
+                                <button class="btn-icon" title="${u.isBanned ? 'Mở khóa tài khoản' : 'Khóa tài khoản'}" style="color: ${u.isBanned ? '#2ecc71' : '#f39c12'};" onclick="toggleBanUser('${u._id}', ${!u.isBanned})">
+                                    <i class="fa-solid ${u.isBanned ? 'fa-unlock' : 'fa-lock'}"></i>
+                                </button>
+                                <button class="btn-icon" title="Xóa tài khoản" style="color: #e74c3c;" onclick="deleteUser('${u._id}')"><i class="fa-solid fa-trash-can"></i></button>
+                            ` : ''}
                         </td>
                     </tr>
                 `;

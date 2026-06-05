@@ -68,6 +68,10 @@ const login = async (req, res) => {
 
         const user = await users.findOne({ email });
         if (user && (await bcrypt.compare(password, user.password))) {
+            if (user.isBanned) {
+                res.writeHead(403, { 'Content-Type': 'application/json' });
+                return res.end(JSON.stringify({ message: 'Tài khoản của bạn đã bị khóa. Vui lòng liên hệ hotline 0392326230.' }));
+            }
             const token = jwt.sign({ id: user._id }, secret, { expiresIn: '30d' });
             res.writeHead(200, { 'Content-Type': 'application/json' });
             res.end(JSON.stringify({
@@ -381,6 +385,123 @@ const resetPassword = async (req, res) => {
     }
 };
 
+// Admin: Update user info (name, email, phone, address)
+const updateUserInfo = async (req, res) => {
+    try {
+        const decoded = verifyToken(req);
+        if (!decoded) {
+            res.writeHead(401, { 'Content-Type': 'application/json' });
+            return res.end(JSON.stringify({ message: 'Unauthorized' }));
+        }
+
+        const db = getDB();
+        const users = db.collection('users');
+        const adminUser = await users.findOne({ _id: new ObjectId(decoded.id) });
+
+        if (!adminUser || adminUser.role !== 'admin') {
+            res.writeHead(403, { 'Content-Type': 'application/json' });
+            return res.end(JSON.stringify({ message: 'Forbidden' }));
+        }
+
+        const urlParts = req.url.split('/');
+        const userId = urlParts[urlParts.length - 2]; // /api/users/{id}/info
+
+        const body = await getPostData(req);
+        const { fullName, email, phone, address } = JSON.parse(body);
+
+        const updateData = {};
+        if (fullName) updateData.fullName = fullName;
+        if (email) updateData.email = email;
+        if (phone !== undefined) updateData.phone = phone;
+        if (address !== undefined) updateData.address = address;
+
+        await users.updateOne(
+            { _id: new ObjectId(userId) },
+            { $set: updateData }
+        );
+
+        res.writeHead(200, { 'Content-Type': 'application/json' });
+        res.end(JSON.stringify({ message: 'Cập nhật thông tin thành công' }));
+    } catch (error) {
+        res.writeHead(500, { 'Content-Type': 'application/json' });
+        res.end(JSON.stringify({ message: 'Lỗi server: ' + error.message }));
+    }
+};
+
+// Admin: Delete user
+const deleteUser = async (req, res) => {
+    try {
+        const decoded = verifyToken(req);
+        if (!decoded) {
+            res.writeHead(401, { 'Content-Type': 'application/json' });
+            return res.end(JSON.stringify({ message: 'Unauthorized' }));
+        }
+
+        const db = getDB();
+        const users = db.collection('users');
+        const adminUser = await users.findOne({ _id: new ObjectId(decoded.id) });
+
+        if (!adminUser || adminUser.role !== 'admin') {
+            res.writeHead(403, { 'Content-Type': 'application/json' });
+            return res.end(JSON.stringify({ message: 'Forbidden' }));
+        }
+
+        const urlParts = req.url.split('/');
+        const userId = urlParts[urlParts.length - 1];
+
+        // Prevent deleting yourself
+        if (userId === decoded.id.toString()) {
+            res.writeHead(400, { 'Content-Type': 'application/json' });
+            return res.end(JSON.stringify({ message: 'Không thể xóa chính mình' }));
+        }
+
+        await users.deleteOne({ _id: new ObjectId(userId) });
+
+        res.writeHead(200, { 'Content-Type': 'application/json' });
+        res.end(JSON.stringify({ message: 'Đã xóa tài khoản' }));
+    } catch (error) {
+        res.writeHead(500, { 'Content-Type': 'application/json' });
+        res.end(JSON.stringify({ message: 'Lỗi server: ' + error.message }));
+    }
+};
+
+// Admin: Ban/Unban user
+const toggleBanUser = async (req, res) => {
+    try {
+        const decoded = verifyToken(req);
+        if (!decoded) {
+            res.writeHead(401, { 'Content-Type': 'application/json' });
+            return res.end(JSON.stringify({ message: 'Unauthorized' }));
+        }
+
+        const db = getDB();
+        const users = db.collection('users');
+        const adminUser = await users.findOne({ _id: new ObjectId(decoded.id) });
+
+        if (!adminUser || adminUser.role !== 'admin') {
+            res.writeHead(403, { 'Content-Type': 'application/json' });
+            return res.end(JSON.stringify({ message: 'Forbidden' }));
+        }
+
+        const urlParts = req.url.split('/');
+        const userId = urlParts[urlParts.length - 2]; // /api/users/{id}/ban
+
+        const body = await getPostData(req);
+        const { isBanned } = JSON.parse(body);
+
+        await users.updateOne(
+            { _id: new ObjectId(userId) },
+            { $set: { isBanned: !!isBanned } }
+        );
+
+        res.writeHead(200, { 'Content-Type': 'application/json' });
+        res.end(JSON.stringify({ message: isBanned ? 'Đã khóa tài khoản' : 'Đã mở khóa tài khoản' }));
+    } catch (error) {
+        res.writeHead(500, { 'Content-Type': 'application/json' });
+        res.end(JSON.stringify({ message: 'Lỗi server: ' + error.message }));
+    }
+};
+
 module.exports = { 
     register, 
     login, 
@@ -390,6 +511,8 @@ module.exports = {
     googleLogin, 
     seedAdmin,
     forgotPassword,
-    resetPassword
+    resetPassword,
+    updateUserInfo,
+    deleteUser,
+    toggleBanUser
 };
-
