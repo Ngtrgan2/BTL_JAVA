@@ -9,6 +9,7 @@ const { chatResponse } = require('./controllers/chatController');
 const { getNews, createNews, updateNews, deleteNews } = require('./controllers/newsController');
 const { getComments, createComment, likeComment, deleteComment } = require('./controllers/commentController');
 const { getAIContext } = require('./controllers/aiController');
+const { getSettings, updateSettings } = require('./controllers/settingsController');
 const { getDiscounts, createDiscount, updateDiscount, deleteDiscount, validateDiscount } = require('./controllers/discountController');
 
 function router(req, res) {
@@ -220,6 +221,15 @@ function router(req, res) {
     }
     
     // API Routes - News
+
+    // Settings Routes
+    if (url === '/api/settings' && method === 'GET') {
+        return getSettings(req, res);
+    }
+    if (url === '/api/settings' && method === 'PUT') {
+        return authMiddleware(req, res, () => updateSettings(req, res));
+    }
+
     if (url === '/api/news' && method === 'GET') {
         return getNews(req, res);
     }

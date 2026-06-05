@@ -110,5 +110,52 @@ window.API = {
     createDiscount: (data) => fetchAPI('/discounts', { method: 'POST', body: JSON.stringify(data) }),
     updateDiscount: (id, data) => fetchAPI(`/discounts/${id}`, { method: 'PUT', body: JSON.stringify(data) }),
     deleteDiscount: (id) => fetchAPI(`/discounts/${id}`, { method: 'DELETE' }),
+    
+    // Settings
+    getSettings: () => fetchAPI('/settings'),
+    updateSettings: (data) => fetchAPI('/settings', { method: 'PUT', body: JSON.stringify(data) }),
+
     validateDiscount: (code) => fetchAPI(`/discounts/validate/${code}`)
 };
+
+// Auto Load Settings
+if(window.API) {
+    window.API.loadGlobalSettings = async () => {
+        try {
+            const settings = await window.API.getSettings();
+            if (settings) {
+                // Update text elements
+                document.querySelectorAll('.dynamic-hotline').forEach(el => el.textContent = settings.hotline);
+                document.querySelectorAll('.dynamic-email').forEach(el => {
+                    el.textContent = settings.email;
+                    if(el.tagName === 'A') el.href = 'mailto:' + settings.email;
+                });
+                document.querySelectorAll('.dynamic-address').forEach(el => el.textContent = settings.address);
+                document.querySelectorAll('.dynamic-banner-title').forEach(el => el.textContent = settings.banner_main_title);
+                document.querySelectorAll('.dynamic-banner-subtitle').forEach(el => el.textContent = settings.banner_main_subtitle);
+                
+                // Update Links
+                document.querySelectorAll('.dynamic-facebook').forEach(el => el.href = settings.facebook_url || '#');
+                document.querySelectorAll('.dynamic-instagram').forEach(el => el.href = settings.instagram_url || '#');
+                document.querySelectorAll('.dynamic-youtube').forEach(el => el.href = settings.youtube_url || '#');
+                document.querySelectorAll('.dynamic-tiktok').forEach(el => el.href = settings.tiktok_url || '#');
+                document.querySelectorAll('.dynamic-zalo').forEach(el => el.href = settings.zalo_url || '#');
+                
+                // Update Banner Image if present
+                document.querySelectorAll('.dynamic-banner-image').forEach(el => {
+                    if (el.tagName === 'IMG') el.src = settings.banner_main_image;
+                    else el.style.backgroundImage = `url('${settings.banner_main_image}')`;
+                });
+            }
+        } catch (e) {
+            console.error('Failed to load global settings:', e);
+        }
+    };
+}
+
+// Run global settings loader when DOM is ready
+document.addEventListener('DOMContentLoaded', () => {
+    if (window.API && window.API.loadGlobalSettings) {
+        window.API.loadGlobalSettings();
+    }
+});
