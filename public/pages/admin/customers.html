@@ -163,6 +163,7 @@
         </main>
     </div>
 
+    
     <!-- Edit User Modal -->
     <div class="modal-overlay" id="editUserModal">
         <div class="modal-content">
@@ -193,37 +194,8 @@
         </div>
     </div>
 
-    <!-- Edit User Modal -->
-    <div class="modal-overlay" id="editUserModal">
-        <div class="modal-content">
-            <h3><i class="fa-solid fa-user-pen" style="margin-right: 8px;"></i> Chỉnh sửa Khách hàng</h3>
-            <input type="hidden" id="edit-id">
-            
-            <div class="form-group-modal">
-                <label>Họ và tên</label>
-                <input type="text" id="edit-fullname">
-            </div>
-            <div class="form-group-modal">
-                <label>Email</label>
-                <input type="email" id="edit-email">
-            </div>
-            <div class="form-group-modal">
-                <label>Số điện thoại</label>
-                <input type="text" id="edit-phone">
-            </div>
-            <div class="form-group-modal">
-                <label>Địa chỉ</label>
-                <input type="text" id="edit-address">
-            </div>
-
-            <div class="modal-actions">
-                <button class="btn-modal btn-modal-cancel" onclick="closeUserModal()">Hủy</button>
-                <button class="btn-modal btn-modal-save" onclick="saveUserInfo()"><i class="fa-solid fa-check" style="margin-right: 5px;"></i> Lưu thay đổi</button>
-            </div>
-        </div>
-    </div>
-
-    <script src="../../js/api.js?v=2">
+    <script src="../../js/api.js?v=2"></script>
+    <script>
         function openEditUserModal(id) {
     const user = allUsers.find(u => u._id === id);
     if (!user) return;
@@ -232,7 +204,7 @@
             document.getElementById('edit-email').value = user.email || '';
             document.getElementById('edit-phone').value = user.phone || '';
             document.getElementById('edit-address').value = user.address || '';
-            document.getElementById('userModal').classList.add('active');
+            document.getElementById('editUserModal').classList.add('active');
         }
 
         function closeUserModal() {
