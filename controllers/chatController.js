@@ -1,74 +1,67 @@
 const { getDB } = require('../db');
 const { getPostData } = require('../utils');
 const { ObjectId } = require('mongodb');
-
+const { GoogleGenAI } = require('@google/genai');
 const chatResponse = async (req, res) => {
     try {
         const body = await getPostData(req);
         const { message } = JSON.parse(body);
-        const msg = message.toLowerCase();
 
         const db = getDB();
-        let reply = '';
+        
+        // 1. Prepare Store Context (Products)
+        const productsRaw = await db.collection('products').find({}).toArray();
+        const products = productsRaw.map(p => ({
+            name: p.name,
+            category: p.categoryLabel || p.category,
+            price: Number(p.price).toLocaleString('vi-VN') + ' ₫',
+            stock: Number(p.stock)
+        }));
 
-        // 1. Basic FAQs
-        if (msg.includes('địa chỉ') || msg.includes('cửa hàng') || msg.includes('ở đâu')) {
-            reply = 'Anh ở 21/33 Bạch Đằng, con vợ muốn gặp anh thì di chuyển qua đây nhé :))';
-        } else if (msg.includes('liên hệ') || msg.includes('số điện thoại') || msg.includes('hotline')) {
-            reply = '0392326230, con vợ cần gì gọi ngay cho anh nhé';
-        } else if (msg.includes('chào') || msg.includes('hi') || msg.includes('hello')) {
-            reply = 'Con vợ cần gì nhỉ ?? Nói nhanh anh tư vấn nào';
-        } else if (msg.includes('ship') || msg.includes('giao hàng') || msg.includes('vận chuyển')) {
-            reply = 'Đợi tí anh gọi mấy thằng đệ ship cho con vợ nhé ';
-        } else if (msg.includes('bảo hành') || msg.includes('đổi trả')) {
-            reply = 'Sản phẩm tại An LUXURY được bảo hành làm mới, đánh bóng trọn đời. Chính sách đổi trả linh hoạt trong vòng 7 ngày nếu có lỗi sản xuất ạ.';
-        } else if (msg.includes('đo size') || msg.includes('kích cỡ')) {
-            reply = 'Dạ, trong phần chi tiết mỗi sản phẩm đều có bảng hướng dẫn đo size. Hoặc anh/chị có thể cho em biết chiều cao, cân nặng để em tư vấn size tương đối nhé.';
-        } else if (msg.includes('mã giảm giá') || msg.includes('giảm giá') || msg.includes('khuyến mãi') || msg.includes('ưu đãi') || msg.includes('voucher')) {
-            const now = new Date();
-            const discountsRaw = await db.collection('discounts').find({ isActive: true }).toArray();
-            const activeDiscounts = discountsRaw.filter(d => {
-                if (d.expiryDate && new Date(d.expiryDate) < now) return false;
-                if (d.maxUsage && d.usedCount >= d.maxUsage) return false;
-                return true;
-            });
+        // 2. Prepare Discounts
+        const now = new Date();
+        const discountsRaw = await db.collection('discounts').find({ isActive: true }).toArray();
+        const activeDiscounts = discountsRaw.filter(d => {
+            if (d.expiryDate && new Date(d.expiryDate) < now) return false;
+            if (d.maxUsage && d.usedCount >= d.maxUsage) return false;
+            return true;
+        }).map(d => ({
+            code: d.code,
+            type: d.discountType === 'percent' ? 'Giảm theo %' : 'Giảm tiền mặt',
+            value: d.discountType === 'percent' ? `${d.discountValue}%` : `${Number(d.discountValue).toLocaleString('vi-VN')} ₫`
+        }));
 
-            if (activeDiscounts.length > 0) {
-                reply = 'Dạ, hiện tại An LUXURY đang có các mã giảm giá siêu hot sau ạ:\n' + 
-                    activeDiscounts.map(d => {
-                        const val = d.discountType === 'percent' ? `${d.discountValue}%` : `${Number(d.discountValue).toLocaleString('vi-VN')} ₫`;
-                        return `- Nhập mã "${d.code}": Giảm ngay ${val}`;
-                    }).join('\n') + 
-                    '\nAnh/chị lưu lại mã này và nhập ở bước Thanh toán nhé!';
-            } else {
-                reply = 'Dạ, hiện tại các chương trình ưu đãi vừa kết thúc. Anh/chị hãy theo dõi website để đón chờ các mã giảm giá đợt tới nhé!';
-            }
-        }
+        // 3. Prepare System Prompt
+        const prompt = `
+Bạn là một nữ chuyên viên tư vấn bán hàng chuyên nghiệp, duyên dáng và thanh lịch của hệ thống trang sức cao cấp "An LUXURY" (Địa chỉ: 21/33 Bạch Đằng, Việt Nam. Hotline: 0392326230). 
+Nhiệm vụ của bạn là trả lời khách hàng một cách lịch sự, thân thiện và ngắn gọn (tối đa 3-4 câu).
+Đừng nói lan man, hãy tập trung trả lời đúng trọng tâm. Nếu khách hỏi về sản phẩm, hãy cung cấp giá cả.
 
-        // 2. Product Search (Dynamic)
-        else {
-            // Search by name or category
-            const products = await db.collection('products').find({}).toArray();
-            let foundProducts = products.filter(p =>
-                p.name.toLowerCase().includes(msg) ||
-                (p.categoryLabel && p.categoryLabel.toLowerCase().includes(msg)) ||
-                p.category.toLowerCase().includes(msg)
-            ).slice(0, 3); // Get top 3
+THÔNG TIN SẢN PHẨM HIỆN CÓ:
+${JSON.stringify(products, null, 2)}
 
-            if (foundProducts.length > 0) {
-                reply = `Dạ, bên em có các mẫu ${msg} tuyệt đẹp sau đây ạ:\n` +
-                    foundProducts.map(p => `- ${p.name}: ${Number(p.price).toLocaleString('vi-VN')} ₫`).join('\n') +
-                    '\nAnh/chị nhấn vào "Bộ sưu tập" để xem hình ảnh chi tiết nhé!';
-            } else {
-                reply = 'Dạ, hiện tại em chưa tìm thấy thông tin chính xác về yêu cầu của anh/chị. Anh/chị có thể để lại số điện thoại hoặc nhắn tin qua Zalo 0339.194.214 để chuyên viên bên em tư vấn kỹ hơn nhé!';
-            }
-        }
+MÃ GIẢM GIÁ ĐANG HOẠT ĐỘNG:
+${JSON.stringify(activeDiscounts, null, 2)}
+
+Câu hỏi của khách hàng: "${message}"
+Câu trả lời của bạn:
+`;
+
+        // 4. Call Gemini AI
+        const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
+        const response = await ai.models.generateContent({
+            model: 'gemini-2.5-flash',
+            contents: prompt
+        });
+
+        const reply = response.text || "Dạ, hiện tại hệ thống đang bận một chút, anh/chị vui lòng đợi trong giây lát hoặc liên hệ hotline nhé!";
 
         res.writeHead(200, { 'Content-Type': 'application/json' });
         res.end(JSON.stringify({ reply }));
     } catch (error) {
+        console.error('AI Chat Error:', error);
         res.writeHead(500, { 'Content-Type': 'application/json' });
-        res.end(JSON.stringify({ message: error.message }));
+        res.end(JSON.stringify({ message: "Xin lỗi anh/chị, hệ thống chat đang bảo trì. Vui lòng liên hệ hotline 0392326230." }));
     }
 };
 
