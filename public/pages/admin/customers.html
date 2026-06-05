@@ -392,11 +392,16 @@
             const searchTerm = document.getElementById('searchUser').value.toLowerCase();
 
             try {
-                const filtered = allUsers.filter(u => 
-                    u.fullName.toLowerCase().includes(searchTerm) || 
-                    u.email.toLowerCase().includes(searchTerm) ||
-                    (u.phone && u.phone.includes(searchTerm))
-                );
+                const filtered = allUsers.filter(u => {
+                    let matchSearch = u.fullName.toLowerCase().includes(searchTerm) || 
+                                      u.email.toLowerCase().includes(searchTerm) ||
+                                      (u.phone && u.phone.includes(searchTerm));
+                    let matchFilter = true;
+                    if (currentFilter === 'loyal') matchFilter = (u.role === 'loyal');
+                    if (currentFilter === 'banned') matchFilter = u.isBanned;
+                    
+                    return matchSearch && matchFilter;
+                });
 
                 // Update Stats
                 document.getElementById('stat-total').textContent = allUsers.length;
