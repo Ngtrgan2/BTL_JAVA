@@ -3,6 +3,8 @@
 const Cart = {
     // Lấy giỏ hàng từ localStorage
     getItems() {
+        const userInfo = localStorage.getItem('userInfo');
+        if (!userInfo) return [];
         return JSON.parse(localStorage.getItem('cart') || '[]');
     },
 

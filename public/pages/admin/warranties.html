@@ -1,9 +1,9 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quản lý Bảo hành | An LUXURY</title>
+    <title>Quáº£n lÃ½ Báº£o hÃ nh | An LUXURY</title>
     <link rel="stylesheet" href="../../css/admin.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="icon" type="image/png" href="../../images/kimcuong2.png">
@@ -167,39 +167,39 @@
         <aside class="admin-sidebar">
             <div class="sidebar-header">
                 <div class="sidebar-logo">An LUXURY</div>
-                <div id="sidebar-role-text" style="font-size: 0.8rem; color: var(--admin-text-light); margin-top: 5px;">Quản Trị Hệ Thống</div>
+                <div id="sidebar-role-text" style="font-size: 0.8rem; color: var(--admin-text-light); margin-top: 5px;">Quáº£n Trá»‹ Há»‡ Thá»‘ng</div>
             </div>
             
             <div class="sidebar-menu">
                 <a href="dashboard.html" class="menu-item" id="nav-dashboard">
-                    <i class="fa-solid fa-chart-pie menu-icon"></i> Bàn làm việc
+                    <i class="fa-solid fa-chart-pie menu-icon"></i> BÃ n lÃ m viá»‡c
                 </a>
                 <a href="revenue.html" class="menu-item" id="nav-revenue">
                     <i class="fa-solid fa-money-bill-trend-up menu-icon"></i> Doanh thu
                 </a>
                 <a href="products.html" class="menu-item" id="nav-products">
-                    <i class="fa-solid fa-gem menu-icon"></i> Sản phẩm
+                    <i class="fa-solid fa-gem menu-icon"></i> Sáº£n pháº©m
                 </a>
                 <a href="orders.html" class="menu-item" id="nav-orders">
-                    <i class="fa-solid fa-cart-flatbed menu-icon"></i> Đơn hàng
+                    <i class="fa-solid fa-cart-flatbed menu-icon"></i> ÄÆ¡n hÃ ng
                 </a>
                 <a href="bookings.html" class="menu-item" id="nav-bookings">
-                    <i class="fa-regular fa-calendar-check menu-icon"></i> Lịch hẹn VIP
+                    <i class="fa-regular fa-calendar-check menu-icon"></i> Lá»‹ch háº¹n VIP
                 </a>
                 <a href="warranties.html" class="menu-item active" id="nav-warranties">
-                    <i class="fa-solid fa-shield-halved menu-icon"></i> Bảo hành
+                    <i class="fa-solid fa-shield-halved menu-icon"></i> Báº£o hÃ nh
                 </a>
                 <a href="discounts.html" class="menu-item" id="nav-discounts">
-                    <i class="fa-solid fa-tags menu-icon"></i> Mã giảm giá
+                    <i class="fa-solid fa-tags menu-icon"></i> MÃ£ giáº£m giÃ¡
                 </a>
                 <a href="news.html" class="menu-item" id="nav-news">
-                    <i class="fa-solid fa-newspaper menu-icon"></i> Tin tức
+                    <i class="fa-solid fa-newspaper menu-icon"></i> Tin tá»©c
                 </a>
                 <a href="chat.html" class="menu-item" id="nav-chat">
-                    <i class="fa-solid fa-comments menu-icon"></i> Chat Hỗ Trợ
+                    <i class="fa-solid fa-comments menu-icon"></i> Chat Há»— Trá»£
                 </a>
                 <a href="customers.html" class="menu-item" id="nav-customers">
-                    <i class="fa-solid fa-users menu-icon"></i> Khách hàng
+                    <i class="fa-solid fa-users menu-icon"></i> KhÃ¡ch hÃ ng
                 </a>
             </div>
             
@@ -209,7 +209,7 @@
                     <i class="fa-solid fa-globe menu-icon"></i> Xem website
                 </a>
                 <a href="#" class="menu-item logout-btn" style="padding: 0; color: #e74c3c; font-size: 0.9rem;">
-                    <i class="fa-solid fa-arrow-right-from-bracket menu-icon" style="color: #e74c3c;"></i> Đăng xuất
+                    <i class="fa-solid fa-arrow-right-from-bracket menu-icon" style="color: #e74c3c;"></i> ÄÄƒng xuáº¥t
                 </a>
             </div>
         </aside>
@@ -217,40 +217,40 @@
         <!-- Main Content -->
         <main class="admin-main">
             <div class="page-header">
-                <h1 class="page-title">Quản Lý Bảo Hành</h1>
+                <h1 class="page-title">Quáº£n LÃ½ Báº£o HÃ nh</h1>
             </div>
 
             <!-- Stats Cards -->
             <div class="warranty-stats">
                 <div class="stat-card">
                     <span class="stat-number" id="stat-total">0</span>
-                    <span class="stat-label">Tổng mã bảo hành</span>
+                    <span class="stat-label">Tá»•ng mÃ£ báº£o hÃ nh</span>
                 </div>
                 <div class="stat-card">
                     <span class="stat-number" id="stat-active" style="color: #2ecc71;">0</span>
-                    <span class="stat-label">Đang hiệu lực</span>
+                    <span class="stat-label">Äang hiá»‡u lá»±c</span>
                 </div>
                 <div class="stat-card">
                     <span class="stat-number" id="stat-expired" style="color: #e74c3c;">0</span>
-                    <span class="stat-label">Hết hạn</span>
+                    <span class="stat-label">Háº¿t háº¡n</span>
                 </div>
                 <div class="stat-card">
                     <span class="stat-number" id="stat-cancelled" style="color: #95a5a6;">0</span>
-                    <span class="stat-label">Đã hủy</span>
+                    <span class="stat-label">ÄÃ£ há»§y</span>
                 </div>
             </div>
 
             <!-- Filter & Search -->
             <div class="admin-card">
                 <div class="filter-bar">
-                    <input type="text" id="searchInput" placeholder="Tìm kiếm theo mã bảo hành, tên khách hàng, SĐT, sản phẩm...">
+                    <input type="text" id="searchInput" placeholder="TÃ¬m kiáº¿m theo mÃ£ báº£o hÃ nh, tÃªn khÃ¡ch hÃ ng, SÄT, sáº£n pháº©m...">
                     <select id="statusFilter">
-                        <option value="">Tất cả trạng thái</option>
-                        <option value="active">Đang hiệu lực</option>
-                        <option value="expired">Hết hạn</option>
-                        <option value="cancelled">Đã hủy</option>
+                        <option value="">Táº¥t cáº£ tráº¡ng thÃ¡i</option>
+                        <option value="active">Äang hiá»‡u lá»±c</option>
+                        <option value="expired">Háº¿t háº¡n</option>
+                        <option value="cancelled">ÄÃ£ há»§y</option>
                     </select>
-                    <button class="btn-admin btn-primary" onclick="loadWarranties()"><i class="fa-solid fa-filter"></i> Lọc</button>
+                    <button class="btn-admin btn-primary" onclick="loadWarranties()"><i class="fa-solid fa-filter"></i> Lá»c</button>
                 </div>
 
                 <!-- Table -->
@@ -258,17 +258,17 @@
                     <thead>
                         <tr>
                             <th style="width: 50px; text-align: center;">STT</th>
-                            <th>MÃ BẢO HÀNH</th>
-                            <th>SẢN PHẨM</th>
-                            <th>KHÁCH HÀNG</th>
-                            <th>NGÀY KÍCH HOẠT</th>
-                            <th>NGÀY HẾT HẠN</th>
-                            <th>TRẠNG THÁI</th>
-                            <th style="text-align: right;">THAO TÁC</th>
+                            <th>MÃƒ Báº¢O HÃ€NH</th>
+                            <th>Sáº¢N PHáº¨M</th>
+                            <th>KHÃCH HÃ€NG</th>
+                            <th>NGÃ€Y KÃCH HOáº T</th>
+                            <th>NGÃ€Y Háº¾T Háº N</th>
+                            <th>TRáº NG THÃI</th>
+                            <th style="text-align: right;">THAO TÃC</th>
                         </tr>
                     </thead>
                     <tbody id="warrantyTableBody">
-                        <tr><td colspan="8" style="text-align: center; padding: 3rem;"><i class="fa-solid fa-circle-notch fa-spin"></i> Đang tải...</td></tr>
+                        <tr><td colspan="8" style="text-align: center; padding: 3rem;"><i class="fa-solid fa-circle-notch fa-spin"></i> Äang táº£i...</td></tr>
                 </table>
             </div>
             <div id="pagination" class="pagination"></div>
@@ -278,23 +278,23 @@
     <!-- Edit Modal -->
     <div class="modal-overlay" id="editModal">
         <div class="modal-content">
-            <h3><i class="fa-solid fa-shield-halved" style="margin-right: 8px;"></i> Chỉnh sửa Bảo hành</h3>
+            <h3><i class="fa-solid fa-shield-halved" style="margin-right: 8px;"></i> Chá»‰nh sá»­a Báº£o hÃ nh</h3>
             <input type="hidden" id="edit-id">
             
             <div class="form-group-modal">
-                <label>Mã bảo hành</label>
+                <label>MÃ£ báº£o hÃ nh</label>
                 <input type="text" id="edit-code" disabled style="opacity: 0.5;">
             </div>
             <div class="form-group-modal">
-                <label>Sản phẩm</label>
+                <label>Sáº£n pháº©m</label>
                 <input type="text" id="edit-product" disabled style="opacity: 0.5;">
             </div>
             <div class="form-group-modal">
-                <label>Tên khách hàng</label>
+                <label>TÃªn khÃ¡ch hÃ ng</label>
                 <input type="text" id="edit-name">
             </div>
             <div class="form-group-modal">
-                <label>Số điện thoại</label>
+                <label>Sá»‘ Ä‘iá»‡n thoáº¡i</label>
                 <input type="text" id="edit-phone">
             </div>
             <div class="form-group-modal">
@@ -302,21 +302,21 @@
                 <input type="email" id="edit-email">
             </div>
             <div class="form-group-modal">
-                <label>Ngày hết hạn</label>
+                <label>NgÃ y háº¿t háº¡n</label>
                 <input type="date" id="edit-expiry">
             </div>
             <div class="form-group-modal">
-                <label>Trạng thái</label>
+                <label>Tráº¡ng thÃ¡i</label>
                 <select id="edit-status">
-                    <option value="active">Đang hiệu lực</option>
-                    <option value="expired">Hết hạn</option>
-                    <option value="cancelled">Đã hủy</option>
+                    <option value="active">Äang hiá»‡u lá»±c</option>
+                    <option value="expired">Háº¿t háº¡n</option>
+                    <option value="cancelled">ÄÃ£ há»§y</option>
                 </select>
             </div>
 
             <div class="modal-actions">
-                <button class="btn-modal btn-modal-cancel" onclick="closeModal()">Hủy</button>
-                <button class="btn-modal btn-modal-save" onclick="saveWarranty()"><i class="fa-solid fa-check" style="margin-right: 5px;"></i> Lưu thay đổi</button>
+                <button class="btn-modal btn-modal-cancel" onclick="closeModal()">Há»§y</button>
+                <button class="btn-modal btn-modal-save" onclick="saveWarranty()"><i class="fa-solid fa-check" style="margin-right: 5px;"></i> LÆ°u thay Ä‘á»•i</button>
             </div>
         </div>
     </div>
@@ -341,7 +341,7 @@
                     <img src="${avatarUrl}" style="width: 35px; height: 35px; border-radius: 50%; object-fit: cover;">
                     <div style="overflow: hidden;">
                         <div style="font-size: 0.85rem; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: #fff;">${userInfo.fullName}</div>
-                        <div style="font-size: 0.7rem; color: var(--admin-text-light); text-transform: capitalize;">Quản trị viên</div>
+                        <div style="font-size: 0.7rem; color: var(--admin-text-light); text-transform: capitalize;">Quáº£n trá»‹ viÃªn</div>
                     </div>
                 </div>
             `;
@@ -354,6 +354,7 @@
                     e.preventDefault();
                     localStorage.removeItem('userInfo');
                     localStorage.removeItem('token');
+                    localStorage.removeItem('cart');
                     window.location.href = '../login.html';
                 });
             });
@@ -383,7 +384,7 @@
                 allWarranties = fetchedWarranties;
                 renderWarranties();
             } catch (error) {
-                tbody.innerHTML = '<tr><td colspan="8" style="text-align: center; color: #e74c3c; padding: 3rem;">Lỗi tải dữ liệu: ' + error.message + '</td></tr>';
+                tbody.innerHTML = '<tr><td colspan="8" style="text-align: center; color: #e74c3c; padding: 3rem;">Lá»—i táº£i dá»¯ liá»‡u: ' + error.message + '</td></tr>';
             }
         }
 
@@ -428,7 +429,7 @@
                 document.getElementById('stat-cancelled').textContent = totalCancelled;
 
                 if (filtered.length === 0) {
-                    tbody.innerHTML = '<tr><td colspan="8" style="text-align: center; padding: 3rem; color: rgba(255,255,255,0.4);">Không tìm thấy mã bảo hành nào</td></tr>';
+                    tbody.innerHTML = '<tr><td colspan="8" style="text-align: center; padding: 3rem; color: rgba(255,255,255,0.4);">KhÃ´ng tÃ¬m tháº¥y mÃ£ báº£o hÃ nh nÃ o</td></tr>';
                     const pag = document.getElementById('pagination');
                     if (pag) pag.innerHTML = '';
                     return;
@@ -445,30 +446,30 @@
                     const expiryDate = w.expiryDate ? new Date(w.expiryDate).toLocaleDateString('vi-VN') : 'N/A';
                     
                     let badgeClass = 'badge-active';
-                    let badgeText = 'Hiệu lực';
-                    if (w.displayStatus === 'expired') { badgeClass = 'badge-expired'; badgeText = 'Hết hạn'; }
-                    if (w.displayStatus === 'cancelled') { badgeClass = 'badge-cancelled'; badgeText = 'Đã hủy'; }
+                    let badgeText = 'Hiá»‡u lá»±c';
+                    if (w.displayStatus === 'expired') { badgeClass = 'badge-expired'; badgeText = 'Háº¿t háº¡n'; }
+                    if (w.displayStatus === 'cancelled') { badgeClass = 'badge-cancelled'; badgeText = 'ÄÃ£ há»§y'; }
 
                     return `
                         <tr>
                             <td style="text-align: center; font-weight: bold; color: var(--admin-text-light);">${index + 1}</td>
                             <td>
                                 <div style="font-weight: 700; color: #d4af37; font-family: monospace; font-size: 0.95rem;">${w.warrantyCode}</div>
-                                <small style="color: var(--admin-text-light);">Đơn: ${w.orderId ? w.orderId.slice(-6).toUpperCase() : 'N/A'}</small>
+                                <small style="color: var(--admin-text-light);">ÄÆ¡n: ${w.orderId ? w.orderId.slice(-6).toUpperCase() : 'N/A'}</small>
                             </td>
                             <td>
                                 <div style="font-weight: 500;">${w.productName || 'N/A'}</div>
                             </td>
                             <td>
-                                <div style="font-weight: 500;">${w.customerName || '<span style="color: rgba(255,255,255,0.3);">Chưa cập nhật</span>'}</div>
+                                <div style="font-weight: 500;">${w.customerName || '<span style="color: rgba(255,255,255,0.3);">ChÆ°a cáº­p nháº­t</span>'}</div>
                                 <small style="color: var(--admin-text-light);">${w.phone || ''}</small>
                             </td>
                             <td style="color: var(--admin-text-light);">${purchaseDate}</td>
                             <td style="color: var(--admin-text-light);">${expiryDate}</td>
                             <td><span class="badge-status ${badgeClass}">${badgeText}</span></td>
                             <td style="text-align: right;">
-                                <button class="btn-icon" title="Chỉnh sửa" onclick='openEditModal(${JSON.stringify(w).replace(/'/g, "&#39;")})'><i class="fa-solid fa-pen-to-square"></i></button>
-                                <button class="btn-icon" title="Xóa" onclick="deleteWarranty('${w._id}')" style="color: #e74c3c;"><i class="fa-solid fa-trash-can"></i></button>
+                                <button class="btn-icon" title="Chá»‰nh sá»­a" onclick='openEditModal(${JSON.stringify(w).replace(/'/g, "&#39;")})'><i class="fa-solid fa-pen-to-square"></i></button>
+                                <button class="btn-icon" title="XÃ³a" onclick="deleteWarranty('${w._id}')" style="color: #e74c3c;"><i class="fa-solid fa-trash-can"></i></button>
                             </td>
                         </tr>
                     `;
@@ -479,7 +480,7 @@
                     if (totalPages <= 1) {
                         pag.innerHTML = '';
                     } else {
-                        let html = `<div class="pagination-info">Trang ${currentPage} / ${totalPages} (Tổng ${filtered.length} bảo hành)</div>`;
+                        let html = `<div class="pagination-info">Trang ${currentPage} / ${totalPages} (Tá»•ng ${filtered.length} báº£o hÃ nh)</div>`;
                         html += `<button onclick="changePage(${currentPage - 1})" ${currentPage === 1 ? 'disabled' : ''}><i class="fa-solid fa-chevron-left"></i></button>`;
                         for (let i = 1; i <= totalPages; i++) {
                             if (i === 1 || i === totalPages || (i >= currentPage - 1 && i <= currentPage + 1)) {
@@ -494,7 +495,7 @@
                 }
 
             } catch (error) {
-                tbody.innerHTML = '<tr><td colspan="8" style="text-align: center; color: #e74c3c; padding: 3rem;">Lỗi tải dữ liệu: ' + error.message + '</td></tr>';
+                tbody.innerHTML = '<tr><td colspan="8" style="text-align: center; color: #e74c3c; padding: 3rem;">Lá»—i táº£i dá»¯ liá»‡u: ' + error.message + '</td></tr>';
             }
         }
 
@@ -536,25 +537,26 @@
 
             try {
                 await API.updateWarranty(id, data);
-                alert('Cập nhật bảo hành thành công!');
+                alert('Cáº­p nháº­t báº£o hÃ nh thÃ nh cÃ´ng!');
                 closeModal();
                 loadWarranties();
             } catch (error) {
-                alert('Lỗi: ' + error.message);
+                alert('Lá»—i: ' + error.message);
             }
         }
 
         async function deleteWarranty(id) {
-            if (!confirm('Bạn có chắc chắn muốn xóa mã bảo hành này? Hành động không thể hoàn tác!')) return;
+            if (!confirm('Báº¡n cÃ³ cháº¯c cháº¯n muá»‘n xÃ³a mÃ£ báº£o hÃ nh nÃ y? HÃ nh Ä‘á»™ng khÃ´ng thá»ƒ hoÃ n tÃ¡c!')) return;
             
             try {
                 await API.deleteWarranty(id);
-                alert('Đã xóa mã bảo hành!');
+                alert('ÄÃ£ xÃ³a mÃ£ báº£o hÃ nh!');
                 loadWarranties();
             } catch (error) {
-                alert('Lỗi: ' + error.message);
+                alert('Lá»—i: ' + error.message);
             }
         }
     </script>
 </body>
 </html>
+

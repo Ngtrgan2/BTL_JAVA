@@ -1,9 +1,9 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quản Lý Doanh Thu | An LUXURY Admin</title>
+    <title>Quáº£n LÃ½ Doanh Thu | An LUXURY Admin</title>
     <link rel="stylesheet" href="../../css/admin.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -116,39 +116,39 @@
         <aside class="admin-sidebar">
             <div class="sidebar-header">
                 <div class="sidebar-logo">An LUXURY</div>
-                <div id="sidebar-role-text" style="font-size: 0.8rem; color: var(--admin-text-light); margin-top: 5px;">Quản Trị Hệ Thống</div>
+                <div id="sidebar-role-text" style="font-size: 0.8rem; color: var(--admin-text-light); margin-top: 5px;">Quáº£n Trá»‹ Há»‡ Thá»‘ng</div>
             </div>
             
             <div class="sidebar-menu">
                 <a href="dashboard.html" class="menu-item" id="nav-dashboard">
-                    <i class="fa-solid fa-chart-pie menu-icon"></i> Bàn làm việc
+                    <i class="fa-solid fa-chart-pie menu-icon"></i> BÃ n lÃ m viá»‡c
                 </a>
                 <a href="revenue.html" class="menu-item active" id="nav-revenue">
                     <i class="fa-solid fa-money-bill-trend-up menu-icon"></i> Doanh thu
                 </a>
                 <a href="products.html" class="menu-item" id="nav-products">
-                    <i class="fa-solid fa-gem menu-icon"></i> Sản phẩm
+                    <i class="fa-solid fa-gem menu-icon"></i> Sáº£n pháº©m
                 </a>
                 <a href="orders.html" class="menu-item" id="nav-orders">
-                    <i class="fa-solid fa-cart-flatbed menu-icon"></i> Đơn hàng
+                    <i class="fa-solid fa-cart-flatbed menu-icon"></i> ÄÆ¡n hÃ ng
                 </a>
                 <a href="bookings.html" class="menu-item" id="nav-bookings">
-                    <i class="fa-regular fa-calendar-check menu-icon"></i> Lịch hẹn VIP
+                    <i class="fa-regular fa-calendar-check menu-icon"></i> Lá»‹ch háº¹n VIP
                 </a>
                 <a href="warranties.html" class="menu-item" id="nav-warranties">
-                    <i class="fa-solid fa-shield-halved menu-icon"></i> Bảo hành
+                    <i class="fa-solid fa-shield-halved menu-icon"></i> Báº£o hÃ nh
                 </a>
                 <a href="discounts.html" class="menu-item" id="nav-discounts">
-                    <i class="fa-solid fa-tags menu-icon"></i> Mã giảm giá
+                    <i class="fa-solid fa-tags menu-icon"></i> MÃ£ giáº£m giÃ¡
                 </a>
                 <a href="news.html" class="menu-item" id="nav-news">
-                    <i class="fa-solid fa-newspaper menu-icon"></i> Tin tức
+                    <i class="fa-solid fa-newspaper menu-icon"></i> Tin tá»©c
                 </a>
                 <a href="chat.html" class="menu-item" id="nav-chat">
-                    <i class="fa-solid fa-comments menu-icon"></i> Chat Hỗ Trợ
+                    <i class="fa-solid fa-comments menu-icon"></i> Chat Há»— Trá»£
                 </a>
                 <a href="customers.html" class="menu-item" id="nav-customers" style="display: none;">
-                    <i class="fa-solid fa-users menu-icon"></i> Khách hàng
+                    <i class="fa-solid fa-users menu-icon"></i> KhÃ¡ch hÃ ng
                 </a>
             </div>
             
@@ -158,7 +158,7 @@
                     <i class="fa-solid fa-globe menu-icon"></i> Xem website
                 </a>
                 <a href="#" class="menu-item logout-btn" style="padding: 0; color: #e74c3c; font-size: 0.9rem;">
-                    <i class="fa-solid fa-arrow-right-from-bracket menu-icon" style="color: #e74c3c;"></i> Đăng xuất
+                    <i class="fa-solid fa-arrow-right-from-bracket menu-icon" style="color: #e74c3c;"></i> ÄÄƒng xuáº¥t
                 </a>
             </div>
         </aside>
@@ -167,9 +167,9 @@
         <main class="admin-main">
             <div class="page-header">
                 <div style="display: flex; align-items: center; gap: 1.5rem;">
-                    <h1 class="page-title">Báo Cáo Tài Chính</h1>
+                    <h1 class="page-title">BÃ¡o CÃ¡o TÃ i ChÃ­nh</h1>
                     <button class="admin-btn-primary" onclick="openReportModal()" style="padding: 0.5rem 1rem; font-size: 0.85rem; height: auto;">
-                        <i class="fa-solid fa-file-pdf" style="margin-right: 5px;"></i> Cấu hình & Xuất PDF
+                        <i class="fa-solid fa-file-pdf" style="margin-right: 5px;"></i> Cáº¥u hÃ¬nh & Xuáº¥t PDF
                     </button>
                 </div>
                 <div class="admin-profile">
@@ -184,19 +184,19 @@
             <!-- Key Metrics -->
             <div class="metric-row">
                 <div class="metric-card">
-                    <div class="metric-label">Tổng doanh thu</div>
-                    <div class="metric-value" id="totalRevenue">0 ₫</div>
+                    <div class="metric-label">Tá»•ng doanh thu</div>
+                    <div class="metric-value" id="totalRevenue">0 â‚«</div>
                 </div>
                 <div class="metric-card">
-                    <div class="metric-label">Số đơn hoàn thành</div>
+                    <div class="metric-label">Sá»‘ Ä‘Æ¡n hoÃ n thÃ nh</div>
                     <div class="metric-value" id="completedOrders">0</div>
                 </div>
                 <div class="metric-card">
-                    <div class="metric-label">Giá trị đơn trung bình</div>
-                    <div class="metric-value" id="avgOrderValue">0 ₫</div>
+                    <div class="metric-label">GiÃ¡ trá»‹ Ä‘Æ¡n trung bÃ¬nh</div>
+                    <div class="metric-value" id="avgOrderValue">0 â‚«</div>
                 </div>
                 <div class="metric-card">
-                    <div class="metric-label">Tăng trưởng</div>
+                    <div class="metric-label">TÄƒng trÆ°á»Ÿng</div>
                     <div class="metric-value" style="color: var(--status-success);">+12.5%</div>
                 </div>
             </div>
@@ -204,13 +204,13 @@
             <div class="revenue-grid">
                 <!-- Bar Chart: Revenue by Month -->
                 <div class="chart-container">
-                    <h3 style="margin-bottom: 1.5rem; font-size: 1.1rem;">Biểu đồ doanh thu 6 tháng gần nhất</h3>
+                    <h3 style="margin-bottom: 1.5rem; font-size: 1.1rem;">Biá»ƒu Ä‘á»“ doanh thu 6 thÃ¡ng gáº§n nháº¥t</h3>
                     <canvas id="revenueChart"></canvas>
                 </div>
 
                 <!-- Pie Chart: Revenue by Category -->
                 <div class="chart-container">
-                    <h3 style="margin-bottom: 1.5rem; font-size: 1.1rem;">Cơ cấu theo danh mục</h3>
+                    <h3 style="margin-bottom: 1.5rem; font-size: 1.1rem;">CÆ¡ cáº¥u theo danh má»¥c</h3>
                     <canvas id="categoryChart"></canvas>
                 </div>
             </div>
@@ -218,22 +218,22 @@
             <!-- Transactions Table -->
             <div class="admin-card" style="margin-top: 2rem;">
                 <div class="card-header">
-                    <h2 class="card-title">Giao dịch lớn gần đây</h2>
+                    <h2 class="card-title">Giao dá»‹ch lá»›n gáº§n Ä‘Ã¢y</h2>
                 </div>
                 <div class="table-responsive">
                     <table class="admin-table">
                         <thead>
                             <tr>
                                 <th style="width: 50px; text-align: center;">STT</th>
-                                <th>Mã Giao Dịch</th>
-                                <th>Khách hàng</th>
-                                <th>Ngày</th>
-                                <th>Số tiền</th>
-                                <th>Phương thức</th>
+                                <th>MÃ£ Giao Dá»‹ch</th>
+                                <th>KhÃ¡ch hÃ ng</th>
+                                <th>NgÃ y</th>
+                                <th>Sá»‘ tiá»n</th>
+                                <th>PhÆ°Æ¡ng thá»©c</th>
                             </tr>
                         </thead>
                         <tbody id="revenueTableBody">
-                            <tr><td colspan="6" style="text-align: center; padding: 2rem;">Đang tải dữ liệu...</td></tr>
+                            <tr><td colspan="6" style="text-align: center; padding: 2rem;">Äang táº£i dá»¯ liá»‡u...</td></tr>
                         </tbody>
                     </table>
                 </div>
@@ -245,35 +245,35 @@
     <div class="modal" id="pdfReportModal">
         <div class="modal-content" style="max-width: 950px; width: 95%;">
             <div class="modal-header">
-                <h2 style="font-size: 1.2rem; display: flex; align-items: center; gap: 8px; color: white;"><i class="fa-solid fa-file-pdf" style="color: #e74c3c;"></i> Cấu hình & Xem trước Báo cáo</h2>
+                <h2 style="font-size: 1.2rem; display: flex; align-items: center; gap: 8px; color: white;"><i class="fa-solid fa-file-pdf" style="color: #e74c3c;"></i> Cáº¥u hÃ¬nh & Xem trÆ°á»›c BÃ¡o cÃ¡o</h2>
                 <button class="btn-icon" style="border: none; background: transparent; color: white; cursor: pointer; font-size: 1.2rem;" onclick="closeReportModal()"><i class="fa-solid fa-times"></i></button>
             </div>
             <div class="modal-body" style="display: grid; grid-template-columns: 320px 1fr; gap: 1.5rem;">
                 <!-- Controls -->
                 <div style="border-right: 1px solid var(--admin-border); padding-right: 1.5rem; display: flex; flex-direction: column; gap: 1.2rem; text-align: left;">
-                    <h3 style="font-size: 0.95rem; color: var(--gold-primary); margin-bottom: 0.5rem; text-transform: uppercase; letter-spacing: 0.5px;">CẤU HÌNH LỌC DỮ LIỆU</h3>
+                    <h3 style="font-size: 0.95rem; color: var(--gold-primary); margin-bottom: 0.5rem; text-transform: uppercase; letter-spacing: 0.5px;">Cáº¤U HÃŒNH Lá»ŒC Dá»® LIá»†U</h3>
                     
                     <div class="form-group-admin">
-                        <label>Loại báo cáo</label>
+                        <label>Loáº¡i bÃ¡o cÃ¡o</label>
                         <select id="reportType" class="form-control-admin" onchange="onReportTypeChange()">
-                            <option value="day">Theo Ngày (Báo cáo Ngày)</option>
-                            <option value="month" selected>Theo Tháng (Báo cáo Tháng)</option>
-                            <option value="year">Theo Năm (Báo cáo Năm)</option>
+                            <option value="day">Theo NgÃ y (BÃ¡o cÃ¡o NgÃ y)</option>
+                            <option value="month" selected>Theo ThÃ¡ng (BÃ¡o cÃ¡o ThÃ¡ng)</option>
+                            <option value="year">Theo NÄƒm (BÃ¡o cÃ¡o NÄƒm)</option>
                         </select>
                     </div>
 
                     <div class="form-group-admin" id="datePickerGroup" style="display: none;">
-                        <label>Chọn ngày</label>
+                        <label>Chá»n ngÃ y</label>
                         <input type="date" id="reportDate" class="form-control-admin">
                     </div>
 
                     <div class="form-group-admin" id="monthPickerGroup">
-                        <label>Chọn tháng</label>
+                        <label>Chá»n thÃ¡ng</label>
                         <input type="month" id="reportMonth" class="form-control-admin">
                     </div>
 
                     <div class="form-group-admin" id="yearPickerGroup" style="display: none;">
-                        <label>Chọn năm</label>
+                        <label>Chá»n nÄƒm</label>
                         <select id="reportYear" class="form-control-admin">
                             <!-- JS will populate -->
                         </select>
@@ -281,10 +281,10 @@
 
                     <div style="display: flex; flex-direction: column; gap: 0.8rem; padding-top: 1rem;">
                         <button class="btn-admin btn-primary" onclick="generateReportPreview()" style="width: 100%; border: none;">
-                            <i class="fa-solid fa-sync" style="margin-right: 5px;"></i> Cập nhật Xem trước
+                            <i class="fa-solid fa-sync" style="margin-right: 5px;"></i> Cáº­p nháº­t Xem trÆ°á»›c
                         </button>
                         <button class="btn-admin" onclick="downloadReportPDF()" style="width: 100%; background: #e74c3c; color: white; border: none; font-weight: 600;">
-                            <i class="fa-solid fa-file-pdf" style="margin-right: 5px;"></i> Tải xuống PDF
+                            <i class="fa-solid fa-file-pdf" style="margin-right: 5px;"></i> Táº£i xuá»‘ng PDF
                         </button>
                     </div>
                 </div>
@@ -292,8 +292,8 @@
                 <!-- Preview Area -->
                 <div style="display: flex; flex-direction: column; overflow: hidden; background: #525659; border-radius: 8px; padding: 1.2rem; border: 1px solid var(--admin-border); height: 520px;">
                     <div style="color: white; margin-bottom: 0.8rem; font-size: 0.85rem; font-weight: 500; display: flex; align-items: center; justify-content: space-between;">
-                        <span>TRANG XEM TRƯỚC (PREVIEW)</span>
-                        <small style="color: #ccc;">Khổ A4 tiêu chuẩn (Khuyên dùng font chữ Times New Roman)</small>
+                        <span>TRANG XEM TRÆ¯á»šC (PREVIEW)</span>
+                        <small style="color: #ccc;">Khá»• A4 tiÃªu chuáº©n (KhuyÃªn dÃ¹ng font chá»¯ Times New Roman)</small>
                     </div>
                     <div id="pdfPreviewContainer" style="flex: 1; overflow-y: auto; background: white; padding: 25px; border-radius: 4px; box-shadow: 0 4px 15px rgba(0,0,0,0.4);">
                         <!-- HTML generated dynamically will show here -->
@@ -333,9 +333,9 @@
                 const totalRevenue = completedOrders.reduce((sum, o) => sum + (o.totalAmount || 0), 0);
                 const avgValue = completedOrders.length > 0 ? totalRevenue / completedOrders.length : 0;
 
-                document.getElementById('totalRevenue').textContent = totalRevenue.toLocaleString('vi-VN') + ' ₫';
+                document.getElementById('totalRevenue').textContent = totalRevenue.toLocaleString('vi-VN') + ' â‚«';
                 document.getElementById('completedOrders').textContent = completedOrders.length;
-                document.getElementById('avgOrderValue').textContent = Math.round(avgValue).toLocaleString('vi-VN') + ' ₫';
+                document.getElementById('avgOrderValue').textContent = Math.round(avgValue).toLocaleString('vi-VN') + ' â‚«';
 
                 // Save for PDF
                 reportData = {
@@ -368,7 +368,7 @@
                     data: {
                         labels: monthLabels,
                         datasets: [{
-                            label: 'Doanh thu (VNĐ)',
+                            label: 'Doanh thu (VNÄ)',
                             data: revenueData,
                             backgroundColor: 'rgba(212, 175, 55, 0.6)',
                             borderColor: '#d4af37',
@@ -400,7 +400,7 @@
                 const catData = {};
                 completedOrders.forEach(o => {
                     o.items.forEach(item => {
-                        const cat = item.category || 'Khác';
+                        const cat = item.category || 'KhÃ¡c';
                         catData[cat] = (catData[cat] || 0) + (item.price * item.quantity);
                     });
                 });
@@ -442,24 +442,24 @@
                         <tr>
                             <td style="text-align: center; font-weight: bold; color: var(--admin-text-light);">${index + 1}</td>
                             <td><strong style="color: var(--admin-accent);">#TX-${o._id.slice(-6).toUpperCase()}</strong></td>
-                            <td>${o.customerName || (o.address ? o.address.split(',')[0] : 'Khách lẻ')}</td>
+                            <td>${o.customerName || (o.address ? o.address.split(',')[0] : 'KhÃ¡ch láº»')}</td>
                             <td style="color: var(--admin-text-light);">${new Date(o.createdAt).toLocaleDateString('vi-VN')}</td>
-                            <td style="font-weight: 600;">${o.totalAmount.toLocaleString('vi-VN')} ₫</td>
+                            <td style="font-weight: 600;">${o.totalAmount.toLocaleString('vi-VN')} â‚«</td>
                             <td><span class="badge badge-info">${o.paymentMethod.toUpperCase()}</span></td>
                         </tr>
                     `).join('');
                 } else {
-                    tbody.innerHTML = '<tr><td colspan="6" style="text-align: center; padding: 2rem;">Chưa có dữ liệu hoàn thành</td></tr>';
+                    tbody.innerHTML = '<tr><td colspan="6" style="text-align: center; padding: 2rem;">ChÆ°a cÃ³ dá»¯ liá»‡u hoÃ n thÃ nh</td></tr>';
                 }
 
             } catch (error) {
-                console.error('Lỗi load revenue:', error);
+                console.error('Lá»—i load revenue:', error);
             }
         }
 
         function openReportModal() {
             if (!reportData.orders) {
-                alert('Vui lòng đợi dữ liệu tải xong!');
+                alert('Vui lÃ²ng Ä‘á»£i dá»¯ liá»‡u táº£i xong!');
                 return;
             }
             
@@ -475,7 +475,7 @@
                 for (let y = currentYear; y >= currentYear - 5; y--) {
                     const opt = document.createElement('option');
                     opt.value = y;
-                    opt.textContent = `Năm ${y}`;
+                    opt.textContent = `NÄƒm ${y}`;
                     yearSelect.appendChild(opt);
                 }
             }
@@ -506,32 +506,32 @@
             
             if (type === 'day') {
                 const val = document.getElementById('reportDate').value;
-                if (!val) return '<h3 style="color:#000; text-align:center; padding: 2rem;">Vui lòng chọn ngày hợp lệ</h3>';
+                if (!val) return '<h3 style="color:#000; text-align:center; padding: 2rem;">Vui lÃ²ng chá»n ngÃ y há»£p lá»‡</h3>';
                 const d = new Date(val);
                 filteredOrders = allOrders.filter(o => {
                     const od = new Date(o.createdAt);
                     return od.getDate() === d.getDate() && od.getMonth() === d.getMonth() && od.getFullYear() === d.getFullYear();
                 });
-                titleStr = `BÁO CÁO TÀI CHÍNH NGÀY`;
-                subtitleStr = `(Ngày ${d.getDate()} tháng ${d.getMonth() + 1} năm ${d.getFullYear()})`;
+                titleStr = `BÃO CÃO TÃ€I CHÃNH NGÃ€Y`;
+                subtitleStr = `(NgÃ y ${d.getDate()} thÃ¡ng ${d.getMonth() + 1} nÄƒm ${d.getFullYear()})`;
             } else if (type === 'month') {
                 const val = document.getElementById('reportMonth').value;
-                if (!val) return '<h3 style="color:#000; text-align:center; padding: 2rem;">Vui lòng chọn tháng hợp lệ</h3>';
+                if (!val) return '<h3 style="color:#000; text-align:center; padding: 2rem;">Vui lÃ²ng chá»n thÃ¡ng há»£p lá»‡</h3>';
                 const [year, month] = val.split('-').map(Number);
                 filteredOrders = allOrders.filter(o => {
                     const od = new Date(o.createdAt);
                     return od.getMonth() === (month - 1) && od.getFullYear() === year;
                 });
-                titleStr = `BÁO CÁO TÀI CHÍNH THÁNG`;
-                subtitleStr = `(Tháng ${month} năm ${year})`;
+                titleStr = `BÃO CÃO TÃ€I CHÃNH THÃNG`;
+                subtitleStr = `(ThÃ¡ng ${month} nÄƒm ${year})`;
             } else if (type === 'year') {
                 const year = Number(document.getElementById('reportYear').value);
                 filteredOrders = allOrders.filter(o => {
                     const od = new Date(o.createdAt);
                     return od.getFullYear() === year;
                 });
-                titleStr = `BÁO CÁO TÀI CHÍNH NĂM`;
-                subtitleStr = `(Năm ${year})`;
+                titleStr = `BÃO CÃO TÃ€I CHÃNH NÄ‚M`;
+                subtitleStr = `(NÄƒm ${year})`;
             }
 
             const totalRev = filteredOrders.reduce((sum, o) => sum + (o.totalAmount || 0), 0);
@@ -546,46 +546,46 @@
             }
 
             const now = new Date();
-            const dateStr = `${now.getDate()} tháng ${now.getMonth() + 1} năm ${now.getFullYear()}`;
+            const dateStr = `${now.getDate()} thÃ¡ng ${now.getMonth() + 1} nÄƒm ${now.getFullYear()}`;
 
             let maxMinSection = '';
             if (completedCount > 0) {
                 maxMinSection = `
                     <div style="margin-bottom: 25px; font-size: 11pt;">
-                        <p style="font-weight: bold; margin-bottom: 8px; border-bottom: 1px solid #000; padding-bottom: 3px; text-transform: uppercase;">MỤC II: ĐƠN HÀNG TIÊU BIỂU CÓ GIÁ TRỊ LỚN NHẤT VÀ NHỎ NHẤT</p>
+                        <p style="font-weight: bold; margin-bottom: 8px; border-bottom: 1px solid #000; padding-bottom: 3px; text-transform: uppercase;">Má»¤C II: ÄÆ N HÃ€NG TIÃŠU BIá»‚U CÃ“ GIÃ TRá»Š Lá»šN NHáº¤T VÃ€ NHá»Ž NHáº¤T</p>
                         <table style="width: 100%; border-collapse: collapse; margin-top: 8px; font-size: 10.5pt;">
                             <thead>
                                 <tr style="background-color: #f2f2f2;">
-                                    <th style="border: 1px solid #000; padding: 8px; text-align: center; width: 25%;">Tiêu chí</th>
-                                    <th style="border: 1px solid #000; padding: 8px; text-align: left; width: 37.5%;">Đơn hàng có giá trị lớn nhất</th>
-                                    <th style="border: 1px solid #000; padding: 8px; text-align: left; width: 37.5%;">Đơn hàng có giá trị nhỏ nhất</th>
+                                    <th style="border: 1px solid #000; padding: 8px; text-align: center; width: 25%;">TiÃªu chÃ­</th>
+                                    <th style="border: 1px solid #000; padding: 8px; text-align: left; width: 37.5%;">ÄÆ¡n hÃ ng cÃ³ giÃ¡ trá»‹ lá»›n nháº¥t</th>
+                                    <th style="border: 1px solid #000; padding: 8px; text-align: left; width: 37.5%;">ÄÆ¡n hÃ ng cÃ³ giÃ¡ trá»‹ nhá» nháº¥t</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td style="border: 1px solid #000; padding: 8px; font-weight: bold; text-align: center;">Mã đơn hàng</td>
+                                    <td style="border: 1px solid #000; padding: 8px; font-weight: bold; text-align: center;">MÃ£ Ä‘Æ¡n hÃ ng</td>
                                     <td style="border: 1px solid #000; padding: 8px; font-weight: bold; text-align: left;">#TX-${maxOrder._id.slice(-6).toUpperCase()}</td>
                                     <td style="border: 1px solid #000; padding: 8px; font-weight: bold; text-align: left;">#TX-${minOrder._id.slice(-6).toUpperCase()}</td>
                                 </tr>
                                 <tr>
-                                    <td style="border: 1px solid #000; padding: 8px; text-align: center;">Khách hàng</td>
-                                    <td style="border: 1px solid #000; padding: 8px; text-align: left;">${maxOrder.customerName || (maxOrder.address ? maxOrder.address.split(',')[0] : 'Khách lẻ')}</td>
-                                    <td style="border: 1px solid #000; padding: 8px; text-align: left;">${minOrder.customerName || (minOrder.address ? minOrder.address.split(',')[0] : 'Khách lẻ')}</td>
+                                    <td style="border: 1px solid #000; padding: 8px; text-align: center;">KhÃ¡ch hÃ ng</td>
+                                    <td style="border: 1px solid #000; padding: 8px; text-align: left;">${maxOrder.customerName || (maxOrder.address ? maxOrder.address.split(',')[0] : 'KhÃ¡ch láº»')}</td>
+                                    <td style="border: 1px solid #000; padding: 8px; text-align: left;">${minOrder.customerName || (minOrder.address ? minOrder.address.split(',')[0] : 'KhÃ¡ch láº»')}</td>
                                 </tr>
                                 <tr>
-                                    <td style="border: 1px solid #000; padding: 8px; text-align: center;">Ngày phát sinh</td>
+                                    <td style="border: 1px solid #000; padding: 8px; text-align: center;">NgÃ y phÃ¡t sinh</td>
                                     <td style="border: 1px solid #000; padding: 8px; text-align: left;">${new Date(maxOrder.createdAt).toLocaleDateString('vi-VN')}</td>
                                     <td style="border: 1px solid #000; padding: 8px; text-align: left;">${new Date(minOrder.createdAt).toLocaleDateString('vi-VN')}</td>
                                 </tr>
                                 <tr>
-                                    <td style="border: 1px solid #000; padding: 8px; text-align: center;">Phương thức</td>
+                                    <td style="border: 1px solid #000; padding: 8px; text-align: center;">PhÆ°Æ¡ng thá»©c</td>
                                     <td style="border: 1px solid #000; padding: 8px; text-align: left;">${maxOrder.paymentMethod.toUpperCase()}</td>
                                     <td style="border: 1px solid #000; padding: 8px; text-align: left;">${minOrder.paymentMethod.toUpperCase()}</td>
                                 </tr>
                                 <tr>
-                                    <td style="border: 1px solid #000; padding: 8px; font-weight: bold; text-align: center;">Tổng trị giá</td>
-                                    <td style="border: 1px solid #000; padding: 8px; font-weight: bold; text-align: left; font-size: 11pt;">${maxOrder.totalAmount.toLocaleString('vi-VN')} ₫</td>
-                                    <td style="border: 1px solid #000; padding: 8px; font-weight: bold; text-align: left; font-size: 11pt;">${minOrder.totalAmount.toLocaleString('vi-VN')} ₫</td>
+                                    <td style="border: 1px solid #000; padding: 8px; font-weight: bold; text-align: center;">Tá»•ng trá»‹ giÃ¡</td>
+                                    <td style="border: 1px solid #000; padding: 8px; font-weight: bold; text-align: left; font-size: 11pt;">${maxOrder.totalAmount.toLocaleString('vi-VN')} â‚«</td>
+                                    <td style="border: 1px solid #000; padding: 8px; font-weight: bold; text-align: left; font-size: 11pt;">${minOrder.totalAmount.toLocaleString('vi-VN')} â‚«</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -594,8 +594,8 @@
             } else {
                 maxMinSection = `
                     <div style="margin-bottom: 25px; font-size: 11pt;">
-                        <p style="font-weight: bold; margin-bottom: 8px; border-bottom: 1px solid #000; padding-bottom: 3px; text-transform: uppercase;">MỤC II: ĐƠN HÀNG TIÊU BIỂU CÓ GIÁ TRỊ LỚN NHẤT VÀ NHỎ NHẤT</p>
-                        <p style="font-style: italic; color: #666; text-align: center; padding: 10px; border: 1px dashed #ccc;">Không có giao dịch nào phát sinh.</p>
+                        <p style="font-weight: bold; margin-bottom: 8px; border-bottom: 1px solid #000; padding-bottom: 3px; text-transform: uppercase;">Má»¤C II: ÄÆ N HÃ€NG TIÃŠU BIá»‚U CÃ“ GIÃ TRá»Š Lá»šN NHáº¤T VÃ€ NHá»Ž NHáº¤T</p>
+                        <p style="font-style: italic; color: #666; text-align: center; padding: 10px; border: 1px dashed #ccc;">KhÃ´ng cÃ³ giao dá»‹ch nÃ o phÃ¡t sinh.</p>
                     </div>
                 `;
             }
@@ -604,31 +604,31 @@
             if (completedCount > 0) {
                 listSection = `
                     <div style="margin-bottom: 25px; font-size: 11pt;">
-                        <p style="font-weight: bold; margin-bottom: 8px; border-bottom: 1.5px solid #000; padding-bottom: 3px; text-transform: uppercase;">MỤC III: DANH SÁCH CHI TIẾT CÁC GIAO DỊCH PHÁT SINH</p>
+                        <p style="font-weight: bold; margin-bottom: 8px; border-bottom: 1.5px solid #000; padding-bottom: 3px; text-transform: uppercase;">Má»¤C III: DANH SÃCH CHI TIáº¾T CÃC GIAO Dá»ŠCH PHÃT SINH</p>
                         <table style="width: 100%; border-collapse: collapse; margin-top: 8px; font-size: 10pt;">
                             <thead>
                                 <tr style="background-color: #f2f2f2;">
-                                    <th style="border: 1px solid #000; padding: 6px; text-align: center;">Mã ĐH</th>
-                                    <th style="border: 1px solid #000; padding: 6px; text-align: left;">Khách hàng</th>
-                                    <th style="border: 1px solid #000; padding: 6px; text-align: center;">Ngày</th>
-                                    <th style="border: 1px solid #000; padding: 6px; text-align: center;">Phương thức</th>
-                                    <th style="border: 1px solid #000; padding: 6px; text-align: right;">Tổng tiền</th>
+                                    <th style="border: 1px solid #000; padding: 6px; text-align: center;">MÃ£ ÄH</th>
+                                    <th style="border: 1px solid #000; padding: 6px; text-align: left;">KhÃ¡ch hÃ ng</th>
+                                    <th style="border: 1px solid #000; padding: 6px; text-align: center;">NgÃ y</th>
+                                    <th style="border: 1px solid #000; padding: 6px; text-align: center;">PhÆ°Æ¡ng thá»©c</th>
+                                    <th style="border: 1px solid #000; padding: 6px; text-align: right;">Tá»•ng tiá»n</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 ${filteredOrders.slice(0, 15).map(o => `
                                     <tr>
                                         <td style="border: 1px solid #000; padding: 6px; text-align: center;">#TX-${o._id.slice(-6).toUpperCase()}</td>
-                                        <td style="border: 1px solid #000; padding: 6px;">${o.customerName || (o.address ? o.address.split(',')[0] : 'Khách lẻ')}</td>
+                                        <td style="border: 1px solid #000; padding: 6px;">${o.customerName || (o.address ? o.address.split(',')[0] : 'KhÃ¡ch láº»')}</td>
                                         <td style="border: 1px solid #000; padding: 6px; text-align: center;">${new Date(o.createdAt).toLocaleDateString('vi-VN')}</td>
                                         <td style="border: 1px solid #000; padding: 6px; text-align: center;">${o.paymentMethod.toUpperCase()}</td>
-                                        <td style="border: 1px solid #000; padding: 6px; text-align: right; font-weight: bold;">${o.totalAmount.toLocaleString('vi-VN')} ₫</td>
+                                        <td style="border: 1px solid #000; padding: 6px; text-align: right; font-weight: bold;">${o.totalAmount.toLocaleString('vi-VN')} â‚«</td>
                                     </tr>
                                 `).join('')}
                                 ${filteredOrders.length > 15 ? `
                                     <tr>
                                         <td colspan="5" style="border: 1px solid #000; padding: 6px; text-align: center; font-style: italic; color: #666;">
-                                            Và ${filteredOrders.length - 15} giao dịch khác trong kỳ báo cáo...
+                                            VÃ  ${filteredOrders.length - 15} giao dá»‹ch khÃ¡c trong ká»³ bÃ¡o cÃ¡o...
                                         </td>
                                     </tr>
                                 ` : ''}
@@ -639,8 +639,8 @@
             } else {
                 listSection = `
                     <div style="margin-bottom: 25px; font-size: 11pt;">
-                        <p style="font-weight: bold; margin-bottom: 8px; border-bottom: 1.5px solid #000; padding-bottom: 3px; text-transform: uppercase;">MỤC III: DANH SÁCH CHI TIẾT CÁC GIAO DỊCH PHÁT SINH</p>
-                        <p style="font-style: italic; color: #666; text-align: center; padding: 15px; border: 1px dashed #ccc;">Không phát sinh giao dịch nào.</p>
+                        <p style="font-weight: bold; margin-bottom: 8px; border-bottom: 1.5px solid #000; padding-bottom: 3px; text-transform: uppercase;">Má»¤C III: DANH SÃCH CHI TIáº¾T CÃC GIAO Dá»ŠCH PHÃT SINH</p>
+                        <p style="font-style: italic; color: #666; text-align: center; padding: 15px; border: 1px dashed #ccc;">KhÃ´ng phÃ¡t sinh giao dá»‹ch nÃ o.</p>
                     </div>
                 `;
             }
@@ -649,16 +649,16 @@
                 <div style="font-family: 'Times New Roman', Times, serif; color: #000; background-color: #fff; line-height: 1.4; font-size: 12pt; padding: 10px 15px;">
                     <div style="display: flex; justify-content: space-between; margin-bottom: 20px;">
                         <div style="text-align: center; width: 45%;">
-                            <div style="font-weight: bold; text-transform: uppercase; font-size: 10pt;">CÔNG TY TNHH AN LUXURY</div>
-                            <div style="font-weight: bold; text-transform: uppercase; font-size: 10pt;">BAN TÀI CHÍNH</div>
+                            <div style="font-weight: bold; text-transform: uppercase; font-size: 10pt;">CÃ”NG TY TNHH AN LUXURY</div>
+                            <div style="font-weight: bold; text-transform: uppercase; font-size: 10pt;">BAN TÃ€I CHÃNH</div>
                             <div style="border-top: 1px solid #000; width: 80px; margin: 3px auto;"></div>
-                            <div style="margin-top: 3px; font-size: 10pt;">Số: BC-ALUX/${now.getFullYear()}</div>
+                            <div style="margin-top: 3px; font-size: 10pt;">Sá»‘: BC-ALUX/${now.getFullYear()}</div>
                         </div>
                         <div style="text-align: center; width: 50%;">
-                            <div style="font-weight: bold; text-transform: uppercase; font-size: 10pt;">CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM</div>
-                            <div style="font-weight: bold; font-size: 10pt;">Độc lập - Tự do - Hạnh phúc</div>
+                            <div style="font-weight: bold; text-transform: uppercase; font-size: 10pt;">Cá»˜NG HÃ’A XÃƒ Há»˜I CHá»¦ NGHÄ¨A VIá»†T NAM</div>
+                            <div style="font-weight: bold; font-size: 10pt;">Äá»™c láº­p - Tá»± do - Háº¡nh phÃºc</div>
                             <div style="border-top: 1px solid #000; width: 130px; margin: 3px auto;"></div>
-                            <div style="font-style: italic; margin-top: 8px; font-size: 10pt;">Hà Nội, ngày ${dateStr}</div>
+                            <div style="font-style: italic; margin-top: 8px; font-size: 10pt;">HÃ  Ná»™i, ngÃ y ${dateStr}</div>
                         </div>
                     </div>
 
@@ -668,24 +668,24 @@
                     </div>
 
                     <div style="margin-bottom: 18px; font-size: 11pt;">
-                        <p><strong>Kính gửi:</strong> Hội đồng Quản trị Công ty AN LUXURY</p>
-                        <p style="text-indent: 20px; margin-top: 5px;">Căn cứ vào tình hình hoạt động của công ty, Ban Tài chính kính gửi đến Hội đồng Quản trị số liệu kinh doanh chi tiết trong kỳ:</p>
+                        <p><strong>KÃ­nh gá»­i:</strong> Há»™i Ä‘á»“ng Quáº£n trá»‹ CÃ´ng ty AN LUXURY</p>
+                        <p style="text-indent: 20px; margin-top: 5px;">CÄƒn cá»© vÃ o tÃ¬nh hÃ¬nh hoáº¡t Ä‘á»™ng cá»§a cÃ´ng ty, Ban TÃ i chÃ­nh kÃ­nh gá»­i Ä‘áº¿n Há»™i Ä‘á»“ng Quáº£n trá»‹ sá»‘ liá»‡u kinh doanh chi tiáº¿t trong ká»³:</p>
                     </div>
 
                     <div style="margin-bottom: 25px; font-size: 11pt;">
-                        <p style="font-weight: bold; margin-bottom: 8px; border-bottom: 1.5px solid #000; padding-bottom: 3px; text-transform: uppercase;">MỤC I: CHỈ TIÊU KINH DOANH CHỦ CHỐT</p>
+                        <p style="font-weight: bold; margin-bottom: 8px; border-bottom: 1.5px solid #000; padding-bottom: 3px; text-transform: uppercase;">Má»¤C I: CHá»ˆ TIÃŠU KINH DOANH CHá»¦ CHá»T</p>
                         <table style="width: 100%; border-collapse: collapse; margin-top: 8px; font-size: 11pt;">
                             <tr>
-                                <td style="border: 1px solid #000; padding: 8px; width: 60%;">Tổng doanh thu kỳ này:</td>
-                                <td style="border: 1px solid #000; padding: 8px; font-weight: bold; text-align: right;">${totalRev.toLocaleString('vi-VN')} ₫</td>
+                                <td style="border: 1px solid #000; padding: 8px; width: 60%;">Tá»•ng doanh thu ká»³ nÃ y:</td>
+                                <td style="border: 1px solid #000; padding: 8px; font-weight: bold; text-align: right;">${totalRev.toLocaleString('vi-VN')} â‚«</td>
                             </tr>
                             <tr>
-                                <td style="border: 1px solid #000; padding: 8px;">Số lượng đơn hàng thành công:</td>
-                                <td style="border: 1px solid #000; padding: 8px; font-weight: bold; text-align: right;">${completedCount} đơn</td>
+                                <td style="border: 1px solid #000; padding: 8px;">Sá»‘ lÆ°á»£ng Ä‘Æ¡n hÃ ng thÃ nh cÃ´ng:</td>
+                                <td style="border: 1px solid #000; padding: 8px; font-weight: bold; text-align: right;">${completedCount} Ä‘Æ¡n</td>
                             </tr>
                             <tr>
-                                <td style="border: 1px solid #000; padding: 8px;">Đơn hàng trung bình đạt:</td>
-                                <td style="border: 1px solid #000; padding: 8px; font-weight: bold; text-align: right;">${Math.round(avgVal).toLocaleString('vi-VN')} ₫</td>
+                                <td style="border: 1px solid #000; padding: 8px;">ÄÆ¡n hÃ ng trung bÃ¬nh Ä‘áº¡t:</td>
+                                <td style="border: 1px solid #000; padding: 8px; font-weight: bold; text-align: right;">${Math.round(avgVal).toLocaleString('vi-VN')} â‚«</td>
                             </tr>
                         </table>
                     </div>
@@ -696,26 +696,26 @@
 
                     <div style="margin-top: 35px; display: grid; grid-template-columns: 1fr 1fr 1.5fr; text-align: center; font-size: 11pt;">
                         <div>
-                            <div style="font-weight: bold; text-transform: uppercase;">NGƯỜI LẬP BIỂU</div>
-                            <div style="font-style: italic; font-size: 9pt; margin-bottom: 50px;">(Ký, ghi rõ họ tên)</div>
+                            <div style="font-weight: bold; text-transform: uppercase;">NGÆ¯á»œI Láº¬P BIá»‚U</div>
+                            <div style="font-style: italic; font-size: 9pt; margin-bottom: 50px;">(KÃ½, ghi rÃµ há» tÃªn)</div>
                             <div style="font-weight: bold;">${userInfo.fullName}</div>
                         </div>
                         <div>
-                            <div style="font-weight: bold; text-transform: uppercase;">TRƯỞNG BAN TÀI CHÍNH</div>
-                            <div style="font-style: italic; font-size: 9pt; margin-bottom: 50px;">(Ký, ghi rõ họ tên)</div>
+                            <div style="font-weight: bold; text-transform: uppercase;">TRÆ¯á»žNG BAN TÃ€I CHÃNH</div>
+                            <div style="font-style: italic; font-size: 9pt; margin-bottom: 50px;">(KÃ½, ghi rÃµ há» tÃªn)</div>
                             <div style="font-weight: bold;">..................................</div>
                         </div>
                         <div style="position: relative;">
-                            <div style="font-weight: bold; text-transform: uppercase;">TM. HỘI ĐỒNG QUẢN TRỊ<br>GIÁM ĐỐC ĐIỀU HÀNH</div>
-                            <div style="font-style: italic; font-size: 9pt; margin-bottom: 3px;">(Ký, đóng dấu)</div>
+                            <div style="font-weight: bold; text-transform: uppercase;">TM. Há»˜I Äá»’NG QUáº¢N TRá»Š<br>GIÃM Äá»C ÄIá»€U HÃ€NH</div>
+                            <div style="font-style: italic; font-size: 9pt; margin-bottom: 3px;">(KÃ½, Ä‘Ã³ng dáº¥u)</div>
                             
                             <!-- Red Stamp Simulation -->
                             <div style="position: absolute; top: 30px; left: 50%; transform: translateX(-70%) rotate(-15deg); width: 90px; height: 90px; border: 2.5px solid rgba(220, 0, 0, 0.7); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: rgba(220, 0, 0, 0.7); text-align: center; font-weight: bold; padding: 3px; pointer-events: none; z-index: 1;">
                                 <div style="font-size: 6.5pt; line-height: 1.1;">
-                                    CÔNG TY TNHH<br>
+                                    CÃ”NG TY TNHH<br>
                                     <div style="font-size: 9pt; border-top: 1px solid rgba(220, 0, 0, 0.7); border-bottom: 1px solid rgba(220, 0, 0, 0.7); margin: 2px 0; padding: 1px 0;">AN LUXURY</div>
                                     M.S.D.N: 0366363636<br>
-                                    TP. HÀ NỘI
+                                    TP. HÃ€ Ná»˜I
                                 </div>
                             </div>
 
@@ -724,7 +724,7 @@
                                 <img src="https://upload.wikimedia.org/wikipedia/commons/d/d0/Signature_of_Zuzana_Caputova.svg" alt="Signature" style="height: 40px; filter: contrast(0.5) sepia(1) hue-rotate(-50deg) saturate(5);">
                             </div>
                             
-                            <div style="font-weight: bold; font-size: 11pt;">Nguyễn Trường An</div>
+                            <div style="font-weight: bold; font-size: 11pt;">Nguyá»…n TrÆ°á»ng An</div>
                         </div>
                     </div>
                 </div>
@@ -770,7 +770,7 @@
             }
 
             // Sidebar Role Sync
-            document.getElementById('sidebar-role-text').textContent = 'Quản Trị Hệ Thống';
+            document.getElementById('sidebar-role-text').textContent = 'Quáº£n Trá»‹ Há»‡ Thá»‘ng';
             document.getElementById('nav-customers').style.display = 'flex';
 
             // Sidebar User Footer
@@ -783,7 +783,7 @@
                     <img src="${avatarUrl}" style="width: 35px; height: 35px; border-radius: 50%; object-fit: cover;">
                     <div style="overflow: hidden;">
                         <div style="font-size: 0.85rem; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: #fff;">${userInfo.fullName}</div>
-                        <div style="font-size: 0.7rem; color: var(--admin-text-light); text-transform: capitalize;">${userInfo.role === 'admin' ? 'Quản trị viên' : 'Tư vấn viên'}</div>
+                        <div style="font-size: 0.7rem; color: var(--admin-text-light); text-transform: capitalize;">${userInfo.role === 'admin' ? 'Quáº£n trá»‹ viÃªn' : 'TÆ° váº¥n viÃªn'}</div>
                     </div>
                 </div>
             `;
@@ -796,6 +796,7 @@
                     e.preventDefault();
                     localStorage.removeItem('userInfo');
                     localStorage.removeItem('token');
+                    localStorage.removeItem('cart');
                     window.location.href = '../login.html';
                 });
             });
@@ -803,3 +804,4 @@
     </script>
 </body>
 </html>
+

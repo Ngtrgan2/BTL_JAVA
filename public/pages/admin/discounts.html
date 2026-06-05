@@ -1,9 +1,9 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quản lý Mã giảm giá | An LUXURY</title>
+    <title>Quáº£n lÃ½ MÃ£ giáº£m giÃ¡ | An LUXURY</title>
     <link rel="stylesheet" href="../../css/admin.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -81,39 +81,39 @@
         <aside class="admin-sidebar">
             <div class="sidebar-header">
                 <div class="sidebar-logo">AN LUXURY</div>
-                <div id="sidebar-role-text" style="font-size: 0.8rem; color: var(--admin-text-light); margin-top: 5px;">Quản Trị Hệ Thống</div>
+                <div id="sidebar-role-text" style="font-size: 0.8rem; color: var(--admin-text-light); margin-top: 5px;">Quáº£n Trá»‹ Há»‡ Thá»‘ng</div>
             </div>
             
             <div class="sidebar-menu">
                 <a href="dashboard.html" class="menu-item" id="nav-dashboard">
-                    <i class="fa-solid fa-chart-line menu-icon"></i> Bàn làm việc
+                    <i class="fa-solid fa-chart-line menu-icon"></i> BÃ n lÃ m viá»‡c
                 </a>
                 <a href="revenue.html" class="menu-item" id="nav-revenue">
                     <i class="fa-solid fa-money-bill-trend-up menu-icon"></i> Doanh thu
                 </a>
                 <a href="products.html" class="menu-item" id="nav-products">
-                    <i class="fa-solid fa-gem menu-icon"></i> Sản phẩm
+                    <i class="fa-solid fa-gem menu-icon"></i> Sáº£n pháº©m
                 </a>
                 <a href="orders.html" class="menu-item" id="nav-orders">
-                    <i class="fa-solid fa-cart-flatbed menu-icon"></i> Đơn hàng
+                    <i class="fa-solid fa-cart-flatbed menu-icon"></i> ÄÆ¡n hÃ ng
                 </a>
                 <a href="bookings.html" class="menu-item" id="nav-bookings">
-                    <i class="fa-regular fa-calendar-check menu-icon"></i> Lịch hẹn VIP
+                    <i class="fa-regular fa-calendar-check menu-icon"></i> Lá»‹ch háº¹n VIP
                 </a>
                 <a href="warranties.html" class="menu-item" id="nav-warranties">
-                    <i class="fa-solid fa-shield-halved menu-icon"></i> Bảo hành
+                    <i class="fa-solid fa-shield-halved menu-icon"></i> Báº£o hÃ nh
                 </a>
                 <a href="discounts.html" class="menu-item active" id="nav-discounts">
-                    <i class="fa-solid fa-tags menu-icon"></i> Mã giảm giá
+                    <i class="fa-solid fa-tags menu-icon"></i> MÃ£ giáº£m giÃ¡
                 </a>
                 <a href="news.html" class="menu-item" id="nav-news">
-                    <i class="fa-solid fa-newspaper menu-icon"></i> Tin tức
+                    <i class="fa-solid fa-newspaper menu-icon"></i> Tin tá»©c
                 </a>
                 <a href="chat.html" class="menu-item" id="nav-chat">
-                    <i class="fa-solid fa-comments menu-icon"></i> Chat Hỗ Trợ
+                    <i class="fa-solid fa-comments menu-icon"></i> Chat Há»— Trá»£
                 </a>
                 <a href="customers.html" class="menu-item" id="nav-customers" style="display: none;">
-                    <i class="fa-solid fa-users menu-icon"></i> Khách hàng
+                    <i class="fa-solid fa-users menu-icon"></i> KhÃ¡ch hÃ ng
                 </a>
             </div>
             
@@ -123,7 +123,7 @@
                     <i class="fa-solid fa-globe menu-icon"></i> Xem website
                 </a>
                 <a href="#" class="menu-item logout-btn" style="padding: 0; color: #e74c3c; font-size: 0.9rem;">
-                    <i class="fa-solid fa-arrow-right-from-bracket menu-icon" style="color: #e74c3c;"></i> Đăng xuất
+                    <i class="fa-solid fa-arrow-right-from-bracket menu-icon" style="color: #e74c3c;"></i> ÄÄƒng xuáº¥t
                 </a>
             </div>
         </aside>
@@ -131,9 +131,9 @@
         <!-- Main Content -->
         <main class="admin-main">
             <div class="page-header">
-                <h1 class="page-title">Quản Lý Mã Giảm Giá</h1>
+                <h1 class="page-title">Quáº£n LÃ½ MÃ£ Giáº£m GiÃ¡</h1>
                 <div class="header-actions">
-                    <button class="btn-admin btn-primary" onclick="openAddModal()"><i class="fa-solid fa-plus" style="margin-right: 8px;"></i> Tạo mã mới</button>
+                    <button class="btn-admin btn-primary" onclick="openAddModal()"><i class="fa-solid fa-plus" style="margin-right: 8px;"></i> Táº¡o mÃ£ má»›i</button>
                 </div>
             </div>
 
@@ -141,21 +141,21 @@
                 <div class="stat-card">
                     <div class="stat-icon"><i class="fa-solid fa-tags"></i></div>
                     <div class="stat-info">
-                        <h3>Tổng số mã</h3>
+                        <h3>Tá»•ng sá»‘ mÃ£</h3>
                         <div class="stat-value" id="stat-total">0</div>
                     </div>
                 </div>
                 <div class="stat-card">
                     <div class="stat-icon" style="color: #2ecc71;"><i class="fa-solid fa-check"></i></div>
                     <div class="stat-info">
-                        <h3>Đang hoạt động</h3>
+                        <h3>Äang hoáº¡t Ä‘á»™ng</h3>
                         <div class="stat-value" id="stat-active">0</div>
                     </div>
                 </div>
                 <div class="stat-card">
                     <div class="stat-icon" style="color: #e74c3c;"><i class="fa-solid fa-clock"></i></div>
                     <div class="stat-info">
-                        <h3>Đã hết hạn</h3>
+                        <h3>ÄÃ£ háº¿t háº¡n</h3>
                         <div class="stat-value" id="stat-expired">0</div>
                     </div>
                 </div>
@@ -163,14 +163,14 @@
 
             <div class="admin-card">
                 <div style="padding: 1.5rem; border-bottom: 1px solid var(--admin-border); display: flex; gap: 1rem;">
-                    <input type="text" id="searchInput" class="form-control-admin" placeholder="Tìm kiếm theo mã..." style="width: 300px;">
+                    <input type="text" id="searchInput" class="form-control-admin" placeholder="TÃ¬m kiáº¿m theo mÃ£..." style="width: 300px;">
                     <select id="statusFilter" class="form-control-admin" style="width: 180px;" onchange="loadDiscounts()">
-                        <option value="">Tất cả trạng thái</option>
-                        <option value="active">Đang hoạt động</option>
-                        <option value="expired">Đã hết hạn</option>
-                        <option value="disabled">Đã tắt</option>
+                        <option value="">Táº¥t cáº£ tráº¡ng thÃ¡i</option>
+                        <option value="active">Äang hoáº¡t Ä‘á»™ng</option>
+                        <option value="expired">ÄÃ£ háº¿t háº¡n</option>
+                        <option value="disabled">ÄÃ£ táº¯t</option>
                     </select>
-                    <button class="btn-admin btn-primary" onclick="loadDiscounts()"><i class="fa-solid fa-filter"></i> Lọc</button>
+                    <button class="btn-admin btn-primary" onclick="loadDiscounts()"><i class="fa-solid fa-filter"></i> Lá»c</button>
                 </div>
 
                 <div class="table-responsive">
@@ -178,17 +178,17 @@
                         <thead>
                             <tr>
                                 <th style="width: 50px; text-align: center;">STT</th>
-                                <th>MÃ GIẢM GIÁ</th>
-                                <th>LOẠI & GIÁ TRỊ</th>
-                                <th>SỐ LƯỢNG</th>
-                                <th>ĐÃ DÙNG</th>
-                                <th>HẠN SỬ DỤNG</th>
-                                <th>TRẠNG THÁI</th>
-                                <th style="text-align: right;">THAO TÁC</th>
+                                <th>MÃƒ GIáº¢M GIÃ</th>
+                                <th>LOáº I & GIÃ TRá»Š</th>
+                                <th>Sá» LÆ¯á»¢NG</th>
+                                <th>ÄÃƒ DÃ™NG</th>
+                                <th>Háº N Sá»¬ Dá»¤NG</th>
+                                <th>TRáº NG THÃI</th>
+                                <th style="text-align: right;">THAO TÃC</th>
                             </tr>
                         </thead>
                         <tbody id="discountTableBody">
-                            <tr><td colspan="8" style="text-align: center; padding: 3rem;"><i class="fa-solid fa-circle-notch fa-spin"></i> Đang tải...</td></tr>
+                            <tr><td colspan="8" style="text-align: center; padding: 3rem;"><i class="fa-solid fa-circle-notch fa-spin"></i> Äang táº£i...</td></tr>
                         </tbody>
                     </table>
                 </div>
@@ -200,36 +200,36 @@
     <!-- Modal Form -->
     <div class="modal-overlay" id="discountModal">
         <div class="modal-content">
-            <h3 id="modalTitle"><i class="fa-solid fa-tag" style="margin-right: 8px;"></i> Thêm Mã Giảm Giá Mới</h3>
+            <h3 id="modalTitle"><i class="fa-solid fa-tag" style="margin-right: 8px;"></i> ThÃªm MÃ£ Giáº£m GiÃ¡ Má»›i</h3>
             <input type="hidden" id="edit-id">
             
             <div class="form-group-modal">
-                <label>Mã giảm giá (Code)</label>
+                <label>MÃ£ giáº£m giÃ¡ (Code)</label>
                 <input type="text" id="edit-code" placeholder="Vd: SUMMER2026, VIP10...">
             </div>
             <div style="display: flex; gap: 1rem;">
                 <div class="form-group-modal" style="flex: 1;">
-                    <label>Loại giảm giá</label>
+                    <label>Loáº¡i giáº£m giÃ¡</label>
                     <select id="edit-type">
-                        <option value="percent">Phần trăm (%)</option>
-                        <option value="fixed">Số tiền cụ thể (VNĐ)</option>
+                        <option value="percent">Pháº§n trÄƒm (%)</option>
+                        <option value="fixed">Sá»‘ tiá»n cá»¥ thá»ƒ (VNÄ)</option>
                     </select>
                 </div>
                 <div class="form-group-modal" style="flex: 1;">
-                    <label>Giá trị giảm</label>
+                    <label>GiÃ¡ trá»‹ giáº£m</label>
                     <input type="number" id="edit-value" placeholder="Vd: 10">
                 </div>
             </div>
             <div class="form-group-modal">
-                <label>Số lượng giới hạn (Để trống nếu không giới hạn)</label>
+                <label>Sá»‘ lÆ°á»£ng giá»›i háº¡n (Äá»ƒ trá»‘ng náº¿u khÃ´ng giá»›i háº¡n)</label>
                 <input type="number" id="edit-max">
             </div>
             <div class="form-group-modal">
-                <label>Ngày hết hạn (Để trống nếu không giới hạn)</label>
+                <label>NgÃ y háº¿t háº¡n (Äá»ƒ trá»‘ng náº¿u khÃ´ng giá»›i háº¡n)</label>
                 <input type="date" id="edit-expiry">
             </div>
             <div class="form-group-modal" style="display: flex; align-items: center; gap: 1rem; margin-top: 1.5rem;">
-                <label style="margin-bottom: 0;">Trạng thái hoạt động:</label>
+                <label style="margin-bottom: 0;">Tráº¡ng thÃ¡i hoáº¡t Ä‘á»™ng:</label>
                 <label class="toggle-switch">
                     <input type="checkbox" id="edit-active" checked>
                     <span class="slider"></span>
@@ -237,8 +237,8 @@
             </div>
 
             <div class="modal-actions">
-                <button class="btn-modal btn-modal-cancel" onclick="closeModal()">Hủy</button>
-                <button class="btn-modal btn-modal-save" onclick="saveDiscount()"><i class="fa-solid fa-check" style="margin-right: 5px;"></i> Lưu thay đổi</button>
+                <button class="btn-modal btn-modal-cancel" onclick="closeModal()">Há»§y</button>
+                <button class="btn-modal btn-modal-save" onclick="saveDiscount()"><i class="fa-solid fa-check" style="margin-right: 5px;"></i> LÆ°u thay Ä‘á»•i</button>
             </div>
         </div>
     </div>
@@ -261,7 +261,7 @@
                     <img src="${avatarUrl}" style="width: 35px; height: 35px; border-radius: 50%; object-fit: cover;">
                     <div style="overflow: hidden;">
                         <div style="font-size: 0.85rem; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: #fff;">${userInfo.fullName}</div>
-                        <div style="font-size: 0.7rem; color: var(--admin-text-light); text-transform: capitalize;">Quản trị viên</div>
+                        <div style="font-size: 0.7rem; color: var(--admin-text-light); text-transform: capitalize;">Quáº£n trá»‹ viÃªn</div>
                     </div>
                 </div>
             `;
@@ -277,6 +277,7 @@
                     e.preventDefault();
                     localStorage.removeItem('userInfo');
                     localStorage.removeItem('token');
+                    localStorage.removeItem('cart');
                     window.location.href = '../login.html';
                 });
             });
@@ -305,7 +306,7 @@
                 allDiscounts = fetchedDiscounts;
                 renderDiscounts();
             } catch (error) {
-                tbody.innerHTML = '<tr><td colspan="8" style="text-align: center; color: #e74c3c; padding: 3rem;">Lỗi tải dữ liệu: ' + error.message + '</td></tr>';
+                tbody.innerHTML = '<tr><td colspan="8" style="text-align: center; color: #e74c3c; padding: 3rem;">Lá»—i táº£i dá»¯ liá»‡u: ' + error.message + '</td></tr>';
             }
         }
 
@@ -324,7 +325,7 @@
                     } else if (d.expiryDate && new Date(d.expiryDate) < now) {
                         d.displayStatus = 'expired';
                     } else if (d.maxUsage && d.usedCount >= d.maxUsage) {
-                        d.displayStatus = 'expired'; // Hoặc 'out_of_usage'
+                        d.displayStatus = 'expired'; // Hoáº·c 'out_of_usage'
                     } else {
                         d.displayStatus = 'active';
                     }
@@ -344,7 +345,7 @@
                 document.getElementById('stat-expired').textContent = allDiscounts.filter(d => d.displayStatus === 'expired').length;
 
                 if (filtered.length === 0) {
-                    tbody.innerHTML = '<tr><td colspan="8" style="text-align: center; padding: 3rem; color: rgba(255,255,255,0.4);">Không tìm thấy mã giảm giá nào</td></tr>';
+                    tbody.innerHTML = '<tr><td colspan="8" style="text-align: center; padding: 3rem; color: rgba(255,255,255,0.4);">KhÃ´ng tÃ¬m tháº¥y mÃ£ giáº£m giÃ¡ nÃ o</td></tr>';
                     const pag = document.getElementById('pagination');
                     if (pag) pag.innerHTML = '';
                     return;
@@ -357,14 +358,14 @@
 
                 tbody.innerHTML = paginated.map((d, i) => {
                     const index = startIndex + i;
-                    const expiryDate = d.expiryDate ? new Date(d.expiryDate).toLocaleDateString('vi-VN') : 'Không giới hạn';
-                    const valueStr = d.discountType === 'percent' ? `${d.discountValue}%` : `${d.discountValue.toLocaleString('vi-VN')} ₫`;
-                    const usageStr = d.maxUsage ? `${d.maxUsage}` : '∞';
+                    const expiryDate = d.expiryDate ? new Date(d.expiryDate).toLocaleDateString('vi-VN') : 'KhÃ´ng giá»›i háº¡n';
+                    const valueStr = d.discountType === 'percent' ? `${d.discountValue}%` : `${d.discountValue.toLocaleString('vi-VN')} â‚«`;
+                    const usageStr = d.maxUsage ? `${d.maxUsage}` : 'âˆž';
                     
                     let badgeClass = 'badge-active';
-                    let badgeText = 'Đang hoạt động';
-                    if (d.displayStatus === 'expired') { badgeClass = 'badge-expired'; badgeText = 'Hết hạn'; }
-                    if (d.displayStatus === 'disabled') { badgeClass = 'badge-expired'; badgeText = 'Đã tắt'; }
+                    let badgeText = 'Äang hoáº¡t Ä‘á»™ng';
+                    if (d.displayStatus === 'expired') { badgeClass = 'badge-expired'; badgeText = 'Háº¿t háº¡n'; }
+                    if (d.displayStatus === 'disabled') { badgeClass = 'badge-expired'; badgeText = 'ÄÃ£ táº¯t'; }
 
                     return `
                         <tr>
@@ -373,19 +374,19 @@
                                 <div style="font-weight: 700; color: #d4af37; font-family: monospace; font-size: 1.1rem; letter-spacing: 1px;">${d.code}</div>
                             </td>
                             <td>
-                                <div style="font-weight: 500;">Giảm ${valueStr}</div>
+                                <div style="font-weight: 500;">Giáº£m ${valueStr}</div>
                             </td>
                             <td><div style="font-weight: 500; color: var(--admin-text-light);">${usageStr}</div></td>
                             <td><div style="font-weight: 600;">${d.usedCount}</div></td>
                             <td style="color: var(--admin-text-light);">${expiryDate}</td>
                             <td><span class="badge-status ${badgeClass}">${badgeText}</span></td>
                             <td style="text-align: right;">
-                                <label class="toggle-switch" style="vertical-align: middle; margin-right: 10px;" title="Bật/Tắt">
+                                <label class="toggle-switch" style="vertical-align: middle; margin-right: 10px;" title="Báº­t/Táº¯t">
                                     <input type="checkbox" ${d.isActive ? 'checked' : ''} onchange="toggleDiscount('${d._id}', this.checked)">
                                     <span class="slider"></span>
                                 </label>
-                                <button class="btn-icon" title="Chỉnh sửa" onclick='openEditModal(${JSON.stringify(d).replace(/'/g, "&#39;")})'><i class="fa-solid fa-pen-to-square"></i></button>
-                                <button class="btn-icon" title="Xóa" onclick="deleteDiscount('${d._id}')" style="color: #e74c3c;"><i class="fa-solid fa-trash-can"></i></button>
+                                <button class="btn-icon" title="Chá»‰nh sá»­a" onclick='openEditModal(${JSON.stringify(d).replace(/'/g, "&#39;")})'><i class="fa-solid fa-pen-to-square"></i></button>
+                                <button class="btn-icon" title="XÃ³a" onclick="deleteDiscount('${d._id}')" style="color: #e74c3c;"><i class="fa-solid fa-trash-can"></i></button>
                             </td>
                         </tr>
                     `;
@@ -396,7 +397,7 @@
                     if (totalPages <= 1) {
                         pag.innerHTML = '';
                     } else {
-                        let html = `<div class="pagination-info">Trang ${currentPage} / ${totalPages} (Tổng ${filtered.length} mã)</div>`;
+                        let html = `<div class="pagination-info">Trang ${currentPage} / ${totalPages} (Tá»•ng ${filtered.length} mÃ£)</div>`;
                         html += `<button onclick="changePage(${currentPage - 1})" ${currentPage === 1 ? 'disabled' : ''}><i class="fa-solid fa-chevron-left"></i></button>`;
                         for (let i = 1; i <= totalPages; i++) {
                             if (i === 1 || i === totalPages || (i >= currentPage - 1 && i <= currentPage + 1)) {
@@ -411,7 +412,7 @@
                 }
 
             } catch (error) {
-                tbody.innerHTML = '<tr><td colspan="8" style="text-align: center; color: #e74c3c; padding: 3rem;">Lỗi tải dữ liệu: ' + error.message + '</td></tr>';
+                tbody.innerHTML = '<tr><td colspan="8" style="text-align: center; color: #e74c3c; padding: 3rem;">Lá»—i táº£i dá»¯ liá»‡u: ' + error.message + '</td></tr>';
             }
         }
 
@@ -421,7 +422,7 @@
         }
 
         function openAddModal() {
-            document.getElementById('modalTitle').innerHTML = '<i class="fa-solid fa-tag" style="margin-right: 8px;"></i> Thêm Mã Giảm Giá Mới';
+            document.getElementById('modalTitle').innerHTML = '<i class="fa-solid fa-tag" style="margin-right: 8px;"></i> ThÃªm MÃ£ Giáº£m GiÃ¡ Má»›i';
             document.getElementById('edit-id').value = '';
             document.getElementById('edit-code').value = '';
             document.getElementById('edit-code').disabled = false;
@@ -434,7 +435,7 @@
         }
 
         function openEditModal(d) {
-            document.getElementById('modalTitle').innerHTML = '<i class="fa-solid fa-pen" style="margin-right: 8px;"></i> Chỉnh sửa Mã Giảm Giá';
+            document.getElementById('modalTitle').innerHTML = '<i class="fa-solid fa-pen" style="margin-right: 8px;"></i> Chá»‰nh sá»­a MÃ£ Giáº£m GiÃ¡';
             document.getElementById('edit-id').value = d._id;
             document.getElementById('edit-code').value = d.code;
             document.getElementById('edit-code').disabled = true;
@@ -462,47 +463,48 @@
             };
 
             if (!data.code || !data.discountValue) {
-                alert('Vui lòng nhập Mã và Giá trị giảm');
+                alert('Vui lÃ²ng nháº­p MÃ£ vÃ  GiÃ¡ trá»‹ giáº£m');
                 return;
             }
 
             try {
                 if (id) {
                     await API.updateDiscount(id, data);
-                    alert('Cập nhật thành công!');
+                    alert('Cáº­p nháº­t thÃ nh cÃ´ng!');
                 } else {
                     await API.createDiscount(data);
-                    alert('Tạo mã giảm giá thành công!');
+                    alert('Táº¡o mÃ£ giáº£m giÃ¡ thÃ nh cÃ´ng!');
                 }
                 closeModal();
                 loadDiscounts();
             } catch (error) {
-                alert('Lỗi: ' + error.message);
+                alert('Lá»—i: ' + error.message);
             }
         }
 
         async function toggleDiscount(id, isActive) {
             try {
                 await API.updateDiscount(id, { isActive });
-                // Cập nhật local data mà không cần reload
+                // Cáº­p nháº­t local data mÃ  khÃ´ng cáº§n reload
                 const d = allDiscounts.find(x => x._id === id);
                 if (d) d.isActive = isActive;
                 renderDiscounts();
             } catch (error) {
-                alert('Lỗi: ' + error.message);
+                alert('Lá»—i: ' + error.message);
                 loadDiscounts();
             }
         }
 
         async function deleteDiscount(id) {
-            if (!confirm('Bạn có chắc chắn muốn xóa mã giảm giá này?')) return;
+            if (!confirm('Báº¡n cÃ³ cháº¯c cháº¯n muá»‘n xÃ³a mÃ£ giáº£m giÃ¡ nÃ y?')) return;
             try {
                 await API.deleteDiscount(id);
                 loadDiscounts();
             } catch (error) {
-                alert('Lỗi: ' + error.message);
+                alert('Lá»—i: ' + error.message);
             }
         }
     </script>
 </body>
 </html>
+

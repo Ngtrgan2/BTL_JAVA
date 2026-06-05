@@ -1,9 +1,9 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quản lý khách hàng | An LUXURY</title>
+    <title>Quáº£n lÃ½ khÃ¡ch hÃ ng | An LUXURY</title>
     <link rel="stylesheet" href="../../css/admin.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="icon" type="image/png" href="../../images/kimcuong2.png">
@@ -53,39 +53,39 @@
         <aside class="admin-sidebar">
             <div class="sidebar-header">
                 <div class="sidebar-logo">An LUXURY</div>
-                <div id="sidebar-role-text" style="font-size: 0.8rem; color: var(--admin-text-light); margin-top: 5px;">Quản Trị Hệ Thống</div>
+                <div id="sidebar-role-text" style="font-size: 0.8rem; color: var(--admin-text-light); margin-top: 5px;">Quáº£n Trá»‹ Há»‡ Thá»‘ng</div>
             </div>
             
             <div class="sidebar-menu">
                 <a href="dashboard.html" class="menu-item" id="nav-dashboard">
-                    <i class="fa-solid fa-chart-pie menu-icon"></i> Bàn làm việc
+                    <i class="fa-solid fa-chart-pie menu-icon"></i> BÃ n lÃ m viá»‡c
                 </a>
                 <a href="revenue.html" class="menu-item" id="nav-revenue">
                     <i class="fa-solid fa-money-bill-trend-up menu-icon"></i> Doanh thu
                 </a>
                 <a href="products.html" class="menu-item" id="nav-products">
-                    <i class="fa-solid fa-gem menu-icon"></i> Sản phẩm
+                    <i class="fa-solid fa-gem menu-icon"></i> Sáº£n pháº©m
                 </a>
                 <a href="orders.html" class="menu-item" id="nav-orders">
-                    <i class="fa-solid fa-cart-flatbed menu-icon"></i> Đơn hàng
+                    <i class="fa-solid fa-cart-flatbed menu-icon"></i> ÄÆ¡n hÃ ng
                 </a>
                 <a href="bookings.html" class="menu-item" id="nav-bookings">
-                    <i class="fa-regular fa-calendar-check menu-icon"></i> Lịch hẹn VIP
+                    <i class="fa-regular fa-calendar-check menu-icon"></i> Lá»‹ch háº¹n VIP
                 </a>
                 <a href="warranties.html" class="menu-item" id="nav-warranties">
-                    <i class="fa-solid fa-shield-halved menu-icon"></i> Bảo hành
+                    <i class="fa-solid fa-shield-halved menu-icon"></i> Báº£o hÃ nh
                 </a>
                 <a href="discounts.html" class="menu-item" id="nav-discounts">
-                    <i class="fa-solid fa-tags menu-icon"></i> Mã giảm giá
+                    <i class="fa-solid fa-tags menu-icon"></i> MÃ£ giáº£m giÃ¡
                 </a>
                 <a href="news.html" class="menu-item" id="nav-news">
-                    <i class="fa-solid fa-newspaper menu-icon"></i> Tin tức
+                    <i class="fa-solid fa-newspaper menu-icon"></i> Tin tá»©c
                 </a>
                 <a href="chat.html" class="menu-item" id="nav-chat">
-                    <i class="fa-solid fa-comments menu-icon"></i> Chat Hỗ Trợ
+                    <i class="fa-solid fa-comments menu-icon"></i> Chat Há»— Trá»£
                 </a>
                 <a href="customers.html" class="menu-item active" id="nav-customers">
-                    <i class="fa-solid fa-users menu-icon"></i> Khách hàng
+                    <i class="fa-solid fa-users menu-icon"></i> KhÃ¡ch hÃ ng
                 </a>
             </div>
             
@@ -95,7 +95,7 @@
                     <i class="fa-solid fa-globe menu-icon"></i> Xem website
                 </a>
                 <a href="#" class="menu-item logout-btn" style="padding: 0; color: #e74c3c; font-size: 0.9rem;">
-                    <i class="fa-solid fa-arrow-right-from-bracket menu-icon" style="color: #e74c3c;"></i> Đăng xuất
+                    <i class="fa-solid fa-arrow-right-from-bracket menu-icon" style="color: #e74c3c;"></i> ÄÄƒng xuáº¥t
                 </a>
             </div>
         </aside>
@@ -103,9 +103,9 @@
         <!-- Main Content -->
         <main class="admin-main">
             <div class="page-header">
-                <h1 class="page-title">Quản Lý Khách Hàng</h1>
+                <h1 class="page-title">Quáº£n LÃ½ KhÃ¡ch HÃ ng</h1>
                 <div class="header-actions">
-                    <button class="btn-admin" style="background: var(--admin-surface); border: 1px solid var(--admin-border); color: #fff;" onclick="exportToExcel()"><i class="fa-solid fa-file-excel" style="color: #2ecc71; margin-right: 8px;"></i> Xuất Excel</button>
+                    <button class="btn-admin" style="background: var(--admin-surface); border: 1px solid var(--admin-border); color: #fff;" onclick="exportToExcel()"><i class="fa-solid fa-file-excel" style="color: #2ecc71; margin-right: 8px;"></i> Xuáº¥t Excel</button>
                 </div>
             </div>
 
@@ -113,21 +113,21 @@
                 <div class="stat-card">
                     <div class="stat-icon"><i class="fa-solid fa-users"></i></div>
                     <div class="stat-info">
-                        <h3>Tổng số tài khoản</h3>
+                        <h3>Tá»•ng sá»‘ tÃ i khoáº£n</h3>
                         <div class="stat-value" id="stat-total">0</div>
                     </div>
                 </div>
                 <div class="stat-card">
                     <div class="stat-icon" style="color: #2ecc71;"><i class="fa-solid fa-user-check"></i></div>
                     <div class="stat-info">
-                        <h3>Khách hàng thân thiết</h3>
+                        <h3>KhÃ¡ch hÃ ng thÃ¢n thiáº¿t</h3>
                         <div class="stat-value" id="stat-loyal">0</div>
                     </div>
                 </div>
                 <div class="stat-card">
                     <div class="stat-icon" style="color: #e74c3c;"><i class="fa-solid fa-user-lock"></i></div>
                     <div class="stat-info">
-                        <h3>Tài khoản bị khóa</h3>
+                        <h3>TÃ i khoáº£n bá»‹ khÃ³a</h3>
                         <div class="stat-value" id="stat-banned">0</div>
                     </div>
                 </div>
@@ -136,8 +136,8 @@
             <div class="admin-card">
                 <div class="card-header">
                     <div style="display: flex; gap: 1rem; width: 100%;">
-                        <input type="text" id="searchUser" class="form-control-admin" placeholder="Tìm kiếm khách hàng (tên, email, sđt)..." style="flex: 1;">
-                        <button class="btn-admin btn-primary" onclick="loadUsers()"><i class="fa-solid fa-filter"></i> Tìm kiếm</button>
+                        <input type="text" id="searchUser" class="form-control-admin" placeholder="TÃ¬m kiáº¿m khÃ¡ch hÃ ng (tÃªn, email, sÄ‘t)..." style="flex: 1;">
+                        <button class="btn-admin btn-primary" onclick="loadUsers()"><i class="fa-solid fa-filter"></i> TÃ¬m kiáº¿m</button>
                     </div>
                 </div>
                 
@@ -145,11 +145,11 @@
                     <thead>
                         <tr>
                             <th style="width: 50px; text-align: center;">STT</th>
-                            <th>KHÁCH HÀNG</th>
-                            <th>LIÊN HỆ</th>
-                            <th>NGÀY THAM GIA</th>
-                            <th>VAI TRÒ</th>
-                            <th style="text-align: right;">THAO TÁC</th>
+                            <th>KHÃCH HÃ€NG</th>
+                            <th>LIÃŠN Há»†</th>
+                            <th>NGÃ€Y THAM GIA</th>
+                            <th>VAI TRÃ’</th>
+                            <th style="text-align: right;">THAO TÃC</th>
                         </tr>
                     </thead>
                     <tbody id="userTableBody">
@@ -166,11 +166,11 @@
     <!-- Edit User Modal -->
     <div class="modal-overlay" id="userModal">
         <div class="modal-content">
-            <h3><i class="fa-solid fa-user-pen" style="margin-right: 8px;"></i> Chỉnh sửa Khách hàng</h3>
+            <h3><i class="fa-solid fa-user-pen" style="margin-right: 8px;"></i> Chá»‰nh sá»­a KhÃ¡ch hÃ ng</h3>
             <input type="hidden" id="edit-id">
             
             <div class="form-group-modal">
-                <label>Họ và tên</label>
+                <label>Há» vÃ  tÃªn</label>
                 <input type="text" id="edit-fullname">
             </div>
             <div class="form-group-modal">
@@ -178,17 +178,17 @@
                 <input type="email" id="edit-email">
             </div>
             <div class="form-group-modal">
-                <label>Số điện thoại</label>
+                <label>Sá»‘ Ä‘iá»‡n thoáº¡i</label>
                 <input type="text" id="edit-phone">
             </div>
             <div class="form-group-modal">
-                <label>Địa chỉ</label>
+                <label>Äá»‹a chá»‰</label>
                 <input type="text" id="edit-address">
             </div>
 
             <div class="modal-actions">
-                <button class="btn-modal btn-modal-cancel" onclick="closeUserModal()">Hủy</button>
-                <button class="btn-modal btn-modal-save" onclick="saveUserInfo()"><i class="fa-solid fa-check" style="margin-right: 5px;"></i> Lưu thay đổi</button>
+                <button class="btn-modal btn-modal-cancel" onclick="closeUserModal()">Há»§y</button>
+                <button class="btn-modal btn-modal-save" onclick="saveUserInfo()"><i class="fa-solid fa-check" style="margin-right: 5px;"></i> LÆ°u thay Ä‘á»•i</button>
             </div>
         </div>
     </div>
@@ -196,11 +196,11 @@
     <!-- Edit User Modal -->
     <div class="modal-overlay" id="userModal">
         <div class="modal-content">
-            <h3><i class="fa-solid fa-user-pen" style="margin-right: 8px;"></i> Chỉnh sửa Khách hàng</h3>
+            <h3><i class="fa-solid fa-user-pen" style="margin-right: 8px;"></i> Chá»‰nh sá»­a KhÃ¡ch hÃ ng</h3>
             <input type="hidden" id="edit-id">
             
             <div class="form-group-modal">
-                <label>Họ và tên</label>
+                <label>Há» vÃ  tÃªn</label>
                 <input type="text" id="edit-fullname">
             </div>
             <div class="form-group-modal">
@@ -208,17 +208,17 @@
                 <input type="email" id="edit-email">
             </div>
             <div class="form-group-modal">
-                <label>Số điện thoại</label>
+                <label>Sá»‘ Ä‘iá»‡n thoáº¡i</label>
                 <input type="text" id="edit-phone">
             </div>
             <div class="form-group-modal">
-                <label>Địa chỉ</label>
+                <label>Äá»‹a chá»‰</label>
                 <input type="text" id="edit-address">
             </div>
 
             <div class="modal-actions">
-                <button class="btn-modal btn-modal-cancel" onclick="closeUserModal()">Hủy</button>
-                <button class="btn-modal btn-modal-save" onclick="saveUserInfo()"><i class="fa-solid fa-check" style="margin-right: 5px;"></i> Lưu thay đổi</button>
+                <button class="btn-modal btn-modal-cancel" onclick="closeUserModal()">Há»§y</button>
+                <button class="btn-modal btn-modal-save" onclick="saveUserInfo()"><i class="fa-solid fa-check" style="margin-right: 5px;"></i> LÆ°u thay Ä‘á»•i</button>
             </div>
         </div>
     </div>
@@ -247,46 +247,46 @@
             };
 
             if (!data.fullName || !data.email) {
-                alert('Vui lòng nhập tên và email');
+                alert('Vui lÃ²ng nháº­p tÃªn vÃ  email');
                 return;
             }
 
             try {
                 await API.updateUserInfo(id, data);
-                alert('Đã cập nhật thông tin!');
+                alert('ÄÃ£ cáº­p nháº­t thÃ´ng tin!');
                 closeUserModal();
                 loadUsers();
             } catch (error) {
-                alert('Lỗi: ' + error.message);
+                alert('Lá»—i: ' + error.message);
             }
         }
 
         async function toggleBanUser(id, isBanned) {
-            if (!confirm(isBanned ? 'Khóa tài khoản này?' : 'Mở khóa tài khoản này?')) return;
+            if (!confirm(isBanned ? 'KhÃ³a tÃ i khoáº£n nÃ y?' : 'Má»Ÿ khÃ³a tÃ i khoáº£n nÃ y?')) return;
             try {
                 await API.toggleBanUser(id, isBanned);
                 loadUsers();
             } catch (error) {
-                alert('Lỗi: ' + error.message);
+                alert('Lá»—i: ' + error.message);
             }
         }
 
         async function deleteUser(id) {
-            if (!confirm('Chú ý: Hành động này không thể hoàn tác! Xóa tài khoản này?')) return;
+            if (!confirm('ChÃº Ã½: HÃ nh Ä‘á»™ng nÃ y khÃ´ng thá»ƒ hoÃ n tÃ¡c! XÃ³a tÃ i khoáº£n nÃ y?')) return;
             try {
                 await API.deleteUser(id);
                 loadUsers();
             } catch (error) {
-                alert('Lỗi: ' + error.message);
+                alert('Lá»—i: ' + error.message);
             }
         }
 
         function exportToExcel() {
             let csvContent = "data:text/csv;charset=utf-8,\uFEFF";
-            csvContent += "ID,Họ tên,Email,SĐT,Vai trò,Ngày đăng ký,Trạng thái\n";
+            csvContent += "ID,Há» tÃªn,Email,SÄT,Vai trÃ²,NgÃ y Ä‘Äƒng kÃ½,Tráº¡ng thÃ¡i\n";
             
             allUsers.forEach(u => {
-                const status = u.isBanned ? 'Đã khóa' : 'Hoạt động';
+                const status = u.isBanned ? 'ÄÃ£ khÃ³a' : 'Hoáº¡t Ä‘á»™ng';
                 const row = [
                     u._id,
                     `"${u.fullName}"`,
@@ -326,7 +326,7 @@
                     <img src="${avatarUrl}" style="width: 35px; height: 35px; border-radius: 50%; object-fit: cover;">
                     <div style="overflow: hidden;">
                         <div style="font-size: 0.85rem; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: #fff;">${userInfo.fullName}</div>
-                        <div style="font-size: 0.7rem; color: var(--admin-text-light); text-transform: capitalize;">Quản trị viên</div>
+                        <div style="font-size: 0.7rem; color: var(--admin-text-light); text-transform: capitalize;">Quáº£n trá»‹ viÃªn</div>
                     </div>
                 </div>
             `;
@@ -339,6 +339,7 @@
                     e.preventDefault();
                     localStorage.removeItem('userInfo');
                     localStorage.removeItem('token');
+                    localStorage.removeItem('cart');
                     window.location.href = '../login.html';
                 });
             });
@@ -363,7 +364,7 @@
                 allUsers = users;
                 renderUsers();
             } catch (error) {
-                tbody.innerHTML = '<tr><td colspan="6" style="text-align: center; color: var(--status-danger);">Lỗi: ' + error.message + '</td></tr>';
+                tbody.innerHTML = '<tr><td colspan="6" style="text-align: center; color: var(--status-danger);">Lá»—i: ' + error.message + '</td></tr>';
             }
         }
 
@@ -384,7 +385,7 @@
                 document.getElementById('stat-banned').textContent = allUsers.filter(u => u.isBanned).length;
 
                 if (filtered.length === 0) {
-                    tbody.innerHTML = '<tr><td colspan="6" style="text-align: center; padding: 3rem;">Không tìm thấy khách hàng nào</td></tr>';
+                    tbody.innerHTML = '<tr><td colspan="6" style="text-align: center; padding: 3rem;">KhÃ´ng tÃ¬m tháº¥y khÃ¡ch hÃ ng nÃ o</td></tr>';
                     const pag = document.getElementById('pagination');
                     if (pag) pag.innerHTML = '';
                     return;
@@ -401,30 +402,30 @@
                     <tr style="${u.isBanned ? 'opacity: 0.6; background: rgba(231, 76, 60, 0.05);' : ''}">
                         <td style="text-align: center; font-weight: bold; color: var(--admin-text-light);">${index + 1}</td>
                         <td>
-                            <div style="font-weight: 600;">${u.fullName} ${u.isBanned ? '<span class="badge badge-banned"><i class="fa-solid fa-lock"></i> Đã khóa</span>' : ''}</div>
+                            <div style="font-weight: 600;">${u.fullName} ${u.isBanned ? '<span class="badge badge-banned"><i class="fa-solid fa-lock"></i> ÄÃ£ khÃ³a</span>' : ''}</div>
                             <small style="color: var(--admin-text-light);">${u._id}</small>
                         </td>
                         <td>
                             <div>${u.email}</div>
-                            <small style="color: var(--admin-text-light);">${u.phone || 'Chưa cập nhật SĐT'}</small>
+                            <small style="color: var(--admin-text-light);">${u.phone || 'ChÆ°a cáº­p nháº­t SÄT'}</small>
                         </td>
                         <td style="color: var(--admin-text-light);">${new Date(u.createdAt).toLocaleDateString('vi-VN')}</td>
                         <td>
                             <select class="status-dropdown ${u.role}" onchange="updateRole('${u._id}', this.value)" ${u.role === 'admin' ? 'disabled' : ''}>
-                                <option value="customer" ${u.role === 'customer' ? 'selected' : ''}>Khách hàng mới</option>
-                                <option value="loyal" ${u.role === 'loyal' ? 'selected' : ''}>Khách hàng thân thiết</option>
-                                <option value="staff" ${u.role === 'staff' ? 'selected' : ''}>Nhân viên</option>
-                                <option value="admin" ${u.role === 'admin' ? 'selected' : ''}>Quản trị viên</option>
+                                <option value="customer" ${u.role === 'customer' ? 'selected' : ''}>KhÃ¡ch hÃ ng má»›i</option>
+                                <option value="loyal" ${u.role === 'loyal' ? 'selected' : ''}>KhÃ¡ch hÃ ng thÃ¢n thiáº¿t</option>
+                                <option value="staff" ${u.role === 'staff' ? 'selected' : ''}>NhÃ¢n viÃªn</option>
+                                <option value="admin" ${u.role === 'admin' ? 'selected' : ''}>Quáº£n trá»‹ viÃªn</option>
                             </select>
                         </td>
                         <td style="text-align: right; white-space: nowrap;">
-                            <button class="btn-icon" title="Sửa thông tin" onclick='openEditUserModal(${JSON.stringify(u).replace(/'/g, "&#39;")})'><i class="fa-solid fa-pen"></i></button>
-                            <button class="btn-icon" title="Lịch sử mua hàng" onclick="window.location.href='orders.html?userId=${u._id}'"><i class="fa-solid fa-clock-rotate-left"></i></button>
+                            <button class="btn-icon" title="Sá»­a thÃ´ng tin" onclick='openEditUserModal(${JSON.stringify(u).replace(/'/g, "&#39;")})'><i class="fa-solid fa-pen"></i></button>
+                            <button class="btn-icon" title="Lá»‹ch sá»­ mua hÃ ng" onclick="window.location.href='orders.html?userId=${u._id}'"><i class="fa-solid fa-clock-rotate-left"></i></button>
                             ${u.role !== 'admin' ? `
-                                <button class="btn-icon" title="${u.isBanned ? 'Mở khóa tài khoản' : 'Khóa tài khoản'}" style="color: ${u.isBanned ? '#2ecc71' : '#f39c12'};" onclick="toggleBanUser('${u._id}', ${!u.isBanned})">
+                                <button class="btn-icon" title="${u.isBanned ? 'Má»Ÿ khÃ³a tÃ i khoáº£n' : 'KhÃ³a tÃ i khoáº£n'}" style="color: ${u.isBanned ? '#2ecc71' : '#f39c12'};" onclick="toggleBanUser('${u._id}', ${!u.isBanned})">
                                     <i class="fa-solid ${u.isBanned ? 'fa-unlock' : 'fa-lock'}"></i>
                                 </button>
-                                <button class="btn-icon" title="Xóa tài khoản" style="color: #e74c3c;" onclick="deleteUser('${u._id}')"><i class="fa-solid fa-trash-can"></i></button>
+                                <button class="btn-icon" title="XÃ³a tÃ i khoáº£n" style="color: #e74c3c;" onclick="deleteUser('${u._id}')"><i class="fa-solid fa-trash-can"></i></button>
                             ` : ''}
                         </td>
                     </tr>
@@ -436,7 +437,7 @@
                     if (totalPages <= 1) {
                         pag.innerHTML = '';
                     } else {
-                        let html = `<div class="pagination-info">Trang ${currentPage} / ${totalPages} (Tổng ${filtered.length} khách hàng)</div>`;
+                        let html = `<div class="pagination-info">Trang ${currentPage} / ${totalPages} (Tá»•ng ${filtered.length} khÃ¡ch hÃ ng)</div>`;
                         html += `<button onclick="changePage(${currentPage - 1})" ${currentPage === 1 ? 'disabled' : ''}><i class="fa-solid fa-chevron-left"></i></button>`;
                         for (let i = 1; i <= totalPages; i++) {
                             if (i === 1 || i === totalPages || (i >= currentPage - 1 && i <= currentPage + 1)) {
@@ -451,7 +452,7 @@
                 }
 
             } catch (error) {
-                tbody.innerHTML = '<tr><td colspan="6" style="text-align: center; color: var(--status-danger);">Lỗi: ' + error.message + '</td></tr>';
+                tbody.innerHTML = '<tr><td colspan="6" style="text-align: center; color: var(--status-danger);">Lá»—i: ' + error.message + '</td></tr>';
             }
         }
 
@@ -461,19 +462,20 @@
         }
 
         async function updateRole(id, role) {
-            if (!confirm('Xác nhận thay đổi quyền hạn cho người dùng này?')) {
+            if (!confirm('XÃ¡c nháº­n thay Ä‘á»•i quyá»n háº¡n cho ngÆ°á»i dÃ¹ng nÃ y?')) {
                 loadUsers();
                 return;
             }
             try {
                 await API.updateUserRole(id, role);
-                alert('Đã cập nhật quyền hạn!');
+                alert('ÄÃ£ cáº­p nháº­t quyá»n háº¡n!');
                 loadUsers();
             } catch (error) {
-                alert('Lỗi: ' + error.message);
+                alert('Lá»—i: ' + error.message);
                 loadUsers();
             }
         }
     </script>
 </body>
 </html>
+
