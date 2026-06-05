@@ -223,8 +223,10 @@
         </div>
     </div>
 
-    <script src="../../js/api.js">
-        function openEditUserModal(user) {
+    <script src="../../js/api.js?v=2">
+        function openEditUserModal(id) {
+    const user = allUsers.find(u => u._id === id);
+    if (!user) return;
             document.getElementById('edit-id').value = user._id;
             document.getElementById('edit-fullname').value = user.fullName || '';
             document.getElementById('edit-email').value = user.email || '';
@@ -419,7 +421,7 @@
                             </select>
                         </td>
                         <td style="text-align: right; white-space: nowrap;">
-                            <button class="btn-icon" title="Sửa thông tin" onclick='openEditUserModal(${JSON.stringify(u).replace(/'/g, "&#39;")})'><i class="fa-solid fa-pen"></i></button>
+                            <button class="btn-icon" title="Sửa thông tin" onclick="openEditUserModal('${u._id}')"><i class="fa-solid fa-pen"></i></button>
                             <button class="btn-icon" title="Lịch sử mua hàng" onclick="window.location.href='orders.html?userId=${u._id}'"><i class="fa-solid fa-clock-rotate-left"></i></button>
                             ${u.role !== 'admin' ? `
                                 <button class="btn-icon" title="${u.isBanned ? 'Mở khóa tài khoản' : 'Khóa tài khoản'}" style="color: ${u.isBanned ? '#2ecc71' : '#f39c12'};" onclick="toggleBanUser('${u._id}', ${!u.isBanned})">
