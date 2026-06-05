@@ -236,7 +236,7 @@
         }
 
         async function toggleBanUser(id, isBanned) {
-            if (!confirm(isBanned ? 'Khóa tài khoản này?' : 'Mở khóa tài khoản này?')) return;
+            if (!(await AnLuxuryNotification.confirm(isBanned ? 'Khóa tài khoản này?' : 'Mở khóa tài khoản này?'))) return;
             try {
                 await API.toggleBanUser(id, isBanned);
                 loadUsers();
@@ -246,7 +246,7 @@
         }
 
         async function deleteUser(id) {
-            if (!confirm('Chú ý: Hành động này không thể hoàn tác! Xóa tài khoản này?')) return;
+            if (!(await AnLuxuryNotification.confirm('Chú ý: Hành động này không thể hoàn tác! Xóa tài khoản này?'))) return;
             try {
                 await API.deleteUser(id);
                 loadUsers();
@@ -436,7 +436,7 @@
         }
 
         async function updateRole(id, role) {
-            if (!confirm('Xác nhận thay đổi quyền hạn cho người dùng này?')) {
+            if (!(await AnLuxuryNotification.confirm('Xác nhận thay đổi quyền hạn cho người dùng này?'))) {
                 loadUsers();
                 return;
             }
@@ -450,5 +450,6 @@
             }
         }
     </script>
+    <script src="../../js/toast.js"></script>
 </body>
 </html>
