@@ -8,6 +8,7 @@ const { getWarrantyByCode, getWarranties, updateWarranty, deleteWarranty } = req
 const { chatResponse } = require('./controllers/chatController');
 const { getNews, createNews, updateNews, deleteNews } = require('./controllers/newsController');
 const { getComments, createComment, likeComment, deleteComment } = require('./controllers/commentController');
+const { getAIContext } = require('./controllers/aiController');
 const { getDiscounts, createDiscount, updateDiscount, deleteDiscount, validateDiscount } = require('./controllers/discountController');
 
 function router(req, res) {
@@ -103,11 +104,16 @@ function router(req, res) {
     if (url === '/api/comments' && method === 'POST') {
         return createComment(req, res);
     }
-    if (url.match(/^\/api\/comments\/[^\/]+\/like$/) && method === 'PUT') {
+    if (url.startsWith('/api/comments/') && url.endsWith('/like') && method === 'PUT') {
         return likeComment(req, res);
     }
-    if (url.match(/^\/api\/comments\/[^\/]+$/) && method === 'DELETE') {
+    if (url.startsWith('/api/comments/') && method === 'DELETE') {
         return deleteComment(req, res);
+    }
+
+    // API Routes - AI Context
+    if (url === '/api/ai-data' && method === 'GET') {
+        return getAIContext(req, res);
     }
 
     if (url === '/api/products' && method === 'POST') {
