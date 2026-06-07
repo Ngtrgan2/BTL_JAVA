@@ -295,7 +295,15 @@
                 await API.updateUserInfo(id, data);
                 alert('Đã cập nhật thông tin!');
                 closeUserModal();
-                loadUsers();
+                
+            const custNav = document.getElementById('nav-customers');
+            if (userInfo.role === 'admin' && custNav) {
+                custNav.style.display = 'flex';
+                const setNav = document.getElementById('nav-settings');
+                if(setNav) setNav.style.display = 'flex';
+            }
+    
+            loadUsers();
             } catch (error) {
                 alert('Lỗi: ' + error.message);
             }
