@@ -396,6 +396,15 @@
                 </div>
             `;
 
+            // Show admin-only sidebar items
+            const _custNav = document.getElementById('nav-customers');
+            if (_custNav && userInfo && userInfo.role === 'admin') {
+                _custNav.style.display = 'flex';
+                const _setNav = document.getElementById('nav-settings');
+                if(_setNav) _setNav.style.display = 'flex';
+            }
+
+
             loadUsers();
 
             // Logout
@@ -556,14 +565,6 @@
             } catch (error) {
                 alert('Lỗi: ' + error.message);
     
-            // Show admin-only sidebar items
-            const _custNav = document.getElementById('nav-customers');
-            if (_custNav && userInfo && userInfo.role === 'admin') {
-                _custNav.style.display = 'flex';
-                const _setNav = document.getElementById('nav-settings');
-                if(_setNav) _setNav.style.display = 'flex';
-            }
-
             loadUsers();
             }
         }
