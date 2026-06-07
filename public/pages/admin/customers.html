@@ -59,7 +59,8 @@
             display: none;
             position: absolute;
             right: 0;
-            top: 100%;
+            bottom: 100%;
+            margin-bottom: 5px;
             background: rgba(15, 15, 15, 0.95);
             backdrop-filter: blur(10px);
             min-width: 170px;
@@ -67,11 +68,9 @@
             border: 1px solid rgba(212, 175, 55, 0.2);
             border-radius: 8px;
             z-index: 1000;
-            overflow: hidden;
             padding: 5px 0;
         }
-        .action-dropdown-container:hover .action-dropdown-menu,
-        .action-dropdown-container:focus-within .action-dropdown-menu {
+        .action-dropdown-menu.show {
             display: block;
         }
         .action-dropdown-menu a {
@@ -82,6 +81,7 @@
             align-items: center;
             font-size: 0.85rem;
             transition: 0.2s;
+            white-space: nowrap;
         }
         .action-dropdown-menu a i {
             width: 20px;
@@ -94,11 +94,36 @@
             color: var(--gold-primary);
         }
         /* Make sure table rows don't clip dropdowns */
+        
         .admin-table tbody tr {
             position: relative;
         }
+        .admin-table tbody tr:hover {
+            z-index: 10;
+        }
+
         .admin-card {
             overflow: visible !important;
+        }
+        .admin-table {
+            overflow: visible !important;
+        }
+
+    
+        /* Banned Row Styles */
+        .banned-row {
+            background: rgba(231, 76, 60, 0.05) !important;
+        }
+        .banned-row > td:not(:last-child) {
+            opacity: 0.5;
+        }
+        .banned-row:hover > td:not(:last-child) {
+            opacity: 0.8;
+        }
+        
+        /* Action Dropdown fixes */
+        .action-dropdown-menu {
+            z-index: 9999 !important;
         }
 
     </style>
@@ -372,6 +397,18 @@
             document.body.removeChild(link);
             AnLuxuryNotification.alert('Đã xuất file Excel thành công!', 'Thành công', 'success');
         }
+
+        // Dropdown toggle on click
+        function toggleDropdown(btn) {
+            const menu = btn.nextElementSibling;
+            const wasOpen = menu.classList.contains('show');
+            document.querySelectorAll('.action-dropdown-menu.show').forEach(function(m) { m.classList.remove('show'); });
+            if (!wasOpen) menu.classList.add('show');
+        }
+        document.addEventListener('click', function() {
+            document.querySelectorAll('.action-dropdown-menu.show').forEach(function(m) { m.classList.remove('show'); });
+        });
+
     </script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
@@ -488,7 +525,7 @@
                 tbody.innerHTML = paginated.map((u, i) => {
                     const index = startIndex + i;
                     return `
-                    <tr style="${u.isBanned ? 'opacity: 0.6; background: rgba(231, 76, 60, 0.05);' : ''}">
+                    <tr class="${u.isBanned ? 'banned-row' : ''}">
                         <td style="text-align: center; font-weight: bold; color: var(--admin-text-light);">${index + 1}</td>
                         <td>
                             <div style="font-weight: 600;">${u.fullName} ${u.isBanned ? '<span class="badge badge-banned"><i class="fa-solid fa-lock"></i> Đã khóa</span>' : ''}</div>
@@ -509,7 +546,7 @@
                         </td>
                         <td style="text-align: right; white-space: nowrap; overflow: visible;">
                             <div class="action-dropdown-container">
-                                <button class="btn-icon" style="padding: 5px 12px;"><i class="fa-solid fa-ellipsis-vertical"></i></button>
+                                <button class="btn-icon" style="padding: 5px 12px;" onclick="event.stopPropagation(); toggleDropdown(this)"><i class="fa-solid fa-ellipsis-vertical"></i></button>
                                 <div class="action-dropdown-menu">
                                     <a href="#" onclick="event.preventDefault(); openEditUserModal('${u._id}')"><i class="fa-solid fa-pen"></i> Sửa thông tin</a>
                                     <a href="orders.html?userId=${u._id}"><i class="fa-solid fa-clock-rotate-left"></i> Lịch sử mua</a>
