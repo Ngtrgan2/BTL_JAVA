@@ -295,15 +295,7 @@
                 await API.updateUserInfo(id, data);
                 alert('Đã cập nhật thông tin!');
                 closeUserModal();
-                
-            const custNav = document.getElementById('nav-customers');
-            if (userInfo.role === 'admin' && custNav) {
-                custNav.style.display = 'flex';
-                const setNav = document.getElementById('nav-settings');
-                if(setNav) setNav.style.display = 'flex';
-            }
-    
-            loadUsers();
+                loadUsers();
             } catch (error) {
                 alert('Lỗi: ' + error.message);
             }
@@ -563,7 +555,16 @@
                 loadUsers();
             } catch (error) {
                 alert('Lỗi: ' + error.message);
-                loadUsers();
+    
+            // Show admin-only sidebar items
+            const _custNav = document.getElementById('nav-customers');
+            if (_custNav && userInfo && userInfo.role === 'admin') {
+                _custNav.style.display = 'flex';
+                const _setNav = document.getElementById('nav-settings');
+                if(_setNav) _setNav.style.display = 'flex';
+            }
+
+            loadUsers();
             }
         }
     </script>

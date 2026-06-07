@@ -330,15 +330,6 @@
         let allWarranties = [];
 
         document.addEventListener('DOMContentLoaded', () => {
-            const custNav = document.getElementById('nav-customers');
-            if (custNav) {
-                if (userInfo.role === 'admin') {
-                    custNav.style.display = 'flex';
-                    const setNav = document.getElementById('nav-settings');
-                    if(setNav) setNav.style.display = 'flex';
-                }
-            }
-
             const userInfo = JSON.parse(localStorage.getItem('userInfo'));
             if (!userInfo || userInfo.role !== 'admin') {
                 window.location.href = '../login.html';
@@ -358,6 +349,15 @@
                     </div>
                 </div>
             `;
+
+
+            // Show admin-only sidebar items
+            const _custNav = document.getElementById('nav-customers');
+            if (_custNav && userInfo && userInfo.role === 'admin') {
+                _custNav.style.display = 'flex';
+                const _setNav = document.getElementById('nav-settings');
+                if(_setNav) _setNav.style.display = 'flex';
+            }
 
             loadWarranties();
 
