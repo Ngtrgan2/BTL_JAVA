@@ -259,6 +259,17 @@
             const totalPrice = Cart.getTotalPrice();
             const totalCount = Cart.getTotalCount();
 
+            let discountAmount = 0;
+            if (window.currentDiscount && window.currentDiscount.code) {
+                if (window.currentDiscount.type === 'percent') {
+                    discountAmount = Math.round(totalPrice * (window.currentDiscount.value / 100));
+                } else if (window.currentDiscount.type === 'fixed') {
+                    discountAmount = window.currentDiscount.value;
+                }
+                if (discountAmount > totalPrice) discountAmount = totalPrice;
+            }
+            const finalPrice = totalPrice - discountAmount;
+
             container.innerHTML = `
                 <div class="cart-layout">
                     <!-- Cart Items -->
@@ -331,14 +342,22 @@
                         <div class="summary-row" style="margin-top: 1.5rem;">
                             <span>Mã giảm giá</span>
                         </div>
-                        <div style="display: flex; gap: 0.5rem; margin-bottom: 1rem;">
-                            <input type="text" class="form-control" placeholder="Nhập mã..." style="flex:1; padding: 0.5rem;">
-                            <button class="btn btn-primary" style="padding: 0.5rem 1rem;">Áp dụng</button>
+                        <div style="display: flex; gap: 0.5rem; margin-bottom: 0.5rem;">
+                            <input type="text" id="discount-code" class="form-control" placeholder="Nhập mã..." style="flex:1; padding: 0.5rem;" value="${window.currentDiscount ? window.currentDiscount.code : ''}">
+                            <button class="btn btn-primary" style="padding: 0.5rem 1rem;" onclick="applyDiscount()">Áp dụng</button>
                         </div>
+                        <div id="discount-message" style="margin-bottom: 1rem; font-size: 0.85rem;"></div>
+
+                        ${window.currentDiscount && window.currentDiscount.code ? `
+                        <div class="summary-row" style="color: #e74c3c;">
+                            <span>Giảm giá (${window.currentDiscount.code})</span>
+                            <span>-${formatPrice(discountAmount)}</span>
+                        </div>
+                        ` : ''}
 
                         <div class="summary-total">
                             <span>Tổng cộng</span>
-                            <span style="color: var(--gold-primary); font-size: 1.5rem;">${formatPrice(totalPrice)}</span>
+                            <span style="color: var(--gold-primary); font-size: 1.5rem;">${formatPrice(finalPrice)}</span>
                         </div>
                         
                         <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 0.5rem; text-align: right;">(Đã bao gồm VAT)</p>
@@ -384,10 +403,65 @@
                 window.location.href = 'login.html';
                 return;
             }
+            if (window.currentDiscount && window.currentDiscount.code) {
+                localStorage.setItem('cartDiscount', JSON.stringify(window.currentDiscount));
+            }
             window.location.href = 'checkout.html';
         }
 
-        document.addEventListener('DOMContentLoaded', renderCart);
+        window.currentDiscount = { code: '', value: 0, type: '' };
+
+        async function applyDiscount() {
+            const codeInput = document.getElementById('discount-code').value.trim().toUpperCase();
+            const messageEl = document.getElementById('discount-message');
+            
+            if (!codeInput) {
+                if (messageEl) {
+                    messageEl.textContent = 'Vui lòng nhập mã giảm giá!';
+                    messageEl.style.color = '#e74c3c';
+                }
+                return;
+            }
+
+            try {
+                const discount = await API.validateDiscount(codeInput);
+                
+                window.currentDiscount.code = discount.code;
+                window.currentDiscount.value = discount.discountValue;
+                window.currentDiscount.type = discount.discountType;
+                
+                renderCart(); // Re-render to update totals
+                
+                setTimeout(() => {
+                    const newMsg = document.getElementById('discount-message');
+                    if(newMsg) {
+                        newMsg.textContent = `Áp dụng thành công mã ${codeInput}!`;
+                        newMsg.style.color = '#2ecc71';
+                    }
+                }, 100);
+            } catch (error) {
+                window.currentDiscount = { code: '', value: 0, type: '' };
+                renderCart();
+                
+                setTimeout(() => {
+                    const newMsg = document.getElementById('discount-message');
+                    if(newMsg) {
+                        newMsg.textContent = error.message || 'Mã giảm giá không hợp lệ hoặc đã hết hạn!';
+                        newMsg.style.color = '#e74c3c';
+                    }
+                }, 100);
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedDiscount = localStorage.getItem('cartDiscount');
+            if (savedDiscount) {
+                try {
+                    window.currentDiscount = JSON.parse(savedDiscount);
+                } catch(e) {}
+            }
+            renderCart();
+        });
     </script>
     <!-- Footer -->
     <footer class="footer">

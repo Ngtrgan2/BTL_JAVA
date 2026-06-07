@@ -668,7 +668,17 @@
             }
         }
 
-        document.addEventListener('DOMContentLoaded', renderCheckout);
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedDiscount = localStorage.getItem('cartDiscount');
+            if (savedDiscount) {
+                try {
+                    currentDiscount = JSON.parse(savedDiscount);
+                    const discountInput = document.getElementById('discount-code');
+                    if (discountInput) discountInput.value = currentDiscount.code;
+                } catch(e) {}
+            }
+            renderCheckout();
+        });
     </script>
 <!-- Footer -->
     <footer class="footer">
