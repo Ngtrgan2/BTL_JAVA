@@ -4,7 +4,7 @@
 const Chatbot = {
     isOpen: false,
     messages: [
-        { role: 'bot', text: 'Chào mừng con vợ đến với An LUXURY! Anh là trợ lý ảo AI. Con vợ cần gì nhỉ?' }
+        { role: 'bot', text: 'Dạ, chào mừng anh/chị đến với An LUXURY! Em là trợ lý AI. Anh/chị đang quan tâm đến sản phẩm nào ạ?' }
     ],
 
     init() {
@@ -214,7 +214,7 @@ const Chatbot = {
             } catch (error) {
                 const botMsgDiv = document.getElementById(botMsgId);
                 if (botMsgDiv) {
-                    botMsgDiv.textContent = 'Anh đang bận tí, tí anh trả lời con vợ nhé';
+                    botMsgDiv.textContent = 'Dạ, hiện tại hệ thống chat đang quá tải. Anh/chị vui lòng đợi trong giây lát hoặc liên hệ hotline 0392326230 nhé ạ!';
                 }
             }
         };
